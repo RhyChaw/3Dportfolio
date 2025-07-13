@@ -136,25 +136,11 @@ const Home = () => {
       <RadarMinimap narutoPosition={narutoPos} onClickTeleport={handleRadarClick} />
 
 
-      {popupVisible && (
-        <Links />
-      )}
-
+      {popupVisible && <Links onClose={() => setPopupVisible(false)} />}
       {resumeVisible && <Resume onClose={() => setResumeVisible(false)} />}
-
-
-      {certificationsVisible && (
-       <Certifications />
-      )}
-
-      {projectsVisible && (
-        <Projects />
-      )}
-
-      {contactVisible && (
-        <Contact />
-      )}
-
+      {certificationsVisible && (<Certifications onClose={() => setCertificationsVisible(false)} />)}
+      {projectsVisible && (<Projects onClose={() => setProjectsVisible(false)} />)}
+      {contactVisible && (<Contact onClose={() => setContactVisible(false)} />)}
 
       {/* UI Top Left */}
       <div style={{

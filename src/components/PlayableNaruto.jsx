@@ -50,7 +50,7 @@ export default function PlayableNaruto(props) {
 
   // Log Naruto's position + update movement + camera
   useFrame((_, delta) => {
-    const speed = 10;
+    const speed = 15;
     const direction = new THREE.Vector3();
 
     if (keysPressed['w'] || keysPressed['arrowup']) direction.z -= 1;
@@ -82,20 +82,21 @@ export default function PlayableNaruto(props) {
       const narutoPos = narutoRef.current.position;
 
       // for computer
-      const computerPos = new THREE.Vector3(10.25, 0.4, -5.63);
-      const distance = narutoPos.distanceTo(computerPos);
+      const computerPos = new THREE.Vector3(10.25, 0.40, -5.63);
+      const distanceToComputer = narutoPos.distanceTo(computerPos);
 
-      if (distance < 2.5) {
-        if (!wasNearComputer) {
-          onNearComputer && onNearComputer();
-          wasNearComputer = true;
+      if (distanceToComputer < 2.5) {
+        if (!wasNearComputer.current) {
+          onNearComputer?.();
+          wasNearComputer.current = true;
         }
       } else {
-        if (wasNearComputer) {
-          onFarFromComputer && onFarFromComputer();
-          wasNearComputer = false;
+        if (wasNearComputer.current) {
+          onFarFromComputer?.();
+          wasNearComputer.current = false;
         }
       }
+
 
       // 🎓 Resume Position Check
       const resumePos = new THREE.Vector3(-0.03, 0.40, -9.67);
