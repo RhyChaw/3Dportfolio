@@ -1,7 +1,7 @@
 // ProjectsData.jsx
 import G12Proj from '../proj/G12Proj.png';
 import JadoAI from '../proj/JadoAI.png';
-import DOCTORAI from '../proj/DOCTORAI.png';
+import DOCTORAI from '../proj/DoctorAI.png';
 import CSGPTPRO from '../proj/CSGPTPRO.png';
 import WildOasisProject from '../proj/WildOasisProject.png';
 import VBOman from '../proj/VBOman.png';
