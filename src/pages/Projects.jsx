@@ -14,8 +14,8 @@ const Projects = ({ onClose }) => {
       style={{
         position: 'absolute',
         top: '10%',
-        left: '10%',
-        width: '80%',
+        left: '20%',
+        width: '60%',
         height: '80%',
         backgroundImage: 'url("/images/scroll-texture.jpg")',
         backgroundSize: 'cover',
@@ -55,38 +55,40 @@ const Projects = ({ onClose }) => {
       </div>
 
       {/* Project Cards */}
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: '16px',
-          justifyContent: 'center',
-        }}
-      >
-        {filteredProjects.map((proj, idx) => (
-          <div
-            key={idx}
-            style={{
-              backgroundColor: proj.backgroundColor,
-              width: '220px',
-              borderRadius: '12px',
-              overflow: 'hidden',
-              boxShadow: '0 0 15px rgba(0,0,0,0.5)',
-              transition: 'transform 0.3s ease-in-out',
-              cursor: 'pointer',
-              fontFamily: 'inherit',
-            }}
-          >
-            <a href={proj.link} target="_blank" rel="noreferrer" style={{ textDecoration: 'none', color: 'black' }}>
-              <img src={proj.image} alt={proj.title} style={{ width: '100%', height: '140px', objectFit: 'cover' }} />
-              <div style={{ padding: '10px' }}>
-                <h3 style={{ margin: '0 0 8px 0', fontSize: '18px' }}>{proj.title}</h3>
-                <p style={{ fontSize: '14px' }}>{proj.description}</p>
-              </div>
-            </a>
-          </div>
-        ))}
-      </div>
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '16px',
+            justifyContent: 'center',
+          }}
+        >
+          {filteredProjects.map((proj, idx) => (
+            <div
+              key={idx}
+              style={{
+                backgroundColor: proj.backgroundColor,
+                width: '220px',
+                borderRadius: '12px',
+                overflow: 'hidden',
+                boxShadow: '0 0 15px rgba(0,0,0,0.5)',
+                transition: 'transform 0.3s ease-in-out',
+                cursor: 'pointer',
+                fontFamily: 'inherit',
+              }}
+            >
+              <a href={proj.link} target="_blank" rel="noreferrer" style={{ textDecoration: 'none', color: 'black' }}>
+                <img src={proj.image} alt={proj.title} style={{ width: '100%', height: '140px', objectFit: 'cover' }} />
+                <div style={{ padding: '10px' }}>
+                  <h3 style={{ margin: '0 0 8px 0', fontSize: '18px' }}>{proj.title}</h3>
+                  <p style={{ fontSize: '12px', color: '#333', marginBottom: '6px' }}>{proj.date}</p>
+                  <p style={{ fontSize: '14px', color: '#111' }}>{proj.description}</p>
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
+
 
       {/* Close Button */}
       <button

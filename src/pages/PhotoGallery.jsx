@@ -1,15 +1,5 @@
 import React from 'react';
 
-const photoUrls = [
-  '/gallery/photo1.jpg',
-  '/gallery/photo2.jpg',
-  '/gallery/photo3.jpg',
-  '/gallery/photo4.jpg',
-  '/gallery/photo5.jpg',
-  '/gallery/photo6.jpg'
-  // Add more as needed
-];
-
 function PhotoGallery({ onClose }) {
   return (
     <div style={{
@@ -21,7 +11,7 @@ function PhotoGallery({ onClose }) {
       backgroundImage: 'url("/images/scroll-texture.jpg")',
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
-      padding: '30px',
+      padding: '40px',
       borderRadius: '20px',
       color: '#fffbe6',
       zIndex: 1000,
@@ -29,53 +19,45 @@ function PhotoGallery({ onClose }) {
       border: '8px double #FFD700',
       boxShadow: '0 0 40px rgba(0,0,0,0.7)',
       backdropFilter: 'blur(6px)',
-      overflowY: 'auto'
+      textAlign: 'center',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center'
     }}>
       <h2 style={{
-        fontSize: '28px',
-        textAlign: 'center',
+        fontSize: '32px',
         color: '#FFD700',
-        textShadow: '1px 1px 2px #000',
-        marginBottom: '20px'
+        textShadow: '2px 2px 4px #000',
+        marginBottom: '30px'
       }}>
-        📸 Ninja Memories: Gallery
+        📸 Ninja Memories: Coming Soon
       </h2>
 
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
-        gap: '20px',
-        padding: '10px'
+      <p style={{
+        fontSize: '18px',
+        maxWidth: '600px',
+        margin: '0 auto',
+        lineHeight: '1.6',
+        color: '#fffbe6',
+        textShadow: '1px 1px 2px #000'
       }}>
-        {photoUrls.map((url, index) => (
-          <div key={index} style={{
-            borderRadius: '12px',
-            overflow: 'hidden',
-            boxShadow: '0 0 10px #FFD700',
-            transition: 'transform 0.3s ease',
-          }}>
-            <img
-              src={url}
-              alt={`Gallery ${index}`}
-              style={{
-                width: '100%',
-                height: '150px',
-                objectFit: 'cover',
-                display: 'block',
-                transition: 'transform 0.3s ease-in-out'
-              }}
-              onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'}
-              onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
-            />
-          </div>
-        ))}
+        I’m sealing these precious moments away in a hidden scroll for now.
+        Return soon to unveil snapshots of my ninja journey across Konoha and beyond!
+      </p>
+
+      <div style={{
+        marginTop: '40px',
+        fontSize: '50px',
+        animation: 'pulse 2s infinite'
+      }}>
+        🌀
       </div>
 
       <button
         onClick={onClose}
         style={{
-          marginTop: '20px',
-          padding: '10px 16px',
+          marginTop: '40px',
+          padding: '12px 24px',
           background: '#FF4500',
           border: 'none',
           borderRadius: '10px',
@@ -91,6 +73,14 @@ function PhotoGallery({ onClose }) {
       >
         Close Scroll
       </button>
+
+      <style>{`
+        @keyframes pulse {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.15); }
+          100% { transform: scale(1); }
+        }
+      `}</style>
     </div>
   );
 }
