@@ -13,7 +13,7 @@ const certificationsData = [
     id: 2,
     image: "/images/certifications/AdvancedCSS.png",
     courseName: 'Advanced CSS',
-    certificateLink: 'https://www.udemy.com/certificate/UC-46fc113c-2139-4ce9-939e-0a9a2febb0fd/?utm_campaign=email&utm_medium=email&utm_source=sendgrid.com',
+    certificateLink: 'https://www.udemy.com/certificate/UC-46fc113c-2139-4ce9-939e-0a9a2febb0fd/',
     completionDate: '04-07-2024',
     issuingOrganization: 'Udemy'
   },
@@ -73,67 +73,72 @@ function Certifications({ onClose }) {
 
       <div style={{
         display: 'flex',
-        flexDirection: 'column',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
         gap: '20px',
         marginTop: '20px'
       }}>
         {certificationsData.map(cert => (
-  <div key={cert.id} style={{
-    display: 'flex',
-    alignItems: 'flex-start',
-    gap: '20px',
-    background: 'rgba(245, 222, 179, 0.1)',
-    padding: '20px',
-    borderRadius: '15px',
-    border: '3px groove #f4d180',
-    boxShadow: '0 0 12px rgba(255, 223, 128, 0.3)',
-    transition: 'transform 0.2s ease',
-    backdropFilter: 'blur(1px)'
-  }}>
-    <img
-      src={cert.image}
-      alt={cert.courseName}
-      style={{
-        width: '130px',
-        height: 'auto',
-        borderRadius: '8px',
-        border: '2px solid #d2b48c',
-        boxShadow: '2px 2px 8px rgba(0,0,0,0.4)'
-      }}
-    />
-    <div style={{ flex: 1 }}>
-      <h3 style={{
-        margin: '0 0 8px',
-        fontSize: '20px',
-        fontWeight: 'bold',
-        color: '#ffe78c',
-        textShadow: '1px 1px 1px #000'
-      }}>
-        {cert.courseName}
-      </h3>
-      <p style={{ margin: '0 0 4px', fontSize: '15px', color: '#ffefc2' }}>
-        📅 <strong>{cert.completionDate}</strong>
-      </p>
-      <p style={{ margin: '0 0 6px', fontSize: '15px', color: '#ffefc2' }}>
-        🏛 {cert.issuingOrganization}
-      </p>
-      <a
-        href={cert.certificateLink}
-        target="_blank"
-        rel="noreferrer"
-        style={{
-          color: '#0ff',
-          fontSize: '15px',
-          textDecoration: 'underline',
-          fontWeight: 'bold'
-        }}
-      >
-        View Certificate →
-      </a>
-    </div>
-  </div>
-))}
-
+          <div key={cert.id} style={{
+            width: '300px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            background: 'rgba(245, 222, 179, 0.1)',
+            padding: '20px',
+            borderRadius: '15px',
+            border: '3px groove #f4d180',
+            boxShadow: '0 0 12px rgba(255, 223, 128, 0.3)',
+            backdropFilter: 'blur(1px)',
+            transition: 'transform 0.2s ease'
+          }}>
+            <img
+              src={cert.image}
+              alt={cert.courseName}
+              style={{
+                width: '100%',
+                height: 'auto',
+                borderRadius: '8px',
+                border: '2px solid #d2b48c',
+                boxShadow: '2px 2px 8px rgba(0,0,0,0.4)',
+                marginBottom: '12px'
+              }}
+            />
+            <div>
+              <h3 style={{
+                fontSize: '18px',
+                fontWeight: 'bold',
+                color: '#ffe78c',
+                textShadow: '1px 1px 1px #000',
+                marginBottom: '6px',
+                textAlign: 'center'
+              }}>
+                {cert.courseName}
+              </h3>
+              <p style={{ fontSize: '14px', color: '#ffefc2', margin: 0 }}>
+                📅 <strong>{cert.completionDate}</strong>
+              </p>
+              <p style={{ fontSize: '14px', color: '#ffefc2', margin: '6px 0' }}>
+                🏛 {cert.issuingOrganization}
+              </p>
+              <a
+                href={cert.certificateLink}
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  color: '#0ff',
+                  fontSize: '14px',
+                  textDecoration: 'underline',
+                  fontWeight: 'bold',
+                  display: 'block',
+                  textAlign: 'center'
+                }}
+              >
+                View Certificate →
+              </a>
+            </div>
+          </div>
+        ))}
       </div>
 
       <button
