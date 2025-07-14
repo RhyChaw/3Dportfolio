@@ -14,7 +14,10 @@ import Navbar from '../components/Navbar';
 import ChatBox from './ChatBox';
 import Title from './Title';
 import NarutoMover from '../components/NarutoMover';
+import Experience from './Experience';
 import skyImage from '../assets/sky.jpg';
+import PhotoGallery from './PhotoGallery';
+import axios from 'axios';
 
 const Home = () => {
   const [narutoPos, setNarutoPos] = useState({ x: 0, y: 0.4, z: 0 });
@@ -27,6 +30,8 @@ const Home = () => {
   const [certificationsVisible, setCertificationsVisible] = useState(false);
   const [projectsVisible, setProjectsVisible] = useState(false);
   const [contactVisible, setContactVisible] = useState(false);
+  const [experienceVisible, setExperienceVisible] = useState(false);
+  const [galleryVisible, setGalleryVisible] = useState(false);
 
   const handleRadarClick = ({ x, z }) => {
     setNarutoPos((prev) => ({ ...prev, x, z }));
@@ -35,7 +40,8 @@ const Home = () => {
       { x: -0.03, z: -9.67, set: setResumeVisible },
       { x: 10.67, z: 3.39, set: setCertificationsVisible },
       { x: -6.06, z: 1.64, set: setProjectsVisible },
-      { x: -2.54, z: 9.51, set: setContactVisible }
+      { x: -2.54, z: 9.51, set: setContactVisible },
+      { x: 6.31, z: -8.4, set: setExperienceVisible }
     ];
     zones.forEach(({ x: zx, z: zz, set }) => {
       const dist = Math.hypot(zx - x, zz - z);
@@ -101,6 +107,10 @@ const Home = () => {
             updateNarutoPosition={(pos) => setNarutoPos(pos)}
             onNearContact={() => setContactVisible(true)}
             onFarFromContact={() => setContactVisible(false)}
+            onNearExperience={() => setExperienceVisible(true)}
+            onFarFromExperience={() => setExperienceVisible(false)}
+            onNearGallery={() => setGalleryVisible(true)}
+            onFarFromGallery={() => setGalleryVisible(false)}
           />
 
           <NarutoMover
@@ -114,11 +124,13 @@ const Home = () => {
           />
 
           {/* Labels */}
-          <FloatingLabel text="💻 Computer" position={[10.25, 2, -5.63]} />
+          <FloatingLabel text="💻 Links" position={[10.25, 2, -5.63]} />
           <FloatingLabel text="📄 Resume" position={[-0.03, 2, -9.67]} />
           <FloatingLabel text="🏅 Certifications" position={[10.67, 2, 3.39]} />
           <FloatingLabel text="📁 Projects" position={[-6.06, 2, 1.64]} />
           <FloatingLabel text="📬 Contact Us" position={[-2.54, 2, 9.51]} />
+          <FloatingLabel text="💼 Experience" position={[6.31, 2, -8.4]} />
+          <FloatingLabel text="📸 Gallery" position={[5.33, 2, 9.10]} />
 
           <OrbitControls
             ref={controlsRef}
@@ -140,6 +152,8 @@ const Home = () => {
       {certificationsVisible && <Certifications onClose={() => setCertificationsVisible(false)} />}
       {projectsVisible && <Projects onClose={() => setProjectsVisible(false)} />}
       {contactVisible && <Contact onClose={() => setContactVisible(false)} />}
+      {experienceVisible && <Experience onClose={() => setExperienceVisible(false)} />}
+      {galleryVisible && <PhotoGallery onClose={() => setGalleryVisible(false)} />}
     </div>
   );
 };

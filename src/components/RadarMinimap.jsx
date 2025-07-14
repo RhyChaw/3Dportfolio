@@ -1,4 +1,3 @@
-// components/RadarMinimap.jsx
 import React, { useEffect, useRef } from 'react';
 
 export default function RadarMinimap({ narutoPosition, onClickTeleport }) {
@@ -21,7 +20,9 @@ export default function RadarMinimap({ narutoPosition, onClickTeleport }) {
         { x: -0.03, z: -9.67, color: 'yellow' },
         { x: 10.67, z: 3.39, color: 'lime' },
         { x: -6.06, z: 1.64, color: 'orange' },
-        { x: -2.54, z: 9.51, color: 'pink' }
+        { x: -2.54, z: 9.51, color: 'pink' },
+        { x: 6.31, z: -8.4, color: 'purple' },
+        { x: 5.33, z: 9.10, color: 'maroon' }
       ];
 
       zones.forEach(zone => {
@@ -56,21 +57,54 @@ export default function RadarMinimap({ narutoPosition, onClickTeleport }) {
   };
 
   return (
-    <canvas
-      ref={canvasRef}
-      width={150}
-      height={150}
-      onClick={handleClick}
-      style={{
-        position: 'absolute',
-        top: 20,
-        right: 20,
-        zIndex: 9999,
-        border: '2px solid #444',
-        backgroundColor: '#000',
-        borderRadius: '50%',
-        cursor: 'pointer'
-      }}
-    />
+    <div style={{
+      position: 'absolute',
+      top: 20,
+      right: 20,
+      zIndex: 9999,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center'
+    }}>
+      <canvas
+        ref={canvasRef}
+        width={150}
+        height={150}
+        onClick={handleClick}
+        style={{
+          border: '2px solid #444',
+          backgroundColor: '#000',
+          borderRadius: '50%',
+          cursor: 'pointer'
+        }}
+      />
+
+      {/* Legend Box */}
+      <div style={{
+        marginTop: '10px',
+        padding: '8px 12px',
+        background: 'rgba(0, 0, 0, 0.75)',
+        border: '2px solid #FFD700',
+        borderRadius: '8px',
+        color: '#fff',
+        fontSize: '12px',
+        fontFamily: 'monospace',
+        backdropFilter: 'blur(4px)',
+        textAlign: 'left',
+        width: '160px'
+      }}>
+        <div style={{ fontWeight: 'bold', color: '#FFD700', marginBottom: '6px' }}>
+          🗺️ Legend
+        </div>
+        <div><span style={{ color: 'red' }}>●</span> Naruto (You)</div>
+        <div><span style={{ color: 'cyan' }}>●</span> Links</div>
+        <div><span style={{ color: 'yellow' }}>●</span> Resume</div>
+        <div><span style={{ color: 'lime' }}>●</span> Certifications</div>
+        <div><span style={{ color: 'orange' }}>●</span> Projects</div>
+        <div><span style={{ color: 'pink' }}>●</span> Contact Me</div>
+        <div><span style={{ color: 'purple' }}>●</span> Experience</div>
+        <div><span style={{ color: 'maroon' }}>●</span> Photo Gallery</div>
+      </div>
+    </div>
   );
 }

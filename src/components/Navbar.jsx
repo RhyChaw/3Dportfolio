@@ -6,7 +6,9 @@ const zones = {
   Certifications: { x: 10.67, y: 0.4, z: 3.39 },
   Links: { x: 10.25, y: 0.4, z: -5.63 }, // assuming 'Links' == 'Computer'
   Resume: { x: -0.03, y: 0.4, z: -9.67 },
-  Contact: { x: -2.54, y: 0.4, z: 9.51 }
+  Contact: { x: -2.54, y: 0.4, z: 9.51 },
+  Experience: { x: 6.31, y: 0.4, z: -8.4 },
+  Gallery: { x: 5.33, y: 0.4, z: 9.10 }
 };
 
 const Navbar = ({ onNavigate }) => {

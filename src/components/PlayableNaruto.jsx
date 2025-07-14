@@ -20,7 +20,11 @@ export default function PlayableNaruto(props) {
     onFarFromProjects,
     updateNarutoPosition,
     onNearContact,
-    onFarFromContact
+    onFarFromContact,
+    onNearExperience,
+    onFarFromExperience,
+    onNearGallery,
+    onFarFromGallery
   } = props;
 
   let wasNearComputer = useRef(false);
@@ -28,6 +32,8 @@ export default function PlayableNaruto(props) {
   let wasNearCertifications = useRef(false);
   let wasNearProjects = useRef(false);
   let wasNearContact = useRef(false);
+  let wasNearExperience = useRef(false);
+  let wasNearGallery = useRef(false);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -97,7 +103,8 @@ export default function PlayableNaruto(props) {
       distCheck(new THREE.Vector3(10.67, 0.4, 3.39), wasNearCertifications, onNearCertifications, onFarFromCertifications);
       distCheck(new THREE.Vector3(-6.06, 0.4, 1.64), wasNearProjects, onNearProjects, onFarFromProjects);
       distCheck(new THREE.Vector3(-2.54, 0.4, 9.51), wasNearContact, onNearContact, onFarFromContact);
-
+      distCheck(new THREE.Vector3(6.31, 0.4, -8.4), wasNearExperience, onNearExperience, onFarFromExperience);
+      distCheck(new THREE.Vector3(5.33, 0.4, 9.10), wasNearGallery, onNearGallery, onFarFromGallery);
       console.log(`Naruto Position → x: ${pos.x.toFixed(2)} y: ${pos.y.toFixed(2)} z: ${pos.z.toFixed(2)}`);
     }
   });
