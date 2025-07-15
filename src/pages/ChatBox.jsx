@@ -1,10 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 
 export default function ChatBox() {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const modalRef = useRef(null);
+
+  // Close when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (modalRef.current && !modalRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+    if (isOpen) document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isOpen]);
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -29,43 +43,62 @@ export default function ChatBox() {
   };
 
   return (
-    <div style={styles.container}>
-      <h3 style={styles.header}>🌀 NarutoBot</h3>
-
-      <div style={styles.chatLog}>
-        {messages.map((msg, index) => (
-          <div
-            key={index}
-            style={{
-              ...styles.bubble,
-              ...(msg.role === 'user' ? styles.userBubble : styles.narutoBubble)
-            }}
-          >
-            {msg.text}
-          </div>
-        ))}
-
-        {isLoading && (
-          <div style={{ ...styles.bubble, ...styles.narutoBubble }}>
-            <span className="dot-flashing"></span> Shadow clone jutsu...
-          </div>
-        )}
+    <>
+      <div
+        style={{
+          ...styles.circleButton,
+          ...(isOpen ? styles.hidden : {}),
+        }}
+        className="mobile-circle"
+        onClick={() => setIsOpen(true)}
+      >
+        🌀
       </div>
 
-      <input
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-        placeholder="Ask Naruto..."
-        style={styles.input}
-      />
+      <div
+        ref={modalRef}
+        style={{
+          ...styles.container,
+          ...(isOpen ? styles.open : styles.closed)
+        }}
+        className="naruto-modal"
+      >
+        <h3 style={styles.header}>🌀 NarutoBot</h3>
 
-      <button onClick={handleSend} style={styles.button}>
-        Believe it! ➤
-      </button>
+        <div style={styles.chatLog}>
+          {messages.map((msg, index) => (
+            <div
+              key={index}
+              style={{
+                ...styles.bubble,
+                ...(msg.role === 'user' ? styles.userBubble : styles.narutoBubble)
+              }}
+            >
+              {msg.text}
+            </div>
+          ))}
 
-      <style>
-        {`
+          {isLoading && (
+            <div style={{ ...styles.bubble, ...styles.narutoBubble }}>
+              <span className="dot-flashing"></span> Shadow clone jutsu...
+            </div>
+          )}
+        </div>
+
+        <input
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+          placeholder="Ask Naruto..."
+          style={styles.input}
+        />
+
+        <button onClick={handleSend} style={styles.button}>
+          Believe it! ➤
+        </button>
+
+        <style>
+          {`
           .dot-flashing {
             position: relative;
             width: 8px;
@@ -104,13 +137,34 @@ export default function ChatBox() {
             0% { background: #FFD700; }
             50%, 100% { background: rgba(255,215,0,0.2); }
           }
-        `}
-      </style>
-    </div>
+          `}
+        </style>
+      </div>
+    </>
   );
 }
 
 const styles = {
+  circleButton: {
+    position: 'fixed',
+    bottom: 20,
+    right: 20,
+    width: '60px',
+    height: '60px',
+    borderRadius: '50%',
+    backgroundColor: '#FF4500',
+    color: '#fff',
+    fontSize: '28px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 9999,
+    cursor: 'pointer',
+    transition: 'transform 0.3s ease',
+  },
+  hidden: {
+    display: 'none',
+  },
   container: {
     position: 'fixed',
     bottom: 20,
@@ -126,6 +180,24 @@ const styles = {
     backdropFilter: 'blur(8px)',
     display: 'flex',
     flexDirection: 'column',
+    opacity: 0,
+    transform: 'scale(0.5)',
+    transition: 'all 0.3s ease',
+  },
+  open: {
+    opacity: 1,
+    transform: 'scale(1)',
+    bottom: '50%',
+    right: '50%',
+    transformOrigin: 'center',
+    transform: 'translate(50%, 50%) scale(1)',
+    width: '90%',
+    maxWidth: '400px',
+    height: 'auto',
+  },
+  closed: {
+    opacity: 0,
+    pointerEvents: 'none',
   },
   header: {
     margin: 0,

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { top10Projects } from '../pages/ProjectsData'; // Adjust the import path as necessary
+import { top10Projects } from '../pages/ProjectsData'; // Adjust path
 
 const TradProj = () => {
   const [filter, setFilter] = useState('All');
@@ -8,6 +8,27 @@ const TradProj = () => {
     filter === 'All'
       ? top10Projects
       : top10Projects.filter((proj) => proj.category === filter);
+
+  // Example tech stack map
+  const techStacks = {
+    G12: 'React, Firebase',
+    Bhasha: 'NextJS, Supabase, Flutter',
+    StrumSpace: 'YOLOv8, ThreeJS',
+    Rhythm: 'Python, Audio Processing',
+    ZafariCC: 'NextJS',
+    MettaStars: 'ReactJS',
+    MineGuard: 'Python, ML',
+    JADO: 'Python, LLMs',
+    DoctorAI: 'HuggingFace, Llama2',
+    CSGPTPRO: 'Python, Streamlit',
+    WildOasis: 'React Query, Supabase',
+    VBOman: 'ReactJS, Firebase',
+    WATisZine: 'React, MongoDB',
+    PawPal: 'Python, ML',
+    Hestia: 'Django, Azure',
+    RocketLanding: 'Python, Gymnasium',
+    ReduxBank: 'React, Redux Toolkit',
+  };
 
   return (
     <section
@@ -59,61 +80,149 @@ const TradProj = () => {
         ))}
       </div>
 
-      {/* Projects Grid */}
+      {/* Split Grid: Marquee + Table */}
       <div
         style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+          display: 'flex',
           gap: '2rem',
+          flexWrap: 'wrap',
         }}
       >
-        {filteredProjects.map((proj, idx) => (
-          <a
-            key={idx}
-            href={proj.link}
-            target="_blank"
-            rel="noreferrer"
+        {/* Marquee container */}
+        <div
+          style={{
+            flex: '2',
+            overflowX: 'auto',
+            scrollbarWidth: 'thin',
+          }}
+        >
+          <div
             style={{
-              textDecoration: 'none',
-              color: '#1f2937',
-              background: '#fff',
-              borderRadius: '12px',
-              boxShadow: '0 6px 15px rgba(0,0,0,0.1)',
-              overflow: 'hidden',
-              transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+              display: 'flex',
+              flexWrap: 'nowrap',
+              gap: '2rem',
+              animation: 'scroll 30s linear infinite',
+              width: 'max-content',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-5px)';
-              e.currentTarget.style.boxShadow = '0 12px 25px rgba(0,0,0,0.15)';
+              e.currentTarget.style.animationPlayState = 'paused';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'none';
-              e.currentTarget.style.boxShadow = '0 6px 15px rgba(0,0,0,0.1)';
+              e.currentTarget.style.animationPlayState = 'running';
             }}
           >
-            <img
-              src={proj.image}
-              alt={proj.title}
-              style={{
-                width: '100%',
-                height: '160px',
-                objectFit: 'cover',
-              }}
-            />
-            <div style={{ padding: '1rem' }}>
-              <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.25rem' }}>
-                {proj.title}
-              </h3>
-              <p style={{ fontSize: '0.8rem', color: '#6b7280', marginBottom: '0.5rem' }}>
-                {proj.date}
-              </p>
-              <p style={{ fontSize: '0.95rem', color: '#374151' }}>
-                {proj.description}
-              </p>
-            </div>
-          </a>
-        ))}
+            {[...filteredProjects, ...filteredProjects].map((proj, idx) => (
+              <a
+                key={idx}
+                href={proj.link}
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  minWidth: '250px',
+                  maxWidth: '250px',
+                  flex: '0 0 auto',
+                  textDecoration: 'none',
+                  color: '#1f2937',
+                  background: '#fff',
+                  borderRadius: '12px',
+                  boxShadow: '0 6px 15px rgba(0,0,0,0.1)',
+                  overflow: 'hidden',
+                  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-5px)';
+                  e.currentTarget.style.boxShadow =
+                    '0 12px 25px rgba(0,0,0,0.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'none';
+                  e.currentTarget.style.boxShadow =
+                    '0 6px 15px rgba(0,0,0,0.1)';
+                }}
+              >
+                <img
+                  src={proj.image}
+                  alt={proj.title}
+                  style={{
+                    width: '100%',
+                    height: '160px',
+                    objectFit: 'cover',
+                  }}
+                />
+                <div style={{ padding: '1rem' }}>
+                  <h3
+                    style={{ margin: '0 0 0.5rem 0', fontSize: '1.25rem' }}
+                  >
+                    {proj.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontSize: '0.8rem',
+                      color: '#6b7280',
+                      marginBottom: '0.5rem',
+                    }}
+                  >
+                    {proj.date}
+                  </p>
+                  <p style={{ fontSize: '0.95rem', color: '#374151' }}>
+                    {proj.description}
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Tech stack table */}
+        <div
+          style={{
+            flex: '1',
+            overflowY: 'auto',
+            maxHeight: '400px',
+            border: '1px solid #e5e7eb',
+            borderRadius: '8px',
+          }}
+        >
+          <table
+            style={{
+              width: '100%',
+              borderCollapse: 'collapse',
+            }}
+          >
+            <thead>
+              <tr style={{ background: '#f3f4f6', textAlign: 'left' }}>
+                <th style={{ padding: '0.5rem' }}>Project</th>
+                <th style={{ padding: '0.5rem' }}>Tech Stack</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredProjects.map((proj, idx) => (
+                <tr
+                  key={idx}
+                  style={{
+                    borderBottom: '1px solid #e5e7eb',
+                  }}
+                >
+                  <td style={{ padding: '0.5rem' }}>{proj.title}</td>
+                  <td style={{ padding: '0.5rem' }}>
+                    {techStacks[proj.title] || 'N/A'}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
+
+      {/* Inline keyframes */}
+      <style>
+        {`
+          @keyframes scroll {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+          }
+        `}
+      </style>
     </section>
   );
 };

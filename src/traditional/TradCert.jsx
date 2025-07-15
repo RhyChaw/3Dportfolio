@@ -65,80 +65,109 @@ const TradCert = () => {
         🌀 My Certifications
       </h2>
 
+      {/* Marquee container */}
       <div
         style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-          gap: '1.5rem',
+          overflowX: 'auto',
+          scrollbarWidth: 'thin',
         }}
       >
-        {certificationsData.map(cert => (
-          <div
-            key={cert.id}
-            style={{
-              border: '1px solid #e5e7eb',
-              borderRadius: '8px',
-              overflow: 'hidden',
-              boxShadow: '0 0 10px rgba(0,0,0,0.05)',
-              backgroundColor: '#ffffff',
-              transition: 'transform 0.2s ease',
-            }}
-          >
-            <img
-              src={cert.image}
-              alt={cert.courseName}
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'nowrap',
+            gap: '1.5rem',
+            animation: 'scrollCerts 25s linear infinite',
+            width: 'max-content',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.animationPlayState = 'paused';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.animationPlayState = 'running';
+          }}
+        >
+          {/* Duplicate for seamless loop */}
+          {[...certificationsData, ...certificationsData].map(cert => (
+            <div
+              key={`${cert.id}-${Math.random()}`}
               style={{
-                width: '100%',
-                height: 'auto',
-                display: 'block',
+                minWidth: '250px',
+                maxWidth: '250px',
+                flex: '0 0 auto',
+                border: '1px solid #e5e7eb',
+                borderRadius: '8px',
+                overflow: 'hidden',
+                boxShadow: '0 0 10px rgba(0,0,0,0.05)',
+                backgroundColor: '#ffffff',
+                transition: 'transform 0.2s ease',
               }}
-            />
-            <div style={{ padding: '1rem' }}>
-              <h3
+            >
+              <img
+                src={cert.image}
+                alt={cert.courseName}
                 style={{
-                  fontSize: '1.1rem',
-                  marginBottom: '0.5rem',
-                  color: '#1f2937',
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block',
                 }}
-              >
-                {cert.courseName}
-              </h3>
-              <p
-                style={{
-                  fontSize: '0.9rem',
-                  color: '#4b5563',
-                  marginBottom: '0.25rem',
-                }}
-              >
-                📅 {cert.completionDate}
-              </p>
-              <p
-                style={{
-                  fontSize: '0.9rem',
-                  color: '#4b5563',
-                  marginBottom: '0.5rem',
-                }}
-              >
-                🏛 {cert.issuingOrganization}
-              </p>
-              <a
-                href={cert.certificateLink}
-                target="_blank"
-                rel="noreferrer"
-                style={{
-                  display: 'inline-block',
-                  fontSize: '0.9rem',
-                  color: '#2563EB',
-                  textDecoration: 'underline',
-                  fontWeight: '500',
-                }}
-              >
-                View Certificate →
-              </a>
+              />
+              <div style={{ padding: '1rem' }}>
+                <h3
+                  style={{
+                    fontSize: '1.1rem',
+                    marginBottom: '0.5rem',
+                    color: '#1f2937',
+                  }}
+                >
+                  {cert.courseName}
+                </h3>
+                <p
+                  style={{
+                    fontSize: '0.9rem',
+                    color: '#4b5563',
+                    marginBottom: '0.25rem',
+                  }}
+                >
+                  📅 {cert.completionDate}
+                </p>
+                <p
+                  style={{
+                    fontSize: '0.9rem',
+                    color: '#4b5563',
+                    marginBottom: '0.5rem',
+                  }}
+                >
+                  🏛 {cert.issuingOrganization}
+                </p>
+                <a
+                  href={cert.certificateLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{
+                    display: 'inline-block',
+                    fontSize: '0.9rem',
+                    color: '#2563EB',
+                    textDecoration: 'underline',
+                    fontWeight: '500',
+                  }}
+                >
+                  View Certificate →
+                </a>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
+
+      <style>
+        {`
+          @keyframes scrollCerts {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+          }
+        `}
+      </style>
     </section>
   );
 };

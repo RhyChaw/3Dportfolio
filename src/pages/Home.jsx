@@ -17,6 +17,7 @@ import NarutoMover from '../components/NarutoMover';
 import Experience from './Experience';
 import skyImage from '../assets/sky.jpg';
 import PhotoGallery from './PhotoGallery';
+import Joystick from '../components/Joystick';
 import axios from 'axios';
 
 const Home = () => {
@@ -59,6 +60,110 @@ const Home = () => {
       controlsRef.current.target.set(0, 5, 0);
       controlsRef.current.update();
     }
+  }, []);
+
+  // Update Naruto position by joystick input continuously
+  useEffect(() => {
+    let animationFrameId;
+    let velocity = { x: 0, z: 0 };
+
+    const speed = 0.07; // Adjust movement speed here
+
+    const updatePosition = () => {
+      if (velocity.x !== 0 || velocity.z !== 0) {
+        setNarutoPos((pos) => ({
+          ...pos,
+          x: pos.x + velocity.x * speed,
+          z: pos.z + velocity.z * speed,
+        }));
+      }
+      animationFrameId = requestAnimationFrame(updatePosition);
+    };
+
+    updatePosition();
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  let keysPressed = new Set();
+
+const dispatchKey = (type, code) => {
+  window.dispatchEvent(new KeyboardEvent(type, {
+    code,
+    key: codeToKey(code),
+    bubbles: true,
+  }));
+};
+
+const codeToKey = (code) => {
+  switch (code) {
+    case 'KeyW': return 'w';
+    case 'KeyA': return 'a';
+    case 'KeyS': return 's';
+    case 'KeyD': return 'd';
+    default: return '';
+  }
+};
+
+const handleJoystickMove = ({ x, y }) => {
+  // Determine which keys should be pressed based on joystick position
+  const newKeys = new Set();
+
+  if (y > 0.1) newKeys.add('KeyW');    // Up => W
+  if (y < -0.1) newKeys.add('KeyS');   // Down => S
+  if (x < -0.1) newKeys.add('KeyA');   // Left => A
+  if (x > 0.1) newKeys.add('KeyD');    // Right => D
+
+  // Dispatch keydown for newly pressed keys
+  newKeys.forEach(code => {
+    if (!keysPressed.has(code)) {
+      dispatchKey('keydown', code);
+    }
+  });
+
+  // Dispatch keyup for keys no longer pressed
+  keysPressed.forEach(code => {
+    if (!newKeys.has(code)) {
+      dispatchKey('keyup', code);
+    }
+  });
+
+  keysPressed = newKeys;
+};
+
+// When joystick is released (no input)
+const handleJoystickEnd = () => {
+  keysPressed.forEach(code => {
+    dispatchKey('keyup', code);
+  });
+  keysPressed.clear();
+};
+
+
+  // We'll use a ref for velocity to avoid re-creating effect
+  const velocityRef = React.useRef({ x: 0, z: 0 });
+
+  useEffect(() => {
+    let animationFrameId;
+
+    const speed = 0.07;
+    const move = () => {
+      const { x, z } = velocityRef.current;
+      if (x !== 0 || z !== 0) {
+        setNarutoPos((pos) => ({
+          ...pos,
+          x: pos.x + x * speed,
+          z: pos.z + z * speed,
+        }));
+      }
+      animationFrameId = requestAnimationFrame(move);
+    };
+
+    move();
+
+    return () => cancelAnimationFrame(animationFrameId);
   }, []);
 
   return (
@@ -142,6 +247,8 @@ const Home = () => {
           />
         </Suspense>
       </Canvas>
+
+      {window.innerWidth <= 768 && <Joystick onMove={handleJoystickMove} />}
 
       <RadarMinimap narutoPosition={narutoPos} onClickTeleport={handleRadarClick} />
       <Title />

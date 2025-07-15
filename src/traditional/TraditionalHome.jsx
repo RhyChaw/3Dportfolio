@@ -8,7 +8,7 @@ import Contact from './TradContact';
 import Experience from './TradExp';
 
 import styles from './TraditionalHome.module.css';
-import chibiNaruto from './chibi.jpg';  // make sure path is correct!
+import chibiNaruto from './ChibiB.jpg';  // make sure path is correct!
 
 const TraditionalHome = () => {
   return (
