@@ -19,6 +19,7 @@
     "pdfjs-dist": "3.4.120",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-router-dom": "^7.6.3",
     "react-three": "^0.9.7",
     "react-three-fiber": "^6.0.13",
     "three": "^0.178.0"
