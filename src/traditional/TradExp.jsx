@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const experiences = [
   {
@@ -53,8 +53,37 @@ const experiences = [
 ];
 
 const TradExp = () => {
+  const [visibleItems, setVisibleItems] = useState([]);
+  const [hoveredItem, setHoveredItem] = useState(null);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Animate items one by one
+            experiences.forEach((_, index) => {
+              setTimeout(() => {
+                setVisibleItems(prev => [...prev, index]);
+              }, index * 200);
+            });
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="experience"
       style={{
         padding: 'var(--space-2xl) var(--space-lg)',
@@ -77,7 +106,7 @@ const TradExp = () => {
         💼 Professional Experience
       </h2>
 
-      {/* Vertical line */}
+      {/* Animated Vertical line */}
       <div
         style={{
           position: 'absolute',
@@ -86,15 +115,20 @@ const TradExp = () => {
           transform: 'translateX(-50%)',
           width: '3px',
           height: 'calc(100% - 80px)',
-          background: 'linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary))',
+          background: 'linear-gradient(to bottom, var(--accent-primary), var(--accent-purple), var(--accent-secondary))',
           zIndex: 0,
           borderRadius: 'var(--radius-full)',
+          boxShadow: 'var(--shadow-glow)',
+          animation: 'pulse 2s ease-in-out infinite',
         }}
       />
 
       {experiences.map((exp, index) => {
         // Alternate sides
         const isLeft = index % 2 === 0;
+        const isVisible = visibleItems.includes(index);
+        const isHovered = hoveredItem === index;
+        
         return (
           <div
             key={index}
@@ -106,24 +140,23 @@ const TradExp = () => {
               left: isLeft ? 0 : '55%',
               textAlign: isLeft ? 'right' : 'left',
               zIndex: 1,
-              background: 'var(--bg-card)',
-              border: '1px solid var(--border-primary)',
+              background: isHovered ? 'var(--bg-card)' : 'var(--bg-glass)',
+              border: `1px solid ${isHovered ? 'var(--accent-primary)' : 'var(--border-glow)'}`,
               borderRadius: 'var(--radius-lg)',
-              boxShadow: 'var(--shadow-md)',
-              transition: 'all var(--transition-normal)',
+              boxShadow: isHovered ? 'var(--shadow-glow)' : 'var(--shadow-md)',
+              transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+              backdropFilter: 'blur(10px)',
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible 
+                ? (isLeft ? 'translateX(0)' : 'translateX(0)') 
+                : (isLeft ? 'translateX(-50px)' : 'translateX(50px)'),
+              animation: isVisible ? 'fadeInUp 0.6s ease-out forwards' : 'none',
+              animationDelay: `${index * 0.2}s`,
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-4px)';
-              e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
-              e.currentTarget.style.borderColor = 'var(--border-accent)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = 'var(--shadow-md)';
-              e.currentTarget.style.borderColor = 'var(--border-primary)';
-            }}
+            onMouseEnter={() => setHoveredItem(index)}
+            onMouseLeave={() => setHoveredItem(null)}
           >
-            {/* Dot */}
+            {/* Animated Dot */}
             <div
               style={{
                 position: 'absolute',
@@ -131,10 +164,17 @@ const TradExp = () => {
                 width: '16px',
                 height: '16px',
                 borderRadius: '50%',
-                background: 'linear-gradient(135deg, var(--accent-secondary), #ff8c42)',
-                boxShadow: '0 0 12px var(--accent-secondary)',
+                background: isHovered 
+                  ? 'linear-gradient(135deg, var(--accent-primary), var(--accent-purple))'
+                  : 'linear-gradient(135deg, var(--accent-secondary), #ff8c42)',
+                boxShadow: isHovered 
+                  ? 'var(--shadow-glow)' 
+                  : '0 0 12px var(--accent-secondary)',
                 [isLeft ? 'right' : 'left']: '-32px',
                 zIndex: 2,
+                transition: 'all 0.3s ease',
+                animation: isVisible ? 'pulse 2s ease-in-out infinite' : 'none',
+                animationDelay: `${index * 0.2}s`,
               }}
             />
             <h3
@@ -144,6 +184,13 @@ const TradExp = () => {
                 color: 'var(--text-primary)',
                 fontWeight: '600',
                 marginBottom: 'var(--space-sm)',
+                background: isHovered 
+                  ? 'linear-gradient(45deg, var(--text-primary), var(--accent-primary))'
+                  : 'none',
+                WebkitBackgroundClip: isHovered ? 'text' : 'initial',
+                WebkitTextFillColor: isHovered ? 'transparent' : 'initial',
+                backgroundClip: isHovered ? 'text' : 'initial',
+                transition: 'all 0.3s ease',
               }}
             >
               {exp.title}
@@ -155,6 +202,7 @@ const TradExp = () => {
                 color: 'var(--text-secondary)',
                 lineHeight: '1.6em',
                 whiteSpace: 'pre-line',
+                transition: 'color 0.3s ease',
               }}
             >
               {exp.detail}
@@ -164,10 +212,13 @@ const TradExp = () => {
                 fontSize: 'var(--text-xs)',
                 color: 'var(--accent-primary)',
                 fontWeight: '500',
-                background: 'var(--bg-secondary)',
+                background: isHovered ? 'var(--bg-card)' : 'var(--bg-secondary)',
                 padding: 'var(--space-xs) var(--space-sm)',
                 borderRadius: 'var(--radius-full)',
-                border: '1px solid var(--border-primary)',
+                border: `1px solid ${isHovered ? 'var(--accent-primary)' : 'var(--border-glow)'}`,
+                boxShadow: isHovered ? 'var(--shadow-glow)' : 'none',
+                textShadow: isHovered ? '0 0 10px var(--accent-primary)' : 'none',
+                transition: 'all 0.3s ease',
               }}
             >
               {exp.year}

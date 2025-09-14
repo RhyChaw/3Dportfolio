@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const certificationsData = [
   {
@@ -44,8 +44,50 @@ const certificationsData = [
 ];
 
 const TradCert = () => {
+  const [visibleCards, setVisibleCards] = useState([]);
+  const [hoveredCard, setHoveredCard] = useState(null);
+  const [flippedCards, setFlippedCards] = useState(new Set());
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Animate cards one by one
+            certificationsData.forEach((_, index) => {
+              setTimeout(() => {
+                setVisibleCards(prev => [...prev, index]);
+              }, index * 150);
+            });
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const handleCardClick = (cardId) => {
+    setFlippedCards(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(cardId)) {
+        newSet.delete(cardId);
+      } else {
+        newSet.add(cardId);
+      }
+      return newSet;
+    });
+  };
+
   return (
     <section
+      ref={sectionRef}
       id="certifications"
       style={{
         padding: 'var(--space-2xl) var(--space-lg)',
@@ -75,37 +117,63 @@ const TradCert = () => {
           gap: 'var(--space-lg)',
         }}
       >
-        {certificationsData.map(cert => (
-          <div
-            key={cert.id}
-            style={{
-              background: 'var(--bg-card)',
-              border: '1px solid var(--border-primary)',
-              borderRadius: 'var(--radius-lg)',
-              overflow: 'hidden',
-              boxShadow: 'var(--shadow-md)',
-              transition: 'all var(--transition-normal)',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-4px)';
-              e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
-              e.currentTarget.style.borderColor = 'var(--border-accent)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = 'var(--shadow-md)';
-              e.currentTarget.style.borderColor = 'var(--border-primary)';
-            }}
-          >
-            <img
-              src={cert.image}
-              alt={cert.courseName}
+        {certificationsData.map((cert, index) => {
+          const isVisible = visibleCards.includes(index);
+          const isHovered = hoveredCard === cert.id;
+          const isFlipped = flippedCards.has(cert.id);
+          
+          return (
+            <div
+              key={cert.id}
               style={{
-                width: '100%',
-                height: '200px',
-                objectFit: 'cover',
+                background: 'var(--bg-glass)',
+                border: `1px solid ${isHovered ? 'var(--accent-primary)' : 'var(--border-glow)'}`,
+                borderRadius: 'var(--radius-lg)',
+                overflow: 'hidden',
+                boxShadow: isHovered ? 'var(--shadow-glow)' : 'var(--shadow-md)',
+                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                backdropFilter: 'blur(10px)',
+                cursor: 'pointer',
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible 
+                  ? (isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)')
+                  : 'translateY(50px)',
+                animation: isVisible ? 'fadeInUp 0.6s ease-out forwards' : 'none',
+                animationDelay: `${index * 0.15}s`,
+                perspective: '1000px',
               }}
-            />
+              onMouseEnter={() => setHoveredCard(cert.id)}
+              onMouseLeave={() => setHoveredCard(null)}
+              onClick={() => handleCardClick(cert.id)}
+            >
+            <div style={{ position: 'relative', height: '200px', overflow: 'hidden' }}>
+              <img
+                src={cert.image}
+                alt={cert.courseName}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  transition: 'transform 0.4s ease',
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.transform = 'scale(1.1)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = 'scale(1)';
+                }}
+              />
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                background: 'linear-gradient(45deg, transparent, rgba(0, 245, 255, 0.1), transparent)',
+                opacity: isHovered ? 1 : 0,
+                transition: 'opacity 0.3s ease',
+              }} />
+            </div>
             <div style={{ padding: 'var(--space-lg)' }}>
               <h3
                 style={{
@@ -113,6 +181,13 @@ const TradCert = () => {
                   marginBottom: 'var(--space-sm)',
                   color: 'var(--text-primary)',
                   fontWeight: '600',
+                  background: isHovered 
+                    ? 'linear-gradient(45deg, var(--text-primary), var(--accent-primary))'
+                    : 'none',
+                  WebkitBackgroundClip: isHovered ? 'text' : 'initial',
+                  WebkitTextFillColor: isHovered ? 'transparent' : 'initial',
+                  backgroundClip: isHovered ? 'text' : 'initial',
+                  transition: 'all 0.3s ease',
                 }}
               >
                 {cert.courseName}
@@ -155,27 +230,31 @@ const TradCert = () => {
                   textDecoration: 'none',
                   fontWeight: '500',
                   padding: 'var(--space-xs) var(--space-sm)',
-                  background: 'var(--bg-secondary)',
+                  background: isHovered ? 'var(--bg-card)' : 'var(--bg-secondary)',
                   borderRadius: 'var(--radius-sm)',
-                  border: '1px solid var(--border-primary)',
-                  transition: 'all var(--transition-fast)',
+                  border: `1px solid ${isHovered ? 'var(--accent-primary)' : 'var(--border-glow)'}`,
+                  boxShadow: isHovered ? 'var(--shadow-glow)' : 'none',
+                  transition: 'all 0.3s ease',
                 }}
                 onMouseEnter={(e) => {
                   e.target.style.background = 'var(--accent-primary)';
                   e.target.style.color = 'var(--text-primary)';
                   e.target.style.borderColor = 'var(--accent-primary)';
+                  e.target.style.transform = 'scale(1.05)';
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.background = 'var(--bg-secondary)';
+                  e.target.style.background = isHovered ? 'var(--bg-card)' : 'var(--bg-secondary)';
                   e.target.style.color = 'var(--accent-primary)';
-                  e.target.style.borderColor = 'var(--border-primary)';
+                  e.target.style.borderColor = isHovered ? 'var(--accent-primary)' : 'var(--border-glow)';
+                  e.target.style.transform = 'scale(1)';
                 }}
               >
                 View Certificate →
               </a>
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
