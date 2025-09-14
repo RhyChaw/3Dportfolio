@@ -34,21 +34,23 @@ const TradProj = () => {
     <section
       id="projects"
       style={{
-        padding: '2rem 1rem',
-        maxWidth: '1100px',
+        padding: 'var(--space-2xl) var(--space-lg)',
+        maxWidth: '1200px',
         margin: '0 auto',
-        fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+        fontFamily: 'var(--font-family-primary)',
       }}
     >
       <h2
         style={{
           textAlign: 'center',
-          fontSize: '2rem',
-          marginBottom: '1rem',
-          color: '#111827',
+          fontSize: 'var(--text-3xl)',
+          marginBottom: 'var(--space-2xl)',
+          color: 'var(--text-primary)',
+          fontWeight: '700',
+          textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
         }}
       >
-        📁 My Projects
+        📁 Featured Projects
       </h2>
 
       {/* Filter Buttons */}
@@ -56,8 +58,8 @@ const TradProj = () => {
         style={{
           display: 'flex',
           justifyContent: 'center',
-          gap: '1rem',
-          marginBottom: '2rem',
+          gap: 'var(--space-md)',
+          marginBottom: 'var(--space-2xl)',
           flexWrap: 'wrap',
         }}
       >
@@ -66,13 +68,32 @@ const TradProj = () => {
             key={cat}
             onClick={() => setFilter(cat)}
             style={{
-              padding: '8px 16px',
-              backgroundColor: filter === cat ? '#2563EB' : '#E5E7EB',
-              color: filter === cat ? '#fff' : '#111827',
-              border: 'none',
-              borderRadius: '9999px',
+              padding: 'var(--space-sm) var(--space-lg)',
+              background: filter === cat 
+                ? 'linear-gradient(135deg, var(--accent-primary), #0099cc)' 
+                : 'var(--bg-card)',
+              color: filter === cat ? 'var(--text-primary)' : 'var(--text-secondary)',
+              border: `1px solid ${filter === cat ? 'var(--accent-primary)' : 'var(--border-primary)'}`,
+              borderRadius: 'var(--radius-full)',
               cursor: 'pointer',
-              fontWeight: 600,
+              fontWeight: '500',
+              fontSize: 'var(--text-sm)',
+              transition: 'all var(--transition-fast)',
+              boxShadow: filter === cat ? 'var(--shadow-md)' : 'var(--shadow-sm)',
+            }}
+            onMouseEnter={(e) => {
+              if (filter !== cat) {
+                e.target.style.background = 'var(--bg-tertiary)';
+                e.target.style.borderColor = 'var(--border-secondary)';
+                e.target.style.color = 'var(--text-primary)';
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (filter !== cat) {
+                e.target.style.background = 'var(--bg-card)';
+                e.target.style.borderColor = 'var(--border-primary)';
+                e.target.style.color = 'var(--text-secondary)';
+              }
             }}
           >
             {cat}
@@ -80,149 +101,96 @@ const TradProj = () => {
         ))}
       </div>
 
-      {/* Split Grid: Marquee + Table */}
+      {/* Project Grid */}
       <div
         style={{
-          display: 'flex',
-          gap: '2rem',
-          flexWrap: 'wrap',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: 'var(--space-lg)',
+          marginBottom: 'var(--space-2xl)',
         }}
       >
-        {/* Marquee container */}
-        <div
-          style={{
-            flex: '2',
-            overflowX: 'auto',
-            scrollbarWidth: 'thin',
-          }}
-        >
-          <div
+        {filteredProjects.map((proj, idx) => (
+          <a
+            key={idx}
+            href={proj.link}
+            target="_blank"
+            rel="noreferrer"
             style={{
-              display: 'flex',
-              flexWrap: 'nowrap',
-              gap: '2rem',
-              animation: 'scroll 30s linear infinite',
-              width: 'max-content',
+              textDecoration: 'none',
+              color: 'inherit',
+              background: 'var(--bg-card)',
+              borderRadius: 'var(--radius-lg)',
+              boxShadow: 'var(--shadow-md)',
+              overflow: 'hidden',
+              transition: 'all var(--transition-normal)',
+              border: '1px solid var(--border-primary)',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.animationPlayState = 'paused';
+              e.currentTarget.style.transform = 'translateY(-8px)';
+              e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
+              e.currentTarget.style.borderColor = 'var(--border-accent)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.animationPlayState = 'running';
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = 'var(--shadow-md)';
+              e.currentTarget.style.borderColor = 'var(--border-primary)';
             }}
           >
-            {[...filteredProjects, ...filteredProjects].map((proj, idx) => (
-              <a
-                key={idx}
-                href={proj.link}
-                target="_blank"
-                rel="noreferrer"
-                style={{
-                  minWidth: '250px',
-                  maxWidth: '250px',
-                  flex: '0 0 auto',
-                  textDecoration: 'none',
-                  color: '#1f2937',
-                  background: '#fff',
-                  borderRadius: '12px',
-                  boxShadow: '0 6px 15px rgba(0,0,0,0.1)',
-                  overflow: 'hidden',
-                  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-5px)';
-                  e.currentTarget.style.boxShadow =
-                    '0 12px 25px rgba(0,0,0,0.15)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'none';
-                  e.currentTarget.style.boxShadow =
-                    '0 6px 15px rgba(0,0,0,0.1)';
+            <img
+              src={proj.image}
+              alt={proj.title}
+              style={{
+                width: '100%',
+                height: '200px',
+                objectFit: 'cover',
+              }}
+            />
+            <div style={{ padding: 'var(--space-lg)' }}>
+              <h3
+                style={{ 
+                  margin: '0 0 var(--space-sm) 0', 
+                  fontSize: 'var(--text-lg)',
+                  color: 'var(--text-primary)',
+                  fontWeight: '600',
                 }}
               >
-                <img
-                  src={proj.image}
-                  alt={proj.title}
-                  style={{
-                    width: '100%',
-                    height: '160px',
-                    objectFit: 'cover',
-                  }}
-                />
-                <div style={{ padding: '1rem' }}>
-                  <h3
-                    style={{ margin: '0 0 0.5rem 0', fontSize: '1.25rem' }}
-                  >
-                    {proj.title}
-                  </h3>
-                  <p
-                    style={{
-                      fontSize: '0.8rem',
-                      color: '#6b7280',
-                      marginBottom: '0.5rem',
-                    }}
-                  >
-                    {proj.date}
-                  </p>
-                  <p style={{ fontSize: '0.95rem', color: '#374151' }}>
-                    {proj.description}
-                  </p>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* Tech stack table */}
-        <div
-          style={{
-            flex: '1',
-            overflowY: 'auto',
-            maxHeight: '400px',
-            border: '1px solid #e5e7eb',
-            borderRadius: '8px',
-          }}
-        >
-          <table
-            style={{
-              width: '100%',
-              borderCollapse: 'collapse',
-            }}
-          >
-            <thead>
-              <tr style={{ background: '#f3f4f6', textAlign: 'left' }}>
-                <th style={{ padding: '0.5rem' }}>Project</th>
-                <th style={{ padding: '0.5rem' }}>Tech Stack</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredProjects.map((proj, idx) => (
-                <tr
-                  key={idx}
-                  style={{
-                    borderBottom: '1px solid #e5e7eb',
-                  }}
-                >
-                  <td style={{ padding: '0.5rem' }}>{proj.title}</td>
-                  <td style={{ padding: '0.5rem' }}>
-                    {techStacks[proj.title] || 'N/A'}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+                {proj.title}
+              </h3>
+              <p
+                style={{
+                  fontSize: 'var(--text-xs)',
+                  color: 'var(--accent-primary)',
+                  marginBottom: 'var(--space-sm)',
+                  fontWeight: '500',
+                }}
+              >
+                {proj.date}
+              </p>
+              <p style={{ 
+                fontSize: 'var(--text-sm)', 
+                color: 'var(--text-secondary)',
+                lineHeight: '1.5',
+                marginBottom: 'var(--space-sm)',
+              }}>
+                {proj.description}
+              </p>
+              <div style={{
+                fontSize: 'var(--text-xs)',
+                color: 'var(--text-muted)',
+                fontFamily: 'var(--font-family-mono)',
+                background: 'var(--bg-secondary)',
+                padding: 'var(--space-xs) var(--space-sm)',
+                borderRadius: 'var(--radius-sm)',
+                border: '1px solid var(--border-primary)',
+              }}>
+                {techStacks[proj.title] || 'Various Technologies'}
+              </div>
+            </div>
+          </a>
+        ))}
       </div>
 
-      {/* Inline keyframes */}
-      <style>
-        {`
-          @keyframes scroll {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-50%); }
-          }
-        `}
-      </style>
     </section>
   );
 };

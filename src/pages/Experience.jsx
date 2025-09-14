@@ -83,96 +83,112 @@ const containerStyle = {
   left: '50%',
   transform: 'translateX(-50%)',
   width: '90%',
-  maxWidth: '700px',
+  maxWidth: '800px',
   maxHeight: '70%',
-  backgroundImage: 'url("/images/scroll-texture.jpg")',
-  backgroundSize: 'cover',
-  backgroundRepeat: 'no-repeat',
-  padding: '36px 40px',
-  borderRadius: '20px',
-  color: '#1a1a1a',  // Base darker text fallback
+  background: 'var(--bg-card)',
+  padding: 'var(--space-2xl)',
+  borderRadius: 'var(--radius-xl)',
+  color: 'var(--text-primary)',
   zIndex: 1000,
-  fontFamily: '"Noto Serif JP", Papyrus, serif',
-  border: '8px double #00CED1',
-  boxShadow: '0 0 40px rgba(0,0,0,0.7)',
-  backdropFilter: 'blur(6px)',
+  fontFamily: 'var(--font-family-primary)',
+  border: '1px solid var(--border-primary)',
+  boxShadow: 'var(--shadow-xl)',
+  backdropFilter: 'blur(8px)',
   overflowY: 'auto'
 };
 
 const titleStyle = {
-  fontSize: '26px',
+  fontSize: 'var(--text-2xl)',
   textAlign: 'center',
-  color: '#00CED1',
-  textShadow: '1px 1px 2px #000',
-  marginBottom: '20px'
+  color: 'var(--accent-primary)',
+  textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
+  marginBottom: 'var(--space-xl)',
+  fontWeight: '700'
 };
 
 const timelineStyle = {
   position: 'relative',
-  marginTop: '20px',
-  paddingLeft: '30px'
+  marginTop: 'var(--space-xl)',
+  paddingLeft: 'var(--space-xl)'
 };
 
 const lineStyle = {
   position: 'absolute',
   top: 0,
-  left: '14px',
+  left: 'var(--space-lg)',
   width: '3px',
   height: '100%',
-  backgroundColor: '#00CED1'
+  background: 'linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary))',
+  borderRadius: 'var(--radius-full)'
 };
 
 const itemStyle = {
-  marginBottom: '40px',
-  marginLeft: '30px',
+  marginBottom: 'var(--space-2xl)',
+  marginLeft: 'var(--space-xl)',
   position: 'relative',
-  paddingBottom: '10px'
+  paddingBottom: 'var(--space-sm)',
+  background: 'var(--bg-secondary)',
+  padding: 'var(--space-lg)',
+  borderRadius: 'var(--radius-lg)',
+  border: '1px solid var(--border-primary)',
+  boxShadow: 'var(--shadow-sm)',
+  transition: 'all var(--transition-normal)'
 };
 
 const dotStyle = {
-  width: '14px',
-  height: '14px',
+  width: '16px',
+  height: '16px',
   borderRadius: '50%',
-  backgroundColor: '#FF4500',
+  background: 'linear-gradient(135deg, var(--accent-secondary), #ff8c42)',
   position: 'absolute',
-  left: '-30px',
-  top: '5px',
-  boxShadow: '0 0 10px #FF4500'
+  left: '-var(--space-2xl)',
+  top: 'var(--space-lg)',
+  boxShadow: '0 0 12px var(--accent-secondary)',
+  zIndex: 2
 };
 
 const companyStyle = {
   margin: 0,
-  fontSize: '18px',
-  color: '#111' // Darker heading
+  fontSize: 'var(--text-lg)',
+  color: 'var(--text-primary)',
+  fontWeight: '600',
+  marginBottom: 'var(--space-sm)'
 };
 
 const descStyle = {
-  margin: '10px 0',
-  fontSize: '14px',
-  color: '#222',  // Main body darker
+  margin: 'var(--space-sm) 0',
+  fontSize: 'var(--text-sm)',
+  color: 'var(--text-secondary)',
   lineHeight: '1.6em',
   whiteSpace: 'pre-line'
 };
 
 const yearStyle = {
-  fontSize: '12px',
-  color: '#333' // Subtle year text
+  fontSize: 'var(--text-xs)',
+  color: 'var(--accent-primary)',
+  fontWeight: '500',
+  background: 'var(--bg-card)',
+  padding: 'var(--space-xs) var(--space-sm)',
+  borderRadius: 'var(--radius-full)',
+  border: '1px solid var(--border-primary)',
+  display: 'inline-block'
 };
 
 const buttonStyle = {
-  marginTop: '20px',
-  padding: '10px 18px',
-  background: '#FF4500',
+  marginTop: 'var(--space-xl)',
+  padding: 'var(--space-sm) var(--space-lg)',
+  background: 'linear-gradient(135deg, var(--accent-secondary), #ff8c42)',
   border: 'none',
-  borderRadius: '10px',
-  color: '#fff',
-  fontWeight: 'bold',
-  fontSize: '15px',
+  borderRadius: 'var(--radius-md)',
+  color: 'var(--text-primary)',
+  fontWeight: '600',
+  fontSize: 'var(--text-sm)',
   cursor: 'pointer',
-  boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+  boxShadow: 'var(--shadow-md)',
   display: 'block',
   marginLeft: 'auto',
-  marginRight: 'auto'
+  marginRight: 'auto',
+  transition: 'all var(--transition-fast)'
 };
 
 export default Experience;

@@ -26,6 +26,10 @@ const Home = () => {
   const [targetPos, setTargetPos] = useState(null);
   const controlsRef = useRef();
 
+  // FPS Control states
+  const [isPointerLocked, setIsPointerLocked] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(false);
+
   const [popupVisible, setPopupVisible] = useState(false);
   const [resumeVisible, setResumeVisible] = useState(false);
   const [certificationsVisible, setCertificationsVisible] = useState(false);
@@ -57,35 +61,33 @@ const Home = () => {
 
   useEffect(() => {
     if (controlsRef.current) {
-      controlsRef.current.target.set(0, 5, 0);
+      controlsRef.current.target.set(0, 2, 0);
       controlsRef.current.update();
     }
   }, []);
 
-  // Update Naruto position by joystick input continuously
+  // FPS Control handlers
+  const handlePointerLockChange = () => {
+    const isLocked = document.pointerLockElement === document.body;
+    setIsPointerLocked(isLocked);
+    setShowInstructions(!isLocked);
+  };
+
+  const handlePointerLockError = () => {
+    console.error('Pointer lock failed');
+  };
+
   useEffect(() => {
-    let animationFrameId;
-    let velocity = { x: 0, z: 0 };
-
-    const speed = 0.07; // Adjust movement speed here
-
-    const updatePosition = () => {
-      if (velocity.x !== 0 || velocity.z !== 0) {
-        setNarutoPos((pos) => ({
-          ...pos,
-          x: pos.x + velocity.x * speed,
-          z: pos.z + velocity.z * speed,
-        }));
-      }
-      animationFrameId = requestAnimationFrame(updatePosition);
-    };
-
-    updatePosition();
-
+    document.addEventListener('pointerlockchange', handlePointerLockChange);
+    document.addEventListener('pointerlockerror', handlePointerLockError);
+    
     return () => {
-      cancelAnimationFrame(animationFrameId);
+      document.removeEventListener('pointerlockchange', handlePointerLockChange);
+      document.removeEventListener('pointerlockerror', handlePointerLockError);
     };
   }, []);
+
+  // Movement is now handled by PlayableNaruto component
 
   let keysPressed = new Set();
 
@@ -141,31 +143,6 @@ const handleJoystickEnd = () => {
   keysPressed.clear();
 };
 
-
-  // We'll use a ref for velocity to avoid re-creating effect
-  const velocityRef = React.useRef({ x: 0, z: 0 });
-
-  useEffect(() => {
-    let animationFrameId;
-
-    const speed = 0.07;
-    const move = () => {
-      const { x, z } = velocityRef.current;
-      if (x !== 0 || z !== 0) {
-        setNarutoPos((pos) => ({
-          ...pos,
-          x: pos.x + x * speed,
-          z: pos.z + z * speed,
-        }));
-      }
-      animationFrameId = requestAnimationFrame(move);
-    };
-
-    move();
-
-    return () => cancelAnimationFrame(animationFrameId);
-  }, []);
-
   return (
     <div
       style={{
@@ -183,7 +160,7 @@ const handleJoystickEnd = () => {
 
       <Canvas
         shadows
-        camera={{ position: [0, 5, 10], fov: 60 }}
+        camera={{ position: [0, 8, 12], fov: 50 }}
         style={{ background: 'transparent' }}
       >
         <ambientLight intensity={0.5} />
@@ -261,6 +238,101 @@ const handleJoystickEnd = () => {
       {contactVisible && <Contact onClose={() => setContactVisible(false)} />}
       {experienceVisible && <Experience onClose={() => setExperienceVisible(false)} />}
       {galleryVisible && <PhotoGallery onClose={() => setGalleryVisible(false)} />}
+
+      {/* FPS Control Instructions - Small overlay in corner */}
+      {showInstructions && (
+        <div
+          style={{
+            position: 'fixed',
+            top: '20px',
+            right: '20px',
+            maxWidth: '300px',
+            backgroundColor: 'var(--bg-secondary)',
+            padding: '1rem',
+            borderRadius: 'var(--border-radius)',
+            border: '1px solid var(--border-color)',
+            zIndex: 1000,
+            color: 'white',
+            fontFamily: 'var(--font-family-primary)',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+          }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+            <h3 style={{ color: 'var(--accent-primary)', fontSize: '1rem', margin: 0 }}>
+              🥷 FPS Controls
+            </h3>
+            <button
+              onClick={() => setShowInstructions(false)}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: 'var(--text-secondary)',
+                cursor: 'pointer',
+                fontSize: '1.2rem',
+                padding: '0',
+                lineHeight: '1',
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.color = 'var(--accent-primary)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.color = 'var(--text-secondary)';
+              }}
+            >
+              ×
+            </button>
+          </div>
+          <div style={{ fontSize: '0.9rem', marginBottom: '1rem', color: 'var(--text-secondary)' }}>
+            <div>🖱️ <strong>Mouse:</strong> Look around</div>
+            <div>⌨️ <strong>WASD:</strong> Move around</div>
+            <div>🚶 <strong>Walk:</strong> Near objects to interact</div>
+            <div>📱 <strong>ESC:</strong> Exit controls</div>
+          </div>
+          <button
+            onClick={() => {
+              document.body.requestPointerLock();
+            }}
+            style={{
+              backgroundColor: 'var(--accent-primary)',
+              color: 'var(--bg-primary)',
+              border: 'none',
+              padding: '0.5rem 1rem',
+              fontSize: '0.9rem',
+              borderRadius: 'var(--border-radius)',
+              cursor: 'pointer',
+              fontWeight: 'bold',
+              transition: 'all 0.3s ease',
+              width: '100%',
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = 'var(--accent-hover)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = 'var(--accent-primary)';
+            }}
+          >
+            Start FPS Mode
+          </button>
+        </div>
+      )}
+
+      {/* Crosshair */}
+      {isPointerLocked && (
+        <div
+          style={{
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '20px',
+            height: '20px',
+            border: '2px solid var(--accent-primary)',
+            borderRadius: '50%',
+            pointerEvents: 'none',
+            zIndex: 1000,
+          }}
+        />
+      )}
     </div>
   );
 };

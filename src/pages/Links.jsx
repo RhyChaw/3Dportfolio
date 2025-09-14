@@ -43,59 +43,68 @@ const containerStyle = {
   left: '50%',
   transform: 'translateX(-50%)',
   width: '90%',
-  maxWidth: '480px',
-  backgroundImage: 'url("/images/scroll-texture.jpg")',
-  backgroundSize: 'cover',
-  backgroundRepeat: 'no-repeat',
-  padding: '32px 36px',
-  borderRadius: '18px',
-  color: '#1c1c1c',
+  maxWidth: '500px',
+  background: 'var(--bg-card)',
+  padding: 'var(--space-2xl)',
+  borderRadius: 'var(--radius-xl)',
+  color: 'var(--text-primary)',
   zIndex: 1000,
-  fontFamily: '"Noto Serif JP", Papyrus, serif',
-  border: '6px double #00CED1',
-  boxShadow: '0 0 35px rgba(0,0,0,0.5)',
-  backdropFilter: 'blur(5px)',
+  fontFamily: 'var(--font-family-primary)',
+  border: '1px solid var(--border-primary)',
+  boxShadow: 'var(--shadow-xl)',
+  backdropFilter: 'blur(8px)',
   textAlign: 'center'
 };
 
 const titleStyle = {
-  fontSize: '24px',
-  marginBottom: '12px',
-  color: '#00CED1',
-  textShadow: '1px 1px 2px #000'
+  fontSize: 'var(--text-2xl)',
+  marginBottom: 'var(--space-lg)',
+  color: 'var(--accent-primary)',
+  textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
+  fontWeight: '700'
 };
 
 const descStyle = {
-  fontSize: '15px',
-  marginBottom: '20px'
+  fontSize: 'var(--text-sm)',
+  marginBottom: 'var(--space-xl)',
+  color: 'var(--text-secondary)',
+  lineHeight: '1.6'
 };
 
 const listStyle = {
   listStyle: 'none',
   padding: 0,
   margin: 0,
-  fontSize: '15px',
+  fontSize: 'var(--text-sm)',
   lineHeight: '1.8em',
-  color: '#222'
+  color: 'var(--text-primary)'
 };
 
 const linkStyle = {
-  color: '#006666',
-  textDecoration: 'underline',
-  fontWeight: 'bold'
+  color: 'var(--accent-primary)',
+  textDecoration: 'none',
+  fontWeight: '500',
+  padding: 'var(--space-xs) var(--space-sm)',
+  borderRadius: 'var(--radius-sm)',
+  background: 'var(--bg-secondary)',
+  border: '1px solid var(--border-primary)',
+  transition: 'all var(--transition-fast)',
+  display: 'inline-block',
+  margin: 'var(--space-xs)'
 };
 
 const closeStyle = {
-  marginTop: '24px',
-  padding: '10px 18px',
-  background: '#FF4500',
+  marginTop: 'var(--space-xl)',
+  padding: 'var(--space-sm) var(--space-lg)',
+  background: 'linear-gradient(135deg, var(--accent-secondary), #ff8c42)',
   border: 'none',
-  borderRadius: '8px',
-  color: '#fff',
-  fontWeight: 'bold',
-  fontSize: '15px',
+  borderRadius: 'var(--radius-md)',
+  color: 'var(--text-primary)',
+  fontWeight: '600',
+  fontSize: 'var(--text-sm)',
   cursor: 'pointer',
-  boxShadow: '0 0 10px rgba(0,0,0,0.4)'
+  boxShadow: 'var(--shadow-md)',
+  transition: 'all var(--transition-fast)'
 };
 
 export default Links;

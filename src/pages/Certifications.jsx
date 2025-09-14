@@ -51,74 +51,97 @@ function Certifications({ onClose }) {
       left: '10%',
       width: '80%',
       height: '80%',
-      overflowY: 'scroll',
-      backgroundImage: 'url("/images/scroll-texture.jpg")',
-      backgroundSize: 'cover',
-      backgroundRepeat: 'no-repeat',
-      padding: '30px',
-      borderRadius: '20px',
-      color: '#fffbe6',
+      overflowY: 'auto',
+      background: 'var(--bg-card)',
+      padding: 'var(--space-xl)',
+      borderRadius: 'var(--radius-xl)',
+      color: 'var(--text-primary)',
       zIndex: 1000,
-      fontFamily: '"Noto Serif JP", "Papyrus", serif',
-      border: '8px double #5a3a1c',
-      boxShadow: '0 0 40px rgba(0,0,0,0.7)',
-      backdropFilter: 'blur(6px)'
+      fontFamily: 'var(--font-family-primary)',
+      border: '1px solid var(--border-primary)',
+      boxShadow: 'var(--shadow-xl)',
+      backdropFilter: 'blur(8px)'
     }}>
       <h2 style={{
-        fontSize: '28px',
+        fontSize: 'var(--text-2xl)',
         textAlign: 'center',
-        color: '#ffcb4a',
-        textShadow: '1px 1px 2px #000'
-      }}>🌀 Certifications Scroll</h2>
+        color: 'var(--accent-primary)',
+        textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
+        marginBottom: 'var(--space-xl)',
+        fontWeight: '700'
+      }}>🏆 Certifications & Achievements</h2>
 
       <div style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        gap: '20px',
-        marginTop: '20px'
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+        gap: 'var(--space-lg)',
+        marginTop: 'var(--space-xl)'
       }}>
         {certificationsData.map(cert => (
           <div key={cert.id} style={{
-            width: '300px',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            background: 'rgba(245, 222, 179, 0.1)',
-            padding: '20px',
-            borderRadius: '15px',
-            border: '3px groove #f4d180',
-            boxShadow: '0 0 12px rgba(255, 223, 128, 0.3)',
-            backdropFilter: 'blur(1px)',
-            transition: 'transform 0.2s ease'
+            background: 'var(--bg-secondary)',
+            padding: 'var(--space-lg)',
+            borderRadius: 'var(--radius-lg)',
+            border: '1px solid var(--border-primary)',
+            boxShadow: 'var(--shadow-md)',
+            transition: 'all var(--transition-normal)'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-4px)';
+            e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
+            e.currentTarget.style.borderColor = 'var(--border-accent)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = 'var(--shadow-md)';
+            e.currentTarget.style.borderColor = 'var(--border-primary)';
           }}>
             <img
               src={cert.image}
               alt={cert.courseName}
               style={{
                 width: '100%',
-                height: 'auto',
-                borderRadius: '8px',
-                border: '2px solid #d2b48c',
-                boxShadow: '2px 2px 8px rgba(0,0,0,0.4)',
-                marginBottom: '12px'
+                height: '200px',
+                objectFit: 'cover',
+                borderRadius: 'var(--radius-md)',
+                border: '1px solid var(--border-primary)',
+                boxShadow: 'var(--shadow-sm)',
+                marginBottom: 'var(--space-md)'
               }}
             />
-            <div>
+            <div style={{ textAlign: 'center' }}>
               <h3 style={{
-                fontSize: '18px',
-                fontWeight: 'bold',
-                color: '#ffe78c',
-                textShadow: '1px 1px 1px #000',
-                marginBottom: '6px',
+                fontSize: 'var(--text-lg)',
+                fontWeight: '600',
+                color: 'var(--text-primary)',
+                marginBottom: 'var(--space-sm)',
                 textAlign: 'center'
               }}>
                 {cert.courseName}
               </h3>
-              <p style={{ fontSize: '14px', color: '#ffefc2', margin: 0 }}>
+              <p style={{ 
+                fontSize: 'var(--text-sm)', 
+                color: 'var(--text-secondary)', 
+                margin: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 'var(--space-xs)'
+              }}>
                 📅 <strong>{cert.completionDate}</strong>
               </p>
-              <p style={{ fontSize: '14px', color: '#ffefc2', margin: '6px 0' }}>
+              <p style={{ 
+                fontSize: 'var(--text-sm)', 
+                color: 'var(--text-secondary)', 
+                margin: 'var(--space-xs) 0',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 'var(--space-xs)'
+              }}>
                 🏛 {cert.issuingOrganization}
               </p>
               <a
@@ -126,12 +149,29 @@ function Certifications({ onClose }) {
                 target="_blank"
                 rel="noreferrer"
                 style={{
-                  color: '#0ff',
-                  fontSize: '14px',
-                  textDecoration: 'underline',
-                  fontWeight: 'bold',
-                  display: 'block',
-                  textAlign: 'center'
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 'var(--space-xs)',
+                  color: 'var(--accent-primary)',
+                  fontSize: 'var(--text-sm)',
+                  textDecoration: 'none',
+                  fontWeight: '500',
+                  padding: 'var(--space-xs) var(--space-sm)',
+                  background: 'var(--bg-card)',
+                  borderRadius: 'var(--radius-sm)',
+                  border: '1px solid var(--border-primary)',
+                  transition: 'all var(--transition-fast)',
+                  marginTop: 'var(--space-sm)'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = 'var(--accent-primary)';
+                  e.target.style.color = 'var(--text-primary)';
+                  e.target.style.borderColor = 'var(--accent-primary)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = 'var(--bg-card)';
+                  e.target.style.color = 'var(--accent-primary)';
+                  e.target.style.borderColor = 'var(--border-primary)';
                 }}
               >
                 View Certificate →
@@ -144,22 +184,31 @@ function Certifications({ onClose }) {
       <button
         onClick={onClose}
         style={{
-          marginTop: '25px',
-          padding: '10px 16px',
-          background: '#e56c1f',
+          marginTop: 'var(--space-xl)',
+          padding: 'var(--space-sm) var(--space-lg)',
+          background: 'linear-gradient(135deg, var(--accent-secondary), #ff8c42)',
           border: 'none',
-          borderRadius: '8px',
-          color: 'white',
-          fontWeight: 'bold',
-          fontSize: '16px',
+          borderRadius: 'var(--radius-md)',
+          color: 'var(--text-primary)',
+          fontWeight: '600',
+          fontSize: 'var(--text-sm)',
           cursor: 'pointer',
           display: 'block',
           marginLeft: 'auto',
           marginRight: 'auto',
-          boxShadow: '0 0 10px rgba(0,0,0,0.4)'
+          boxShadow: 'var(--shadow-md)',
+          transition: 'all var(--transition-fast)'
+        }}
+        onMouseEnter={(e) => {
+          e.target.style.transform = 'translateY(-2px)';
+          e.target.style.boxShadow = 'var(--shadow-lg)';
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.transform = 'translateY(0)';
+          e.target.style.boxShadow = 'var(--shadow-md)';
         }}
       >
-        Close Scroll
+        Close
       </button>
     </div>
   );

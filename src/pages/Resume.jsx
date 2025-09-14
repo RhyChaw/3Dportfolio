@@ -11,68 +11,105 @@ function Resume({ onClose }) {
       left: '10%',
       width: '80%',
       height: '80%',
-      backgroundImage: 'url("/images/scroll-texture.jpg")',
-      backgroundSize: 'cover',
-      backgroundRepeat: 'no-repeat',
-      padding: '30px',
-      borderRadius: '20px',
-      color: '#fffbe6',
+      background: 'var(--bg-card)',
+      padding: 'var(--space-xl)',
+      borderRadius: 'var(--radius-xl)',
+      color: 'var(--text-primary)',
       zIndex: 1000,
-      fontFamily: '"Noto Serif JP", "Papyrus", serif',
-      border: '8px double #FFD700',
-      boxShadow: '0 0 40px rgba(0,0,0,0.7)',
-      backdropFilter: 'blur(6px)',
+      fontFamily: 'var(--font-family-primary)',
+      border: '1px solid var(--border-primary)',
+      boxShadow: 'var(--shadow-xl)',
+      backdropFilter: 'blur(8px)',
       display: 'flex',
       flexDirection: 'column',
     }}>
       <h2 style={{
-        fontSize: '28px',
+        fontSize: 'var(--text-2xl)',
         textAlign: 'center',
-        color: '#FFD700',
-        textShadow: '1px 1px 2px #000',
-        marginBottom: '15px'
-      }}>📄 Resume Scroll</h2>
+        color: 'var(--accent-primary)',
+        textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
+        marginBottom: 'var(--space-lg)',
+        fontWeight: '700'
+      }}>📄 Resume & CV</h2>
 
       {/* PDF Viewer */}
       <div style={{
         flex: 1,
         overflow: 'auto',
-        border: '2px solid rgba(255,255,255,0.2)',
-        borderRadius: '8px',
-        backgroundColor: 'rgba(0,0,0,0.3)'
+        border: '1px solid var(--border-primary)',
+        borderRadius: 'var(--radius-md)',
+        backgroundColor: 'var(--bg-secondary)',
+        boxShadow: 'var(--shadow-sm)'
       }}>
         <Worker workerUrl={`https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js`}>
           <Viewer fileUrl="/resumes/resume.pdf" />
         </Worker>
       </div>
 
-      {/* LinkedIn + Close */}
-      <div style={{ textAlign: 'center', marginTop: '15px' }}>
+      {/* Action buttons */}
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        gap: 'var(--space-lg)',
+        marginTop: 'var(--space-lg)',
+        flexWrap: 'wrap'
+      }}>
         <a
           href="https://www.linkedin.com/in/rhythm-chawla-18723a231/"
           target="_blank"
           rel="noreferrer"
-          style={{ color: '#0ff', fontSize: '16px', textDecoration: 'underline' }}
+          style={{ 
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 'var(--space-xs)',
+            padding: 'var(--space-sm) var(--space-lg)',
+            background: 'var(--bg-secondary)',
+            color: 'var(--text-primary)',
+            textDecoration: 'none',
+            fontWeight: '600',
+            fontSize: 'var(--text-sm)',
+            borderRadius: 'var(--radius-md)',
+            border: '1px solid var(--border-primary)',
+            boxShadow: 'var(--shadow-sm)',
+            transition: 'all var(--transition-fast)'
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.background = 'var(--bg-tertiary)';
+            e.target.style.borderColor = 'var(--border-accent)';
+            e.target.style.transform = 'translateY(-2px)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.background = 'var(--bg-secondary)';
+            e.target.style.borderColor = 'var(--border-primary)';
+            e.target.style.transform = 'translateY(0)';
+          }}
         >
-          View LinkedIn
+          💼 LinkedIn Profile
         </a>
-        <br />
         <button
           onClick={onClose}
           style={{
-            marginTop: '10px',
-            padding: '10px 16px',
-            background: '#e56c1f',
+            padding: 'var(--space-sm) var(--space-lg)',
+            background: 'linear-gradient(135deg, var(--accent-secondary), #ff8c42)',
             border: 'none',
-            borderRadius: '8px',
-            color: 'white',
-            fontWeight: 'bold',
-            fontSize: '16px',
+            borderRadius: 'var(--radius-md)',
+            color: 'var(--text-primary)',
+            fontWeight: '600',
+            fontSize: 'var(--text-sm)',
             cursor: 'pointer',
-            boxShadow: '0 0 10px rgba(0,0,0,0.4)'
+            boxShadow: 'var(--shadow-md)',
+            transition: 'all var(--transition-fast)'
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.transform = 'translateY(-2px)';
+            e.target.style.boxShadow = 'var(--shadow-lg)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.transform = 'translateY(0)';
+            e.target.style.boxShadow = 'var(--shadow-md)';
           }}
         >
-          Close Scroll
+          Close
         </button>
       </div>
     </div>

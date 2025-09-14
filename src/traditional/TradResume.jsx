@@ -10,32 +10,35 @@ const TradResume = () => {
     <section
       id="resume"
       style={{
-        padding: '2rem 1rem',
-        maxWidth: '900px',
+        padding: 'var(--space-2xl) var(--space-lg)',
+        maxWidth: '1000px',
         margin: '0 auto',
-        fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+        fontFamily: 'var(--font-family-primary)',
       }}
     >
       <h2
         style={{
           textAlign: 'center',
-          fontSize: '2rem',
-          marginBottom: '1rem',
-          color: '#111827',
+          fontSize: 'var(--text-3xl)',
+          marginBottom: 'var(--space-2xl)',
+          color: 'var(--text-primary)',
+          fontWeight: '700',
+          textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
         }}
       >
-        📄 My Resume
+        📄 Resume & CV
       </h2>
 
       {/* PDF Viewer */}
       <div
         style={{
-          height: '600px',
-          border: '1px solid #e5e7eb',
-          borderRadius: '8px',
+          height: '700px',
+          border: '1px solid var(--border-primary)',
+          borderRadius: 'var(--radius-lg)',
           overflow: 'hidden',
-          boxShadow: '0 8px 20px rgba(0,0,0,0.1)',
-          marginBottom: '1rem',
+          boxShadow: 'var(--shadow-lg)',
+          marginBottom: 'var(--space-xl)',
+          background: 'var(--bg-card)',
         }}
       >
         <Worker workerUrl={`https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js`}>
@@ -43,20 +46,73 @@ const TradResume = () => {
         </Worker>
       </div>
 
-      {/* LinkedIn link */}
-      <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+      {/* Action buttons */}
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        gap: 'var(--space-lg)',
+        flexWrap: 'wrap',
+      }}>
+        <a
+          href="/resumes/resume.pdf"
+          target="_blank"
+          rel="noreferrer"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 'var(--space-xs)',
+            padding: 'var(--space-sm) var(--space-lg)',
+            background: 'linear-gradient(135deg, var(--accent-primary), #0099cc)',
+            color: 'var(--text-primary)',
+            textDecoration: 'none',
+            fontWeight: '600',
+            fontSize: 'var(--text-sm)',
+            borderRadius: 'var(--radius-md)',
+            boxShadow: 'var(--shadow-md)',
+            transition: 'all var(--transition-fast)',
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.transform = 'translateY(-2px)';
+            e.target.style.boxShadow = 'var(--shadow-lg)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.transform = 'translateY(0)';
+            e.target.style.boxShadow = 'var(--shadow-md)';
+          }}
+        >
+          📥 Download PDF
+        </a>
         <a
           href="https://www.linkedin.com/in/rhythm-chawla-18723a231/"
           target="_blank"
           rel="noreferrer"
           style={{
-            color: '#2563EB',
-            textDecoration: 'underline',
-            fontWeight: 600,
-            fontSize: '1rem',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 'var(--space-xs)',
+            padding: 'var(--space-sm) var(--space-lg)',
+            background: 'var(--bg-card)',
+            color: 'var(--text-primary)',
+            textDecoration: 'none',
+            fontWeight: '600',
+            fontSize: 'var(--text-sm)',
+            borderRadius: 'var(--radius-md)',
+            border: '1px solid var(--border-primary)',
+            boxShadow: 'var(--shadow-sm)',
+            transition: 'all var(--transition-fast)',
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.background = 'var(--bg-tertiary)';
+            e.target.style.borderColor = 'var(--border-accent)';
+            e.target.style.transform = 'translateY(-2px)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.background = 'var(--bg-card)';
+            e.target.style.borderColor = 'var(--border-primary)';
+            e.target.style.transform = 'translateY(0)';
           }}
         >
-          View my LinkedIn Profile
+          💼 LinkedIn Profile
         </a>
       </div>
     </section>

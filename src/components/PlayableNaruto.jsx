@@ -6,8 +6,7 @@ import * as THREE from 'three';
 export default function PlayableNaruto(props) {
   const { scene } = useGLTF('/models/naruto.glb');
   const narutoRef = useRef();
-  const cameraTarget = useRef(new THREE.Vector3());
-  const { camera } = useThree();
+  const { camera, controls } = useThree();
 
   const [keysPressed, setKeysPressed] = useState({});
 
@@ -56,13 +55,36 @@ export default function PlayableNaruto(props) {
     const speed = 15;
     const direction = new THREE.Vector3();
 
-    // Movement input
-    if (keysPressed['w'] || keysPressed['arrowup']) direction.z -= 1;
-    if (keysPressed['s'] || keysPressed['arrowdown']) direction.z += 1;
-    if (keysPressed['a'] || keysPressed['arrowleft']) direction.x -= 1;
-    if (keysPressed['d'] || keysPressed['arrowright']) direction.x += 1;
+    // Movement input - Relative to camera direction (FPS-style controls)
+    let forward = 0;
+    let right = 0;
 
-    direction.normalize().multiplyScalar(speed * delta);
+    if (keysPressed['w'] || keysPressed['arrowup']) forward += 1;     // W = forward
+    if (keysPressed['s'] || keysPressed['arrowdown']) forward -= 1;   // S = backward
+    if (keysPressed['a'] || keysPressed['arrowleft']) right -= 1;     // A = strafe left
+    if (keysPressed['d'] || keysPressed['arrowright']) right += 1;    // D = strafe right
+
+    // Convert relative movement to world coordinates based on camera direction
+    if (forward !== 0 || right !== 0) {
+      // Get camera direction (ignoring Y component for horizontal movement)
+      const cameraDirection = new THREE.Vector3();
+      camera.getWorldDirection(cameraDirection);
+      cameraDirection.y = 0; // Keep movement on horizontal plane
+      cameraDirection.normalize();
+
+      // Calculate right direction (perpendicular to forward)
+      const rightDirection = new THREE.Vector3();
+      rightDirection.crossVectors(cameraDirection, new THREE.Vector3(0, 1, 0));
+      rightDirection.normalize();
+
+      // Calculate final movement direction
+      direction.addVectors(
+        cameraDirection.clone().multiplyScalar(forward),
+        rightDirection.clone().multiplyScalar(right)
+      );
+      
+      direction.normalize().multiplyScalar(speed * delta);
+    }
 
     if (narutoRef.current) {
       // Move Naruto
@@ -87,8 +109,8 @@ export default function PlayableNaruto(props) {
 
       // Smooth third-person camera follow
       const rotationY = narutoRef.current.rotation.y;
-      const offsetDistance = 6; // Distance behind Naruto
-      const offsetHeight = 3; // Height above Naruto
+      const offsetDistance = 8; // Distance behind Naruto
+      const offsetHeight = 4; // Height above Naruto
 
       // Calculate camera offset based on Naruto's rotation (behind him)
       const offsetX = Math.sin(rotationY) * offsetDistance;
@@ -102,13 +124,20 @@ export default function PlayableNaruto(props) {
       );
 
       // Lerp camera position smoothly
-      camera.position.lerp(desiredPosition, 0.1);
+      camera.position.lerp(desiredPosition, 0.08);
 
-      // Lerp camera target to Naruto’s position smoothly
-      cameraTarget.current.lerp(narutoRef.current.position, 0.1);
+      // Lerp camera target to slightly above Naruto's position
+      const targetPosition = new THREE.Vector3(
+        narutoRef.current.position.x,
+        narutoRef.current.position.y + 1, // Look slightly above Naruto
+        narutoRef.current.position.z
+      );
 
-      // Make camera look at the target
-      camera.lookAt(cameraTarget.current);
+      // Update OrbitControls target
+      if (controls) {
+        controls.target.lerp(targetPosition, 0.08);
+        controls.update();
+      }
 
       // Check distances for triggering zones
       const narutoPos = narutoRef.current.position;
@@ -135,9 +164,6 @@ export default function PlayableNaruto(props) {
       distCheck(new THREE.Vector3(-2.54, 0.4, 9.51), wasNearContact, onNearContact, onFarFromContact);
       distCheck(new THREE.Vector3(6.31, 0.4, -8.4), wasNearExperience, onNearExperience, onFarFromExperience);
       distCheck(new THREE.Vector3(5.33, 0.4, 9.10), wasNearGallery, onNearGallery, onFarFromGallery);
-
-      // Optional: Debug position log
-      // console.log(`Naruto Position → x: ${narutoPos.x.toFixed(2)} y: ${narutoPos.y.toFixed(2)} z: ${narutoPos.z.toFixed(2)}`);
     }
   });
 

@@ -48,126 +48,135 @@ const TradCert = () => {
     <section
       id="certifications"
       style={{
-        padding: '2rem 1rem',
-        maxWidth: '1100px',
+        padding: 'var(--space-2xl) var(--space-lg)',
+        maxWidth: '1200px',
         margin: '0 auto',
-        fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+        fontFamily: 'var(--font-family-primary)',
       }}
     >
       <h2
         style={{
           textAlign: 'center',
-          fontSize: '2rem',
-          marginBottom: '1rem',
-          color: '#0f172a',
+          fontSize: 'var(--text-3xl)',
+          marginBottom: 'var(--space-2xl)',
+          color: 'var(--text-primary)',
+          fontWeight: '700',
+          textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
         }}
       >
-        🌀 My Certifications
+        🏆 Certifications & Achievements
       </h2>
 
-      {/* Marquee container */}
+      {/* Certifications Grid */}
       <div
         style={{
-          overflowX: 'auto',
-          scrollbarWidth: 'thin',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: 'var(--space-lg)',
         }}
       >
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'nowrap',
-            gap: '1.5rem',
-            animation: 'scrollCerts 25s linear infinite',
-            width: 'max-content',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.animationPlayState = 'paused';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.animationPlayState = 'running';
-          }}
-        >
-          {/* Duplicate for seamless loop */}
-          {[...certificationsData, ...certificationsData].map(cert => (
-            <div
-              key={`${cert.id}-${Math.random()}`}
+        {certificationsData.map(cert => (
+          <div
+            key={cert.id}
+            style={{
+              background: 'var(--bg-card)',
+              border: '1px solid var(--border-primary)',
+              borderRadius: 'var(--radius-lg)',
+              overflow: 'hidden',
+              boxShadow: 'var(--shadow-md)',
+              transition: 'all var(--transition-normal)',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-4px)';
+              e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
+              e.currentTarget.style.borderColor = 'var(--border-accent)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = 'var(--shadow-md)';
+              e.currentTarget.style.borderColor = 'var(--border-primary)';
+            }}
+          >
+            <img
+              src={cert.image}
+              alt={cert.courseName}
               style={{
-                minWidth: '250px',
-                maxWidth: '250px',
-                flex: '0 0 auto',
-                border: '1px solid #e5e7eb',
-                borderRadius: '8px',
-                overflow: 'hidden',
-                boxShadow: '0 0 10px rgba(0,0,0,0.05)',
-                backgroundColor: '#ffffff',
-                transition: 'transform 0.2s ease',
+                width: '100%',
+                height: '200px',
+                objectFit: 'cover',
               }}
-            >
-              <img
-                src={cert.image}
-                alt={cert.courseName}
+            />
+            <div style={{ padding: 'var(--space-lg)' }}>
+              <h3
                 style={{
-                  width: '100%',
-                  height: 'auto',
-                  display: 'block',
+                  fontSize: 'var(--text-lg)',
+                  marginBottom: 'var(--space-sm)',
+                  color: 'var(--text-primary)',
+                  fontWeight: '600',
                 }}
-              />
-              <div style={{ padding: '1rem' }}>
-                <h3
-                  style={{
-                    fontSize: '1.1rem',
-                    marginBottom: '0.5rem',
-                    color: '#1f2937',
-                  }}
-                >
-                  {cert.courseName}
-                </h3>
+              >
+                {cert.courseName}
+              </h3>
+              <div style={{ marginBottom: 'var(--space-sm)' }}>
                 <p
                   style={{
-                    fontSize: '0.9rem',
-                    color: '#4b5563',
-                    marginBottom: '0.25rem',
+                    fontSize: 'var(--text-sm)',
+                    color: 'var(--text-secondary)',
+                    marginBottom: 'var(--space-xs)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 'var(--space-xs)',
                   }}
                 >
                   📅 {cert.completionDate}
                 </p>
                 <p
                   style={{
-                    fontSize: '0.9rem',
-                    color: '#4b5563',
-                    marginBottom: '0.5rem',
+                    fontSize: 'var(--text-sm)',
+                    color: 'var(--text-secondary)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 'var(--space-xs)',
                   }}
                 >
                   🏛 {cert.issuingOrganization}
                 </p>
-                <a
-                  href={cert.certificateLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{
-                    display: 'inline-block',
-                    fontSize: '0.9rem',
-                    color: '#2563EB',
-                    textDecoration: 'underline',
-                    fontWeight: '500',
-                  }}
-                >
-                  View Certificate →
-                </a>
               </div>
+              <a
+                href={cert.certificateLink}
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 'var(--space-xs)',
+                  fontSize: 'var(--text-sm)',
+                  color: 'var(--accent-primary)',
+                  textDecoration: 'none',
+                  fontWeight: '500',
+                  padding: 'var(--space-xs) var(--space-sm)',
+                  background: 'var(--bg-secondary)',
+                  borderRadius: 'var(--radius-sm)',
+                  border: '1px solid var(--border-primary)',
+                  transition: 'all var(--transition-fast)',
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = 'var(--accent-primary)';
+                  e.target.style.color = 'var(--text-primary)';
+                  e.target.style.borderColor = 'var(--accent-primary)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = 'var(--bg-secondary)';
+                  e.target.style.color = 'var(--accent-primary)';
+                  e.target.style.borderColor = 'var(--border-primary)';
+                }}
+              >
+                View Certificate →
+              </a>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-
-      <style>
-        {`
-          @keyframes scrollCerts {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-50%); }
-          }
-        `}
-      </style>
     </section>
   );
 };

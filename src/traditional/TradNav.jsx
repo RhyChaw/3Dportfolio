@@ -5,39 +5,59 @@ function TradNav() {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '1rem 2rem',
-    backgroundColor: '#1e293b', // dark blue-gray
-    color: 'white',
-    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+    padding: 'var(--space-lg) var(--space-xl)',
+    background: 'linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%)',
+    color: 'var(--text-primary)',
+    fontFamily: 'var(--font-family-primary)',
     position: 'sticky',
     top: 0,
     zIndex: 1000,
+    borderBottom: '1px solid var(--border-primary)',
+    boxShadow: 'var(--shadow-md)',
+    backdropFilter: 'blur(8px)',
   };
 
   const logoStyle = {
-    fontWeight: 'bold',
-    fontSize: '1.5rem',
-    letterSpacing: '2px',
+    fontWeight: '700',
+    fontSize: 'var(--text-xl)',
+    letterSpacing: '1px',
+    color: 'var(--accent-primary)',
+    textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
   };
 
   const navLinksStyle = {
     display: 'flex',
-    gap: '1.5rem',
+    gap: 'var(--space-lg)',
+    flexWrap: 'wrap',
   };
 
   const linkStyle = {
-    color: 'white',
+    color: 'var(--text-primary)',
     textDecoration: 'none',
-    fontWeight: 600,
+    fontWeight: '500',
     cursor: 'pointer',
-    fontSize: '1rem',
-    transition: 'color 0.3s ease',
+    fontSize: 'var(--text-sm)',
+    padding: 'var(--space-sm) var(--space-md)',
+    borderRadius: 'var(--radius-md)',
+    transition: 'all var(--transition-fast)',
+    border: '1px solid transparent',
   };
 
-  // Hover effect with inline styles requires a little workaround, so we can add a simple onMouseEnter/onMouseLeave event
-  // but to keep it simple, we will skip hover here.
+  const handleMouseEnter = (e) => {
+    e.target.style.background = 'var(--bg-card)';
+    e.target.style.borderColor = 'var(--border-accent)';
+    e.target.style.color = 'var(--accent-primary)';
+    e.target.style.transform = 'translateY(-1px)';
+  };
 
-  const links = ['Links', 'Resume', 'Certifications', 'Projects', 'Experience', 'Contact'];
+  const handleMouseLeave = (e) => {
+    e.target.style.background = 'transparent';
+    e.target.style.borderColor = 'transparent';
+    e.target.style.color = 'var(--text-primary)';
+    e.target.style.transform = 'translateY(0)';
+  };
+
+  const links = ['Experience', 'Projects', 'Certifications', 'Resume', 'Contact'];
 
   return (
     <nav style={navStyle}>
@@ -48,6 +68,8 @@ function TradNav() {
             key={text}
             href={`#${text.toLowerCase()}`}
             style={linkStyle}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             {text}
           </a>

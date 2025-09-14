@@ -8,7 +8,7 @@ const KunaiIcon = () => (
     height="24"
     viewBox="0 0 24 24"
     fill="none"
-    stroke="#FFD700"
+    stroke="var(--accent-primary)"
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
@@ -76,16 +76,25 @@ const Navbar = ({ onNavigate }) => {
           left: 10,
           width: 48,
           height: 48,
-          borderRadius: '50%',
-          background: 'linear-gradient(135deg, #6b4226, #a97448)',
-          border: '3px solid #3e2618',
-          boxShadow: '0 0 10px rgba(0,0,0,0.7)',
+          borderRadius: 'var(--radius-full)',
+          background: 'var(--bg-card)',
+          border: '1px solid var(--border-primary)',
+          boxShadow: 'var(--shadow-lg)',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           cursor: 'pointer',
           zIndex: 10000,
           padding: 0,
+          transition: 'all var(--transition-fast)',
+        }}
+        onMouseEnter={(e) => {
+          e.target.style.transform = 'scale(1.05)';
+          e.target.style.borderColor = 'var(--border-accent)';
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.transform = 'scale(1)';
+          e.target.style.borderColor = 'var(--border-primary)';
         }}
       >
         <KunaiIcon />
@@ -98,11 +107,12 @@ const Navbar = ({ onNavigate }) => {
           style={{
             position: 'fixed',
             inset: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+            backgroundColor: 'var(--bg-overlay)',
             zIndex: 9998,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            backdropFilter: 'blur(8px)',
           }}
         >
           {/* Stop propagation to prevent closing when clicking inside menu */}
@@ -110,14 +120,15 @@ const Navbar = ({ onNavigate }) => {
             onClick={(e) => e.stopPropagation()}
             className={styles.navbar}
             style={{
-              background: 'rgba(43, 27, 8, 0.95)',
-              borderRadius: 16,
-              padding: '20px 40px',
-              boxShadow: '0 8px 30px rgba(0,0,0,0.8)',
-              color: '#fdf5e6',
-              fontFamily: "'Papyrus', cursive, sans-serif",
-              fontSize: '20px',
-              minWidth: '220px',
+              background: 'var(--bg-card)',
+              borderRadius: 'var(--radius-xl)',
+              padding: 'var(--space-xl) var(--space-2xl)',
+              boxShadow: 'var(--shadow-xl)',
+              color: 'var(--text-primary)',
+              fontFamily: 'var(--font-family-primary)',
+              fontSize: 'var(--text-lg)',
+              minWidth: '280px',
+              border: '1px solid var(--border-primary)',
             }}
           >
             <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
@@ -125,7 +136,25 @@ const Navbar = ({ onNavigate }) => {
                 <li
                   key={label}
                   onClick={() => handleClick(label)}
-                  style={{ padding: '12px 0', cursor: 'pointer', userSelect: 'none' }}
+                  style={{ 
+                    padding: 'var(--space-md) 0', 
+                    cursor: 'pointer', 
+                    userSelect: 'none',
+                    borderBottom: '1px solid var(--border-primary)',
+                    transition: 'all var(--transition-fast)',
+                    borderRadius: 'var(--radius-sm)',
+                    marginBottom: 'var(--space-xs)',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.background = 'var(--bg-secondary)';
+                    e.target.style.color = 'var(--accent-primary)';
+                    e.target.style.paddingLeft = 'var(--space-sm)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.background = 'transparent';
+                    e.target.style.color = 'var(--text-primary)';
+                    e.target.style.paddingLeft = '0';
+                  }}
                 >
                   {label}
                 </li>

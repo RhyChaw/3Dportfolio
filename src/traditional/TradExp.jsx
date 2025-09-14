@@ -57,35 +57,38 @@ const TradExp = () => {
     <section
       id="experience"
       style={{
-        padding: '2rem 1rem',
-        maxWidth: '900px',
+        padding: 'var(--space-2xl) var(--space-lg)',
+        maxWidth: '1000px',
         margin: '0 auto',
-        fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+        fontFamily: 'var(--font-family-primary)',
         position: 'relative',
       }}
     >
       <h2
         style={{
           textAlign: 'center',
-          fontSize: '2rem',
-          marginBottom: '1rem',
-          color: '#0f172a',
+          fontSize: 'var(--text-3xl)',
+          marginBottom: 'var(--space-2xl)',
+          color: 'var(--text-primary)',
+          fontWeight: '700',
+          textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
         }}
       >
-        💼 My Experience
+        💼 Professional Experience
       </h2>
 
       {/* Vertical line */}
       <div
         style={{
           position: 'absolute',
-          top: 0,
+          top: '80px',
           left: '50%',
           transform: 'translateX(-50%)',
-          width: '4px',
-          height: '100%',
-          backgroundColor: '#2563EB',
+          width: '3px',
+          height: 'calc(100% - 80px)',
+          background: 'linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary))',
           zIndex: 0,
+          borderRadius: 'var(--radius-full)',
         }}
       />
 
@@ -98,40 +101,58 @@ const TradExp = () => {
             style={{
               position: 'relative',
               width: '45%',
-              marginBottom: '40px',
-              padding: '20px',
+              marginBottom: 'var(--space-2xl)',
+              padding: 'var(--space-lg)',
               left: isLeft ? 0 : '55%',
               textAlign: isLeft ? 'right' : 'left',
               zIndex: 1,
+              background: 'var(--bg-card)',
+              border: '1px solid var(--border-primary)',
+              borderRadius: 'var(--radius-lg)',
+              boxShadow: 'var(--shadow-md)',
+              transition: 'all var(--transition-normal)',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-4px)';
+              e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
+              e.currentTarget.style.borderColor = 'var(--border-accent)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = 'var(--shadow-md)';
+              e.currentTarget.style.borderColor = 'var(--border-primary)';
             }}
           >
             {/* Dot */}
             <div
               style={{
                 position: 'absolute',
-                top: '20px',
-                width: '14px',
-                height: '14px',
+                top: 'var(--space-lg)',
+                width: '16px',
+                height: '16px',
                 borderRadius: '50%',
-                backgroundColor: '#FF4500',
-                boxShadow: '0 0 8px #FF4500',
-                [isLeft ? 'right' : 'left']: '-30px',
+                background: 'linear-gradient(135deg, var(--accent-secondary), #ff8c42)',
+                boxShadow: '0 0 12px var(--accent-secondary)',
+                [isLeft ? 'right' : 'left']: '-32px',
+                zIndex: 2,
               }}
             />
             <h3
               style={{
                 margin: 0,
-                fontSize: '1.2rem',
-                color: '#111827',
+                fontSize: 'var(--text-lg)',
+                color: 'var(--text-primary)',
+                fontWeight: '600',
+                marginBottom: 'var(--space-sm)',
               }}
             >
               {exp.title}
             </h3>
             <p
               style={{
-                margin: '8px 0',
-                fontSize: '0.95rem',
-                color: '#374151',
+                margin: 'var(--space-sm) 0',
+                fontSize: 'var(--text-sm)',
+                color: 'var(--text-secondary)',
                 lineHeight: '1.6em',
                 whiteSpace: 'pre-line',
               }}
@@ -140,8 +161,13 @@ const TradExp = () => {
             </p>
             <span
               style={{
-                fontSize: '0.8rem',
-                color: '#6b7280',
+                fontSize: 'var(--text-xs)',
+                color: 'var(--accent-primary)',
+                fontWeight: '500',
+                background: 'var(--bg-secondary)',
+                padding: 'var(--space-xs) var(--space-sm)',
+                borderRadius: 'var(--radius-full)',
+                border: '1px solid var(--border-primary)',
               }}
             >
               {exp.year}

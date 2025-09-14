@@ -38,65 +38,86 @@ function Title() {
     top: 10,
     left: 10,
     zIndex: 9999,
-    fontFamily: '"Noto Serif JP", "Papyrus", serif',
+    fontFamily: 'var(--font-family-primary)',
   };
 
   const boxStyle = {
-    backgroundImage: 'url("/images/scroll-texture.jpg")',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    padding: isMobile ? '14px 16px' : '20px 25px',
-    borderRadius: '20px',
-    border: '4px double #FFD700',
-    boxShadow: '0 0 20px rgba(0,0,0,0.6)',
-    maxWidth: isMobile ? '85vw' : '320px',
-    lineHeight: '1.5',
+    background: 'var(--bg-card)',
+    padding: isMobile ? 'var(--space-md)' : 'var(--space-lg)',
+    borderRadius: 'var(--radius-xl)',
+    border: '1px solid var(--border-primary)',
+    boxShadow: 'var(--shadow-xl)',
+    maxWidth: isMobile ? '85vw' : '400px',
+    lineHeight: '1.6',
     textAlign: isMobile ? 'center' : 'left',
-    color: '#222',
+    color: 'var(--text-primary)',
+    backdropFilter: 'blur(8px)',
   };
 
   const h1Style = {
-    margin: '0 0 10px',
-    fontSize: isMobile ? '17px' : '22px',
-    color: '#000',
-    textShadow: '1px 1px 0px #FFD700',
+    margin: '0 0 var(--space-sm)',
+    fontSize: isMobile ? 'var(--text-lg)' : 'var(--text-xl)',
+    color: 'var(--accent-primary)',
+    textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
+    fontWeight: '700',
   };
 
   const pStyle = {
-    margin: '4px 0',
-    fontSize: isMobile ? '11.5px' : '13px',
+    margin: 'var(--space-xs) 0',
+    fontSize: isMobile ? 'var(--text-xs)' : 'var(--text-sm)',
+    color: 'var(--text-secondary)',
+    lineHeight: '1.5',
   };
 
   const hamburgerStyle = {
-    backgroundImage: 'url("/images/scroll-texture.jpg")',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    width: '42px',
-    height: '42px',
-    borderRadius: '50%',
-    border: '2px solid #FFD700',
-    boxShadow: '0 0 10px rgba(0,0,0,0.4)',
+    background: 'var(--bg-card)',
+    width: '48px',
+    height: '48px',
+    borderRadius: 'var(--radius-full)',
+    border: '1px solid var(--border-primary)',
+    boxShadow: 'var(--shadow-md)',
     cursor: 'pointer',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    fontSize: '22px',
+    fontSize: 'var(--text-lg)',
     fontWeight: 'bold',
-    color: '#FFD700',
-    textShadow: '1px 1px black'
+    color: 'var(--accent-primary)',
+    transition: 'all var(--transition-fast)',
   };
 
   return (
     <div style={containerStyle} ref={wrapperRef}>
       {isVisible ? (
         <div style={boxStyle}>
-          <h1 style={h1Style}>🗡️ Rhythm's Ninja Way</h1>
+          <h1 style={h1Style}>🗡️ Rhythm's Portfolio</h1>
 
           <p style={pStyle}>🗺️ <strong>Explore:</strong> Move Naruto around your 3D room.</p>
           <p style={pStyle}>🎮 <strong>Controls:</strong> Use arrow keys to walk. Click the radar to teleport.</p>
-          <p style={pStyle}>🌀 <strong>Talk:</strong> Chat with Naruto to learn about projects.</p>
+          <p style={pStyle}>🌀 <strong>Discover:</strong> Click on different areas to learn about my work.</p>
           <p style={pStyle}>📜 <strong>Tip:</strong> The minimap dots show different sections.</p>
-          <p style={pStyle}>🌐 <a href="/" style={{ color: '#0070f3', textDecoration: 'underline' }}>
+          <p style={pStyle}>🌐 <a href="/" style={{ 
+            color: 'var(--accent-primary)', 
+            textDecoration: 'none',
+            fontWeight: '500',
+            padding: 'var(--space-xs) var(--space-sm)',
+            background: 'var(--bg-secondary)',
+            borderRadius: 'var(--radius-sm)',
+            border: '1px solid var(--border-primary)',
+            display: 'inline-block',
+            marginTop: 'var(--space-sm)',
+            transition: 'all var(--transition-fast)'
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.background = 'var(--accent-primary)';
+            e.target.style.color = 'var(--text-primary)';
+            e.target.style.borderColor = 'var(--accent-primary)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.background = 'var(--bg-secondary)';
+            e.target.style.color = 'var(--accent-primary)';
+            e.target.style.borderColor = 'var(--border-primary)';
+          }}>
             Return to classic website
           </a></p>
         </div>
