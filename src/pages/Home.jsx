@@ -18,7 +18,7 @@ import Experience from './Experience';
 import skyImage from '../assets/sky.jpg';
 import PhotoGallery from './PhotoGallery';
 import Joystick from '../components/Joystick';
-import axios from 'axios';
+
 
 const Home = () => {
   const [narutoPos, setNarutoPos] = useState({ x: 0, y: 0.4, z: 0 });
