@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { useGLTF } from '@react-three/drei';
+import { useGLTF, Html } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 
@@ -9,6 +9,13 @@ export default function PlayableNaruto(props) {
   const { camera, controls } = useThree();
 
   const [keysPressed, setKeysPressed] = useState({});
+  const [showInstruction, setShowInstruction] = useState(false);
+
+  useEffect(() => {
+    if (!localStorage.getItem('narutoInstructionSeen')) {
+      setShowInstruction(true);
+    }
+  }, []);
 
   const {
     onNearComputer,
@@ -55,14 +62,11 @@ export default function PlayableNaruto(props) {
     const speed = 7.5;
     const direction = new THREE.Vector3();
 
-    // Movement input - Relative to camera direction (FPS-style controls)
+    // Movement input - Restrict to W only (forward)
     let forward = 0;
     let right = 0;
 
-    if (keysPressed['w'] || keysPressed['arrowup']) forward += 1;     // W = forward
-    if (keysPressed['s'] || keysPressed['arrowdown']) forward -= 1;   // S = backward
-    if (keysPressed['a'] || keysPressed['arrowleft']) right -= 1;     // A = strafe left
-    if (keysPressed['d'] || keysPressed['arrowright']) right += 1;    // D = strafe right
+    if (keysPressed['w']) forward = 1; // Only allow forward via W key
 
     // Convert relative movement to world coordinates based on camera direction
     if (forward !== 0 || right !== 0) {
@@ -170,6 +174,49 @@ export default function PlayableNaruto(props) {
   return (
     <group ref={narutoRef} {...props}>
       <primitive object={scene} scale={[1, 1, 1]} />
+
+      {showInstruction && (
+        <Html fullscreen>
+          <div
+            onClick={() => {
+              setShowInstruction(false);
+              localStorage.setItem('narutoInstructionSeen', '1');
+            }}
+            style={{
+              position: 'fixed',
+              inset: 0,
+              background: 'rgba(0,0,0,0.5)',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              zIndex: 99999,
+              cursor: 'pointer'
+            }}
+          >
+            <div
+              style={{
+                width: 'min(900px, 95vw)',
+                padding: '2.5rem',
+                background: `url(/images/scroll-texture.jpg) center/cover no-repeat`,
+                border: '2px solid var(--border-glow)',
+                borderRadius: '16px',
+                boxShadow: '0 20px 60px rgba(0,0,0,0.4)',
+                color: '#1f2937',
+                textAlign: 'center',
+                backdropFilter: 'blur(2px)'
+              }}
+            >
+              <h2 style={{ margin: '0 0 0.75rem 0', fontSize: '2rem', color: '#111827' }}>Welcome to the 3D World</h2>
+              <p style={{ margin: 0, fontSize: '1.1rem', color: '#111827', fontWeight: 700 }}>Controls</p>
+              <ul style={{ listStyle: 'none', padding: 0, margin: '1rem 0 1.5rem 0', color: '#111827', fontSize: '1.05rem', lineHeight: 1.6 }}>
+                <li>• Press W to move forward</li>
+                <li>• Hold mouse button and move to look around</li>
+              </ul>
+              <div style={{ fontSize: '1rem', color: '#111827', fontWeight: 500 }}>(Click anywhere to begin)</div>
+            </div>
+          </div>
+        </Html>
+      )}
     </group>
   );
 }
