@@ -40,6 +40,10 @@ const TradLinks = () => {
           fontWeight: '700',
           textAlign: 'center',
           textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
+          background: 'linear-gradient(45deg, var(--text-primary), var(--accent-primary))',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text'
         }}
       >
         🌐 Connect With Me

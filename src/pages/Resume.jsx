@@ -54,38 +54,6 @@ function Resume({ onClose }) {
         marginTop: 'var(--space-lg)',
         flexWrap: 'wrap'
       }}>
-        <a
-          href="https://www.linkedin.com/in/rhythm-chawla-18723a231/"
-          target="_blank"
-          rel="noreferrer"
-          style={{ 
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 'var(--space-xs)',
-            padding: 'var(--space-sm) var(--space-lg)',
-            background: 'var(--bg-secondary)',
-            color: 'var(--text-primary)',
-            textDecoration: 'none',
-            fontWeight: '600',
-            fontSize: 'var(--text-sm)',
-            borderRadius: 'var(--radius-md)',
-            border: '1px solid var(--border-primary)',
-            boxShadow: 'var(--shadow-sm)',
-            transition: 'all var(--transition-fast)'
-          }}
-          onMouseEnter={(e) => {
-            e.target.style.background = 'var(--bg-tertiary)';
-            e.target.style.borderColor = 'var(--border-accent)';
-            e.target.style.transform = 'translateY(-2px)';
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.background = 'var(--bg-secondary)';
-            e.target.style.borderColor = 'var(--border-primary)';
-            e.target.style.transform = 'translateY(0)';
-          }}
-        >
-          💼 LinkedIn Profile
-        </a>
         <button
           onClick={onClose}
           style={{

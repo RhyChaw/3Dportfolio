@@ -4,7 +4,6 @@ import Links from './TradLinks';
 import Resume from './TradResume';
 import Certifications from './TradCert';
 import Projects from './TradProj';
-import Contact from './TradContact';
 import Experience from './TradExp';
 import FloatingIcons from '../components/FloatingIcons';
 import styles from './TraditionalHome.module.css';
@@ -68,9 +67,7 @@ const TraditionalHome = () => {
           <Resume />
         </section>
         
-        <section id="contact">
-          <Contact />
-        </section>
+        {/* Contact section removed as requested */}
       </main>
 
       <footer className={styles.footer}>

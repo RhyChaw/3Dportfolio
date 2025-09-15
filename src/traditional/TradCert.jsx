@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 
 const certificationsData = [
   {
@@ -44,56 +44,18 @@ const certificationsData = [
 ];
 
 const TradCert = () => {
-  const [visibleCards, setVisibleCards] = useState([]);
-  const [hoveredCard, setHoveredCard] = useState(null);
-  const [flippedCards, setFlippedCards] = useState(new Set());
-  const sectionRef = useRef(null);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Animate cards one by one
-            certificationsData.forEach((_, index) => {
-              setTimeout(() => {
-                setVisibleCards(prev => [...prev, index]);
-              }, index * 150);
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  const handleCardClick = (cardId) => {
-    setFlippedCards(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(cardId)) {
-        newSet.delete(cardId);
-      } else {
-        newSet.add(cardId);
-      }
-      return newSet;
-    });
-  };
+  const selected = certificationsData[selectedIndex] || certificationsData[0];
 
   return (
     <section
-      ref={sectionRef}
       id="certifications"
       style={{
         padding: 'var(--space-2xl) var(--space-lg)',
         maxWidth: '1200px',
         margin: '0 auto',
-        fontFamily: 'var(--font-family-primary)',
+        fontFamily: 'var(--font-family-primary)'
       }}
     >
       <h2
@@ -104,157 +66,94 @@ const TradCert = () => {
           color: 'var(--text-primary)',
           fontWeight: '700',
           textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
+          background: 'linear-gradient(45deg, var(--text-primary), var(--accent-primary))',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text'
         }}
       >
         🏆 Certifications & Achievements
       </h2>
 
-      {/* Certifications Grid */}
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: 'var(--space-lg)',
+          gridTemplateColumns: '30% 70%',
+          gap: 'var(--space-xl)'
         }}
       >
-        {certificationsData.map((cert, index) => {
-          const isVisible = visibleCards.includes(index);
-          const isHovered = hoveredCard === cert.id;
-          const isFlipped = flippedCards.has(cert.id);
-          
-          return (
-            <div
-              key={cert.id}
-              style={{
-                background: 'var(--bg-glass)',
-                border: `1px solid ${isHovered ? 'var(--accent-primary)' : 'var(--border-glow)'}`,
-                borderRadius: 'var(--radius-lg)',
-                overflow: 'hidden',
-                boxShadow: isHovered ? 'var(--shadow-glow)' : 'var(--shadow-md)',
-                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                backdropFilter: 'blur(10px)',
-                cursor: 'pointer',
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible 
-                  ? (isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)')
-                  : 'translateY(50px)',
-                animation: isVisible ? 'fadeInUp 0.6s ease-out forwards' : 'none',
-                animationDelay: `${index * 0.15}s`,
-                perspective: '1000px',
-              }}
-              onMouseEnter={() => setHoveredCard(cert.id)}
-              onMouseLeave={() => setHoveredCard(null)}
-              onClick={() => handleCardClick(cert.id)}
-            >
-            <div style={{ position: 'relative', height: '200px', overflow: 'hidden' }}>
+        {/* Left: list */}
+        <aside
+          style={{
+            background: 'var(--bg-glass)',
+            border: '1px solid var(--border-glow)',
+            borderRadius: 'var(--radius-lg)',
+            boxShadow: 'var(--shadow-md)',
+            overflow: 'hidden'
+          }}
+        >
+          <ul style={{ listStyle: 'none', margin: 0, padding: 0, maxHeight: '70vh', overflow: 'auto' }}>
+            {certificationsData.map((cert, idx) => {
+              const isActive = idx === selectedIndex;
+              return (
+                <li
+                  key={cert.id}
+                  onClick={() => setSelectedIndex(idx)}
+                  style={{
+                    padding: 'var(--space-md) var(--space-lg)',
+                    cursor: 'pointer',
+                    borderBottom: '1px solid var(--border-glow)',
+                    background: isActive ? 'var(--bg-secondary)' : 'transparent',
+                    color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
+                    fontWeight: isActive ? 600 : 500,
+                    transition: 'background 0.2s ease'
+                  }}
+                >
+                  {cert.courseName}
+                </li>
+              );
+            })}
+          </ul>
+        </aside>
+
+        {/* Right: preview */}
+        <div>
+          <div
+            style={{
+              background: 'var(--bg-glass)',
+              border: '1px solid var(--border-glow)',
+              borderRadius: 'var(--radius-lg)',
+              boxShadow: 'var(--shadow-md)',
+              padding: 'var(--space-lg)'
+            }}
+          >
+            <div style={{ width: '100%', maxHeight: '60vh', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <img
-                src={cert.image}
-                alt={cert.courseName}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  transition: 'transform 0.4s ease',
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.transform = 'scale(1.1)';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.transform = 'scale(1)';
-                }}
+                src={selected.image}
+                alt={selected.courseName}
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
               />
-              <div style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                background: 'linear-gradient(45deg, transparent, rgba(0, 245, 255, 0.1), transparent)',
-                opacity: isHovered ? 1 : 0,
-                transition: 'opacity 0.3s ease',
-              }} />
             </div>
-            <div style={{ padding: 'var(--space-lg)' }}>
-              <h3
-                style={{
-                  fontSize: 'var(--text-lg)',
-                  marginBottom: 'var(--space-sm)',
-                  color: 'var(--text-primary)',
-                  fontWeight: '600',
-                  background: isHovered 
-                    ? 'linear-gradient(45deg, var(--text-primary), var(--accent-primary))'
-                    : 'none',
-                  WebkitBackgroundClip: isHovered ? 'text' : 'initial',
-                  WebkitTextFillColor: isHovered ? 'transparent' : 'initial',
-                  backgroundClip: isHovered ? 'text' : 'initial',
-                  transition: 'all 0.3s ease',
-                }}
-              >
-                {cert.courseName}
-              </h3>
-              <div style={{ marginBottom: 'var(--space-sm)' }}>
-                <p
-                  style={{
-                    fontSize: 'var(--text-sm)',
-                    color: 'var(--text-secondary)',
-                    marginBottom: 'var(--space-xs)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 'var(--space-xs)',
-                  }}
-                >
-                  📅 {cert.completionDate}
-                </p>
-                <p
-                  style={{
-                    fontSize: 'var(--text-sm)',
-                    color: 'var(--text-secondary)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 'var(--space-xs)',
-                  }}
-                >
-                  🏛 {cert.issuingOrganization}
-                </p>
-              </div>
+            <div style={{ marginTop: 'var(--space-lg)' }}>
               <a
-                href={cert.certificateLink}
+                href={selected.certificateLink}
                 target="_blank"
                 rel="noreferrer"
                 style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 'var(--space-xs)',
-                  fontSize: 'var(--text-sm)',
+                  display: 'inline-block',
                   color: 'var(--accent-primary)',
                   textDecoration: 'none',
-                  fontWeight: '500',
-                  padding: 'var(--space-xs) var(--space-sm)',
-                  background: isHovered ? 'var(--bg-card)' : 'var(--bg-secondary)',
-                  borderRadius: 'var(--radius-sm)',
-                  border: `1px solid ${isHovered ? 'var(--accent-primary)' : 'var(--border-glow)'}`,
-                  boxShadow: isHovered ? 'var(--shadow-glow)' : 'none',
-                  transition: 'all 0.3s ease',
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.background = 'var(--accent-primary)';
-                  e.target.style.color = 'var(--text-primary)';
-                  e.target.style.borderColor = 'var(--accent-primary)';
-                  e.target.style.transform = 'scale(1.05)';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.background = isHovered ? 'var(--bg-card)' : 'var(--bg-secondary)';
-                  e.target.style.color = 'var(--accent-primary)';
-                  e.target.style.borderColor = isHovered ? 'var(--accent-primary)' : 'var(--border-glow)';
-                  e.target.style.transform = 'scale(1)';
+                  fontWeight: 600,
+                  border: '1px solid var(--accent-primary)',
+                  padding: 'var(--space-sm) var(--space-md)',
+                  borderRadius: 'var(--radius-sm)'
                 }}
               >
-                View Certificate →
+                View Certification →
               </a>
             </div>
           </div>
-          );
-        })}
+        </div>
       </div>
     </section>
   );

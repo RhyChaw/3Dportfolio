@@ -16,6 +16,8 @@ import MineGuard from '../proj/MineGuard.png';
 import ZafariCC from '../proj/Zafari.png';
 import MettaStars from '../proj/MettaStars.png';
 import Bhasha from '../proj/Bhasha.png';
+import KungFuMaster from '../proj/KungFuMaster.png';
+import PizzaCompany from '../proj/PizzaCompanyREACT.png';
 
 const colors = {
   webDev: '#FFDEAD',
@@ -122,12 +124,12 @@ export const top10Projects = [
   },
   {
     title: 'Doctor AI Project',
-    description: 'Medically Fine-tuned LLM model built using Llama2(Meta) and trained on Hugging Face Data',
+    description: 'Developed a medically fine-tuned LLM using Llama2 (Meta), trained on curated medical datasets from Hugging Face. Implemented advanced NLP preprocessing, data augmentation, and fine-tuning techniques to optimize accuracy and domain relevance for healthcare use cases. Focused on performance evaluation, safety, and reliability for medical contexts.',
     image: DOCTORAI,
     link: 'https://colab.research.google.com/drive/1dJVq9tbPk0IwA3Tbpxvl0_9iZqKzXDaX',
     category: 'ML',
     backgroundColor: colors.ai,
-    date: 'April 2024'
+    date: 'July 2024'
   },
   {
     title: 'CSGPTPRO Hackathon Project',
@@ -158,7 +160,7 @@ export const top10Projects = [
   },
   {
     title: 'WATisZine Website',
-    description: 'REACT JS app with Auth, MongoDB Backend for Zine club at UW. Built a comprehensive platform for the University of Waterloo\'s Zine club, featuring user authentication, content management, and community features. Implemented secure user registration and login systems, content publishing workflows, and interactive community features that enhanced student engagement and creative collaboration.',
+    description: 'Built a comprehensive website for the WATisZine club (University of Waterloo) to centralize zines with an admin dashboard for easy management. Implemented secure authentication for authorized updates, dynamic content, animations, and smooth transitions. Connected to Firebase for backend functionality and hosted via cPanel. First official project—gained experience in full-stack web development and project management.',
     image: WATisZine,
     link: 'https://watiszine.clubs.wusa.ca/',
     category: 'Open Source',
@@ -193,10 +195,29 @@ export const top10Projects = [
     date: 'September 2024'
   },
   {
+    title: 'Kung Fu Master AI Project',
+    description: 'Developed an A3C reinforcement learning setup in Google Colab using Python and Gymnasium. Trained multiple asynchronous agents and built a robust environment for evaluating RL performance and training efficiency.',
+    image: KungFuMaster,
+    link: '#',
+    category: 'ML',
+    backgroundColor: colors.ai,
+    date: 'August 2024'
+  },
+  {
     title: 'Redux Bank Project',
     description: 'REACT Project for Classical Redux and Redux toolkit(RTK), Thunks, and reducer hooks',
     image: ReduxBank,
     link: 'https://github.com/RhyChaw/redux-practice',
+    category: 'Open Source',
+    backgroundColor: colors.webDev,
+    date: 'July 2024'
+  }
+  ,
+  {
+    title: 'Demo Website for an imaginary Pizza company',
+    description: 'React app using Redux Toolkit for state, API fetching for dynamic menus, custom hooks, and Tailwind CSS for a modern responsive UI. Built for performance, scalability, and maintainability.',
+    image: PizzaCompany,
+    link: '#',
     category: 'Open Source',
     backgroundColor: colors.webDev,
     date: 'July 2024'

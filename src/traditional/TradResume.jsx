@@ -35,21 +35,25 @@ const TradResume = () => {
           color: 'var(--text-primary)',
           fontWeight: '700',
           textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
+          background: 'linear-gradient(45deg, var(--text-primary), var(--accent-primary))',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text'
         }}
       >
-        📄 Resume & CV
+        Resume
       </h2>
 
       {/* PDF Viewer */}
       <div
         style={{
-          height: isMobile ? '500px' : '700px',
-          border: '1px solid var(--border-primary)',
-          borderRadius: 'var(--radius-lg)',
-          overflow: 'hidden',
-          boxShadow: 'var(--shadow-lg)',
+          border: '1px solid var(--border-glow)',
+          borderRadius: 'var(--radius-xl)',
+          overflow: 'visible',
+          boxShadow: 'var(--shadow-xl)',
           marginBottom: isMobile ? 'var(--space-lg)' : 'var(--space-xl)',
-          background: 'var(--bg-card)',
+          background: 'var(--bg-primary)',
+          padding: isMobile ? 'var(--space-sm)' : 'var(--space-md)'
         }}
       >
         <Worker workerUrl={`https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js`}>
@@ -94,40 +98,7 @@ const TradResume = () => {
             e.target.style.boxShadow = 'var(--shadow-md)';
           }}
         >
-          📥 Download PDF
-        </a>
-        <a
-          href="https://www.linkedin.com/in/rhythm-chawla-18723a231/"
-          target="_blank"
-          rel="noreferrer"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 'var(--space-xs)',
-            padding: isMobile ? 'var(--space-md) var(--space-lg)' : 'var(--space-sm) var(--space-lg)',
-            background: 'var(--bg-card)',
-            color: 'var(--text-primary)',
-            textDecoration: 'none',
-            fontWeight: '600',
-            fontSize: isMobile ? 'var(--text-base)' : 'var(--text-sm)',
-            width: isMobile ? '200px' : 'auto',
-            borderRadius: 'var(--radius-md)',
-            border: '1px solid var(--border-primary)',
-            boxShadow: 'var(--shadow-sm)',
-            transition: 'all var(--transition-fast)',
-          }}
-          onMouseEnter={(e) => {
-            e.target.style.background = 'var(--bg-tertiary)';
-            e.target.style.borderColor = 'var(--border-accent)';
-            e.target.style.transform = 'translateY(-2px)';
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.background = 'var(--bg-card)';
-            e.target.style.borderColor = 'var(--border-primary)';
-            e.target.style.transform = 'translateY(0)';
-          }}
-        >
-          💼 LinkedIn Profile
+          Download PDF
         </a>
       </div>
     </section>
