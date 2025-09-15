@@ -564,74 +564,70 @@ const TradProj = () => {
                   style={{
                     flex: 1,
                     padding: 'var(--space-md) var(--space-lg)',
-                    background: 'linear-gradient(135deg, var(--accent-primary), #0099cc)',
-                    color: 'var(--text-primary)',
+                    background: 'linear-gradient(135deg, var(--accent-primary), var(--accent-purple))',
+                    color: 'white',
                     textDecoration: 'none',
-                    borderRadius: 'var(--radius-lg)',
+                    borderRadius: '9999px',
                     textAlign: 'center',
-                    fontWeight: '600',
+                    fontWeight: '700',
                     fontSize: 'var(--text-sm)',
-                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                    boxShadow: 'var(--shadow-md)',
+                    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                    boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
                     border: 'none',
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: 'var(--space-xs)',
+                    gap: 'var(--space-xs)'
                   }}
                   onMouseEnter={(e) => {
-                    e.target.style.transform = 'translateY(-2px)';
-                    e.target.style.boxShadow = 'var(--shadow-lg)';
-                    e.target.style.background = 'linear-gradient(135deg, #0099cc, var(--accent-primary))';
+                    e.target.style.transform = 'translateY(-3px)';
+                    e.target.style.boxShadow = '0 14px 35px rgba(0,0,0,0.25)';
                   }}
                   onMouseLeave={(e) => {
                     e.target.style.transform = 'translateY(0)';
-                    e.target.style.boxShadow = 'var(--shadow-md)';
-                    e.target.style.background = 'linear-gradient(135deg, var(--accent-primary), #0099cc)';
+                    e.target.style.boxShadow = '0 10px 25px rgba(0,0,0,0.2)';
                   }}
                 >
-                  <span>🔗</span>
+                  <span>🚀</span>
                   <span>Demo</span>
                 </a>
-                
+
                 <a
-                  href={filteredProjects[selectedProject].link || '#'}
+                  href={filteredProjects[selectedProject].git || filteredProjects[selectedProject].link || '#'}
                   target="_blank"
                   rel="noreferrer"
                   style={{
                     flex: 1,
                     padding: 'var(--space-md) var(--space-lg)',
-                    background: 'var(--bg-secondary)',
+                    background: 'var(--bg-glass)',
                     color: 'var(--text-primary)',
                     textDecoration: 'none',
-                    borderRadius: 'var(--radius-lg)',
+                    borderRadius: '9999px',
                     textAlign: 'center',
-                    fontWeight: '600',
+                    fontWeight: '700',
                     fontSize: 'var(--text-sm)',
-                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                    boxShadow: 'var(--shadow-md)',
-                    border: '1px solid var(--border-primary)',
+                    transition: 'transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease',
+                    boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
+                    border: '1px solid var(--border-glow)',
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: 'var(--space-xs)',
+                    gap: 'var(--space-xs)'
                   }}
                   onMouseEnter={(e) => {
-                    e.target.style.transform = 'translateY(-2px)';
-                    e.target.style.boxShadow = 'var(--shadow-lg)';
-                    e.target.style.background = 'var(--bg-card)';
+                    e.target.style.transform = 'translateY(-3px)';
+                    e.target.style.boxShadow = '0 14px 35px rgba(0,0,0,0.2)';
                     e.target.style.borderColor = 'var(--accent-primary)';
                   }}
                   onMouseLeave={(e) => {
                     e.target.style.transform = 'translateY(0)';
-                    e.target.style.boxShadow = 'var(--shadow-md)';
-                    e.target.style.background = 'var(--bg-secondary)';
-                    e.target.style.borderColor = 'var(--border-primary)';
+                    e.target.style.boxShadow = '0 10px 25px rgba(0,0,0,0.1)';
+                    e.target.style.borderColor = 'var(--border-glow)';
                   }}
                 >
-                  <span>📁</span>
+                  <span>📦</span>
                   <span>GitHub</span>
                 </a>
               </div>
