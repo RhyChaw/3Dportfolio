@@ -220,6 +220,7 @@ const handleJoystickEnd = () => {
             enablePan={false}
             minPolarAngle={0}
             maxPolarAngle={Math.PI}
+            rotateSpeed={0.5}
             makeDefault
           />
         </Suspense>

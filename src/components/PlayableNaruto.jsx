@@ -52,7 +52,7 @@ export default function PlayableNaruto(props) {
   }, []);
 
   useFrame((_, delta) => {
-    const speed = 15;
+    const speed = 7.5;
     const direction = new THREE.Vector3();
 
     // Movement input - Relative to camera direction (FPS-style controls)
