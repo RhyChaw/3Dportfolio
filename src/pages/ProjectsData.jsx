@@ -152,6 +152,14 @@ export const top10Projects = [
     date: 'July 2024'
   },
   {
+    title: 'Velocity - Grand River Hospital Innovation Challenge',
+    description: 'Developed a comprehensive data management system for Grand River Hospital to restructure and organize their data efficiently. Built as a React-based mobile web application for quick demo purposes, providing real-time updates and streamlined data visualization to help hospital staff manage information more effectively.',
+    image: G12Proj, // Using G12Proj as placeholder since no specific image was provided
+    git: 'https://github.com/RhyChaw/GRHVel',
+    category: 'Full Stack',
+    date: 'June 2024'
+  },
+  {
     title: 'G12',
     description: 'Startup App built using Vite React and Firebase',
     image: G12Proj,
