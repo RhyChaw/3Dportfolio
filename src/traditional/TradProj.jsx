@@ -562,47 +562,9 @@ const TradProj = () => {
                   marginTop: 'auto',
                 }}
               >
-                <a
-                  href={selected.link || '#'}
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{
-                    flex: 1,
-                    padding: 'var(--space-md) var(--space-lg)',
-                    background: 'linear-gradient(135deg, var(--accent-primary), var(--accent-purple))',
-                    color: 'white',
-                    textDecoration: 'none',
-                    borderRadius: '9999px',
-                    textAlign: 'center',
-                    fontWeight: '700',
-                    fontSize: 'var(--text-sm)',
-                    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-                    boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
-                    border: 'none',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: 'var(--space-xs)'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.transform = 'translateY(-3px)';
-                    e.target.style.boxShadow = '0 14px 35px rgba(0,0,0,0.25)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.transform = 'translateY(0)';
-                    e.target.style.boxShadow = '0 10px 25px rgba(0,0,0,0.2)';
-                  }}
-                >
-                  <span>🚀</span>
-                  <span>Demo</span>
-                </a>
-
-                <a
-                  href={selected.git || selected.link || '#'}
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{
+                {(() => {
+                  const hasDemo = !!(selected.link && selected.link !== '#');
+                  const commonStyle = {
                     flex: 1,
                     padding: 'var(--space-md) var(--space-lg)',
                     background: 'var(--bg-glass)',
@@ -612,29 +574,87 @@ const TradProj = () => {
                     textAlign: 'center',
                     fontWeight: '700',
                     fontSize: 'var(--text-sm)',
-                    transition: 'transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease',
+                    transition: 'transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, opacity 0.2s ease',
                     boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
                     border: '1px solid var(--border-glow)',
-                    cursor: 'pointer',
+                    cursor: hasDemo ? 'pointer' : 'not-allowed',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: 'var(--space-xs)'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.transform = 'translateY(-3px)';
-                    e.target.style.boxShadow = '0 14px 35px rgba(0,0,0,0.2)';
-                    e.target.style.borderColor = 'var(--accent-primary)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.transform = 'translateY(0)';
-                    e.target.style.boxShadow = '0 10px 25px rgba(0,0,0,0.1)';
-                    e.target.style.borderColor = 'var(--border-glow)';
-                  }}
-                >
-                  <span>📦</span>
-                  <span>GitHub</span>
-                </a>
+                    gap: 'var(--space-xs)',
+                    opacity: hasDemo ? 1 : 0.6,
+                    pointerEvents: hasDemo ? 'auto' : 'none'
+                  };
+                  return (
+                    <a
+                      href={hasDemo ? selected.link : undefined}
+                      target={hasDemo ? '_blank' : undefined}
+                      rel={hasDemo ? 'noreferrer' : undefined}
+                      style={commonStyle}
+                      onMouseEnter={(e) => {
+                        if (!hasDemo) return;
+                        e.target.style.transform = 'translateY(-3px)';
+                        e.target.style.boxShadow = '0 14px 35px rgba(0,0,0,0.2)';
+                        e.target.style.borderColor = 'var(--accent-primary)';
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!hasDemo) return;
+                        e.target.style.transform = 'translateY(0)';
+                        e.target.style.boxShadow = '0 10px 25px rgba(0,0,0,0.1)';
+                        e.target.style.borderColor = 'var(--border-glow)';
+                      }}
+                    >
+                      <span>Demo</span>
+                    </a>
+                  );
+                })()}
+ 
+                {(() => {
+                  const hasGit = !!(selected.git && selected.git !== '#');
+                  const commonStyle = {
+                    flex: 1,
+                    padding: 'var(--space-md) var(--space-lg)',
+                    background: 'var(--bg-glass)',
+                    color: 'var(--text-primary)',
+                    textDecoration: 'none',
+                    borderRadius: '9999px',
+                    textAlign: 'center',
+                    fontWeight: '700',
+                    fontSize: 'var(--text-sm)',
+                    transition: 'transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, opacity 0.2s ease',
+                    boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
+                    border: '1px solid var(--border-glow)',
+                    cursor: hasGit ? 'pointer' : 'not-allowed',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 'var(--space-xs)',
+                    opacity: hasGit ? 1 : 0.6,
+                    pointerEvents: hasGit ? 'auto' : 'none'
+                  };
+                  return (
+                    <a
+                      href={hasGit ? selected.git : undefined}
+                      target={hasGit ? '_blank' : undefined}
+                      rel={hasGit ? 'noreferrer' : undefined}
+                      style={commonStyle}
+                      onMouseEnter={(e) => {
+                        if (!hasGit) return;
+                        e.target.style.transform = 'translateY(-3px)';
+                        e.target.style.boxShadow = '0 14px 35px rgba(0,0,0,0.2)';
+                        e.target.style.borderColor = 'var(--accent-primary)';
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!hasGit) return;
+                        e.target.style.transform = 'translateY(0)';
+                        e.target.style.boxShadow = '0 10px 25px rgba(0,0,0,0.1)';
+                        e.target.style.borderColor = 'var(--border-glow)';
+                      }}
+                    >
+                      <span>GitHub</span>
+                    </a>
+                  );
+                })()}
               </div>
             </>
           )}
