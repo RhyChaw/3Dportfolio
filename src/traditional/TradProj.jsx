@@ -67,6 +67,9 @@ const TradProj = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const selected = filteredProjects[selectedProject];
+  const isShortDesc = selected && selected.description && selected.description.length < 160;
+
   return (
     <section
       id="projects"
@@ -415,30 +418,31 @@ const TradProj = () => {
             gap: 'var(--space-lg)',
             order: isMobile ? 1 : 2,
             height: '100%',
-            overflowY: 'auto',
+            overflow: 'auto',
           }}
         >
-          {filteredProjects[selectedProject] && (
+          {selected && (
             <>
               {/* Project Image */}
               <div
                 style={{
                   width: '100%',
-                  height: isMobile ? '200px' : '300px',
+                  height: 'auto',
                   borderRadius: 'var(--radius-lg)',
-                  overflow: 'hidden',
+                  overflow: 'visible',
                   position: 'relative',
                   boxShadow: 'var(--shadow-md)',
                 }}
               >
                 <img
-                  src={filteredProjects[selectedProject].image}
-                  alt={filteredProjects[selectedProject].title}
+                  src={selected.image}
+                  alt={selected.title}
                   style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    transition: 'transform 0.4s ease',
+                    width: 'auto',
+                    maxWidth: '100%',
+                    height: 'auto',
+                    objectFit: 'contain',
+                    display: 'block',
                   }}
                 />
                 <div
@@ -468,7 +472,7 @@ const TradProj = () => {
                   backgroundClip: 'text',
                 }}
               >
-                {filteredProjects[selectedProject].title}
+                {selected.title}
               </h3>
 
               {/* Project Date */}
@@ -481,19 +485,20 @@ const TradProj = () => {
                   textShadow: '0 0 10px var(--accent-primary)',
                 }}
               >
-                {filteredProjects[selectedProject].date}
+                {selected.date}
               </p>
 
               {/* Project Description */}
               <p
                 style={{
-                  fontSize: isMobile ? 'var(--text-sm)' : 'var(--text-base)',
+                  fontSize: isShortDesc ? (isMobile ? 'var(--text-base)' : 'var(--text-lg)') : (isMobile ? 'var(--text-sm)' : 'var(--text-base)'),
                   color: 'var(--text-secondary)',
-                  lineHeight: isMobile ? '1.5' : '1.6',
+                  lineHeight: isMobile ? '1.55' : '1.7',
                   marginBottom: isMobile ? 'var(--space-md)' : 'var(--space-lg)',
+                  fontWeight: isShortDesc ? 600 : 400
                 }}
               >
-                {filteredProjects[selectedProject].description}
+                {selected.description}
               </p>
 
               {/* Tech Stack */}
@@ -519,7 +524,7 @@ const TradProj = () => {
                     gap: 'var(--space-sm)',
                   }}
                 >
-                  {(techStacks[filteredProjects[selectedProject].title] || ['Various Technologies']).map((tech, techIdx) => (
+                  {(techStacks[selected.title] || ['Various Technologies']).map((tech, techIdx) => (
                     <span
                       key={techIdx}
                       style={{
@@ -558,7 +563,7 @@ const TradProj = () => {
                 }}
               >
                 <a
-                  href={filteredProjects[selectedProject].link || '#'}
+                  href={selected.link || '#'}
                   target="_blank"
                   rel="noreferrer"
                   style={{
@@ -594,7 +599,7 @@ const TradProj = () => {
                 </a>
 
                 <a
-                  href={filteredProjects[selectedProject].git || filteredProjects[selectedProject].link || '#'}
+                  href={selected.git || selected.link || '#'}
                   target="_blank"
                   rel="noreferrer"
                   style={{

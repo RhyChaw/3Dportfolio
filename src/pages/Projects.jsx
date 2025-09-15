@@ -90,7 +90,9 @@ const Projects = ({ onClose }) => {
             justifyContent: 'center',
           }}
         >
-          {filteredProjects.map((proj, idx) => (
+          {filteredProjects.map((proj, idx) => {
+            const isShort = proj.description && proj.description.length < 140;
+            return (
             <div
               key={idx}
               style={{
@@ -115,11 +117,13 @@ const Projects = ({ onClose }) => {
               }}
             >
               <a href={proj.link} target="_blank" rel="noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
-                <img src={proj.image} alt={proj.title} style={{ 
-                  width: '100%', 
-                  height: '160px', 
-                  objectFit: 'cover' 
-                }} />
+                <div style={{ width: '100%', maxHeight: '600px', overflow: 'auto', background: 'var(--bg-card)' }}>
+                  <img src={proj.image} alt={proj.title} style={{ 
+                    width: '100%', 
+                    height: 'auto', 
+                    objectFit: 'contain' 
+                  }} />
+                </div>
                 <div style={{ padding: 'var(--space-md)' }}>
                   <h3 style={{ 
                     margin: '0 0 var(--space-sm) 0', 
@@ -134,14 +138,15 @@ const Projects = ({ onClose }) => {
                     fontWeight: '500'
                   }}>{proj.date}</p>
                   <p style={{ 
-                    fontSize: 'var(--text-sm)', 
+                    fontSize: isShort ? 'var(--text-base)' : 'var(--text-sm)', 
                     color: 'var(--text-secondary)',
-                    lineHeight: '1.5'
+                    lineHeight: isShort ? '1.6' : '1.5',
+                    fontWeight: isShort ? 600 : 400
                   }}>{proj.description}</p>
                 </div>
               </a>
             </div>
-          ))}
+          )})}
         </div>
 
 

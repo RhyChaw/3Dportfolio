@@ -18,6 +18,7 @@ import MettaStars from '../proj/MettaStars.png';
 import Bhasha from '../proj/Bhasha.png';
 import KungFuMaster from '../proj/KungFuMaster.png';
 import PizzaCompany from '../proj/PizzaCompanyREACT.png';
+import SnapSafe from '../proj/SnapSafe.png';
 
 const colors = {
   webDev: '#FFDEAD',
@@ -28,9 +29,9 @@ export const top10Projects = [
   {
     title: 'SnapSafe (Hack the North 2025)',
     description: 'Built SnapSafe, a real-time AR fire evacuation system on Snap AR glasses. Used depth caching, world query hits, and ray casting to dynamically detect exits and guide users with pathfinding arrows. Trained a custom fire-exit sign detection model on Roboflow, converted to ONNX, and integrated into Lens Studio with custom scripting—marking a breakthrough in safety-focused AR navigation.',
-    image: G12Proj, // You can replace this with a SnapSafe image later
-    link: 'https://www.youtube.com/watch?v=ajmASxcm4OA', // SnapSafe demo video
-    git: '#',
+    image: SnapSafe,
+    link: 'https://www.youtube.com/watch?v=ajmASxcm4OA',
+    git: 'https://github.com/AshishA26/HackTheNorth2025',
     category: 'Hackathon',
     backgroundColor: colors.ai,
     date: 'September 2025'
