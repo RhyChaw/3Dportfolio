@@ -9,8 +9,10 @@
 }
 
 .hero {
-  text-align: center;
-  padding: 4rem 2rem 2rem;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 2rem;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(0, 245, 255, 0.3);
@@ -38,16 +40,94 @@
 .heroContent {
   position: relative;
   z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  height: 100%;
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.heroImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagePlaceholder {
+  width: 400px;
+  height: 500px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px dashed rgba(0, 245, 255, 0.3);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.imagePlaceholder:hover {
+  border-color: rgba(0, 245, 255, 0.6);
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 245, 255, 0.2);
+}
+
+.uploadInstructions {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.uploadInstructions p {
+  margin: 0.5rem 0;
+}
+
+.uploadInstructions code {
+  background: rgba(0, 245, 255, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: #00f5ff;
+  border: 1px solid rgba(0, 245, 255, 0.3);
+}
+
+.profileImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.profileImage:hover {
+  transform: scale(1.02);
 }
 
 .heroTitle {
   font-size: 3.5rem;
   font-weight: 700;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   line-height: 1.2;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  text-align: left;
 }
 
 .titleLine {
@@ -77,14 +157,17 @@
 }
 
 .heroDescription {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #b0b0b0;
-  margin-bottom: 3rem;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+  text-align: left;
   opacity: 0;
   animation: fadeInUp 0.8s ease-out 0.8s forwards;
+}
+
+.heroDescription:last-of-type {
+  margin-bottom: 0;
 }
 
 .navLinks {
@@ -206,18 +289,34 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .hero {
+    height: 100vh;
+    padding: 1rem;
+  }
+  
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  
   .heroTitle {
     font-size: 2.5rem;
-  }
-  
-  .navLinks {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .navButton {
-    width: 200px;
     text-align: center;
+  }
+  
+  .heroDescription {
+    text-align: center;
+    font-size: 1rem;
+  }
+  
+  .imagePlaceholder {
+    width: 300px;
+    height: 375px;
+  }
+  
+  .uploadInstructions {
+    font-size: 0.8rem;
   }
   
   .chibiNaruto {

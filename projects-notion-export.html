@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rhythm Chawla - Projects Portfolio</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        .project-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        .project-date {
+            color: #667eea;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        .project-description {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        .tech-tag {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+        .category-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .ai-category {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        .webdev-category {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+        .project-links {
+            margin-top: 15px;
+        }
+        .project-link {
+            display: inline-block;
+            margin-right: 15px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border: 2px solid #667eea;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        .project-link:hover {
+            background: #667eea;
+            color: white;
+        }
+        .stats {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .stat-item {
+            display: inline-block;
+            margin: 0 20px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2em;
+            font-weight: 700;
+            color: #667eea;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚀 Rhythm Chawla - Projects Portfolio</h1>
+        <p>Full Stack Developer crafting immersive digital experiences with cutting-edge technologies</p>
+    </div>
+
+    <div class="stats">
+        <div class="stat-item">
+            <div class="stat-number">19</div>
+            <div class="stat-label">Total Projects</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">12</div>
+            <div class="stat-label">Web Development</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">7</div>
+            <div class="stat-label">AI/ML Projects</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">2</div>
+            <div class="stat-label">Years Experience</div>
+        </div>
+    </div>
+
+    <h2>💼 Professional Experience</h2>
+
+    <div class="project-card">
+        <div class="category-badge ai-category">AI/ML</div>
+        <div class="project-title">Associate Conversation Design Intern | Cresta (Series D AI Startup)</div>
+        <div class="project-date">August 2025</div>
+        <div class="project-description">
+            Audited and optimized conversation workflows for 12 enterprise customers, collaborating cross-functionally and consistently receiving positive feedback from stakeholders. Built an LLM-powered redaction auditor that accelerated QA by 98%, automatically flagging sensitive/policy-violating content across thousands of conversations. Developed a demo automation suite (tabular autofill, natural language search over monitoring scripts, AIA management) that improved QA efficiency by 50% and streamlined enterprise ops.
+        </div>
+        <div class="tech-stack">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">LLMs</span>
+            <span class="tech-tag">Jupyter</span>
+            <span class="tech-tag">Dialogflow CX</span>
+            <span class="tech-tag">Google Apps Script</span>
+            <span class="tech-tag">Enterprise AI</span>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <div class="category-badge webdev-category">Web Development</div>
+        <div class="project-title">Software Engineer & Founding Member | G12Uni, Enterprise COOP</div>
+        <div class="project-date">August 2024</div>
+        <div class="project-description">
+            Launched and scaled a global platform connecting 1,500+ university students across 10+ countries, driving mentorship, innovation, and cross-border collaboration opportunities. Engineered a full-stack rebuild of the platform with Vite ReactJS, Tailwind, and real-time APIs (Google Meet, maps, chat, avatars, bots), elevating engagement and retention through sleek SaaS-driven design. Deployed and optimized NLP models for Reddit/YouTube intelligence pipelines on Docker + GCP, building scalable ML microservices that enabled continuous feature delivery.
+        </div>
+        <div class="tech-stack">
+            <span class="tech-tag">ReactJS</span>
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Flutter</span>
+            <span class="tech-tag">Dart</span>
+            <span class="tech-tag">Docker</span>
+            <span class="tech-tag">GCP</span>
+        </div>
+    </div>
+
+    <h2>🎯 Featured Projects</h2>
+
+    <div class="project-card">
+        <div class="category-badge ai-category">AI/ML</div>
+        <div class="project-title">SnapSafe (Hack the North 2025)</div>
+        <div class="project-date">September 2025</div>
+        <div class="project-description">
+            Built SnapSafe, a real-time AR fire evacuation system on Snap AR glasses. Used depth caching, world query hits, and ray casting to dynamically detect exits and guide users with pathfinding arrows. Trained a custom fire-exit sign detection model on Roboflow, converted to ONNX, and integrated into Lens Studio with custom scripting—marking a breakthrough in safety-focused AR navigation.
+        </div>
+        <div class="tech-stack">
+            <span class="tech-tag">Lens Studio</span>
+            <span class="tech-tag">Snap AR</span>
+            <span class="tech-tag">Depth Caching</span>
+            <span class="tech-tag">Ray Casting</span>
+            <span class="tech-tag">Roboflow</span>
+            <span class="tech-tag">ONNX</span>
+            <span class="tech-tag">AR Navigation</span>
+            <span class="tech-tag">Computer Vision</span>
+        </div>
+        <div class="project-links">
+            <a href="#" class="project-link">🔗 Demo</a>
+            <a href="#" class="project-link">📁 GitHub</a>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <div class="category-badge webdev-category">Web Development</div>
+        <div class="project-title">G12</div>
+        <div class="project-date">June 2024</div>
+        <div class="project-description">
+            Startup App built using Vite React and Firebase
+        </div>
+        <div class="tech-stack">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Firebase</span>
+            <span class="tech-tag">Vite</span>
+            <span class="tech-tag">Framer Motion</span>
+            <span class="tech-tag">Chart.js</span>
+            <span class="tech-tag">Stripe API</span>
+        </div>
+        <div class="project-links">
+            <a href="https://g12uni.com" class="project-link">🔗 Demo</a>
+            <a href="https://g12uni.com" class="project-link">📁 GitHub</a>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <div class="category-badge webdev-category">Web Development</div>
+        <div class="project-title">G12 Mobile App</div>
+        <div class="project-date">June 2024</div>
+        <div class="project-description">
+            Startup App built using Flutter and Firebase
+        </div>
+        <div class="tech-stack">
+            <span class="tech-tag">Flutter</span>
+            <span class="tech-tag">Dart</span>
+            <span class="tech-tag">Firebase</span>
+            <span class="tech-tag">Provider</span>
+            <span class="tech-tag">Google Maps</span>
+            <span class="tech-tag">Push Notifications</span>
+        </div>
+        <div class="project-links">
+            <a href="https://g12uni.com" class="project-link">🔗 Demo</a>
+            <a href="https://g12uni.com" class="project-link">📁 GitHub</a>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <div class="category-badge webdev-category">Web Development</div>
+        <div class="project-title">Bhasha Web App</div>
+        <div class="project-date">May 2025</div>
+        <div class="project-description">
+            Startup App built using NextJS for Learning Indian Languages
+        </div>
+        <div class="tech-stack">
+            <span class="tech-tag">NextJS</span>
+            <span class="tech-tag">Supabase</span>
+            <span class="tech-tag">TypeScript</span>
+            <span class="tech-tag">Prisma</span>
+            <span class="tech-tag">Vercel</span>
+            <span class="tech-tag">i18n</span>
+        </div>
+        <div class="project-links">
+            <a href="#" class="project-link">🔗 Demo</a>
+            <a href="#" class="project-link">📁 GitHub</a>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <div class="category-badge webdev-category">Web Development</div>
+        <div class="project-title">Bhasha Mobile App</div>
+        <div class="project-date">June 2025</div>
+        <div class="project-description">
+            Startup App built using Flutter Dart for Learning Indian Languages, backend in Supabase
+        </div>
+        <div class="tech-stack">
+            <span class="tech-tag">Flutter</span>
+            <span class="tech-tag">Dart</span>
+            <span class="tech-tag">Supabase</span>
+            <span class="tech-tag">Riverpod</span>
+            <span class="tech-tag">Audio Players</span>
+            <span class="tech-tag">Offline Storage</span>
+        </div>
+        <div class="project-links">
+            <a href="#" class="project-link">🔗 Demo</a>
+            <a href="#" class="project-link">📁 GitHub</a>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <div class="category-badge ai-category">AI/ML</div>
+        <div class="project-title">StrumSpace (SpurHacks Hackathon)</div>
+        <div class="project-date">June 2025</div>
+        <div class="project-description">
+            Computer Vision based 3D web dev app, which annotates chords on guitar Live using YOLOv8
+        </div>
+        <div class="tech-stack">
+            <span class="tech-tag">YOLOv8</span>
+            <span class="tech-tag">ThreeJS</span>
+            <span class="tech-tag">Computer Vision</span>
+            <span class="tech-tag">WebRTC</span>
+            <span class="tech-tag">TensorFlow.js</span>
+            <span class="tech-tag">WebGL</span>
+        </div>
+        <div class="project-links">
+            <a href="https://github.com/LuhemRevorg/StrumSpace" class="project-link">🔗 Demo</a>
+            <a href="https://github.com/LuhemRevorg/StrumSpace" class="project-link">📁 GitHub</a>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <div class="category-badge ai-category">AI/ML</div>
+        <div class="project-title">Rhythm (Hack the Hill, Ottawa)</div>
+        <div class="project-date">September 2024</div>
+        <div class="project-description">
+            Developed an AI-powered voice coach leveraging Meta's Wav2Vec2 model and Apple's SEP-28K dataset to detect stuttering and enhance speech clarity, helping users improve public speaking skills through real-time feedback. Engineered pitch and pace analysis features using OpenAI's API, librosa, and SciPy, delivering actionable insights on speech modulation and timing to ensure speakers can confidently convey their message. Designed an interactive and engaging front-end with React.js and advanced JavaScript libraries like Particle.js to create an intuitive user experience, promoting self-improvement through immersive technology.
+        </div>
+        <div class="tech-stack">
+            <span class="tech-tag">Wav2Vec2</span>
+            <span class="tech-tag">OpenAI API</span>
+            <span class="tech-tag">librosa</span>
+            <span class="tech-tag">SciPy</span>
+            <span class="tech-tag">Particle.js</span>
+            <span class="tech-tag">Web Audio API</span>
+        </div>
+        <div class="project-links">
+            <a href="https://devpost.com/software/rhythm-o8rwp4" class="project-link">🔗 Demo</a>
+            <a href="https://devpost.com/software/rhythm-o8rwp4" class="project-link">📁 GitHub</a>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <div class="category-badge webdev-category">Web Development</div>
+        <div class="project-title">Zafari CC Design (FreeLance)</div>
+        <div class="project-date">May 2025</div>
+        <div class="project-description">
+            Web application for Zafari CC Design, built using NextJS
+        </div>
+        <div class="tech-stack">
+            <span class="tech-tag">NextJS</span>
+            <span class="tech-tag">TypeScript</span>
+            <span class="tech-tag">Tailwind</span>
+            <span class="tech-tag">Framer Motion</span>
+            <span class="tech-tag">Sanity CMS</span>
+            <span class="tech-tag">Vercel</span>
+        </div>
+        <div class="project-links">
+            <a href="https://www.zafariccdesign.com/" class="project-link">🔗 Demo</a>
+            <a href="https://www.zafariccdesign.com/" class="project-link">📁 GitHub</a>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <div class="category-badge webdev-category">Web Development</div>
+        <div class="project-title">MettaStars (FreeLance)</div>
+        <div class="project-date">April 2025</div>
+        <div class="project-description">
+            Web application for MettaStars, an NGO for mental health, finance and spirituality, built using Vite React
+        </div>
+        <div class="tech-stack">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Vite</span>
+            <span class="tech-tag">CSS3</span>
+            <span class="tech-tag">GSAP</span>
+            <span class="tech-tag">Swiper.js</span>
+            <span class="tech-tag">EmailJS</span>
+        </div>
+        <div class="project-links">
+            <a href="https://www.mettastars.com/" class="project-link">🔗 Demo</a>
+            <a href="https://www.mettastars.com/" class="project-link">📁 GitHub</a>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <div class="category-badge webdev-category">Web Development</div>
+        <div class="project-title">MineGuard (Hack the Valley Hackathon)</div>
+        <div class="project-date">October 2024</div>
+        <div class="project-description">
+            AI based mining safety app which can detect unsafe conditions and alert workers
+        </div>
+        <div class="tech-stack">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">OpenCV</span>
+            <span class="tech-tag">TensorFlow</span>
+            <span class="tech-tag">Flask</span>
+            <span class="tech-tag">WebSocket</span>
+            <span class="tech-tag">Raspberry Pi</span>
+        </div>
+        <div class="project-links">
+            <a href="https://devpost.com/software/mineguard" class="project-link">🔗 Demo</a>
+            <a href="https://devpost.com/software/mineguard" class="project-link">📁 GitHub</a>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <div class="category-badge ai-category">AI/ML</div>
+        <div class="project-title">JADO AI</div>
+        <div class="project-date">July 2024</div>
+        <div class="project-description">
+            Developed an AI-powered chatbot designed to assist university applicants by analyzing YouTube videos, providing links to academic papers, and offering resume feedback, streamlining the application process for users. Implemented advanced natural language processing (NLP) models trained on diverse datasets and theories to enable features like Reddit scanning, peer connections, and personalized academic recommendations, ensuring a comprehensive user experience. Built and deployed the system using Docker and Python, leveraging containerization for seamless scalability and cross-platform functionality, ensuring reliable performance for a global audience.
+        </div>
+        <div class="tech-stack">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Docker</span>
+            <span class="tech-tag">NLP</span>
+            <span class="tech-tag">OpenAI</span>
+            <span class="tech-tag">FastAPI</span>
+            <span class="tech-tag">PostgreSQL</span>
+        </div>
+        <div class="project-links">
+            <a href="https://g12uni.com" class="project-link">🔗 Demo</a>
+            <a href="https://g12uni.com" class="project-link">📁 GitHub</a>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <div class="category-badge ai-category">AI/ML</div>
+        <div class="project-title">Doctor AI Project</div>
+        <div class="project-date">April 2024</div>
+        <div class="project-description">
+            Medically Fine-tuned LLM model built using Llama2(Meta) and trained on Hugging Face Data
+        </div>
+        <div class="tech-stack">
+            <span class="tech-tag">HuggingFace</span>
+            <span class="tech-tag">Llama2</span>
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Transformers</span>
+            <span class="tech-tag">PyTorch</span>
+            <span class="tech-tag">Gradio</span>
+        </div>
+        <div class="project-links">
+            <a href="https://colab.research.google.com/drive/1dJVq9tbPk0IwA3Tbpxvl0_9iZqKzXDaX" class="project-link">🔗 Demo</a>
+            <a href="https://colab.research.google.com/drive/1dJVq9tbPk0IwA3Tbpxvl0_9iZqKzXDaX" class="project-link">📁 GitHub</a>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <div class="category-badge ai-category">AI/ML</div>
+        <div class="project-title">CSGPTPRO Hackathon Project</div>
+        <div class="project-date">March 2024</div>
+        <div class="project-description">
+            Developed "CS GPT PRO," an AI-powered chatbot designed to provide precise answers for university courses at UW and UofT, as well as French high school papers, improving accessibility to academic support. Engineered the solution using Arctic hosting, Streamlit, and CUDA, leveraging advanced AI training on course-specific datasets and high school papers to ensure accuracy and relevance in responses. Created the platform to streamline academic assistance for students, addressing knowledge gaps and enabling efficient, targeted learning through a user-friendly chatbot interface.
+        </div>
+        <div class="tech-stack">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Streamlit</span>
+            <span class="tech-tag">Arctic</span>
+            <span class="tech-tag">CUDA</span>
+            <span class="tech-tag">Pandas</span>
+            <span class="tech-tag">NumPy</span>
+        </div>
+        <div class="project-links">
+            <a href="https://github.com/jadechoghari/CSGPTPRO" class="project-link">🔗 Demo</a>
+            <a href="https://github.com/jadechoghari/CSGPTPRO" class="project-link">📁 GitHub</a>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <div class="category-badge webdev-category">Web Development</div>
+        <div class="project-title">The Wild Oasis Project (Server)</div>
+        <div class="project-date">February 2024</div>
+        <div class="project-description">
+            Biggest Project using React Query, remote state, Dark mode, authentication, Statistic, styled components, Supabase backend
+        </div>
+        <div class="tech-stack">
+            <span class="tech-tag">React Query</span>
+            <span class="tech-tag">Supabase</span>
+            <span class="tech-tag">Styled Components</span>
+            <span class="tech-tag">React Hook Form</span>
+            <span class="tech-tag">Recharts</span>
+            <span class="tech-tag">React Router</span>
+        </div>
+        <div class="project-links">
+            <a href="https://github.com/RhyChaw/The-wild-oasis-project" class="project-link">🔗 Demo</a>
+            <a href="https://github.com/RhyChaw/The-wild-oasis-project" class="project-link">📁 GitHub</a>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <div class="category-badge webdev-category">Web Development</div>
+        <div class="project-title">VBOman Admin Panel (FreeLance)</div>
+        <div class="project-date">September 2023</div>
+        <div class="project-description">
+            REACT JS application with Firebase Backend for Restaurant Vasanta Bhavan based in Oman
+        </div>
+        <div class="tech-stack">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Firebase</span>
+            <span class="tech-tag">Material-UI</span>
+            <span class="tech-tag">Redux</span>
+            <span class="tech-tag">Cloud Functions</span>
+            <span class="tech-tag">Stripe</span>
+        </div>
+        <div class="project-links">
+            <a href="https://vboman.com" class="project-link">🔗 Demo</a>
+            <a href="https://vboman.com" class="project-link">📁 GitHub</a>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <div class="category-badge webdev-category">Web Development</div>
+        <div class="project-title">WATisZine Website</div>
+        <div class="project-date">December 2023</div>
+        <div class="project-description">
+            REACT JS app with Auth, MongoDB Backend for Zine club at UW
+        </div>
+        <div class="tech-stack">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">MongoDB</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">Express</span>
+            <span class="tech-tag">JWT</span>
+            <span class="tech-tag">Multer</span>
+        </div>
+        <div class="project-links">
+            <a href="https://watiszine.clubs.wusa.ca/" class="project-link">🔗 Demo</a>
+            <a href="https://watiszine.clubs.wusa.ca/" class="project-link">📁 GitHub</a>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <div class="category-badge webdev-category">Web Development</div>
+        <div class="project-title">PawPal (GeeseHacks Hackathon)</div>
+        <div class="project-date">January 2025</div>
+        <div class="project-description">
+            AI based Pet care app which can detect pet diseases, recommend food, and find pet sitters
+        </div>
+        <div class="tech-stack">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">TensorFlow</span>
+            <span class="tech-tag">Flask</span>
+            <span class="tech-tag">OpenCV</span>
+            <span class="tech-tag">SQLite</span>
+            <span class="tech-tag">Heroku</span>
+        </div>
+        <div class="project-links">
+            <a href="https://devpost.com/software/heads-up-for-tails" class="project-link">🔗 Demo</a>
+            <a href="https://devpost.com/software/heads-up-for-tails" class="project-link">📁 GitHub</a>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <div class="category-badge webdev-category">Web Development</div>
+        <div class="project-title">Hestia | Your Next Home</div>
+        <div class="project-date">October 2023</div>
+        <div class="project-description">
+            Student Sublet finder built using HTML, CSS, and Django(Python) For backend. Hosted using AZURE Cloud
+        </div>
+        <div class="tech-stack">
+            <span class="tech-tag">Django</span>
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Azure</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">Celery</span>
+            <span class="tech-tag">Redis</span>
+        </div>
+        <div class="project-links">
+            <a href="https://github.com/gsaujla/HestiaProject" class="project-link">🔗 Demo</a>
+            <a href="https://github.com/gsaujla/HestiaProject" class="project-link">📁 GitHub</a>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <div class="category-badge ai-category">AI/ML</div>
+        <div class="project-title">Rocket Landing AI Project</div>
+        <div class="project-date">September 2024</div>
+        <div class="project-description">
+            App built using Google Collab, Python and Gymnasium (Deep Q learning)
+        </div>
+        <div class="tech-stack">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Gymnasium</span>
+            <span class="tech-tag">Deep Q Learning</span>
+            <span class="tech-tag">PyTorch</span>
+            <span class="tech-tag">Matplotlib</span>
+            <span class="tech-tag">Jupyter</span>
+        </div>
+        <div class="project-links">
+            <a href="https://colab.research.google.com/drive/1SgdMlL2zM2HERCBJ5yhpVtbO7QtdDGMh" class="project-link">🔗 Demo</a>
+            <a href="https://colab.research.google.com/drive/1SgdMlL2zM2HERCBJ5yhpVtbO7QtdDGMh" class="project-link">📁 GitHub</a>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <div class="category-badge webdev-category">Web Development</div>
+        <div class="project-title">Redux Bank Project</div>
+        <div class="project-date">July 2024</div>
+        <div class="project-description">
+            REACT Project for Classical Redux and Redux toolkit(RTK), Thunks, and reducer hooks
+        </div>
+        <div class="tech-stack">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Redux Toolkit</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">RTK Query</span>
+            <span class="tech-tag">React Router</span>
+            <span class="tech-tag">JSON Server</span>
+        </div>
+        <div class="project-links">
+            <a href="https://github.com/RhyChaw/redux-practice" class="project-link">🔗 Demo</a>
+            <a href="https://github.com/RhyChaw/redux-practice" class="project-link">📁 GitHub</a>
+        </div>
+    </div>
+
+</body>
+</html>

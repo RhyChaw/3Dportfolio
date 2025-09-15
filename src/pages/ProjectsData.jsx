@@ -24,11 +24,20 @@ const colors = {
 
 export const top10Projects = [
   {
+    title: 'SnapSafe (Hack the North 2025)',
+    description: 'Built SnapSafe, a real-time AR fire evacuation system on Snap AR glasses. Used depth caching, world query hits, and ray casting to dynamically detect exits and guide users with pathfinding arrows. Trained a custom fire-exit sign detection model on Roboflow, converted to ONNX, and integrated into Lens Studio with custom scripting—marking a breakthrough in safety-focused AR navigation.',
+    image: G12Proj, // You can replace this with a SnapSafe image later
+    link: '#', // Add your SnapSafe link here
+    category: 'Hackathon',
+    backgroundColor: colors.ai,
+    date: 'September 2025'
+  },
+  {
     title: 'G12',
     description: 'Startup App built using Vite React and Firebase',
     image: G12Proj,
     link: 'https://g12uni.com',
-    category: 'Web Dev',
+    category: 'Full Stack',
     backgroundColor: colors.webDev,
     date: 'June 2024'
   },
@@ -37,7 +46,7 @@ export const top10Projects = [
     description: 'Startup App built using Flutter and Firebase',
     image: G12Proj,
     link: 'https://g12uni.com',
-    category: 'Web Dev',
+    category: 'Full Stack',
     backgroundColor: colors.webDev,
     date: 'June 2024'
   },
@@ -45,7 +54,7 @@ export const top10Projects = [
     title: 'Bhasha Web App',
     description: 'Startup App built using NextJS for Learning Indian Languages',
     image: Bhasha,
-    category: 'Web Dev',
+    category: 'Full Stack',
     backgroundColor: colors.webDev,
     date: 'May 2025'
   },
@@ -53,7 +62,7 @@ export const top10Projects = [
     title: 'Bhasha Mobile App',
     description: 'Startup App built using Flutter Dart for Learning Indian Languages, backend in Supabase',
     image: Bhasha,
-    category: 'Web Dev',
+    category: 'Full Stack',
     backgroundColor: colors.webDev,
     date: 'June 2025'
   },
@@ -62,16 +71,16 @@ export const top10Projects = [
     description: 'Computer Vision based 3D web dev app, which annotates chords on guitar Live using YOLOv8',
     image: StrumSpace,
     link: 'https://github.com/LuhemRevorg/StrumSpace',
-    category: 'AI',
+    category: 'Hackathon',
     backgroundColor: colors.ai,
     date: 'June 2025'
   },
   {
     title: 'Rhythm (Hack the Hill, Ottawa)',
-    description: 'Voice modulation coach using LLMs and Audio Processing to make your speech better',
+    description: 'Developed an AI-powered voice coach leveraging Meta\'s Wav2Vec2 model and Apple\'s SEP-28K dataset to detect stuttering and enhance speech clarity, helping users improve public speaking skills through real-time feedback. Engineered pitch and pace analysis features using OpenAI\'s API, librosa, and SciPy, delivering actionable insights on speech modulation and timing to ensure speakers can confidently convey their message. Designed an interactive and engaging front-end with React.js and advanced JavaScript libraries like Particle.js to create an intuitive user experience, promoting self-improvement through immersive technology.',
     image: Rhythm,
     link: 'https://devpost.com/software/rhythm-o8rwp4',
-    category: 'AI',
+    category: 'Hackathon',
     backgroundColor: colors.ai,
     date: 'September 2024'
   },
@@ -80,7 +89,7 @@ export const top10Projects = [
     description: 'Web application for Zafari CC Design, built using NextJS',
     image: ZafariCC,
     link: 'https://www.zafariccdesign.com/',
-    category: 'Web Dev',
+    category: 'Free Lance',
     backgroundColor: colors.webDev,
     date: 'May 2025'
   },
@@ -89,7 +98,7 @@ export const top10Projects = [
     description: 'Web application for MettaStars, an NGO for mental health, finance and spirituality, built using Vite React',
     image: MettaStars,
     link: 'https://www.mettastars.com/',
-    category: 'Web Dev',
+    category: 'Free Lance',
     backgroundColor: colors.webDev,
     date: 'April 2025'
   },
@@ -98,16 +107,16 @@ export const top10Projects = [
     description: 'AI based mining safety app which can detect unsafe conditions and alert workers',
     image: MineGuard,
     link: 'https://devpost.com/software/mineguard',
-    category: 'Web Dev',
+    category: 'Hackathon',
     backgroundColor: colors.webDev,
     date: 'October 2024'
   },
   {
     title: 'JADO AI',
-    description: 'AI Chatbot which can scan through Youtube, Reddit, Wolfram Alpha, Resume scanner, People finder etc. (Addition of G12)',
+    description: 'Developed an AI-powered chatbot designed to assist university applicants by analyzing YouTube videos, providing links to academic papers, and offering resume feedback, streamlining the application process for users. Implemented advanced natural language processing (NLP) models trained on diverse datasets and theories to enable features like Reddit scanning, peer connections, and personalized academic recommendations, ensuring a comprehensive user experience. Built and deployed the system using Docker and Python, leveraging containerization for seamless scalability and cross-platform functionality, ensuring reliable performance for a global audience.',
     image: JadoAI,
     link: 'https://g12uni.com',
-    category: 'AI',
+    category: 'ML',
     backgroundColor: colors.ai,
     date: 'July 2024'
   },
@@ -116,16 +125,16 @@ export const top10Projects = [
     description: 'Medically Fine-tuned LLM model built using Llama2(Meta) and trained on Hugging Face Data',
     image: DOCTORAI,
     link: 'https://colab.research.google.com/drive/1dJVq9tbPk0IwA3Tbpxvl0_9iZqKzXDaX',
-    category: 'AI',
+    category: 'ML',
     backgroundColor: colors.ai,
     date: 'April 2024'
   },
   {
     title: 'CSGPTPRO Hackathon Project',
-    description: 'App built using Python, Streamlit and Arctic',
+    description: 'Developed "CS GPT PRO," an AI-powered chatbot designed to provide precise answers for university courses at UW and UofT, as well as French high school papers, improving accessibility to academic support. Engineered the solution using Arctic hosting, Streamlit, and CUDA, leveraging advanced AI training on course-specific datasets and high school papers to ensure accuracy and relevance in responses. Created the platform to streamline academic assistance for students, addressing knowledge gaps and enabling efficient, targeted learning through a user-friendly chatbot interface.',
     image: CSGPTPRO,
     link: 'https://github.com/jadechoghari/CSGPTPRO',
-    category: 'AI',
+    category: 'Hackathon',
     backgroundColor: colors.ai,
     date: 'March 2024'
   },
@@ -134,7 +143,7 @@ export const top10Projects = [
     description: 'Biggest Project using React Query, remote state, Dark mode, authentication, Statistic, styled components, Supabase backend',
     image: WildOasisProject,
     link: 'https://github.com/RhyChaw/The-wild-oasis-project',
-    category: 'Web Dev',
+    category: 'Open Source',
     backgroundColor: colors.webDev,
     date: 'February 2024'
   },
@@ -143,16 +152,16 @@ export const top10Projects = [
     description: 'REACT JS application with Firebase Backend for Restaurant Vasanta Bhavan based in Oman',
     image: VBOman,
     link: 'https://vboman.com',
-    category: 'Web Dev',
+    category: 'Free Lance',
     backgroundColor: colors.webDev,
     date: 'September 2023'
   },
   {
     title: 'WATisZine Website',
-    description: 'REACT JS app with Auth, MongoDB Backend for Zine club at UW',
+    description: 'REACT JS app with Auth, MongoDB Backend for Zine club at UW. Built a comprehensive platform for the University of Waterloo\'s Zine club, featuring user authentication, content management, and community features. Implemented secure user registration and login systems, content publishing workflows, and interactive community features that enhanced student engagement and creative collaboration.',
     image: WATisZine,
     link: 'https://watiszine.clubs.wusa.ca/',
-    category: 'Web Dev',
+    category: 'Open Source',
     backgroundColor: colors.webDev,
     date: 'December 2023'
   },
@@ -161,7 +170,7 @@ export const top10Projects = [
     description: 'AI based Pet care app which can detect pet diseases, recommend food, and find pet sitters',
     image: PawPal,
     link: 'https://devpost.com/software/heads-up-for-tails',
-    category: 'Web Dev',
+    category: 'Hackathon',
     backgroundColor: colors.webDev,
     date: 'January 2025'
   },
@@ -170,7 +179,7 @@ export const top10Projects = [
     description: 'Student Sublet finder built using HTML, CSS, and Django(Python) For backend. Hosted using AZURE Cloud',
     image: HestiaP,
     link: 'https://github.com/gsaujla/HestiaProject',
-    category: 'Web Dev',
+    category: 'Open Source',
     backgroundColor: colors.webDev,
     date: 'October 2023'
   },
@@ -179,7 +188,7 @@ export const top10Projects = [
     description: 'App built using Google Collab, Python and Gymnasium (Deep Q learning)',
     image: RocketLanding,
     link: 'https://colab.research.google.com/drive/1SgdMlL2zM2HERCBJ5yhpVtbO7QtdDGMh',
-    category: 'AI',
+    category: 'ML',
     backgroundColor: colors.ai,
     date: 'September 2024'
   },
@@ -188,7 +197,7 @@ export const top10Projects = [
     description: 'REACT Project for Classical Redux and Redux toolkit(RTK), Thunks, and reducer hooks',
     image: ReduxBank,
     link: 'https://github.com/RhyChaw/redux-practice',
-    category: 'Web Dev',
+    category: 'Open Source',
     backgroundColor: colors.webDev,
     date: 'July 2024'
   }
