@@ -23,14 +23,15 @@ const zones = {
   Certifications: { x: 10.67, y: 0.4, z: 3.39 },
   Links: { x: 10.25, y: 0.4, z: -5.63 },
   Resume: { x: -0.03, y: 0.4, z: -9.67 },
-  Contact: { x: -2.54, y: 0.4, z: 9.51 },
   Experience: { x: 6.31, y: 0.4, z: -8.4 },
   Gallery: { x: 5.33, y: 0.4, z: 9.10 },
+  Naruto: null,
 };
 
 const Navbar = ({ onNavigate }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [open, setOpen] = useState(false);
+  const [isCompact, setIsCompact] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 768);
@@ -40,10 +41,23 @@ const Navbar = ({ onNavigate }) => {
   }, []);
 
   const handleClick = (label) => {
-    const pos = zones[label];
-    if (pos && onNavigate) onNavigate(pos);
+    if (label === 'Naruto') {
+      window.location.href = '/naruto';
+    } else {
+      const pos = zones[label];
+      if (pos && onNavigate) onNavigate(pos);
+    }
     if (isMobile) setOpen(false);
   };
+
+  useEffect(() => {
+    const onScroll = () => {
+      setIsCompact(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', onScroll);
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   // Close modal if clicked outside menu (backdrop)
   const handleBackdropClick = () => {
@@ -52,7 +66,7 @@ const Navbar = ({ onNavigate }) => {
 
   if (!isMobile) {
     return (
-      <nav className={styles.navbar}>
+      <nav className={`${styles.navbar} ${isCompact ? styles.compact : ''}`}>
         <ul>
           {Object.keys(zones).map((label) => (
             <li key={label} onClick={() => handleClick(label)}>

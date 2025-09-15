@@ -30,17 +30,25 @@ function TradNav() {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: isMobile ? 'var(--space-md) var(--space-lg)' : 'var(--space-lg) var(--space-xl)',
+    padding: isScrolled
+      ? (isMobile ? 'var(--space-sm) var(--space-lg)' : 'var(--space-sm) var(--space-xl)')
+      : (isMobile ? 'var(--space-md) var(--space-lg)' : 'var(--space-lg) var(--space-xl)'),
     background: isScrolled 
-      ? 'var(--bg-glass)' 
+      ? 'var(--bg-glass)'
       : 'linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%)',
     color: 'var(--text-primary)',
     fontFamily: 'var(--font-family-primary)',
-    position: 'sticky',
-    top: 0,
+    position: isScrolled ? 'fixed' : 'sticky',
+    top: isScrolled ? '8px' : 0,
+    left: isScrolled ? '50%' : 'auto',
+    transform: isScrolled ? 'translateX(-50%)' : 'none',
+    width: isScrolled ? (isMobile ? '92%' : '80%') : '100%',
+    margin: isScrolled ? '0 auto' : '0',
     zIndex: 1000,
-    borderBottom: '1px solid var(--border-glow)',
-    boxShadow: isScrolled ? 'var(--shadow-glow)' : 'var(--shadow-md)',
+    border: '1px solid var(--border-glow)',
+    borderBottom: isScrolled ? '1px solid var(--border-glow)' : '1px solid var(--border-glow)',
+    borderRadius: isScrolled ? 'var(--radius-full)' : 0,
+    boxShadow: isScrolled ? 'var(--shadow-xl)' : 'var(--shadow-md)',
     backdropFilter: 'blur(20px)',
     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
   };
@@ -126,7 +134,7 @@ function TradNav() {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const links = ['Experience', 'Projects', 'Certifications', 'Resume', 'Contact'];
+  const links = ['Experience', 'Projects', 'Certifications', 'Resume', 'Naruto'];
 
   return (
     <nav style={navStyle}>
@@ -227,11 +235,18 @@ function TradNav() {
         {links.map((text) => (
           <a
             key={text}
-            href={`#${text.toLowerCase()}`}
+            href={text === 'Naruto' ? '/naruto' : `#${text.toLowerCase()}`}
             style={getLinkStyle(text)}
             onMouseEnter={(e) => handleMouseEnter(e, text)}
             onMouseLeave={(e) => handleMouseLeave(e, text)}
-            onClick={(e) => handleClick(e, text)}
+            onClick={(e) => {
+              if (text === 'Naruto') {
+                e.preventDefault();
+                window.location.href = '/naruto';
+                return;
+              }
+              handleClick(e, text);
+            }}
           >
             {text}
           </a>

@@ -15,6 +15,17 @@
   backdrop-filter: blur(8px);
 }
 
+.compact {
+  width: 80%;
+  top: 0;
+  margin-top: var(--space-sm);
+  border-radius: var(--radius-full);
+  padding: var(--space-xs) var(--space-md);
+  background: var(--bg-glass);
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow-xl);
+}
+
 .navbar ul {
   display: flex;
   list-style: none;
