@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const FloatingIcons = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div
       style={{
         position: 'fixed',
-        bottom: '20px',
-        left: '20px',
+        bottom: isMobile ? '15px' : '20px',
+        left: isMobile ? '15px' : '20px',
         display: 'flex',
         flexDirection: 'column',
-        gap: 'var(--space-md)',
+        gap: isMobile ? 'var(--space-sm)' : 'var(--space-md)',
         zIndex: 1000,
       }}
     >
@@ -22,8 +33,8 @@ const FloatingIcons = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          width: '50px',
-          height: '50px',
+          width: isMobile ? '45px' : '50px',
+          height: isMobile ? '45px' : '50px',
           background: 'var(--bg-glass)',
           border: '1px solid var(--border-glow)',
           borderRadius: '50%',
@@ -45,8 +56,8 @@ const FloatingIcons = () => {
         }}
       >
         <svg
-          width="24"
-          height="24"
+          width={isMobile ? "20" : "24"}
+          height={isMobile ? "20" : "24"}
           viewBox="0 0 24 24"
           fill="currentColor"
           style={{ transition: 'all 0.3s ease' }}
@@ -57,15 +68,15 @@ const FloatingIcons = () => {
 
       {/* LinkedIn Icon */}
       <a
-        href="https://linkedin.com/in/rhythm-chawla"
+        href="https://linkedin.com/in/rhychaw"
         target="_blank"
         rel="noreferrer"
         style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          width: '50px',
-          height: '50px',
+          width: isMobile ? '45px' : '50px',
+          height: isMobile ? '45px' : '50px',
           background: 'var(--bg-glass)',
           border: '1px solid var(--border-glow)',
           borderRadius: '50%',
@@ -87,8 +98,8 @@ const FloatingIcons = () => {
         }}
       >
         <svg
-          width="24"
-          height="24"
+          width={isMobile ? "20" : "24"}
+          height={isMobile ? "20" : "24"}
           viewBox="0 0 24 24"
           fill="currentColor"
           style={{ transition: 'all 0.3s ease' }}

@@ -20,6 +20,7 @@ const experiences = [
 const TradExp = () => {
   const [visibleItems, setVisibleItems] = useState([]);
   const [hoveredItem, setHoveredItem] = useState(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -46,12 +47,22 @@ const TradExp = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Handle window resize for responsive design
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <section
       ref={sectionRef}
       id="experience"
       style={{
-        padding: 'var(--space-3xl) var(--space-lg)',
+        padding: isMobile ? 'var(--space-2xl) var(--space-md)' : 'var(--space-3xl) var(--space-lg)',
         maxWidth: '1200px',
         margin: '0 auto',
         fontFamily: 'var(--font-family-primary)',
@@ -61,8 +72,8 @@ const TradExp = () => {
       <h2
         style={{
           textAlign: 'center',
-          fontSize: 'var(--text-4xl)',
-          marginBottom: 'var(--space-3xl)',
+          fontSize: isMobile ? 'var(--text-2xl)' : 'var(--text-4xl)',
+          marginBottom: isMobile ? 'var(--space-2xl)' : 'var(--space-3xl)',
           color: 'var(--text-primary)',
           fontWeight: '700',
           textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
@@ -79,7 +90,7 @@ const TradExp = () => {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          gap: 'var(--space-3xl)',
+          gap: isMobile ? 'var(--space-2xl)' : 'var(--space-3xl)',
         }}
       >
         {experiences.map((exp, index) => {
@@ -92,8 +103,8 @@ const TradExp = () => {
               style={{
                 background: 'var(--bg-glass)',
                 border: `1px solid ${isHovered ? 'var(--accent-primary)' : 'var(--border-glow)'}`,
-                borderRadius: 'var(--radius-2xl)',
-                padding: 'var(--space-2xl)',
+                borderRadius: isMobile ? 'var(--radius-xl)' : 'var(--radius-2xl)',
+                padding: isMobile ? 'var(--space-lg)' : 'var(--space-2xl)',
                 backdropFilter: 'blur(10px)',
                 boxShadow: isHovered ? 'var(--shadow-glow)' : 'var(--shadow-lg)',
                 transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -143,10 +154,10 @@ const TradExp = () => {
               {/* Job title */}
               <h3
                 style={{
-                  fontSize: 'var(--text-2xl)',
+                  fontSize: isMobile ? 'var(--text-lg)' : 'var(--text-2xl)',
                   color: 'var(--text-primary)',
                   fontWeight: '700',
-                  marginBottom: 'var(--space-lg)',
+                  marginBottom: isMobile ? 'var(--space-md)' : 'var(--space-lg)',
                   lineHeight: '1.3',
                   background: isHovered 
                     ? 'linear-gradient(45deg, var(--text-primary), var(--accent-primary))'
@@ -163,9 +174,9 @@ const TradExp = () => {
               {/* Job description */}
               <div
                 style={{
-                  fontSize: 'var(--text-base)',
+                  fontSize: isMobile ? 'var(--text-sm)' : 'var(--text-base)',
                   color: 'var(--text-secondary)',
-                  lineHeight: '1.7',
+                  lineHeight: isMobile ? '1.6' : '1.7',
                   whiteSpace: 'pre-line',
                   transition: 'color 0.3s ease',
                 }}

@@ -333,20 +333,20 @@ const TradProj = () => {
                   style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: 'var(--space-sm)',
+                    gap: isMobile ? 'var(--space-xs)' : 'var(--space-sm)',
                     marginBottom: 'var(--space-xs)',
                   }}
                 >
                   <span
                     style={{
-                      fontSize: 'var(--text-xs)',
+                      fontSize: isMobile ? '0.7rem' : 'var(--text-xs)',
                       color: 'var(--accent-primary)',
                       background: 'rgba(0, 245, 255, 0.1)',
                       border: '1px solid rgba(0, 245, 255, 0.3)',
-                      padding: '2px 6px',
+                      padding: isMobile ? '1px 4px' : '2px 6px',
                       borderRadius: 'var(--radius-sm)',
                       fontWeight: '600',
-                      minWidth: '20px',
+                      minWidth: isMobile ? '16px' : '20px',
                       textAlign: 'center',
                     }}
                   >
@@ -354,7 +354,7 @@ const TradProj = () => {
                   </span>
                   <h4
                     style={{
-                      fontSize: 'var(--text-base)',
+                      fontSize: isMobile ? 'var(--text-sm)' : 'var(--text-base)',
                       color: selectedProject === idx ? 'var(--accent-purple)' : 'var(--text-primary)',
                       fontWeight: selectedProject === idx ? '600' : '500',
                       margin: 0,
@@ -370,7 +370,7 @@ const TradProj = () => {
                   style={{
                     display: 'flex',
                     flexWrap: 'wrap',
-                    gap: 'var(--space-xs)',
+                    gap: isMobile ? '2px' : 'var(--space-xs)',
                     marginTop: 'var(--space-xs)',
                   }}
                 >
@@ -378,11 +378,11 @@ const TradProj = () => {
                     <span
                       key={techIdx}
                       style={{
-                        fontSize: 'var(--text-xs)',
+                        fontSize: isMobile ? '0.65rem' : 'var(--text-xs)',
                         color: 'var(--accent-purple)',
                         background: 'rgba(139, 92, 246, 0.1)',
                         border: '1px solid rgba(139, 92, 246, 0.3)',
-                        padding: '2px 8px',
+                        padding: isMobile ? '1px 4px' : '2px 8px',
                         borderRadius: 'var(--radius-full)',
                         fontWeight: '500',
                         transition: 'all 0.3s ease',
@@ -454,10 +454,10 @@ const TradProj = () => {
               {/* Project Title */}
               <h3
                 style={{
-                  fontSize: 'var(--text-2xl)',
+                  fontSize: isMobile ? 'var(--text-lg)' : 'var(--text-2xl)',
                   color: 'var(--text-primary)',
                   fontWeight: '700',
-                  marginBottom: 'var(--space-sm)',
+                  marginBottom: isMobile ? 'var(--space-xs)' : 'var(--space-sm)',
                   background: 'linear-gradient(45deg, var(--text-primary), var(--accent-primary))',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
@@ -470,10 +470,10 @@ const TradProj = () => {
               {/* Project Date */}
               <p
                 style={{
-                  fontSize: 'var(--text-sm)',
+                  fontSize: isMobile ? 'var(--text-xs)' : 'var(--text-sm)',
                   color: 'var(--accent-primary)',
                   fontWeight: '500',
-                  marginBottom: 'var(--space-md)',
+                  marginBottom: isMobile ? 'var(--space-sm)' : 'var(--space-md)',
                   textShadow: '0 0 10px var(--accent-primary)',
                 }}
               >
@@ -483,10 +483,10 @@ const TradProj = () => {
               {/* Project Description */}
               <p
                 style={{
-                  fontSize: 'var(--text-base)',
+                  fontSize: isMobile ? 'var(--text-sm)' : 'var(--text-base)',
                   color: 'var(--text-secondary)',
-                  lineHeight: '1.6',
-                  marginBottom: 'var(--space-lg)',
+                  lineHeight: isMobile ? '1.5' : '1.6',
+                  marginBottom: isMobile ? 'var(--space-md)' : 'var(--space-lg)',
                 }}
               >
                 {filteredProjects[selectedProject].description}

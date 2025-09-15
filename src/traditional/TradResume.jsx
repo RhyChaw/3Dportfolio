@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Worker, Viewer } from '@react-pdf-viewer/core';
 
 // Import styles for react-pdf-viewer
@@ -6,11 +6,22 @@ import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
 const TradResume = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <section
       id="resume"
       style={{
-        padding: 'var(--space-2xl) var(--space-lg)',
+        padding: isMobile ? 'var(--space-xl) var(--space-md)' : 'var(--space-2xl) var(--space-lg)',
         maxWidth: '1000px',
         margin: '0 auto',
         fontFamily: 'var(--font-family-primary)',
@@ -19,8 +30,8 @@ const TradResume = () => {
       <h2
         style={{
           textAlign: 'center',
-          fontSize: 'var(--text-3xl)',
-          marginBottom: 'var(--space-2xl)',
+          fontSize: isMobile ? 'var(--text-2xl)' : 'var(--text-3xl)',
+          marginBottom: isMobile ? 'var(--space-lg)' : 'var(--space-2xl)',
           color: 'var(--text-primary)',
           fontWeight: '700',
           textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
@@ -32,12 +43,12 @@ const TradResume = () => {
       {/* PDF Viewer */}
       <div
         style={{
-          height: '700px',
+          height: isMobile ? '500px' : '700px',
           border: '1px solid var(--border-primary)',
           borderRadius: 'var(--radius-lg)',
           overflow: 'hidden',
           boxShadow: 'var(--shadow-lg)',
-          marginBottom: 'var(--space-xl)',
+          marginBottom: isMobile ? 'var(--space-lg)' : 'var(--space-xl)',
           background: 'var(--bg-card)',
         }}
       >
@@ -50,8 +61,10 @@ const TradResume = () => {
       <div style={{ 
         display: 'flex', 
         justifyContent: 'center', 
-        gap: 'var(--space-lg)',
+        gap: isMobile ? 'var(--space-md)' : 'var(--space-lg)',
         flexWrap: 'wrap',
+        flexDirection: isMobile ? 'column' : 'row',
+        alignItems: 'center',
       }}>
         <a
           href="/resumes/resume.pdf"
@@ -61,12 +74,13 @@ const TradResume = () => {
             display: 'inline-flex',
             alignItems: 'center',
             gap: 'var(--space-xs)',
-            padding: 'var(--space-sm) var(--space-lg)',
+            padding: isMobile ? 'var(--space-md) var(--space-lg)' : 'var(--space-sm) var(--space-lg)',
             background: 'linear-gradient(135deg, var(--accent-primary), #0099cc)',
             color: 'var(--text-primary)',
             textDecoration: 'none',
             fontWeight: '600',
-            fontSize: 'var(--text-sm)',
+            fontSize: isMobile ? 'var(--text-base)' : 'var(--text-sm)',
+            width: isMobile ? '200px' : 'auto',
             borderRadius: 'var(--radius-md)',
             boxShadow: 'var(--shadow-md)',
             transition: 'all var(--transition-fast)',
@@ -90,12 +104,13 @@ const TradResume = () => {
             display: 'inline-flex',
             alignItems: 'center',
             gap: 'var(--space-xs)',
-            padding: 'var(--space-sm) var(--space-lg)',
+            padding: isMobile ? 'var(--space-md) var(--space-lg)' : 'var(--space-sm) var(--space-lg)',
             background: 'var(--bg-card)',
             color: 'var(--text-primary)',
             textDecoration: 'none',
             fontWeight: '600',
-            fontSize: 'var(--text-sm)',
+            fontSize: isMobile ? 'var(--text-base)' : 'var(--text-sm)',
+            width: isMobile ? '200px' : 'auto',
             borderRadius: 'var(--radius-md)',
             border: '1px solid var(--border-primary)',
             boxShadow: 'var(--shadow-sm)',

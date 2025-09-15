@@ -74,8 +74,7 @@ const TraditionalHome = () => {
       </main>
 
       <footer className={styles.footer}>
-        <p>&copy; 2024 Rhythm Chawla. All rights reserved.</p>
-        <p>Built with React & ❤️</p>
+        <p>&copy; 2025 Rhythm Chawla. All rights reserved.</p>
       </footer>
 
       {/* Floating Chibi Naruto */}
