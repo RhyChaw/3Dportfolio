@@ -25,6 +25,15 @@ import SnapSafe from '../proj/SnapSafe.png';
 export const top10Projects = [
   // 2025 Projects (Future/Planned)
   {
+    title: 'SPOOK - Horror Game (Horror Hacks 2025)',
+    description: 'Built an entire horror game using Three.js and Next.js for Horror Hacks September 2025. Features cinematic effects, immersive sound design, and 3D horror gameplay. Created a fully interactive horror experience with atmospheric lighting, sound effects, and engaging gameplay mechanics. Best played with sound on and headphones recommended for the full immersive experience.',
+    image: G12Proj, // Using G12Proj as placeholder since no specific image was provided
+    link: 'https://spooky-nu.vercel.app/',
+    git: 'https://github.com/RhyChaw/spooky',
+    category: 'Hackathon',
+    date: 'September 2025'
+  },
+  {
     title: 'SnapSafe (Hack the North 2025)',
     description: 'Built SnapSafe, a real-time AR fire evacuation system on Snap AR glasses. Used depth caching, world query hits, and ray casting to dynamically detect exits and guide users with pathfinding arrows. Trained a custom fire-exit sign detection model on Roboflow, converted to ONNX, and integrated into Lens Studio with custom scripting—marking a breakthrough in safety-focused AR navigation.',
     image: SnapSafe,
