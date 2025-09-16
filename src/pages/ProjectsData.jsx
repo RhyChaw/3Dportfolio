@@ -19,6 +19,7 @@ import Bhasha from '../proj/Bhasha.png';
 import KungFuMaster from '../proj/KungFuMaster.png';
 import PizzaCompany from '../proj/PizzaCompanyREACT.png';
 import SnapSafe from '../proj/SnapSafe.png';
+import Spook from '../proj/Spook.png';
 
 // Removed color constants as colors are no longer used in project data
 
@@ -27,7 +28,7 @@ export const top10Projects = [
   {
     title: 'SPOOK - Horror Game (Horror Hacks 2025)',
     description: 'Built an entire horror game using Three.js and Next.js for Horror Hacks September 2025. Features cinematic effects, immersive sound design, and 3D horror gameplay. Created a fully interactive horror experience with atmospheric lighting, sound effects, and engaging gameplay mechanics. Best played with sound on and headphones recommended for the full immersive experience.',
-    image: G12Proj, // Using G12Proj as placeholder since no specific image was provided
+    image: Spook,
     link: 'https://spooky-nu.vercel.app/',
     git: 'https://github.com/RhyChaw/spooky',
     category: 'Hackathon',
