@@ -27,7 +27,7 @@ export const top10Projects = [
   // 2025 Projects (Future/Planned)
   {
     title: 'SPOOK - Horror Game (Horror Hacks 2025)',
-    description: 'Built an entire horror game using Three.js and Next.js for Horror Hacks September 2025. Features cinematic effects, immersive sound design, and 3D horror gameplay. Created a fully interactive horror experience with atmospheric lighting, sound effects, and engaging gameplay mechanics. Best played with sound on and headphones recommended for the full immersive experience.',
+    description: 'Built an entire horror game using Next.js, Three.js, and Vercel for Horror Hacks September 2025. Features cinematic effects, immersive sound design, and 3D horror gameplay. Created a fully interactive horror experience with atmospheric lighting, sound effects, and engaging gameplay mechanics. Best played with sound on and headphones recommended for the full immersive experience.',
     image: Spook,
     link: 'https://spooky-nu.vercel.app/',
     git: 'https://github.com/RhyChaw/spooky',
