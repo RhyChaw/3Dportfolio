@@ -38,7 +38,8 @@ export default function PlayableNaruto(props) {
     };
 
     const handleKeyDown = (e) => {
-      setKeysPressed((prev) => ({ ...prev, [e.key.toLowerCase()]: true }));
+      const key = e.key.toLowerCase();
+      setKeysPressed((prev) => ({ ...prev, [key]: true }));
       
       // Handle ESC key to exit pointer lock
       if (e.key === 'Escape' && isPointerLocked) {
@@ -94,13 +95,14 @@ export default function PlayableNaruto(props) {
     const speed = 7.5;
     const direction = new THREE.Vector3();
 
-    // First-person movement input - WAD controls (no backward)
+    // First-person movement input - Full WASD + Arrow keys
     let forward = 0;
     let right = 0;
 
-    if (keysPressed['w']) forward = 1;  // Forward
-    if (keysPressed['a']) right = -1;   // Left
-    if (keysPressed['d']) right = 1;    // Right
+    if (keysPressed['w'] || keysPressed['arrowup']) forward += 1;   // Forward
+    if (keysPressed['s'] || keysPressed['arrowdown']) forward -= 1; // Backward
+    if (keysPressed['a'] || keysPressed['arrowleft']) right -= 1;   // Left strafe
+    if (keysPressed['d'] || keysPressed['arrowright']) right += 1;  // Right strafe
 
     // Update camera rotation based on mouse movement
     if (isPointerLocked) {
@@ -202,8 +204,11 @@ export default function PlayableNaruto(props) {
         }
       }
 
-      // Rotate Naruto to face movement direction (only if moving and not in FPS mode)
-      if (direction.length() > 0 && !isPointerLocked) {
+      // In FPS mode, align Naruto's rotation with camera yaw if model is shown
+      if (isPointerLocked && narutoRef.current) {
+        narutoRef.current.rotation.y = cameraRotation.y;
+      } else if (direction.length() > 0) {
+        // Third-person: face movement direction
         narutoRef.current.rotation.y = Math.atan2(direction.x, direction.z);
       }
 
@@ -237,7 +242,8 @@ export default function PlayableNaruto(props) {
 
   return (
     <group ref={narutoRef} {...props}>
-      <primitive object={scene} scale={[1, 1, 1]} />
+      {/* Hide Naruto model in true FPS mode */}
+      {!isPointerLocked && <primitive object={scene} scale={[1, 1, 1]} />}
 
       {showInstruction && (
         <Html fullscreen>
@@ -276,9 +282,9 @@ export default function PlayableNaruto(props) {
               <p style={{ margin: 0, fontSize: '1.1rem', color: '#111827', fontWeight: 700 }}>FPS Controls</p>
               <ul style={{ listStyle: 'none', padding: 0, margin: '1rem 0 1.5rem 0', color: '#111827', fontSize: '1.05rem', lineHeight: 1.6 }}>
                 <li>• Click to start FPS mode</li>
-                <li>• WAD to move around</li>
-                <li>• Mouse to look around</li>
-                <li>• ESC to exit FPS mode</li>
+                <li>• WASD or Arrow Keys: Move</li>
+                <li>• Mouse: Look around</li>
+                <li>• ESC: Exit FPS mode</li>
               </ul>
               <div style={{ fontSize: '1rem', color: '#111827', fontWeight: 500 }}>(Click anywhere to begin)</div>
             </div>

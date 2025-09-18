@@ -1,8 +1,8 @@
 import React, { Suspense, useState, useRef, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Html } from '@react-three/drei';
+import { Html, KeyboardControls, PointerLockControls } from '@react-three/drei';
 import RoomScene from '../components/RoomScene';
-import PlayableNaruto from '../components/PlayableNaruto';
+import ThirdPersonController from '../components/ThirdPersonController';
 import FloatingLabel from '../components/FloatingLabel';
 import RadarMinimap from '../components/RadarMinimap';
 import Links from './Links';
@@ -13,18 +13,18 @@ import Contact from './Contact';
 import Navbar from '../components/Navbar';
 import ChatBox from './ChatBox';
 import Title from './Title';
-import NarutoMover from '../components/NarutoMover';
 import Experience from './Experience';
 import skyImage from '../assets/sky.jpg';
 import PhotoGallery from './PhotoGallery';
-import Joystick from '../components/Joystick';
+// import Joystick from '../components/Joystick';
 
 
 const Home = () => {
-  const [narutoPos, setNarutoPos] = useState({ x: 0, y: 0.4, z: 0 });
+  const [coords, setCoords] = useState({ x: 0, y: 0.4, z: 0 });
   const [startPos, setStartPos] = useState(null);
   const [targetPos, setTargetPos] = useState(null);
   const controlsRef = useRef();
+  const [isPointerLocked, setIsPointerLocked] = useState(false);
 
 
   const [popupVisible, setPopupVisible] = useState(false);
@@ -35,36 +35,17 @@ const Home = () => {
   const [experienceVisible, setExperienceVisible] = useState(false);
   const [galleryVisible, setGalleryVisible] = useState(false);
 
-  const handleRadarClick = ({ x, z }) => {
-    setNarutoPos((prev) => ({ ...prev, x, z }));
-    const zones = [
-      { x: 10.25, z: -5.63, set: setPopupVisible },
-      { x: -0.03, z: -9.67, set: setResumeVisible },
-      { x: 10.67, z: 3.39, set: setCertificationsVisible },
-      { x: -6.06, z: 1.64, set: setProjectsVisible },
-      { x: -2.54, z: 9.51, set: setContactVisible },
-      { x: 6.31, z: -8.4, set: setExperienceVisible }
-    ];
-    zones.forEach(({ x: zx, z: zz, set }) => {
-      const dist = Math.hypot(zx - x, zz - z);
-      set(dist < 2.5);
-    });
-  };
+  const handleRadarClick = () => {};
 
   const handleNavigate = (pos) => {
     setStartPos(narutoPos);
     setTargetPos(pos);
   };
 
-  useEffect(() => {
-    if (controlsRef.current) {
-      controlsRef.current.target.set(0, 2, 0);
-      controlsRef.current.update();
-    }
-  }, []);
+  useEffect(() => {}, []);
 
 
-  // Movement is now handled by PlayableNaruto component
+  // Movement handled by FirstPersonController
 
   let keysPressed = new Set();
 
@@ -135,11 +116,20 @@ const handleJoystickEnd = () => {
     >
       <Navbar onNavigate={handleNavigate} />
 
-      <Canvas
-        shadows
-        camera={{ position: [0, 8, 12], fov: 50 }}
-        style={{ background: 'transparent' }}
+      <KeyboardControls
+        map={[
+          { name: 'forward', keys: ['KeyW', 'ArrowUp'] },
+          { name: 'back', keys: ['KeyS', 'ArrowDown'] },
+          { name: 'left', keys: ['KeyA', 'ArrowLeft'] },
+          { name: 'right', keys: ['KeyD', 'ArrowRight'] },
+          { name: 'sprint', keys: ['ShiftLeft', 'ShiftRight'] },
+        ]}
       >
+        <Canvas
+          shadows
+          camera={{ position: [0, 8, 12], fov: 50 }}
+          style={{ background: 'transparent' }}
+        >
         <ambientLight intensity={0.5} />
         <directionalLight
           position={[5, 10, 5]}
@@ -152,35 +142,7 @@ const handleJoystickEnd = () => {
         <Suspense fallback={<Html><p style={{ color: 'white' }}>Loading Room...</p></Html>}>
           <RoomScene scale={[2, 2, 2]} position={[15, 0, 0]} />
 
-          <PlayableNaruto
-            scale={[0.5, 0.5, 0.5]}
-            position={[narutoPos.x, narutoPos.y, narutoPos.z]}
-            onNearComputer={() => setPopupVisible(true)}
-            onFarFromComputer={() => setPopupVisible(false)}
-            onNearResume={() => setResumeVisible(true)}
-            onFarFromResume={() => setResumeVisible(false)}
-            onNearCertifications={() => setCertificationsVisible(true)}
-            onFarFromCertifications={() => setCertificationsVisible(false)}
-            onNearProjects={() => setProjectsVisible(true)}
-            onFarFromProjects={() => setProjectsVisible(false)}
-            updateNarutoPosition={(pos) => setNarutoPos(pos)}
-            onNearContact={() => setContactVisible(true)}
-            onFarFromContact={() => setContactVisible(false)}
-            onNearExperience={() => setExperienceVisible(true)}
-            onFarFromExperience={() => setExperienceVisible(false)}
-            onNearGallery={() => setGalleryVisible(true)}
-            onFarFromGallery={() => setGalleryVisible(false)}
-          />
-
-          <NarutoMover
-            startPos={startPos}
-            targetPos={targetPos}
-            setNarutoPos={setNarutoPos}
-            clearTarget={() => {
-              setTargetPos(null);
-              setStartPos(null);
-            }}
-          />
+            <ThirdPersonController onPositionChange={setCoords} />
 
           {/* Labels */}
           <FloatingLabel text="💻 Links" position={[10.25, 2, -5.63]} />
@@ -191,21 +153,14 @@ const handleJoystickEnd = () => {
           <FloatingLabel text="💼 Experience" position={[6.31, 2, -8.4]} />
           <FloatingLabel text="📸 Gallery" position={[5.33, 2, 9.10]} />
 
-          <OrbitControls
-            ref={controlsRef}
-            enableZoom
-            enablePan={false}
-            minPolarAngle={0}
-            maxPolarAngle={Math.PI}
-            rotateSpeed={0.5}
-            makeDefault
-          />
+          {/* Optional: could add OrbitControls targeting player, but TPS controller already controls camera */}
         </Suspense>
-      </Canvas>
+        </Canvas>
+      </KeyboardControls>
 
-      {window.innerWidth <= 768 && <Joystick onMove={handleJoystickMove} />}
+      {/* Joystick disabled in FPS mode */}
 
-      <RadarMinimap narutoPosition={narutoPos} onClickTeleport={handleRadarClick} />
+      <RadarMinimap narutoPosition={coords} />
       <Title />
       <ChatBox />
 
