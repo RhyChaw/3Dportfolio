@@ -3,27 +3,84 @@
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--bg-card);
-  border: 1px solid var(--border-primary);
-  border-radius: var(--radius-2xl);
+  background: linear-gradient(145deg, #F5E6D3, #E6D3B7);
+  border: 2px solid #8B4513;
+  border-radius: 12px;
   padding: var(--space-sm) var(--space-lg);
   display: flex;
   gap: var(--space-md);
   z-index: 9999;
-  box-shadow: var(--shadow-lg);
-  font-family: var(--font-family-primary);
+  box-shadow: 0 4px 16px rgba(139, 69, 19, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  font-family: serif;
   backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
 }
 
 .compact {
   width: 80%;
   top: 0;
   margin-top: var(--space-sm);
-  border-radius: var(--radius-full);
+  border-radius: 20px;
   padding: var(--space-xs) var(--space-md);
-  background: var(--bg-glass);
-  border-color: var(--border-glow);
-  box-shadow: var(--shadow-xl);
+  background: linear-gradient(145deg, #F5E6D3, #E6D3B7);
+  border-color: #8B4513;
+  box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* Scroll-themed animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scrollUnroll {
+  from {
+    transform: scale(0.8) rotate(-5deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.scrollMenu {
+  animation: scrollUnroll 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.scrollButton {
+  position: relative;
+  overflow: hidden;
+}
+
+.scrollButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.scrollButton:hover::before {
+  left: 100%;
 }
 
 .navbar ul {
@@ -35,20 +92,40 @@
 
 .navbar li {
   cursor: pointer;
-  color: var(--text-primary);
+  color: #5D4037;
   font-size: var(--text-sm);
   font-weight: 500;
   padding: var(--space-sm) var(--space-md);
-  transition: all var(--transition-fast);
-  border-radius: var(--radius-md);
+  transition: all 0.3s ease;
+  border-radius: 8px;
   border: 1px solid transparent;
+  position: relative;
+  letter-spacing: 0.5px;
 }
 
 .navbar li:hover {
-  background: var(--bg-secondary);
-  border-color: var(--border-accent);
-  color: var(--accent-primary);
-  transform: translateY(-1px);
+  background: linear-gradient(145deg, rgba(139, 69, 19, 0.1), rgba(139, 69, 19, 0.05));
+  border-color: #8B4513;
+  color: #8B4513;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(139, 69, 19, 0.2);
+}
+
+.navbar li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) scaleX(0);
+  width: 3px;
+  height: 60%;
+  background: #8B4513;
+  border-radius: 2px;
+  transition: transform 0.3s ease;
+}
+
+.navbar li:hover::before {
+  transform: translateY(-50%) scaleX(1);
 }
 
 /* Responsive styles */

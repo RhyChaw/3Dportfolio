@@ -26,9 +26,6 @@ const Home = () => {
   const [targetPos, setTargetPos] = useState(null);
   const controlsRef = useRef();
 
-  // FPS Control states
-  const [isPointerLocked, setIsPointerLocked] = useState(false);
-  const [showInstructions, setShowInstructions] = useState(false);
 
   const [popupVisible, setPopupVisible] = useState(false);
   const [resumeVisible, setResumeVisible] = useState(false);
@@ -66,26 +63,6 @@ const Home = () => {
     }
   }, []);
 
-  // FPS Control handlers
-  const handlePointerLockChange = () => {
-    const isLocked = document.pointerLockElement === document.body;
-    setIsPointerLocked(isLocked);
-    setShowInstructions(!isLocked);
-  };
-
-  const handlePointerLockError = () => {
-    console.error('Pointer lock failed');
-  };
-
-  useEffect(() => {
-    document.addEventListener('pointerlockchange', handlePointerLockChange);
-    document.addEventListener('pointerlockerror', handlePointerLockError);
-    
-    return () => {
-      document.removeEventListener('pointerlockchange', handlePointerLockChange);
-      document.removeEventListener('pointerlockerror', handlePointerLockError);
-    };
-  }, []);
 
   // Movement is now handled by PlayableNaruto component
 
@@ -240,100 +217,7 @@ const handleJoystickEnd = () => {
       {experienceVisible && <Experience onClose={() => setExperienceVisible(false)} />}
       {galleryVisible && <PhotoGallery onClose={() => setGalleryVisible(false)} />}
 
-      {/* FPS Control Instructions - Small overlay in corner */}
-      {showInstructions && (
-        <div
-          style={{
-            position: 'fixed',
-            top: '20px',
-            right: '20px',
-            maxWidth: '300px',
-            backgroundColor: 'var(--bg-secondary)',
-            padding: '1rem',
-            borderRadius: 'var(--border-radius)',
-            border: '1px solid var(--border-color)',
-            zIndex: 1000,
-            color: 'white',
-            fontFamily: 'var(--font-family-primary)',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
-          }}
-        >
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-            <h3 style={{ color: 'var(--accent-primary)', fontSize: '1rem', margin: 0 }}>
-              🥷 FPS Controls
-            </h3>
-            <button
-              onClick={() => setShowInstructions(false)}
-              style={{
-                background: 'none',
-                border: 'none',
-                color: 'var(--text-secondary)',
-                cursor: 'pointer',
-                fontSize: '1.2rem',
-                padding: '0',
-                lineHeight: '1',
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.color = 'var(--accent-primary)';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.color = 'var(--text-secondary)';
-              }}
-            >
-              ×
-            </button>
-          </div>
-          <div style={{ fontSize: '0.9rem', marginBottom: '1rem', color: 'var(--text-secondary)' }}>
-            <div>🖱️ <strong>Mouse:</strong> Look around</div>
-            <div>⌨️ <strong>WASD:</strong> Move around</div>
-            <div>🚶 <strong>Walk:</strong> Near objects to interact</div>
-            <div>📱 <strong>ESC:</strong> Exit controls</div>
-          </div>
-          <button
-            onClick={() => {
-              document.body.requestPointerLock();
-            }}
-            style={{
-              backgroundColor: 'var(--accent-primary)',
-              color: 'var(--bg-primary)',
-              border: 'none',
-              padding: '0.5rem 1rem',
-              fontSize: '0.9rem',
-              borderRadius: 'var(--border-radius)',
-              cursor: 'pointer',
-              fontWeight: 'bold',
-              transition: 'all 0.3s ease',
-              width: '100%',
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.backgroundColor = 'var(--accent-hover)';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.backgroundColor = 'var(--accent-primary)';
-            }}
-          >
-            Start FPS Mode
-          </button>
-        </div>
-      )}
 
-      {/* Crosshair */}
-      {isPointerLocked && (
-        <div
-          style={{
-            position: 'fixed',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: '20px',
-            height: '20px',
-            border: '2px solid var(--accent-primary)',
-            borderRadius: '50%',
-            pointerEvents: 'none',
-            zIndex: 1000,
-          }}
-        />
-      )}
     </div>
   );
 };

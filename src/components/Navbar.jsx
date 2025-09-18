@@ -1,20 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/Navbar.module.css';
 
-const KunaiIcon = () => (
+const ScrollIcon = ({ isOpen }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
+    width="28"
+    height="28"
     viewBox="0 0 24 24"
     fill="none"
-    stroke="var(--accent-primary)"
+    stroke="#8B4513"
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
+    style={{
+      transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+      transition: 'transform 0.3s ease-in-out'
+    }}
   >
-    <path d="M12 2l6 6-6 6-6-6 6-6z" />
-    <line x1="12" y1="14" x2="12" y2="22" />
+    {/* Scroll body */}
+    <rect x="3" y="2" width="18" height="20" rx="2" ry="2" fill="#F5E6D3" stroke="#8B4513" strokeWidth="1.5"/>
+    {/* Scroll lines */}
+    <line x1="7" y1="6" x2="17" y2="6" stroke="#8B4513" strokeWidth="1"/>
+    <line x1="7" y1="9" x2="17" y2="9" stroke="#8B4513" strokeWidth="1"/>
+    <line x1="7" y1="12" x2="17" y2="12" stroke="#8B4513" strokeWidth="1"/>
+    <line x1="7" y1="15" x2="17" y2="15" stroke="#8B4513" strokeWidth="1"/>
+    {/* Scroll handles */}
+    <circle cx="6" cy="3" r="1.5" fill="#8B4513"/>
+    <circle cx="18" cy="3" r="1.5" fill="#8B4513"/>
+    <circle cx="6" cy="21" r="1.5" fill="#8B4513"/>
+    <circle cx="18" cy="21" r="1.5" fill="#8B4513"/>
   </svg>
 );
 
@@ -66,10 +80,43 @@ const Navbar = ({ onNavigate }) => {
 
   if (!isMobile) {
     return (
-      <nav className={`${styles.navbar} ${isCompact ? styles.compact : ''}`}>
+      <nav 
+        className={`${styles.navbar} ${isCompact ? styles.compact : ''}`}
+        style={{
+          background: 'linear-gradient(145deg, #F5E6D3, #E6D3B7)',
+          border: '2px solid #8B4513',
+          boxShadow: '0 4px 16px rgba(139, 69, 19, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
+          fontFamily: 'serif',
+        }}
+      >
         <ul>
           {Object.keys(zones).map((label) => (
-            <li key={label} onClick={() => handleClick(label)}>
+            <li 
+              key={label} 
+              onClick={() => handleClick(label)}
+              style={{
+                color: '#5D4037',
+                fontWeight: '500',
+                letterSpacing: '0.5px',
+                border: '1px solid transparent',
+                background: 'transparent',
+                transition: 'all 0.3s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.background = 'linear-gradient(145deg, rgba(139, 69, 19, 0.1), rgba(139, 69, 19, 0.05))';
+                e.target.style.borderColor = '#8B4513';
+                e.target.style.color = '#8B4513';
+                e.target.style.transform = 'translateY(-2px)';
+                e.target.style.boxShadow = '0 2px 8px rgba(139, 69, 19, 0.2)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.background = 'transparent';
+                e.target.style.borderColor = 'transparent';
+                e.target.style.color = '#5D4037';
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = 'none';
+              }}
+            >
               {label}
             </li>
           ))}
@@ -80,97 +127,139 @@ const Navbar = ({ onNavigate }) => {
 
   return (
     <>
-      {/* Circle button with Kunai icon */}
+      {/* Scroll button */}
       <button
         aria-label="Toggle navigation"
         onClick={() => setOpen(!open)}
+        className={styles.scrollButton}
         style={{
           position: 'fixed',
           top: 70,
           left: 10,
-          width: 48,
-          height: 48,
-          borderRadius: 'var(--radius-full)',
-          background: 'var(--bg-card)',
-          border: '1px solid var(--border-primary)',
-          boxShadow: 'var(--shadow-lg)',
+          width: 56,
+          height: 56,
+          borderRadius: '8px',
+          background: 'linear-gradient(145deg, #F5E6D3, #E6D3B7)',
+          border: '2px solid #8B4513',
+          boxShadow: '0 4px 12px rgba(139, 69, 19, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           cursor: 'pointer',
           zIndex: 10000,
           padding: 0,
-          transition: 'all var(--transition-fast)',
+          transition: 'all 0.3s ease',
+          transform: open ? 'scale(1.1) rotate(5deg)' : 'scale(1) rotate(0deg)',
         }}
         onMouseEnter={(e) => {
-          e.target.style.transform = 'scale(1.05)';
-          e.target.style.borderColor = 'var(--border-accent)';
+          e.target.style.transform = open ? 'scale(1.15) rotate(8deg)' : 'scale(1.05) rotate(2deg)';
+          e.target.style.boxShadow = '0 6px 16px rgba(139, 69, 19, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4)';
         }}
         onMouseLeave={(e) => {
-          e.target.style.transform = 'scale(1)';
-          e.target.style.borderColor = 'var(--border-primary)';
+          e.target.style.transform = open ? 'scale(1.1) rotate(5deg)' : 'scale(1) rotate(0deg)';
+          e.target.style.boxShadow = '0 4px 12px rgba(139, 69, 19, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
         }}
       >
-        <KunaiIcon />
+        <ScrollIcon isOpen={open} />
       </button>
 
-      {/* Modal backdrop and centered menu */}
+      {/* Modal backdrop and centered scroll menu */}
       {open && (
         <div
           onClick={handleBackdropClick}
           style={{
             position: 'fixed',
             inset: 0,
-            backgroundColor: 'var(--bg-overlay)',
+            backgroundColor: 'rgba(0, 0, 0, 0.6)',
             zIndex: 9998,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             backdropFilter: 'blur(8px)',
+            animation: 'fadeIn 0.3s ease-out',
           }}
         >
           {/* Stop propagation to prevent closing when clicking inside menu */}
           <nav
             onClick={(e) => e.stopPropagation()}
-            className={styles.navbar}
+            className={`${styles.scrollMenu} ${open ? styles.scrollOpen : ''}`}
             style={{
-              background: 'var(--bg-card)',
-              borderRadius: 'var(--radius-xl)',
-              padding: 'var(--space-xl) var(--space-2xl)',
-              boxShadow: 'var(--shadow-xl)',
-              color: 'var(--text-primary)',
-              fontFamily: 'var(--font-family-primary)',
-              fontSize: 'var(--text-lg)',
-              minWidth: '280px',
-              border: '1px solid var(--border-primary)',
+              background: 'linear-gradient(145deg, #F5E6D3, #E6D3B7)',
+              borderRadius: '12px',
+              padding: '2rem 2.5rem',
+              boxShadow: '0 8px 32px rgba(139, 69, 19, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
+              color: '#5D4037',
+              fontFamily: 'serif',
+              fontSize: '1.1rem',
+              minWidth: '320px',
+              border: '3px solid #8B4513',
+              position: 'relative',
+              transform: open ? 'scale(1) rotate(0deg)' : 'scale(0.8) rotate(-5deg)',
+              opacity: open ? 1 : 0,
+              transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
             }}
           >
-            <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-              {Object.keys(zones).map((label) => (
+            {/* Scroll decorative elements */}
+            <div style={{
+              position: 'absolute',
+              top: '10px',
+              left: '10px',
+              right: '10px',
+              height: '2px',
+              background: 'linear-gradient(90deg, transparent, #8B4513, transparent)',
+              borderRadius: '1px',
+            }} />
+            <div style={{
+              position: 'absolute',
+              bottom: '10px',
+              left: '10px',
+              right: '10px',
+              height: '2px',
+              background: 'linear-gradient(90deg, transparent, #8B4513, transparent)',
+              borderRadius: '1px',
+            }} />
+            
+            <ul style={{ listStyle: 'none', margin: '1rem 0', padding: 0 }}>
+              {Object.keys(zones).map((label, index) => (
                 <li
                   key={label}
                   onClick={() => handleClick(label)}
                   style={{ 
-                    padding: 'var(--space-md) 0', 
+                    padding: '0.8rem 1rem', 
                     cursor: 'pointer', 
                     userSelect: 'none',
-                    borderBottom: '1px solid var(--border-primary)',
-                    transition: 'all var(--transition-fast)',
-                    borderRadius: 'var(--radius-sm)',
-                    marginBottom: 'var(--space-xs)',
+                    borderBottom: '1px solid rgba(139, 69, 19, 0.2)',
+                    transition: 'all 0.3s ease',
+                    borderRadius: '6px',
+                    marginBottom: '0.5rem',
+                    position: 'relative',
+                    background: 'transparent',
+                    color: '#5D4037',
+                    fontWeight: '500',
+                    letterSpacing: '0.5px',
+                    animation: `slideInFromLeft 0.4s ease-out ${index * 0.1}s both`,
                   }}
                   onMouseEnter={(e) => {
-                    e.target.style.background = 'var(--bg-secondary)';
-                    e.target.style.color = 'var(--accent-primary)';
-                    e.target.style.paddingLeft = 'var(--space-sm)';
+                    e.target.style.background = 'linear-gradient(145deg, rgba(139, 69, 19, 0.1), rgba(139, 69, 19, 0.05))';
+                    e.target.style.color = '#8B4513';
+                    e.target.style.paddingLeft = '1.5rem';
+                    e.target.style.transform = 'translateX(5px)';
+                    e.target.style.boxShadow = 'inset 3px 0 0 #8B4513';
                   }}
                   onMouseLeave={(e) => {
                     e.target.style.background = 'transparent';
-                    e.target.style.color = 'var(--text-primary)';
-                    e.target.style.paddingLeft = '0';
+                    e.target.style.color = '#5D4037';
+                    e.target.style.paddingLeft = '1rem';
+                    e.target.style.transform = 'translateX(0)';
+                    e.target.style.boxShadow = 'none';
                   }}
                 >
-                  {label}
+                  <span style={{
+                    position: 'relative',
+                    zIndex: 1,
+                  }}>
+                    {label}
+                  </span>
                 </li>
               ))}
             </ul>
