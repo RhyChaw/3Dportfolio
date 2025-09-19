@@ -137,6 +137,15 @@ const Projects = ({ onClose }) => {
                     marginBottom: 'var(--space-xs)',
                     fontWeight: '500'
                   }}>{proj.date}</p>
+                  {proj.tech && (
+                    <p style={{ 
+                      fontSize: 'var(--text-xs)', 
+                      color: 'var(--accent-secondary)', 
+                      marginBottom: 'var(--space-xs)',
+                      fontWeight: '500',
+                      fontStyle: 'italic'
+                    }}>{proj.tech}</p>
+                  )}
                   <p style={{ 
                     fontSize: isShort ? 'var(--text-base)' : 'var(--text-sm)', 
                     color: 'var(--text-secondary)',
