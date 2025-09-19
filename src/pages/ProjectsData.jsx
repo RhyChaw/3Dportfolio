@@ -22,11 +22,21 @@ import SnapSafe from '../proj/SnapSafe.png';
 import Spook from '../proj/Spook.png';
 import GlobalEquitySimulator from '../proj/equity.png';
 import Watopoly from '../proj/watopoly.JPG';
+import NeuroClash from '../proj/NeuroClash.png';
 
 // Removed color constants as colors are no longer used in project data
 
 const projectsData = [
   // 2025 Projects (Future/Planned)
+  {
+    title: 'NeuroClash – Adaptive Meta-AI Combatants',
+    description: 'A next-gen self-evolving AI fighter system where each agent dynamically adapts its fighting style during battle based on opponent behavior, using Bayesian meta-learning + reinforcement learning + one-shot adaptation, all integrated into a mini Ethereum-powered game dApp. Features dynamic fight replay, NFT brain ownership, self-evolution mode, and meta-tournament capabilities.',
+    tech: 'PyTorch, TensorFlow, Python, FastAPI, Three.js, WebGL, JavaScript, Web3, Ethereum, Smart Contracts, Reinforcement Learning, Bayesian ML, One-Shot Learning, Neural Networks',
+    image: NeuroClash,
+    git: 'https://github.com/RhyChaw/neuroclash',
+    category: 'AI/ML',
+    date: 'September 2025'
+  },
   {
     title: 'Global Equity Simulator',
     description: 'Full-stack SaaS app to simulate global employee equity grants with country-specific tax and regulation rules, interactive cap table visualization, and automated compliance reporting.',
