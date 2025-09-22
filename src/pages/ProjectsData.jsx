@@ -24,11 +24,31 @@ import GlobalEquitySimulator from '../proj/equity.png';
 import Watopoly from '../proj/watopoly.JPG';
 import NeuroClash from '../proj/NeuroClash.png';
 import DJAi from '../proj/DJAi.png';
+import Equity from '../proj/Equityy.png';
 
 // Removed color constants as colors are no longer used in project data
 
 const projectsData = [
   // 2025 Projects (Future/Planned)
+  {
+    title: 'Global Equity Simulator',
+    description: 'A full-stack SaaS app to simulate global employee equity grants with country-specific tax and regulation rules, interactive cap table visualization, and automated compliance reporting.',
+    tech: 'React 18, TypeScript, Vite, Zustand, Recharts, Django 5, DRF, ReportLab, Python, Java 21, Spring Boot 3, Ollama LLM, Docker, Docker Compose, Kubernetes, Helm',
+    image: Equity, // replace with your imported image variable
+    git: 'https://github.com/RhyChaw/global-equity-simulator', // replace with actual repo
+    category: 'Full-Stack SaaS',
+    date: 'September 2025',
+    inProgress: true
+  },
+  {
+    title: 'marketSim',
+    description: 'High-performance real-time market replay and simulation engine with deterministic OCaml core, pluggable strategy SDKs, and interactive dashboard for control and visualization.',
+    tech: 'OCaml, Node.js, TypeScript, React, Next.js, Python, Rust, Yarn, PNPM, Parquet, Arrow, WebSocket, REST',
+    git: 'https://github.com/RhyChaw/marketSim', // replace with actual repo
+    category: 'Full-Stack / Systems',
+    date: 'September 2025',
+    inProgress: true
+  },  
   {
     title: 'DJ AI',
     description: 'A next-gen AI DJ system where each song gets mixed and mashed by an AI',
