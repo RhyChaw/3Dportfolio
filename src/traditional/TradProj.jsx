@@ -8,43 +8,26 @@ const TradProj = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Enhanced tech stack mapping with diverse and unique technologies
-  const techStacks = {
-    'Global Equity Simulator': ['React', 'TypeScript', 'Django', 'DRF', 'Spring Boot', 'Java', 'Docker', 'Kubernetes', 'Helm'],
-    'Watopoly - Waterloo Monopoly': ['C++', 'Object-Oriented Programming', 'Git', 'Game Development', 'Data Structures', 'Algorithms'],
-    'SPOOK - Horror Game (Horror Hacks 2025)': ['Next.js', 'Three.js', 'Vercel', 'JavaScript', 'WebGL', '3D Graphics'],
-    'SnapSafe (Hack the North 2025)': ['Lens Studio', 'Snap AR', 'Depth Caching', 'Ray Casting', 'Roboflow', 'ONNX', 'AR Navigation', 'Computer Vision'],
-    'Bhasha Mobile App': ['Flutter', 'Dart', 'Supabase', 'Mobile Development', 'Riverpod', 'Audio Players'],
-    'StrumSpace (SpurHacks Hackathon)': ['YOLOv8', 'ThreeJS', 'Computer Vision', 'WebRTC', 'TensorFlow.js', 'WebGL'],
-    'Bhasha Web App': ['Next.js', 'React', 'TypeScript', 'Web Development', 'Prisma', 'Vercel'],
-    'Zafari CC Design (FreeLance)': ['Next.js', 'React', 'TypeScript', 'Web Development', 'Tailwind', 'Framer Motion'],
-    'MettaStars (FreeLance)': ['Vite', 'React', 'JavaScript', 'Web Development', 'GSAP', 'Swiper.js'],
-    'PawPal (GeeseHacks Hackathon)': ['AI/ML', 'Computer Vision', 'Mobile Development', 'Machine Learning', 'TensorFlow', 'OpenCV'],
-    'MineGuard (Hack the Valley Hackathon)': ['AI/ML', 'Computer Vision', 'Mobile Development', 'Safety Systems', 'Python', 'TensorFlow'],
-    'Rhythm (Hack the Hill, Ottawa)': ['Wav2Vec2', 'OpenAI API', 'librosa', 'SciPy', 'React.js', 'Particle.js', 'Machine Learning'],
-    'Rocket Landing AI Project': ['Google Colab', 'Python', 'Gymnasium', 'Deep Q Learning', 'Reinforcement Learning', 'PyTorch'],
-    'Kung Fu Master AI Project': ['Google Colab', 'Python', 'Gymnasium', 'A3C', 'Reinforcement Learning', 'PyTorch'],
-    'JADO AI': ['Python', 'Docker', 'NLP', 'Machine Learning', 'AI', 'Containerization', 'FastAPI'],
-    'Doctor AI Project': ['Llama2', 'Hugging Face', 'NLP', 'Medical AI', 'Fine-tuning', 'Data Augmentation'],
-    'Redux Bank Project': ['React', 'Redux', 'Redux Toolkit', 'JavaScript', 'State Management', 'RTK Query'],
-    'Demo Website for an imaginary Pizza company': ['React', 'Redux Toolkit', 'Tailwind CSS', 'API Integration', 'Custom Hooks', 'Web Development'],
-    'Velocity - Grand River Hospital Innovation Challenge': ['React', 'Data Visualization', 'Mobile Web', 'Healthcare Tech', 'Chart.js', 'Responsive Design'],
-    'G12': ['Vite', 'React', 'Firebase', 'Web Development', 'Framer Motion', 'Chart.js'],
-    'G12 Mobile App': ['Flutter', 'Dart', 'Firebase', 'Mobile Development', 'Provider', 'Google Maps'],
-    'CSGPTPRO Hackathon Project': ['Arctic Hosting', 'Streamlit', 'CUDA', 'AI/ML', 'Python', 'Academic AI'],
-    'The Wild Oasis Project (Server)': ['React Query', 'Styled Components', 'Supabase', 'Authentication', 'Dark Mode', 'Recharts'],
-    'WATisZine Website': ['HTML', 'CSS', 'JavaScript', 'Firebase', 'cPanel', 'Web Development'],
-    'Hestia | Your Next Home': ['HTML', 'CSS', 'Django', 'Python', 'Azure Cloud', 'Web Development'],
-    'VBOman Admin Panel (FreeLance)': ['React.js', 'Firebase', 'JavaScript', 'Admin Panel', 'Restaurant Management', 'Material-UI'],
+  // Utility: derive tech array from ProjectsData entry
+  const getTechArray = (proj) => {
+    if (!proj) return [];
+    if (Array.isArray(proj.techStack)) return proj.techStack;
+    if (typeof proj.tech === 'string') {
+      return proj.tech
+        .split(',')
+        .map((t) => t.trim())
+        .filter(Boolean);
+    }
+    return [];
   };
 
   // Enhanced filtering with search functionality
   const filteredProjects = top10Projects.filter((proj) => {
     const matchesFilter = filter === 'All' || proj.category === filter;
-    const matchesSearch = searchTerm === '' || 
-      techStacks[proj.title]?.some(tech => 
-        tech.toLowerCase().includes(searchTerm.toLowerCase())
-      ) || 
+    const techs = getTechArray(proj).map((t) => t.toLowerCase());
+    const matchesSearch =
+      searchTerm === '' ||
+      techs.some((t) => t.includes(searchTerm.toLowerCase())) ||
       proj.title.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesFilter && matchesSearch;
   });
@@ -406,7 +389,7 @@ const TradProj = () => {
                     marginTop: 'var(--space-xs)',
                   }}
                 >
-                  {(techStacks[proj.title] || ['Various Technologies']).map((tech, techIdx) => (
+                  {(getTechArray(proj).length ? getTechArray(proj) : ['Various Technologies']).map((tech, techIdx) => (
                     <span
                       key={techIdx}
                       style={{
@@ -568,7 +551,7 @@ const TradProj = () => {
                     gap: 'var(--space-sm)',
                   }}
                 >
-                  {(techStacks[selected.title] || ['Various Technologies']).map((tech, techIdx) => (
+                  {(getTechArray(selected).length ? getTechArray(selected) : ['Various Technologies']).map((tech, techIdx) => (
                     <span
                       key={techIdx}
                       style={{

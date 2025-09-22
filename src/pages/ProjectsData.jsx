@@ -34,6 +34,7 @@ const projectsData = [
     description: 'A next-gen AI DJ system where each song gets mixed and mashed by an AI',
     tech: 'PyTorch, TensorFlow, Python, FastAPI, Three.js, WebGL, JavaScript, Web3, Ethereum, Smart Contracts, Reinforcement Learning, Bayesian ML, One-Shot Learning, Neural Networks',
     image: DJAi,
+    link: 'https://d-c1qmyx10z-rhychaws-projects.vercel.app/',
     git: 'https://github.com/RhyChaw/DJAi',
     category: 'AI/ML',
     date: 'September 2025',
