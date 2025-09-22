@@ -342,6 +342,25 @@ const TradProj = () => {
                   }
                 }}
               >
+                {proj.inProgress && (
+                  <span
+                    style={{
+                      position: 'absolute',
+                      top: '8px',
+                      right: '8px',
+                      background: '#FFD700',
+                      color: '#111',
+                      padding: '2px 8px',
+                      borderRadius: '9999px',
+                      fontSize: '0.7rem',
+                      fontWeight: 800,
+                      border: '1px solid rgba(181,143,0,0.8)',
+                      boxShadow: '0 4px 10px rgba(0,0,0,0.2)'
+                    }}
+                  >
+                    In Progress
+                  </span>
+                )}
                 <div
                   style={{
                     display: 'flex',
@@ -451,6 +470,25 @@ const TradProj = () => {
                     display: 'block',
                   }}
                 />
+                {selected.inProgress && (
+                  <span
+                    style={{
+                      position: 'absolute',
+                      top: '10px',
+                      right: '10px',
+                      background: '#FFD700',
+                      color: '#111',
+                      padding: '6px 10px',
+                      borderRadius: '9999px',
+                      fontSize: '12px',
+                      fontWeight: 800,
+                      border: '1px solid rgba(181,143,0,0.8)',
+                      boxShadow: '0 6px 14px rgba(0,0,0,0.25)'
+                    }}
+                  >
+                    In Progress
+                  </span>
+                )}
                 <div
                   style={{
                     position: 'absolute',

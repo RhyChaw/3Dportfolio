@@ -23,11 +23,22 @@ import Spook from '../proj/Spook.png';
 import GlobalEquitySimulator from '../proj/equity.png';
 import Watopoly from '../proj/watopoly.JPG';
 import NeuroClash from '../proj/NeuroClash.png';
+import DJAi from '../proj/DJAi.png';
 
 // Removed color constants as colors are no longer used in project data
 
 const projectsData = [
   // 2025 Projects (Future/Planned)
+  {
+    title: 'DJ AI',
+    description: 'A next-gen AI DJ system where each song gets mixed and mashed by an AI',
+    tech: 'PyTorch, TensorFlow, Python, FastAPI, Three.js, WebGL, JavaScript, Web3, Ethereum, Smart Contracts, Reinforcement Learning, Bayesian ML, One-Shot Learning, Neural Networks',
+    image: DJAi,
+    git: 'https://github.com/RhyChaw/DJAi',
+    category: 'AI/ML',
+    date: 'September 2025',
+    inProgress: true
+  },
   {
     title: 'NeuroClash – Adaptive Meta-AI Combatants',
     description: 'A next-gen self-evolving AI fighter system where each agent dynamically adapts its fighting style during battle based on opponent behavior, using Bayesian meta-learning + reinforcement learning + one-shot adaptation, all integrated into a mini Ethereum-powered game dApp. Features dynamic fight replay, NFT brain ownership, self-evolution mode, and meta-tournament capabilities.',
@@ -35,7 +46,8 @@ const projectsData = [
     image: NeuroClash,
     git: 'https://github.com/RhyChaw/neuroclash',
     category: 'AI/ML',
-    date: 'September 2025'
+    date: 'September 2025',
+    inProgress: true
   },
   {
     title: 'Global Equity Simulator',
@@ -44,7 +56,8 @@ const projectsData = [
     image: GlobalEquitySimulator,
     git: 'https://github.com/RhyChaw/global-equity-simulator',
     category: 'Full Stack',
-    date: 'September 2025'
+    date: 'September 2025',
+    inProgress: true
   },
   {
     title: 'Watopoly - Waterloo Monopoly',
@@ -63,7 +76,8 @@ const projectsData = [
     link: 'https://spooky-nu.vercel.app/',
     git: 'https://github.com/RhyChaw/spooky',
     category: 'Hackathon',
-    date: 'September 2025'
+    date: 'September 2025',
+    inProgress: true
   },
   {
     title: 'SnapSafe (Hack the North 2025)',
@@ -82,7 +96,8 @@ const projectsData = [
     image: Bhasha,
     git: '#',
     category: 'Full Stack',
-    date: 'June 2025'
+    date: 'June 2025',
+    inProgress: true
   },
   {
     title: 'StrumSpace (SpurHacks Hackathon)',
@@ -99,8 +114,9 @@ const projectsData = [
     tech: 'Next.js, React, TypeScript, Web Development',
     image: Bhasha,
     git: 'https://github.com/RhyChaw/bhasha-web',
+    link: 'https://learnwithbhasha.com/',
     category: 'Full Stack',
-    date: 'May 2025'
+    date: 'May 2025',
   },
   {
     title: 'Zafari CC Design (FreeLance)',
@@ -117,6 +133,7 @@ const projectsData = [
     tech: 'Vite, React, JavaScript, Web Development',
     image: MettaStars,
     link: 'https://www.mettastars.com/',
+    git: 'https://github.com/RhyChaw/mettastars',
     category: 'Free Lance',
     date: 'April 2025'
   },
@@ -211,7 +228,6 @@ const projectsData = [
     title: 'Velocity - Grand River Hospital Innovation Challenge',
     description: 'Developed a comprehensive data management system for Grand River Hospital to restructure and organize their data efficiently. Built as a React-based mobile web application for quick demo purposes, providing real-time updates and streamlined data visualization to help hospital staff manage information more effectively.',
     tech: 'React, Data Visualization, Mobile Web, Healthcare Tech',
-    image: G12Proj, // Using G12Proj as placeholder since no specific image was provided
     git: 'https://github.com/RhyChaw/GRHVel',
     category: 'Full Stack',
     date: 'June 2024'

@@ -106,6 +106,7 @@ const Projects = ({ onClose }) => {
                 transition: 'all 0.3s ease',
                 cursor: 'pointer',
                 fontFamily: 'inherit',
+                position: 'relative'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-4px)';
@@ -126,6 +127,23 @@ const Projects = ({ onClose }) => {
                     objectFit: 'contain' 
                   }} />
                 </div>
+                {proj.inProgress && (
+                  <div style={{
+                    position: 'absolute',
+                    top: '10px',
+                    right: '10px',
+                    background: '#FFD700',
+                    color: '#111',
+                    padding: '6px 10px',
+                    borderRadius: '9999px',
+                    fontSize: '12px',
+                    fontWeight: 800,
+                    boxShadow: '0 0 10px rgba(0,0,0,0.4)',
+                    border: '1px solid #b58f00'
+                  }}>
+                    In Progress
+                  </div>
+                )}
                 <div style={{ padding: 'var(--space-md)' }}>
                   <h3 style={{ 
                     margin: '0 0 var(--space-sm) 0', 
