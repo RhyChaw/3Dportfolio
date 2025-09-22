@@ -11,24 +11,26 @@ function Resume({ onClose }) {
       left: '10%',
       width: '80%',
       height: '80%',
-      background: 'var(--bg-card)',
-      padding: 'var(--space-xl)',
-      borderRadius: 'var(--radius-xl)',
-      color: 'var(--text-primary)',
+      backgroundImage: 'url("/images/scroll-texture.jpg")',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      padding: '40px',
+      borderRadius: '20px',
+      color: '#fffbe6',
       zIndex: 1000,
-      fontFamily: 'var(--font-family-primary)',
-      border: '1px solid var(--border-primary)',
-      boxShadow: 'var(--shadow-xl)',
-      backdropFilter: 'blur(8px)',
+      fontFamily: '"Noto Serif JP", "Papyrus", serif',
+      border: '8px double #FFD700',
+      boxShadow: '0 0 40px rgba(0,0,0,0.7)',
+      backdropFilter: 'blur(6px)',
       display: 'flex',
       flexDirection: 'column',
     }}>
       <h2 style={{
-        fontSize: 'var(--text-2xl)',
+        fontSize: '32px',
         textAlign: 'center',
-        color: 'var(--accent-primary)',
-        textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
-        marginBottom: 'var(--space-lg)',
+        color: '#FFD700',
+        textShadow: '2px 2px 4px #000',
+        marginBottom: '20px',
         fontWeight: '700'
       }}>📄 Resume & CV</h2>
 
@@ -50,31 +52,31 @@ function Resume({ onClose }) {
       <div style={{ 
         display: 'flex', 
         justifyContent: 'center', 
-        gap: 'var(--space-lg)',
-        marginTop: 'var(--space-lg)',
+        gap: '20px',
+        marginTop: '20px',
         flexWrap: 'wrap'
       }}>
         <button
           onClick={onClose}
           style={{
-            padding: 'var(--space-sm) var(--space-lg)',
-            background: 'linear-gradient(135deg, var(--accent-secondary), #ff8c42)',
+            padding: '12px 24px',
+            background: '#FF4500',
             border: 'none',
-            borderRadius: 'var(--radius-md)',
-            color: 'var(--text-primary)',
-            fontWeight: '600',
-            fontSize: 'var(--text-sm)',
+            borderRadius: '10px',
+            color: 'white',
+            fontWeight: 'bold',
+            fontSize: '16px',
             cursor: 'pointer',
-            boxShadow: 'var(--shadow-md)',
-            transition: 'all var(--transition-fast)'
+            boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+            transition: 'all 0.2s ease'
           }}
           onMouseEnter={(e) => {
             e.target.style.transform = 'translateY(-2px)';
-            e.target.style.boxShadow = 'var(--shadow-lg)';
+            e.target.style.boxShadow = '0 0 14px rgba(0,0,0,0.6)';
           }}
           onMouseLeave={(e) => {
             e.target.style.transform = 'translateY(0)';
-            e.target.style.boxShadow = 'var(--shadow-md)';
+            e.target.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
           }}
         >
           Close

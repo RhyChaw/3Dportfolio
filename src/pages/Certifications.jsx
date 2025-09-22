@@ -52,22 +52,24 @@ function Certifications({ onClose }) {
       width: '80%',
       height: '80%',
       overflowY: 'auto',
-      background: 'var(--bg-card)',
-      padding: 'var(--space-xl)',
-      borderRadius: 'var(--radius-xl)',
-      color: 'var(--text-primary)',
+      backgroundImage: 'url("/images/scroll-texture.jpg")',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      padding: '40px',
+      borderRadius: '20px',
+      color: '#fffbe6',
       zIndex: 1000,
-      fontFamily: 'var(--font-family-primary)',
-      border: '1px solid var(--border-primary)',
-      boxShadow: 'var(--shadow-xl)',
-      backdropFilter: 'blur(8px)'
+      fontFamily: '"Noto Serif JP", "Papyrus", serif',
+      border: '8px double #FFD700',
+      boxShadow: '0 0 40px rgba(0,0,0,0.7)',
+      backdropFilter: 'blur(6px)'
     }}>
       <h2 style={{
-        fontSize: 'var(--text-2xl)',
+        fontSize: '32px',
         textAlign: 'center',
-        color: 'var(--accent-primary)',
-        textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
-        marginBottom: 'var(--space-xl)',
+        color: '#FFD700',
+        textShadow: '2px 2px 4px #000',
+        marginBottom: '24px',
         fontWeight: '700'
       }}>🏆 Certifications & Achievements</h2>
 
@@ -82,22 +84,22 @@ function Certifications({ onClose }) {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            background: 'var(--bg-secondary)',
+            background: 'rgba(0,0,0,0.35)',
             padding: 'var(--space-lg)',
-            borderRadius: 'var(--radius-lg)',
-            border: '1px solid var(--border-primary)',
-            boxShadow: 'var(--shadow-md)',
-            transition: 'all var(--transition-normal)'
+            borderRadius: '14px',
+            border: '1px solid #FFD700',
+            boxShadow: '0 0 12px rgba(0,0,0,0.6)',
+            transition: 'all 0.3s ease'
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = 'translateY(-4px)';
-            e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
-            e.currentTarget.style.borderColor = 'var(--border-accent)';
+            e.currentTarget.style.boxShadow = '0 0 18px rgba(0,0,0,0.7)';
+            e.currentTarget.style.borderColor = '#FF4500';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = 'var(--shadow-md)';
-            e.currentTarget.style.borderColor = 'var(--border-primary)';
+            e.currentTarget.style.boxShadow = '0 0 12px rgba(0,0,0,0.6)';
+            e.currentTarget.style.borderColor = '#FFD700';
           }}>
             <img
               src={cert.image}
@@ -115,32 +117,35 @@ function Certifications({ onClose }) {
             <div style={{ textAlign: 'center' }}>
               <h3 style={{
                 fontSize: 'var(--text-lg)',
-                fontWeight: '600',
-                color: 'var(--text-primary)',
+                fontWeight: '700',
+                color: '#fffbe6',
                 marginBottom: 'var(--space-sm)',
-                textAlign: 'center'
+                textAlign: 'center',
+                textShadow: '1px 1px 2px #000'
               }}>
                 {cert.courseName}
               </h3>
               <p style={{ 
                 fontSize: 'var(--text-sm)', 
-                color: 'var(--text-secondary)', 
+                color: '#fffbe6', 
                 margin: 0,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: 'var(--space-xs)'
+                gap: 'var(--space-xs)',
+                textShadow: '1px 1px 2px #000'
               }}>
                 📅 <strong>{cert.completionDate}</strong>
               </p>
               <p style={{ 
                 fontSize: 'var(--text-sm)', 
-                color: 'var(--text-secondary)', 
+                color: '#fffbe6', 
                 margin: 'var(--space-xs) 0',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: 'var(--space-xs)'
+                gap: 'var(--space-xs)',
+                textShadow: '1px 1px 2px #000'
               }}>
                 🏛 {cert.issuingOrganization}
               </p>
@@ -152,26 +157,26 @@ function Certifications({ onClose }) {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: 'var(--space-xs)',
-                  color: 'var(--accent-primary)',
+                  color: '#FFD700',
                   fontSize: 'var(--text-sm)',
                   textDecoration: 'none',
-                  fontWeight: '500',
-                  padding: 'var(--space-xs) var(--space-sm)',
-                  background: 'var(--bg-card)',
-                  borderRadius: 'var(--radius-sm)',
-                  border: '1px solid var(--border-primary)',
-                  transition: 'all var(--transition-fast)',
+                  fontWeight: '700',
+                  padding: '6px 10px',
+                  background: 'rgba(0,0,0,0.35)',
+                  borderRadius: '10px',
+                  border: '1px solid #FFD700',
+                  transition: 'all 0.2s ease',
                   marginTop: 'var(--space-sm)'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.background = 'var(--accent-primary)';
-                  e.target.style.color = 'var(--text-primary)';
-                  e.target.style.borderColor = 'var(--accent-primary)';
+                  e.target.style.background = '#FF4500';
+                  e.target.style.color = '#fff';
+                  e.target.style.borderColor = '#FF4500';
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.background = 'var(--bg-card)';
-                  e.target.style.color = 'var(--accent-primary)';
-                  e.target.style.borderColor = 'var(--border-primary)';
+                  e.target.style.background = 'rgba(0,0,0,0.35)';
+                  e.target.style.color = '#FFD700';
+                  e.target.style.borderColor = '#FFD700';
                 }}
               >
                 View Certificate →
@@ -184,28 +189,28 @@ function Certifications({ onClose }) {
       <button
         onClick={onClose}
         style={{
-          marginTop: 'var(--space-xl)',
-          padding: 'var(--space-sm) var(--space-lg)',
-          background: 'linear-gradient(135deg, var(--accent-secondary), #ff8c42)',
+          marginTop: '30px',
+          padding: '12px 24px',
+          background: '#FF4500',
           border: 'none',
-          borderRadius: 'var(--radius-md)',
-          color: 'var(--text-primary)',
-          fontWeight: '600',
-          fontSize: 'var(--text-sm)',
+          borderRadius: '10px',
+          color: 'white',
+          fontWeight: 'bold',
+          fontSize: '16px',
           cursor: 'pointer',
           display: 'block',
           marginLeft: 'auto',
           marginRight: 'auto',
-          boxShadow: 'var(--shadow-md)',
-          transition: 'all var(--transition-fast)'
+          boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+          transition: 'all 0.2s ease'
         }}
         onMouseEnter={(e) => {
           e.target.style.transform = 'translateY(-2px)';
-          e.target.style.boxShadow = 'var(--shadow-lg)';
+          e.target.style.boxShadow = '0 0 14px rgba(0,0,0,0.6)';
         }}
         onMouseLeave={(e) => {
           e.target.style.transform = 'translateY(0)';
-          e.target.style.boxShadow = 'var(--shadow-md)';
+          e.target.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
         }}
       >
         Close

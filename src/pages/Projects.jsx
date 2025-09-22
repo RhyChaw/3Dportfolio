@@ -14,65 +14,67 @@ const Projects = ({ onClose }) => {
       style={{
         position: 'absolute',
         top: '10%',
-        left: '20%',
-        width: '60%',
+        left: '15%',
+        width: '70%',
         height: '80%',
-        background: 'var(--bg-card)',
-        borderRadius: 'var(--radius-xl)',
-        padding: 'var(--space-xl)',
+        backgroundImage: 'url("/images/scroll-texture.jpg")',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        borderRadius: '20px',
+        padding: '40px',
         overflowY: 'auto',
         zIndex: 1000,
-        fontFamily: 'var(--font-family-primary)',
-        boxShadow: 'var(--shadow-xl)',
-        border: '1px solid var(--border-primary)',
-        backdropFilter: 'blur(8px)',
-        color: 'var(--text-primary)',
+        fontFamily: '"Noto Serif JP", "Papyrus", serif',
+        boxShadow: '0 0 40px rgba(0,0,0,0.7)',
+        border: '8px double #FFD700',
+        backdropFilter: 'blur(6px)',
+        color: '#fffbe6',
       }}
     >
       <h2 style={{ 
         textAlign: 'center', 
-        fontSize: 'var(--text-2xl)', 
-        color: 'var(--accent-primary)',
+        fontSize: '32px', 
+        color: '#FFD700',
         fontWeight: '700',
-        marginBottom: 'var(--space-xl)',
-        textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
+        marginBottom: '24px',
+        textShadow: '2px 2px 4px #000'
       }}>📁 Featured Projects</h2>
 
       {/* Filter Buttons */}
       <div style={{ 
         display: 'flex', 
         justifyContent: 'center', 
-        gap: 'var(--space-sm)', 
-        margin: 'var(--space-xl) 0' 
+        gap: '8px', 
+        margin: '24px 0' 
       }}>
         {['All', 'Web Dev', 'AI'].map((cat) => (
           <button
             key={cat}
             onClick={() => setFilter(cat)}
             style={{
-              padding: 'var(--space-sm) var(--space-md)',
+              padding: '8px 14px',
               background: filter === cat 
-                ? 'linear-gradient(135deg, var(--accent-primary), #0099cc)' 
-                : 'var(--bg-secondary)',
-              color: 'var(--text-primary)',
-              border: `1px solid ${filter === cat ? 'var(--accent-primary)' : 'var(--border-primary)'}`,
-              borderRadius: 'var(--radius-md)',
+                ? '#FF4500' 
+                : 'rgba(0,0,0,0.35)',
+              color: '#fffbe6',
+              border: `1px solid ${filter === cat ? '#FF4500' : '#FFD700'}`,
+              borderRadius: '10px',
               cursor: 'pointer',
-              boxShadow: 'var(--shadow-sm)',
-              fontSize: 'var(--text-sm)',
-              fontWeight: '500',
-              transition: 'all var(--transition-fast)'
+              boxShadow: '0 0 10px rgba(0,0,0,0.4)',
+              fontSize: '14px',
+              fontWeight: '700',
+              transition: 'all 0.2s ease'
             }}
             onMouseEnter={(e) => {
               if (filter !== cat) {
-                e.target.style.background = 'var(--bg-tertiary)';
-                e.target.style.borderColor = 'var(--border-secondary)';
+                e.target.style.background = 'rgba(0,0,0,0.45)';
+                e.target.style.borderColor = '#FFD700';
               }
             }}
             onMouseLeave={(e) => {
               if (filter !== cat) {
-                e.target.style.background = 'var(--bg-secondary)';
-                e.target.style.borderColor = 'var(--border-primary)';
+                e.target.style.background = 'rgba(0,0,0,0.35)';
+                e.target.style.borderColor = '#FFD700';
               }
             }}
           >
@@ -96,28 +98,28 @@ const Projects = ({ onClose }) => {
             <div
               key={idx}
               style={{
-                background: 'var(--bg-secondary)',
-                border: '1px solid var(--border-primary)',
-                borderRadius: 'var(--radius-lg)',
+                background: 'rgba(0,0,0,0.35)',
+                border: '1px solid #FFD700',
+                borderRadius: '14px',
                 overflow: 'hidden',
-                boxShadow: 'var(--shadow-md)',
-                transition: 'all var(--transition-normal)',
+                boxShadow: '0 0 12px rgba(0,0,0,0.6)',
+                transition: 'all 0.3s ease',
                 cursor: 'pointer',
                 fontFamily: 'inherit',
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
-                e.currentTarget.style.borderColor = 'var(--border-accent)';
+                e.currentTarget.style.boxShadow = '0 0 18px rgba(0,0,0,0.7)';
+                e.currentTarget.style.borderColor = '#FF4500';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'var(--shadow-md)';
-                e.currentTarget.style.borderColor = 'var(--border-primary)';
+                e.currentTarget.style.boxShadow = '0 0 12px rgba(0,0,0,0.6)';
+                e.currentTarget.style.borderColor = '#FFD700';
               }}
             >
               <a href={proj.link} target="_blank" rel="noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
-                <div style={{ width: '100%', maxHeight: '600px', overflow: 'auto', background: 'var(--bg-card)' }}>
+                <div style={{ width: '100%', maxHeight: '600px', overflow: 'auto', background: 'rgba(0,0,0,0.35)' }}>
                   <img src={proj.image} alt={proj.title} style={{ 
                     width: '100%', 
                     height: 'auto', 
@@ -128,29 +130,32 @@ const Projects = ({ onClose }) => {
                   <h3 style={{ 
                     margin: '0 0 var(--space-sm) 0', 
                     fontSize: 'var(--text-lg)',
-                    color: 'var(--text-primary)',
-                    fontWeight: '600'
+                    color: '#fffbe6',
+                    fontWeight: '700',
+                    textShadow: '1px 1px 2px #000'
                   }}>{proj.title}</h3>
                   <p style={{ 
                     fontSize: 'var(--text-xs)', 
-                    color: 'var(--accent-primary)', 
+                    color: '#FFD700', 
                     marginBottom: 'var(--space-xs)',
-                    fontWeight: '500'
+                    fontWeight: '700'
                   }}>{proj.date}</p>
                   {proj.tech && (
                     <p style={{ 
                       fontSize: 'var(--text-xs)', 
-                      color: 'var(--accent-secondary)', 
+                      color: '#FF4500', 
                       marginBottom: 'var(--space-xs)',
-                      fontWeight: '500',
-                      fontStyle: 'italic'
+                      fontWeight: '700',
+                      fontStyle: 'italic',
+                      textShadow: '1px 1px 2px #000'
                     }}>{proj.tech}</p>
                   )}
                   <p style={{ 
                     fontSize: isShort ? 'var(--text-base)' : 'var(--text-sm)', 
-                    color: 'var(--text-secondary)',
+                    color: '#fffbe6',
                     lineHeight: isShort ? '1.6' : '1.5',
-                    fontWeight: isShort ? 600 : 400
+                    fontWeight: isShort ? 600 : 400,
+                    textShadow: '1px 1px 2px #000'
                   }}>{proj.description}</p>
                 </div>
               </a>
@@ -163,28 +168,28 @@ const Projects = ({ onClose }) => {
       <button
         onClick={onClose}
         style={{
-          marginTop: 'var(--space-xl)',
-          padding: 'var(--space-sm) var(--space-lg)',
-          background: 'linear-gradient(135deg, var(--accent-secondary), #ff8c42)',
-          color: 'var(--text-primary)',
+          marginTop: '30px',
+          padding: '12px 24px',
+          background: '#FF4500',
+          color: 'white',
           border: 'none',
-          borderRadius: 'var(--radius-md)',
+          borderRadius: '10px',
           cursor: 'pointer',
           display: 'block',
           marginLeft: 'auto',
           marginRight: 'auto',
-          fontWeight: '600',
-          fontSize: 'var(--text-sm)',
-          boxShadow: 'var(--shadow-md)',
-          transition: 'all var(--transition-fast)'
+          fontWeight: 'bold',
+          fontSize: '16px',
+          boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+          transition: 'all 0.2s ease'
         }}
         onMouseEnter={(e) => {
           e.target.style.transform = 'translateY(-2px)';
-          e.target.style.boxShadow = 'var(--shadow-lg)';
+          e.target.style.boxShadow = '0 0 14px rgba(0,0,0,0.6)';
         }}
         onMouseLeave={(e) => {
           e.target.style.transform = 'translateY(0)';
-          e.target.style.boxShadow = 'var(--shadow-md)';
+          e.target.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
         }}
       >
         Close

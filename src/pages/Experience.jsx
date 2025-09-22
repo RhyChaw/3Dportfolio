@@ -83,26 +83,28 @@ const containerStyle = {
   left: '50%',
   transform: 'translateX(-50%)',
   width: '90%',
-  maxWidth: '800px',
+  maxWidth: '900px',
   maxHeight: '70%',
-  background: 'var(--bg-card)',
-  padding: 'var(--space-2xl)',
-  borderRadius: 'var(--radius-xl)',
-  color: 'var(--text-primary)',
+  backgroundImage: 'url("/images/scroll-texture.jpg")',
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+  padding: '40px',
+  borderRadius: '20px',
+  color: '#fffbe6',
   zIndex: 1000,
-  fontFamily: 'var(--font-family-primary)',
-  border: '1px solid var(--border-primary)',
-  boxShadow: 'var(--shadow-xl)',
-  backdropFilter: 'blur(8px)',
+  fontFamily: '"Noto Serif JP", "Papyrus", serif',
+  border: '8px double #FFD700',
+  boxShadow: '0 0 40px rgba(0,0,0,0.7)',
+  backdropFilter: 'blur(6px)',
   overflowY: 'auto'
 };
 
 const titleStyle = {
-  fontSize: 'var(--text-2xl)',
+  fontSize: '32px',
   textAlign: 'center',
-  color: 'var(--accent-primary)',
-  textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
-  marginBottom: 'var(--space-xl)',
+  color: '#FFD700',
+  textShadow: '2px 2px 4px #000',
+  marginBottom: '24px',
   fontWeight: '700'
 };
 
@@ -127,68 +129,70 @@ const itemStyle = {
   marginLeft: 'var(--space-xl)',
   position: 'relative',
   paddingBottom: 'var(--space-sm)',
-  background: 'var(--bg-secondary)',
+  background: 'rgba(0,0,0,0.35)',
   padding: 'var(--space-lg)',
-  borderRadius: 'var(--radius-lg)',
-  border: '1px solid var(--border-primary)',
-  boxShadow: 'var(--shadow-sm)',
-  transition: 'all var(--transition-normal)'
+  borderRadius: '14px',
+  border: '1px solid #FFD700',
+  boxShadow: '0 0 12px rgba(0,0,0,0.6)',
+  transition: 'all 0.3s ease'
 };
 
 const dotStyle = {
   width: '16px',
   height: '16px',
   borderRadius: '50%',
-  background: 'linear-gradient(135deg, var(--accent-secondary), #ff8c42)',
+  background: '#FF4500',
   position: 'absolute',
   left: '-var(--space-2xl)',
   top: 'var(--space-lg)',
-  boxShadow: '0 0 12px var(--accent-secondary)',
+  boxShadow: '0 0 12px #FF4500',
   zIndex: 2
 };
 
 const companyStyle = {
   margin: 0,
   fontSize: 'var(--text-lg)',
-  color: 'var(--text-primary)',
-  fontWeight: '600',
-  marginBottom: 'var(--space-sm)'
+  color: '#fffbe6',
+  fontWeight: '700',
+  marginBottom: 'var(--space-sm)',
+  textShadow: '1px 1px 2px #000'
 };
 
 const descStyle = {
   margin: 'var(--space-sm) 0',
   fontSize: 'var(--text-sm)',
-  color: 'var(--text-secondary)',
+  color: '#fffbe6',
   lineHeight: '1.6em',
-  whiteSpace: 'pre-line'
+  whiteSpace: 'pre-line',
+  textShadow: '1px 1px 2px #000'
 };
 
 const yearStyle = {
   fontSize: 'var(--text-xs)',
-  color: 'var(--accent-primary)',
-  fontWeight: '500',
-  background: 'var(--bg-card)',
+  color: '#FFD700',
+  fontWeight: '700',
+  background: 'rgba(0,0,0,0.35)',
   padding: 'var(--space-xs) var(--space-sm)',
   borderRadius: 'var(--radius-full)',
-  border: '1px solid var(--border-primary)',
+  border: '1px solid #FFD700',
   display: 'inline-block'
 };
 
 const buttonStyle = {
-  marginTop: 'var(--space-xl)',
-  padding: 'var(--space-sm) var(--space-lg)',
-  background: 'linear-gradient(135deg, var(--accent-secondary), #ff8c42)',
+  marginTop: '30px',
+  padding: '12px 24px',
+  background: '#FF4500',
   border: 'none',
-  borderRadius: 'var(--radius-md)',
-  color: 'var(--text-primary)',
-  fontWeight: '600',
-  fontSize: 'var(--text-sm)',
+  borderRadius: '10px',
+  color: 'white',
+  fontWeight: 'bold',
+  fontSize: '16px',
   cursor: 'pointer',
-  boxShadow: 'var(--shadow-md)',
+  boxShadow: '0 0 10px rgba(0,0,0,0.5)',
   display: 'block',
   marginLeft: 'auto',
   marginRight: 'auto',
-  transition: 'all var(--transition-fast)'
+  transition: 'all 0.2s ease'
 };
 
 export default Experience;

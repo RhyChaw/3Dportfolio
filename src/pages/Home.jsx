@@ -25,6 +25,13 @@ const Home = () => {
   const [targetPos, setTargetPos] = useState(null);
   const controlsRef = useRef();
   const [isPointerLocked, setIsPointerLocked] = useState(false);
+  const wasNearComputer = useRef(false);
+  const wasNearResume = useRef(false);
+  const wasNearCertifications = useRef(false);
+  const wasNearProjects = useRef(false);
+  const wasNearContact = useRef(false);
+  const wasNearExperience = useRef(false);
+  const wasNearGallery = useRef(false);
 
 
   const [popupVisible, setPopupVisible] = useState(false);
@@ -43,6 +50,83 @@ const Home = () => {
   };
 
   useEffect(() => {}, []);
+
+  // Proximity detection for opening/closing popups based on Naruto's position
+  useEffect(() => {
+    const distance = (a, b) => {
+      const dx = a.x - b.x;
+      const dy = a.y - b.y;
+      const dz = a.z - b.z;
+      return Math.sqrt(dx * dx + dy * dy + dz * dz);
+    };
+
+    const threshold = 2.5;
+
+    const sections = [
+      {
+        key: 'computer',
+        target: { x: 10.25, y: 0.4, z: -5.63 },
+        wasNear: wasNearComputer,
+        onNear: () => setPopupVisible(true),
+        onFar: () => setPopupVisible(false),
+      },
+      {
+        key: 'resume',
+        target: { x: -0.03, y: 0.4, z: -9.67 },
+        wasNear: wasNearResume,
+        onNear: () => setResumeVisible(true),
+        onFar: () => setResumeVisible(false),
+      },
+      {
+        key: 'certifications',
+        target: { x: 10.67, y: 0.4, z: 3.39 },
+        wasNear: wasNearCertifications,
+        onNear: () => setCertificationsVisible(true),
+        onFar: () => setCertificationsVisible(false),
+      },
+      {
+        key: 'projects',
+        target: { x: -6.06, y: 0.4, z: 1.64 },
+        wasNear: wasNearProjects,
+        onNear: () => setProjectsVisible(true),
+        onFar: () => setProjectsVisible(false),
+      },
+      {
+        key: 'contact',
+        target: { x: -2.54, y: 0.4, z: 9.51 },
+        wasNear: wasNearContact,
+        onNear: () => setContactVisible(true),
+        onFar: () => setContactVisible(false),
+      },
+      {
+        key: 'experience',
+        target: { x: 6.31, y: 0.4, z: -8.4 },
+        wasNear: wasNearExperience,
+        onNear: () => setExperienceVisible(true),
+        onFar: () => setExperienceVisible(false),
+      },
+      {
+        key: 'gallery',
+        target: { x: 5.33, y: 0.4, z: 9.1 },
+        wasNear: wasNearGallery,
+        onNear: () => setGalleryVisible(true),
+        onFar: () => setGalleryVisible(false),
+      },
+    ];
+
+    sections.forEach(({ target, wasNear, onNear, onFar }) => {
+      const d = distance(coords, target);
+      if (d < threshold) {
+        if (!wasNear.current) {
+          wasNear.current = true;
+          onNear();
+        }
+      } else if (wasNear.current) {
+        wasNear.current = false;
+        onFar();
+      }
+    });
+  }, [coords]);
 
 
   // Movement handled by FirstPersonController

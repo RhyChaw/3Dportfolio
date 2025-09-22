@@ -31,7 +31,7 @@ function Links({ onClose }) {
       </ul>
 
       <button onClick={onClose} style={closeStyle}>
-        Close Terminal
+        Close Scroll
       </button>
     </div>
   );
@@ -43,68 +43,74 @@ const containerStyle = {
   left: '50%',
   transform: 'translateX(-50%)',
   width: '90%',
-  maxWidth: '500px',
-  background: 'var(--bg-card)',
-  padding: 'var(--space-2xl)',
-  borderRadius: 'var(--radius-xl)',
-  color: 'var(--text-primary)',
+  maxWidth: '600px',
+  backgroundImage: 'url("/images/scroll-texture.jpg")',
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+  padding: '40px',
+  borderRadius: '20px',
+  color: '#fffbe6',
   zIndex: 1000,
-  fontFamily: 'var(--font-family-primary)',
-  border: '1px solid var(--border-primary)',
-  boxShadow: 'var(--shadow-xl)',
-  backdropFilter: 'blur(8px)',
+  fontFamily: '"Noto Serif JP", "Papyrus", serif',
+  border: '8px double #FFD700',
+  boxShadow: '0 0 40px rgba(0,0,0,0.7)',
+  backdropFilter: 'blur(6px)',
   textAlign: 'center'
 };
 
 const titleStyle = {
-  fontSize: 'var(--text-2xl)',
-  marginBottom: 'var(--space-lg)',
-  color: 'var(--accent-primary)',
-  textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
+  fontSize: '32px',
+  marginBottom: '20px',
+  color: '#FFD700',
+  textShadow: '2px 2px 4px #000',
   fontWeight: '700'
 };
 
 const descStyle = {
-  fontSize: 'var(--text-sm)',
-  marginBottom: 'var(--space-xl)',
-  color: 'var(--text-secondary)',
-  lineHeight: '1.6'
+  fontSize: '18px',
+  marginBottom: '24px',
+  color: '#fffbe6',
+  lineHeight: '1.6',
+  textShadow: '1px 1px 2px #000'
 };
 
 const listStyle = {
   listStyle: 'none',
   padding: 0,
   margin: 0,
-  fontSize: 'var(--text-sm)',
+  fontSize: '16px',
   lineHeight: '1.8em',
-  color: 'var(--text-primary)'
+  color: '#fffbe6',
+  textShadow: '1px 1px 2px #000'
 };
 
 const linkStyle = {
-  color: 'var(--accent-primary)',
+  color: '#FFD700',
   textDecoration: 'none',
-  fontWeight: '500',
-  padding: 'var(--space-xs) var(--space-sm)',
-  borderRadius: 'var(--radius-sm)',
-  background: 'var(--bg-secondary)',
-  border: '1px solid var(--border-primary)',
-  transition: 'all var(--transition-fast)',
+  fontWeight: '700',
+  padding: '6px 10px',
+  borderRadius: '10px',
+  background: 'rgba(0,0,0,0.35)',
+  border: '1px solid #FFD700',
+  transition: 'all 0.2s ease',
   display: 'inline-block',
-  margin: 'var(--space-xs)'
+  margin: '6px'
 };
 
 const closeStyle = {
-  marginTop: 'var(--space-xl)',
-  padding: 'var(--space-sm) var(--space-lg)',
-  background: 'linear-gradient(135deg, var(--accent-secondary), #ff8c42)',
+  marginTop: '30px',
+  padding: '12px 24px',
+  background: '#FF4500',
   border: 'none',
-  borderRadius: 'var(--radius-md)',
-  color: 'var(--text-primary)',
-  fontWeight: '600',
-  fontSize: 'var(--text-sm)',
+  borderRadius: '10px',
+  color: 'white',
+  fontWeight: 'bold',
+  fontSize: '16px',
   cursor: 'pointer',
-  boxShadow: 'var(--shadow-md)',
-  transition: 'all var(--transition-fast)'
+  boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+  display: 'block',
+  marginLeft: 'auto',
+  marginRight: 'auto'
 };
 
 export default Links;

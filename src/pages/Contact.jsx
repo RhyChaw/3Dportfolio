@@ -73,35 +73,38 @@ const containerStyle = {
   left: '50%',
   transform: 'translateX(-50%)',
   width: '90%',
-  maxWidth: '600px',
-  background: 'var(--bg-card)',
-  padding: 'var(--space-2xl)',
-  borderRadius: 'var(--radius-xl)',
-  color: 'var(--text-primary)',
+  maxWidth: '700px',
+  backgroundImage: 'url("/images/scroll-texture.jpg")',
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+  padding: '40px',
+  borderRadius: '20px',
+  color: '#fffbe6',
   zIndex: 1000,
-  fontFamily: 'var(--font-family-primary)',
-  border: '1px solid var(--border-primary)',
-  boxShadow: 'var(--shadow-xl)',
-  backdropFilter: 'blur(8px)',
+  fontFamily: '"Noto Serif JP", "Papyrus", serif',
+  border: '8px double #FFD700',
+  boxShadow: '0 0 40px rgba(0,0,0,0.7)',
+  backdropFilter: 'blur(6px)',
   overflowY: 'auto',
   textAlign: 'center'
 };
 
 const titleStyle = {
-  fontSize: 'var(--text-2xl)',
-  color: 'var(--accent-primary)',
-  textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
-  marginBottom: 'var(--space-lg)',
+  fontSize: '32px',
+  color: '#FFD700',
+  textShadow: '2px 2px 4px #000',
+  marginBottom: '20px',
   fontWeight: '700'
 };
 
 const descStyle = {
-  fontSize: 'var(--text-sm)',
-  marginBottom: 'var(--space-xl)',
+  fontSize: '18px',
+  marginBottom: '24px',
   lineHeight: '1.6',
-  maxWidth: '500px',
-  margin: '0 auto var(--space-xl)',
-  color: 'var(--text-secondary)'
+  maxWidth: '580px',
+  margin: '0 auto 24px',
+  color: '#fffbe6',
+  textShadow: '1px 1px 2px #000'
 };
 
 const formStyle = {
@@ -113,43 +116,43 @@ const formStyle = {
 };
 
 const inputStyle = {
-  padding: 'var(--space-sm) var(--space-md)',
-  borderRadius: 'var(--radius-md)',
-  border: '1px solid var(--border-primary)',
-  fontSize: 'var(--text-sm)',
-  fontFamily: 'var(--font-family-primary)',
-  background: 'var(--bg-secondary)',
-  color: 'var(--text-primary)',
-  boxShadow: 'var(--shadow-sm)',
+  padding: '12px 14px',
+  borderRadius: '10px',
+  border: '1px solid #FFD700',
+  fontSize: '14px',
+  fontFamily: 'inherit',
+  background: 'rgba(0,0,0,0.35)',
+  color: '#fffbe6',
+  boxShadow: '0 0 8px rgba(0,0,0,0.4)',
   outline: 'none',
-  transition: 'all var(--transition-fast)'
+  transition: 'all 0.2s ease'
 };
 
 const submitStyle = {
-  padding: 'var(--space-sm) var(--space-lg)',
-  background: 'linear-gradient(135deg, var(--accent-primary), #0099cc)',
+  padding: '12px 24px',
+  background: '#FF4500',
   border: 'none',
-  borderRadius: 'var(--radius-md)',
-  color: 'var(--text-primary)',
-  fontWeight: '600',
-  fontSize: 'var(--text-sm)',
+  borderRadius: '10px',
+  color: 'white',
+  fontWeight: 'bold',
+  fontSize: '16px',
   cursor: 'pointer',
-  boxShadow: 'var(--shadow-md)',
-  transition: 'all var(--transition-fast)'
+  boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+  transition: 'all 0.2s ease'
 };
 
 const closeStyle = {
-  marginTop: 'var(--space-xl)',
-  padding: 'var(--space-sm) var(--space-lg)',
-  background: 'linear-gradient(135deg, var(--accent-secondary), #ff8c42)',
+  marginTop: '30px',
+  padding: '12px 24px',
+  background: '#FF4500',
   border: 'none',
-  borderRadius: 'var(--radius-md)',
-  color: 'var(--text-primary)',
-  fontWeight: '600',
-  fontSize: 'var(--text-sm)',
+  borderRadius: '10px',
+  color: 'white',
+  fontWeight: 'bold',
+  fontSize: '16px',
   cursor: 'pointer',
-  boxShadow: 'var(--shadow-md)',
-  transition: 'all var(--transition-fast)'
+  boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+  transition: 'all 0.2s ease'
 };
 
 export default Contact;
