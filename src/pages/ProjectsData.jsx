@@ -26,6 +26,10 @@ import ClashRoyaleAnalytics from '../proj/ClashRoyale.png';
 import DJAi from '../proj/DJAi.png';
 import Equity from '../proj/Equityy.png';
 import Swarm from '../proj/Swarm.jpg';
+import VelocityGRH from '../proj/VelocityGRH.png';
+import OneAddress from '../proj/OneAddress.png';
+import Poker from '../proj/poker.png';
+import SportSpark from '../proj/SportSpark.png';
 
 // Removed color constants as colors are no longer used in project data
 
@@ -41,11 +45,28 @@ const projectsData = [
     date: 'October 2025'
   },
   {
+    title: 'SportSpark',
+    description: 'A smart web platform that makes anyone confident enough to talk about any sport in 5 minutes. Features instant sport mastery, trends, newsletters, interactive learning across levels, rich sport overview pages (rules, vocab, competitions, players/teams, storylines, culture), responsive UI, dark mode, and fast performance.',
+    tech: 'Next.js 14, React, TypeScript, Tailwind CSS, Headless UI, Lucide, Vercel',
+    git: 'https://github.com/RhyChaw/ByteS',
+    category: 'Full Stack',
+    image: SportSpark,
+    date: 'October 2025'
+  },
+  {
     title: 'SWARM 2025 — Predator–Prey Swarm Robotics',
     description: 'Built 10 full robots from the ground up at SWARM 2025 in Kitchener (100+ students, 500+ robots). From hands-on soldering to programming with Docker and ROS, we engineered emergent predator–prey behaviors inspired by nature. Grateful to GRAM, UW Robotics, sponsors, and mentors. Team: Aarjav Patni, Abhinav Jha, Arush Handa, Vedant Malhotra, Madhav Malik, Navkaran Handa.',
     tech: 'Robotics, ROS, Docker, Embedded Systems, Swarm Intelligence, Multi-Agent Systems, Hardware',
     image: Swarm,
     category: 'Robotics / Hackathon',
+    date: 'October 2025'
+  },
+  {
+    title: "Texas Hold'em Poker – Enhanced Professional Version",
+    description: 'Professional-grade C++ Texas Hold\'em with SFML 3.0 graphics, modular architecture, and a full main menu + settings system. Features 2–6 players, customizable blinds/stacks, responsive UI, real-time stats, and AI with Monte Carlo simulation for decision-making. Clean C++17 codebase with RAII and robust error handling.',
+    tech: 'C++17, SFML 3.0, CMake, Modular Architecture, Monte Carlo AI',
+    image: Poker,
+    category: 'C++ / Game Dev',
     date: 'October 2025'
   },
   {
@@ -67,6 +88,15 @@ const projectsData = [
     category: 'AI/ML',
     date: 'September 2025',
     inProgress: true
+  },
+  {
+    title: 'OneAddress – Chrome Extension',
+    description: 'A powerful Chrome extension to manage and autofill multiple addresses (home, work, temporary) across the web with one click. Beautiful Skype‑blue UI, fast, secure, and fully local (no servers, no tracking). Includes dev build tooling and a Next.js web companion. Features: one‑click form filling, context‑menu fill, responsive popup, and local storage management.',
+    tech: 'Chrome Extensions, Manifest V3, JavaScript, React/Next.js, Content Scripts, Service Workers, Chrome Storage',
+    image: OneAddress,
+    git: 'https://github.com/RhyChaw/oneAddress',
+    category: 'Product / Extension',
+    date: 'September 2025'
   },
   {
     title: 'NeuroClash – Adaptive Meta-AI Combatants',
@@ -95,6 +125,14 @@ const projectsData = [
     image: Watopoly,
     git: 'https://github.com/RhyChaw/watopoly',
     category: 'Game Development',
+    date: 'March 2025'
+  },
+  {
+    title: 'Velocity Health Innovation – Monorepo',
+    description: 'Monorepo with a React web app (src/, public/), an Expo React Native mobile app (mobile/velocity-health-app), and a FastAPI backend (backend/MedSync) using LangChain agents with OpenAI (LLM + Whisper), Pinecone vector store, and ElevenLabs TTS. Provides patient education, events, consent, feedback, and profile flows plus a hospital dashboard. Backend supports AI Q&A, PDF ingestion, and voice responses for multilingual support.',
+    tech: 'React, React Native (Expo), FastAPI, LangChain, OpenAI, Whisper, Pinecone, ElevenLabs, Supabase',
+    image: VelocityGRH,
+    category: 'Full Stack / AI',
     date: 'March 2025'
   },
   {
