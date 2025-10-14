@@ -25,7 +25,7 @@ import NeuroClash from '../proj/NeuroClash.png';
 import ClashRoyaleAnalytics from '../proj/ClashRoyale.png';
 import DJAi from '../proj/DJAi.png';
 import Equity from '../proj/Equityy.png';
-import Swarm from '../proj/Swarm.jpg';
+import Swarm from '../proj/swarm.png';
 import VelocityGRH from '../proj/VelocityGRH.png';
 import OneAddress from '../proj/OneAddress.png';
 import Poker from '../proj/poker.png';
