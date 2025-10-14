@@ -20,25 +20,33 @@ import KungFuMaster from '../proj/KungFuMaster.png';
 import PizzaCompany from '../proj/PizzaCompanyREACT.png';
 import SnapSafe from '../proj/SnapSafe.png';
 import Spook from '../proj/Spook.png';
-import GlobalEquitySimulator from '../proj/equity.png';
 import Watopoly from '../proj/watopoly.JPG';
 import NeuroClash from '../proj/NeuroClash.png';
+import ClashRoyaleAnalytics from '../proj/ClashRoyale.png';
 import DJAi from '../proj/DJAi.png';
 import Equity from '../proj/Equityy.png';
+import Swarm from '../proj/Swarm.jpg';
 
 // Removed color constants as colors are no longer used in project data
 
 const projectsData = [
   // 2025 Projects (Future/Planned)
   {
-    title: 'Global Equity Simulator',
-    description: 'A full-stack SaaS app to simulate global employee equity grants with country-specific tax and regulation rules, interactive cap table visualization, and automated compliance reporting.',
-    tech: 'React 18, TypeScript, Vite, Zustand, Recharts, Django 5, DRF, ReportLab, Python, Java 21, Spring Boot 3, Ollama LLM, Docker, Docker Compose, Kubernetes, Helm',
-    image: Equity, // replace with your imported image variable
-    git: 'https://github.com/RhyChaw/global-equity-simulator', // replace with actual repo
-    category: 'Full-Stack SaaS',
-    date: 'September 2025',
-    inProgress: true
+    title: 'Clash Royale Analytics Platform',
+    description: 'Engineered an end-to-end analytics platform for Clash Royale, automating ingestion of 50k+ battle logs via Python, transforming raw data into analytics-ready tables with dbt and PostgreSQL, and delivering live match outcome predictions through ML models (scikit-learn/XGBoost) served by FastAPI and visualized on an interactive Streamlit dashboard with AI-powered insights; implemented rigorous data quality checks, CI/CD, and containerization for production deployment.',
+    tech: 'Python, PostgreSQL, dbt, FastAPI, Streamlit, scikit-learn, XGBoost, Docker, CI/CD, Data Engineering, Machine Learning, Analytics',
+    image: ClashRoyaleAnalytics,
+    git: 'https://github.com/RhyChaw/clash-royale-analytics',
+    category: 'Data Engineering',
+    date: 'October 2025'
+  },
+  {
+    title: 'SWARM 2025 — Predator–Prey Swarm Robotics',
+    description: 'Built 10 full robots from the ground up at SWARM 2025 in Kitchener (100+ students, 500+ robots). From hands-on soldering to programming with Docker and ROS, we engineered emergent predator–prey behaviors inspired by nature. Grateful to GRAM, UW Robotics, sponsors, and mentors. Team: Aarjav Patni, Abhinav Jha, Arush Handa, Vedant Malhotra, Madhav Malik, Navkaran Handa.',
+    tech: 'Robotics, ROS, Docker, Embedded Systems, Swarm Intelligence, Multi-Agent Systems, Hardware',
+    image: Swarm,
+    category: 'Robotics / Hackathon',
+    date: 'October 2025'
   },
   {
     title: 'marketSim',
@@ -74,7 +82,7 @@ const projectsData = [
     title: 'Global Equity Simulator',
     description: 'Full-stack SaaS app to simulate global employee equity grants with country-specific tax and regulation rules, interactive cap table visualization, and automated compliance reporting.',
     tech: 'React, TypeScript, Django, DRF, Spring Boot, Java, Docker, Kubernetes, Helm',
-    image: GlobalEquitySimulator,
+    image: Equity,
     git: 'https://github.com/RhyChaw/global-equity-simulator',
     category: 'Full Stack',
     date: 'September 2025',
