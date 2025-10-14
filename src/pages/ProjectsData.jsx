@@ -40,7 +40,7 @@ const projectsData = [
     description: 'Engineered an end-to-end analytics platform for Clash Royale, automating ingestion of 50k+ battle logs via Python, transforming raw data into analytics-ready tables with dbt and PostgreSQL, and delivering live match outcome predictions through ML models (scikit-learn/XGBoost) served by FastAPI and visualized on an interactive Streamlit dashboard with AI-powered insights; implemented rigorous data quality checks, CI/CD, and containerization for production deployment.',
     tech: 'Python, PostgreSQL, dbt, FastAPI, Streamlit, scikit-learn, XGBoost, Docker, CI/CD, Data Engineering, Machine Learning, Analytics',
     image: ClashRoyaleAnalytics,
-    git: 'https://github.com/RhyChaw/clash-royale-analytics',
+    git: 'https://github.com/RhyChaw/clashroyalestats',
     category: 'Data Engineering',
     date: 'October 2025'
   },
@@ -58,6 +58,7 @@ const projectsData = [
     description: 'Built 10 full robots from the ground up at SWARM 2025 in Kitchener (100+ students, 500+ robots). From hands-on soldering to programming with Docker and ROS, we engineered emergent predator–prey behaviors inspired by nature. Grateful to GRAM, UW Robotics, sponsors, and mentors. Team: Aarjav Patni, Abhinav Jha, Arush Handa, Vedant Malhotra, Madhav Malik, Navkaran Handa.',
     tech: 'Robotics, ROS, Docker, Embedded Systems, Swarm Intelligence, Multi-Agent Systems, Hardware',
     image: Swarm,
+    git: 'https://github.com/AarjavPatni/hero-macos-arm64/',
     category: 'Robotics / Hackathon',
     date: 'October 2025'
   },
@@ -66,6 +67,7 @@ const projectsData = [
     description: 'Professional-grade C++ Texas Hold\'em with SFML 3.0 graphics, modular architecture, and a full main menu + settings system. Features 2–6 players, customizable blinds/stacks, responsive UI, real-time stats, and AI with Monte Carlo simulation for decision-making. Clean C++17 codebase with RAII and robust error handling.',
     tech: 'C++17, SFML 3.0, CMake, Modular Architecture, Monte Carlo AI',
     image: Poker,
+    git: 'https://github.com/RhyChaw/poker',
     category: 'C++ / Game Dev',
     date: 'October 2025'
   },
@@ -115,6 +117,15 @@ const projectsData = [
     image: Equity,
     git: 'https://github.com/RhyChaw/global-equity-simulator',
     category: 'Full Stack',
+    date: 'September 2025',
+    inProgress: true
+  },
+  {
+    title: 'PolyScale — Distributed AI-Accelerated Code Search & Refactor',
+    description: 'Monorepo scaffold for a Google-scale code search and refactoring system: Gateway HTTP API (Go), in-memory search daemon (Go), ML service (Python/FastAPI) for embeddings and refactor suggestions, and draft gRPC proto contracts. Runnable locally with Docker Compose or via individual services. Includes Make targets for quick dev workflows and a planned Next.js UI.',
+    tech: 'Go, Python, FastAPI, gRPC, Protobuf, Docker, Docker Compose, FAISS (planned), Next.js (planned)',
+    category: 'Systems / DevTools',
+    git: 'https://github.com/RhyChaw/repofactor',
     date: 'September 2025',
     inProgress: true
   },
@@ -274,24 +285,6 @@ const projectsData = [
     date: 'July 2024'
   },
   {
-    title: 'Redux Bank Project',
-    description: 'REACT Project for Classical Redux and Redux toolkit(RTK), Thunks, and reducer hooks',
-    tech: 'React, Redux, Redux Toolkit, JavaScript, State Management',
-    image: ReduxBank,
-    git: 'https://github.com/RhyChaw/redux-practice',
-    category: 'Full Stack',
-    date: 'July 2024'
-  },
-  {
-    title: 'Demo Website for an imaginary Pizza company',
-    description: 'React app using Redux Toolkit for state, API fetching for dynamic menus, custom hooks, and Tailwind CSS for a modern responsive UI. Built for performance, scalability, and maintainability.',
-    tech: 'React, Redux Toolkit, Tailwind CSS, API Integration, Custom Hooks',
-    image: PizzaCompany,
-    git: 'https://github.com/RhyChaw/pizza-demo',
-    category: 'Full Stack',
-    date: 'July 2024'
-  },
-  {
     title: 'Velocity - Grand River Hospital Innovation Challenge',
     description: 'Developed a comprehensive data management system for Grand River Hospital to restructure and organize their data efficiently. Built as a React-based mobile web application for quick demo purposes, providing real-time updates and streamlined data visualization to help hospital staff manage information more effectively.',
     tech: 'React, Data Visualization, Mobile Web, Healthcare Tech',
@@ -326,15 +319,6 @@ const projectsData = [
     git: 'https://github.com/jadechoghari/CSGPTPRO',
     category: 'Hackathon',
     date: 'March 2024'
-  },
-  {
-    title: 'The Wild Oasis Project (Server)',
-    description: 'Biggest Project using React Query, remote state, Dark mode, authentication, Statistic, styled components, Supabase backend',
-    tech: 'React Query, Styled Components, Supabase, Authentication, Dark Mode',
-    image: WildOasisProject,
-    git: 'https://github.com/RhyChaw/The-wild-oasis-project',
-    category: 'Full Stack',
-    date: 'February 2024'
   },
   
   // 2023 Projects
