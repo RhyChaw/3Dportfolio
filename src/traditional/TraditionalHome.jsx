@@ -9,6 +9,7 @@ import FloatingIcons from '../components/FloatingIcons';
 import styles from './TraditionalHome.module.css';
 import chibiNaruto from './ChibiB.jpg';
 import rhythmPhoto from '../assets/rhythm-photo.jpg';
+import LogosBelt from './LogosBelt';
 
 const TraditionalHome = () => {
   return (
@@ -55,6 +56,11 @@ const TraditionalHome = () => {
           <Experience />
         </section>
         
+        {/* Logos belt (no title) */}
+        <section>
+          <LogosBelt />
+        </section>
+
         <section id="projects">
           <Projects />
         </section>

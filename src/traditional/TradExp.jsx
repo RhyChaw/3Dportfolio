@@ -2,6 +2,17 @@ import React, { useState, useEffect, useRef } from 'react';
 
 const experiences = [
   {
+    title: 'Full Stack Software Engineering Co-op (Upcoming) | Carta - Hire & Retain',
+    detail: `Tech I will use and what for:
+- React + TypeScript: build and iterate on CTC and employee workflow UIs.
+- Python + Django: implement backend APIs/services for hiring planners, offer letters, and pay band workflows.
+- gRPC: define and integrate service-to-service contracts across backend systems.
+- Java + Spring: contribute to backend services where applicable within the platform.
+- Docker, Kubernetes, Helm: containerize services and participate in deploy/ops workflows in a cloud-native environment.`,
+    year: 'Winter 2026 (Upcoming)',
+    techTags: ['React', 'TypeScript', 'Python', 'Django', 'gRPC', 'Java', 'Spring', 'Docker', 'Kubernetes', 'Helm'],
+  },
+  {
     title: 'Associate Conversation Design Intern | Cresta (Series D AI Startup)',
     detail: `- Audited and optimized conversation workflows for 12 enterprise customers, collaborating cross-functionally and consistently receiving positive feedback from stakeholders.
 - Built an LLM-powered redaction auditor that accelerated QA by 98%, automatically flagging sensitive/policy-violating content across thousands of conversations.
@@ -12,7 +23,8 @@ const experiences = [
     title: 'Software Engineer & Founding Member | G12Uni, Enterprise COOP',
     detail: `- Launched and scaled a global platform connecting 1,500+ university students across 10+ countries, driving mentorship, innovation, and cross-border collaboration opportunities.
 - Engineered a full-stack rebuild of the platform with Vite ReactJS, Tailwind, and real-time APIs (Google Meet, maps, chat, avatars, bots), elevating engagement and retention through sleek SaaS-driven design.
-- Deployed and optimized NLP models for Reddit/YouTube intelligence pipelines on Docker + GCP, building scalable ML microservices that enabled continuous feature delivery.`,
+- Deployed and optimized NLP models for Reddit/YouTube intelligence pipelines on Docker + GCP, building scalable ML microservices that enabled continuous feature delivery.
+- Partnered with Google for Education Startups through eCoop & Conrad.`,
     year: 'August 2024',
   }
 ];
@@ -193,65 +205,36 @@ const TradExp = () => {
                   marginTop: 'var(--space-lg)',
                 }}
               >
-                {index === 0 ? (
-                  // Cresta tech stack
-                  ['Python', 'LLMs', 'Jupyter', 'Dialogflow CX', 'Google Apps Script', 'Enterprise AI'].map((tech, techIdx) => (
-                    <span
-                      key={techIdx}
-                      style={{
-                        fontSize: 'var(--text-sm)',
-                        color: 'var(--accent-purple)',
-                        background: 'rgba(139, 92, 246, 0.15)',
-                        border: '1px solid rgba(139, 92, 246, 0.4)',
-                        padding: 'var(--space-xs) var(--space-sm)',
-                        borderRadius: 'var(--radius-md)',
-                        fontWeight: '500',
-                        transition: 'all 0.3s ease',
-                      }}
-                      onMouseEnter={(e) => {
-                        e.target.style.background = 'rgba(139, 92, 246, 0.25)';
-                        e.target.style.transform = 'translateY(-2px)';
-                        e.target.style.boxShadow = '0 4px 8px rgba(139, 92, 246, 0.3)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.background = 'rgba(139, 92, 246, 0.15)';
-                        e.target.style.transform = 'translateY(0)';
-                        e.target.style.boxShadow = 'none';
-                      }}
-                    >
-                      {tech}
-                    </span>
-                  ))
-                ) : (
-                  // G12Uni tech stack
-                  ['ReactJS', 'Python', 'Flutter', 'Dart', 'Docker', 'GCP', 'NLP', 'ML Microservices'].map((tech, techIdx) => (
-                    <span
-                      key={techIdx}
-                      style={{
-                        fontSize: 'var(--text-sm)',
-                        color: 'var(--accent-primary)',
-                        background: 'rgba(0, 245, 255, 0.15)',
-                        border: '1px solid rgba(0, 245, 255, 0.4)',
-                        padding: 'var(--space-xs) var(--space-sm)',
-                        borderRadius: 'var(--radius-md)',
-                        fontWeight: '500',
-                        transition: 'all 0.3s ease',
-                      }}
-                      onMouseEnter={(e) => {
-                        e.target.style.background = 'rgba(0, 245, 255, 0.25)';
-                        e.target.style.transform = 'translateY(-2px)';
-                        e.target.style.boxShadow = '0 4px 8px rgba(0, 245, 255, 0.3)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.background = 'rgba(0, 245, 255, 0.15)';
-                        e.target.style.transform = 'translateY(0)';
-                        e.target.style.boxShadow = 'none';
-                      }}
-                    >
-                      {tech}
-                    </span>
-                  ))
-                )}
+                {(exp.techTags ?? (index === 1
+                  ? ['Python', 'LLMs', 'Jupyter', 'Dialogflow CX', 'Google Apps Script', 'Enterprise AI']
+                  : ['ReactJS', 'Python', 'Flutter', 'Dart', 'Docker', 'GCP', 'NLP', 'ML Microservices']
+                )).map((tech, techIdx) => (
+                  <span
+                    key={techIdx}
+                    style={{
+                      fontSize: 'var(--text-sm)',
+                      color: 'var(--accent-primary)',
+                      background: 'rgba(0, 245, 255, 0.15)',
+                      border: '1px solid rgba(0, 245, 255, 0.4)',
+                      padding: 'var(--space-xs) var(--space-sm)',
+                      borderRadius: 'var(--radius-md)',
+                      fontWeight: '500',
+                      transition: 'all 0.3s ease',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.background = 'rgba(0, 245, 255, 0.25)';
+                      e.target.style.transform = 'translateY(-2px)';
+                      e.target.style.boxShadow = '0 4px 8px rgba(0, 245, 255, 0.3)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.background = 'rgba(0, 245, 255, 0.15)';
+                      e.target.style.transform = 'translateY(0)';
+                      e.target.style.boxShadow = 'none';
+                    }}
+                  >
+                    {tech}
+                  </span>
+                ))}
               </div>
             </div>
           );
