@@ -1,63 +1,192 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const experiences = [
+// Import company logos
+import cartaLogo from '../compLogos/carta.png';
+import crestaLogo from '../compLogos/cresta.jpg';
+import conradLogo from '../compLogos/conrad.png';
+import bhashaLogo from '../compLogos/bhasha.jpeg';
+import g12Logo from '../compLogos/g12.jpeg';
+import vbLogo from '../compLogos/vb.jpeg';
+import zafariLogo from '../compLogos/zafari.jpeg';
+import mettaStarsLogo from '../compLogos/mettastars.jpeg';
+
+// Professional Experience
+const professionalExperience = [
   {
-    title: 'Full Stack Software Engineering Co-op (Upcoming) | Carta - Hire & Retain',
-    detail: `Tech I will use and what for:
-- React + TypeScript: build and iterate on CTC and employee workflow UIs.
-- Python + Django: implement backend APIs/services for hiring planners, offer letters, and pay band workflows.
-- gRPC: define and integrate service-to-service contracts across backend systems.
-- Java + Spring: contribute to backend services where applicable within the platform.
-- Docker, Kubernetes, Helm: containerize services and participate in deploy/ops workflows in a cloud-native environment.`,
+    title: 'Full Stack Software Engineering Co-op | Carta',
+    logo: cartaLogo,
+    detail: `- React + TypeScript: Build and iterate on CTC and employee workflow UIs
+- Python + Django: Implement backend APIs/services for hiring planners, offer letters, and pay band workflows
+- gRPC: Define and integrate service-to-service contracts across backend systems
+- Java + Spring: Contribute to backend services within the platform
+- Docker, Kubernetes, Helm: Containerize services and participate in deploy/ops workflows in a cloud-native environment`,
     year: 'Winter 2026 (Upcoming)',
     techTags: ['React', 'TypeScript', 'Python', 'Django', 'gRPC', 'Java', 'Spring', 'Docker', 'Kubernetes', 'Helm'],
   },
   {
-    title: 'Associate Conversation Design Intern | Cresta (Series D AI Startup)',
-    detail: `- Audited and optimized conversation workflows for 12 enterprise customers, collaborating cross-functionally and consistently receiving positive feedback from stakeholders.
-- Built an LLM-powered redaction auditor that accelerated QA by 98%, automatically flagging sensitive/policy-violating content across thousands of conversations.
-- Developed a demo automation suite (tabular autofill, natural language search over monitoring scripts, AIA management) that improved QA efficiency by 50% and streamlined enterprise ops.`,
+    title: 'Associate Conversation Design Intern | Cresta AI (Series D)',
+    logo: crestaLogo,
+    detail: `- Built an LLM-powered redaction auditor that accelerated QA by 98%, automatically flagging sensitive/policy-violating content across thousands of conversations
+- Developed a demo automation suite that improved QA efficiency by 50% and streamlined enterprise ops
+- Audited and optimized conversation workflows for 12 enterprise customers, collaborating cross-functionally with stakeholders`,
     year: 'August 2025',
+    techTags: ['Python', 'LLMs', 'Jupyter', 'Dialogflow CX', 'Google Apps Script', 'Enterprise AI'],
   },
   {
-    title: 'Software Engineer & Founding Member | G12Uni, Enterprise COOP',
-    detail: `- Launched and scaled a global platform connecting 1,500+ university students across 10+ countries, driving mentorship, innovation, and cross-border collaboration opportunities.
-- Engineered a full-stack rebuild of the platform with Vite ReactJS, Tailwind, and real-time APIs (Google Meet, maps, chat, avatars, bots), elevating engagement and retention through sleek SaaS-driven design.
-- Deployed and optimized NLP models for Reddit/YouTube intelligence pipelines on Docker + GCP, building scalable ML microservices that enabled continuous feature delivery.
-- Partnered with Google for Education Startups through eCoop & Conrad.`,
+    title: 'Software Engineer | E-Coop @ Conrad School of Business',
+    logo: conradLogo,
+    detail: `- Engineered full-stack platform rebuild with Vite ReactJS, Tailwind, and real-time APIs (Google Meet, maps, chat, avatars, bots)
+- Deployed and optimized NLP models for Reddit/YouTube intelligence pipelines on Docker + GCP
+- Collaborated with Conrad Grebel School of Entrepreneurship on venture design and early-stage product validation`,
     year: 'August 2024',
-  }
+    techTags: ['ReactJS', 'Vite', 'Tailwind', 'Python', 'Docker', 'GCP', 'NLP', 'ML Microservices'],
+  },
+];
+
+// Freelance Work (Latest first)
+const freelanceWork = [
+  {
+    title: 'Zafari CC Design — Full Stack Developer',
+    logo: zafariLogo,
+    detail: `- Built a modern, SEO-optimized website for an interior design company
+- Implemented server-side rendering with Next.js for optimal performance
+- Improved client search ranking and user experience`,
+    year: 'May 2025',
+    techTags: ['Next.js', 'React', 'TypeScript', 'SEO', 'Server-Side Rendering'],
+  },
+  {
+    title: 'Metta Stars Foundation — Full Stack Developer',
+    logo: mettaStarsLogo,
+    detail: `- Built a full-stack website for an NGO focused on mental health, finance, and spirituality
+- Implemented responsive design and modern UI/UX patterns
+- Integrated content management and user engagement features`,
+    year: 'April 2025',
+    techTags: ['Vite', 'React', 'JavaScript', 'Web Development'],
+  },
+  {
+    title: 'Vasanta Bhavan Oman — Full Stack Developer',
+    logo: vbLogo,
+    detail: `- Developed an admin panel using ReactJS and Firebase backend
+- Built order tracking, staff management, and analytics dashboards
+- Deployed the system for a restaurant franchise across Oman`,
+    year: 'September 2023',
+    techTags: ['ReactJS', 'Firebase', 'Admin Panel', 'Restaurant Management'],
+  },
+];
+
+// Founder Journey (Latest first)
+const founderJourney = [
+  {
+    title: 'Strata — Co-Founder',
+    logo: null, // Add Strata logo when available
+    detail: `- Building AI-powered solutions for [add specific details about Strata]
+- Leading product development and technical strategy
+- Scaling from concept to production`,
+    year: '2025',
+    techTags: ['AI/ML', 'Product Development', 'Startup'],
+  },
+  {
+    title: 'Bhasha — Co-Founder',
+    logo: bhashaLogo,
+    detail: `- Developed a learning platform for Indian languages with mobile and web apps
+- Built using Flutter, Dart, and Supabase for seamless cross-platform experience
+- Integrated backend services for user progress tracking and content delivery`,
+    year: 'May 2025',
+    techTags: ['Flutter', 'Dart', 'Supabase', 'Next.js', 'React', 'TypeScript', 'Mobile Development'],
+  },
+  {
+    title: 'G12Uni — Co-Founder & Software Engineer',
+    logo: g12Logo,
+    detail: `- Launched and scaled a global platform connecting 1,500+ university students across 10+ countries
+- Engineered full-stack rebuild with Vite ReactJS, Tailwind, and real-time APIs (Google Meet, maps, chat, avatars, bots)
+- Deployed and optimized NLP models on Docker + GCP, building scalable ML microservices
+- Partnered with Google for Education Startups through eCoop & Conrad Grebel School of Entrepreneurship`,
+    year: 'August 2024',
+    techTags: ['ReactJS', 'Vite', 'Tailwind', 'Python', 'Flutter', 'Dart', 'Docker', 'GCP', 'NLP', 'Firebase'],
+  },
+];
+
+// Open Source (Latest first)
+const openSource = [
+  {
+    title: 'Gradio — Contributor | Hugging Face',
+    logo: null,
+    detail: `- Contributed to Gradio, the open-source Python library for building ML web interfaces
+- Enhanced UI components and improved accessibility features for ML demos
+- Collaborated with Hugging Face team on documentation and community support
+- Helped democratize ML by making it easier to share models and create interactive demos`,
+    year: '2025',
+    techTags: ['Python', 'Machine Learning', 'UI/UX', 'Open Source', 'Hugging Face'],
+  },
+  {
+    title: 'Three.js — Contributor',
+    logo: null,
+    detail: `- Contributed to Three.js, the popular JavaScript 3D graphics library
+- Improved documentation and created examples for 3D rendering techniques
+- Fixed bugs in shader implementations and optimized performance
+- Enhanced WebGL compatibility and added new helper utilities`,
+    year: '2024',
+    techTags: ['JavaScript', 'WebGL', '3D Graphics', 'Three.js', 'Open Source'],
+  },
+  {
+    title: 'Pipette Pro — Core Contributor',
+    logo: null,
+    detail: `- Major contributor to Pipette Pro, an open-source laboratory management system
+- Developed core features for experiment tracking and data visualization
+- Built RESTful APIs for lab equipment integration
+- Implemented real-time collaboration features for research teams`,
+    year: '2024',
+    techTags: ['Python', 'React', 'Laboratory Management', 'Data Visualization', 'Open Source'],
+  },
+  {
+    title: 'UW Flow — Contributor',
+    logo: null,
+    detail: `- Contributed to UW Flow, the course planning platform for University of Waterloo students
+- Improved course search and filtering algorithms for better user experience
+- Enhanced mobile responsiveness and UI components
+- Fixed bugs and optimized database queries for faster page loads`,
+    year: '2024',
+    techTags: ['React', 'Node.js', 'PostgreSQL', 'Full Stack', 'Open Source', 'Education'],
+  },
 ];
 
 const TradExp = () => {
+  const [activeTab, setActiveTab] = useState('professional');
   const [visibleItems, setVisibleItems] = useState([]);
   const [hoveredItem, setHoveredItem] = useState(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const sectionRef = useRef(null);
+  const contentRef = useRef(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Animate items one by one
-            experiences.forEach((_, index) => {
-              setTimeout(() => {
-                setVisibleItems(prev => [...prev, index]);
-              }, index * 300);
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+  // Get current experiences based on active tab
+  const getCurrentExperiences = () => {
+    switch (activeTab) {
+      case 'professional':
+        return professionalExperience;
+      case 'founder':
+        return founderJourney;
+      case 'freelance':
+        return freelanceWork;
+      case 'opensource':
+        return openSource;
+      default:
+        return professionalExperience;
     }
+  };
 
-    return () => observer.disconnect();
-  }, []);
+  // Reset and animate items when tab changes
+  useEffect(() => {
+    setVisibleItems([]);
+    const currentExperiences = getCurrentExperiences();
+    
+    // Animate items one by one
+    currentExperiences.forEach((_, index) => {
+      setTimeout(() => {
+        setVisibleItems(prev => [...prev, index]);
+      }, index * 200);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeTab]);
 
   // Handle window resize for responsive design
   useEffect(() => {
@@ -95,19 +224,77 @@ const TradExp = () => {
           backgroundClip: 'text',
         }}
       >
-        💼 Professional Experience
+        💼 Experience
       </h2>
 
+      {/* Tabs */}
       <div
         style={{
           display: 'flex',
-          flexDirection: 'column',
-          gap: isMobile ? 'var(--space-2xl)' : 'var(--space-3xl)',
+          justifyContent: 'center',
+          gap: isMobile ? 'var(--space-sm)' : 'var(--space-md)',
+          marginBottom: isMobile ? 'var(--space-2xl)' : 'var(--space-3xl)',
+          flexWrap: 'wrap',
         }}
       >
-        {experiences.map((exp, index) => {
-          const isVisible = visibleItems.includes(index);
-          const isHovered = hoveredItem === index;
+        {[
+          { id: 'professional', label: 'Professional Experience' },
+          { id: 'founder', label: 'Founder Journey' },
+          { id: 'freelance', label: 'Freelance' },
+          { id: 'opensource', label: 'Open Source' },
+        ].map((tab) => {
+          const isActive = activeTab === tab.id;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              style={{
+                padding: isMobile ? 'var(--space-sm) var(--space-md)' : 'var(--space-md) var(--space-lg)',
+                fontSize: isMobile ? 'var(--text-sm)' : 'var(--text-base)',
+                fontWeight: '600',
+                color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
+                background: isActive
+                  ? 'linear-gradient(135deg, var(--accent-primary), var(--accent-purple))'
+                  : 'var(--bg-glass)',
+                border: `2px solid ${isActive ? 'var(--accent-primary)' : 'var(--border-glow)'}`,
+                borderRadius: 'var(--radius-lg)',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                boxShadow: isActive ? 'var(--shadow-glow)' : 'var(--shadow-md)',
+                backdropFilter: 'blur(10px)',
+                transform: isActive ? 'translateY(-2px)' : 'translateY(0)',
+              }}
+              onMouseEnter={(e) => {
+                if (!isActive) {
+                  e.target.style.background = 'rgba(0, 245, 255, 0.1)';
+                  e.target.style.borderColor = 'var(--accent-primary)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isActive) {
+                  e.target.style.background = 'var(--bg-glass)';
+                  e.target.style.borderColor = 'var(--border-glow)';
+                }
+              }}
+            >
+              {tab.label}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Tab Content */}
+      <div ref={contentRef}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: isMobile ? 'var(--space-2xl)' : 'var(--space-3xl)',
+          }}
+        >
+          {getCurrentExperiences().map((exp, index) => {
+            const isVisible = visibleItems.includes(index);
+            const isHovered = hoveredItem === `${activeTab}-${index}`;
           
           return (
             <div
@@ -127,7 +314,7 @@ const TradExp = () => {
                 position: 'relative',
                 overflow: 'hidden',
               }}
-              onMouseEnter={() => setHoveredItem(index)}
+              onMouseEnter={() => setHoveredItem(`${activeTab}-${index}`)}
               onMouseLeave={() => setHoveredItem(null)}
             >
               {/* Gradient overlay on hover */}
@@ -163,25 +350,49 @@ const TradExp = () => {
                 {exp.year}
               </div>
 
-              {/* Job title */}
-              <h3
+              {/* Job title with logo */}
+              <div
                 style={{
-                  fontSize: isMobile ? 'var(--text-lg)' : 'var(--text-2xl)',
-                  color: 'var(--text-primary)',
-                  fontWeight: '700',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 'var(--space-md)',
                   marginBottom: isMobile ? 'var(--space-md)' : 'var(--space-lg)',
-                  lineHeight: '1.3',
-                  background: isHovered 
-                    ? 'linear-gradient(45deg, var(--text-primary), var(--accent-primary))'
-                    : 'none',
-                  WebkitBackgroundClip: isHovered ? 'text' : 'initial',
-                  WebkitTextFillColor: isHovered ? 'transparent' : 'initial',
-                  backgroundClip: isHovered ? 'text' : 'initial',
-                  transition: 'all 0.3s ease',
                 }}
               >
-                {exp.title}
-              </h3>
+                {exp.logo && (
+                  <img
+                    src={exp.logo}
+                    alt={`${exp.title} logo`}
+                    style={{
+                      width: isMobile ? '40px' : '50px',
+                      height: isMobile ? '40px' : '50px',
+                      objectFit: 'contain',
+                      borderRadius: '8px',
+                      background: 'white',
+                      padding: '4px',
+                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+                    }}
+                  />
+                )}
+                <h3
+                  style={{
+                    fontSize: isMobile ? 'var(--text-lg)' : 'var(--text-2xl)',
+                    color: 'var(--text-primary)',
+                    fontWeight: '700',
+                    margin: 0,
+                    lineHeight: '1.3',
+                    background: isHovered 
+                      ? 'linear-gradient(45deg, var(--text-primary), var(--accent-primary))'
+                      : 'none',
+                    WebkitBackgroundClip: isHovered ? 'text' : 'initial',
+                    WebkitTextFillColor: isHovered ? 'transparent' : 'initial',
+                    backgroundClip: isHovered ? 'text' : 'initial',
+                    transition: 'all 0.3s ease',
+                  }}
+                >
+                  {exp.title}
+                </h3>
+              </div>
 
               {/* Job description */}
               <div
@@ -205,10 +416,7 @@ const TradExp = () => {
                   marginTop: 'var(--space-lg)',
                 }}
               >
-                {(exp.techTags ?? (index === 1
-                  ? ['Python', 'LLMs', 'Jupyter', 'Dialogflow CX', 'Google Apps Script', 'Enterprise AI']
-                  : ['ReactJS', 'Python', 'Flutter', 'Dart', 'Docker', 'GCP', 'NLP', 'ML Microservices']
-                )).map((tech, techIdx) => (
+                {(exp.techTags || []).map((tech, techIdx) => (
                   <span
                     key={techIdx}
                     style={{
@@ -238,7 +446,8 @@ const TradExp = () => {
               </div>
             </div>
           );
-        })}
+          })}
+        </div>
       </div>
     </section>
   );

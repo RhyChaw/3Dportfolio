@@ -14,7 +14,6 @@ import Rhythm from '../proj/rhythm.png';
 import PawPal from '../proj/PawPal.png';
 import MineGuard from '../proj/MineGuard.png';
 import ZafariCC from '../proj/Zafari.png';
-import MettaStars from '../proj/MettaStars.png';
 import Bhasha from '../proj/Bhasha.png';
 import KungFuMaster from '../proj/KungFuMaster.png';
 import PizzaCompany from '../proj/PizzaCompanyREACT.png';
@@ -204,16 +203,6 @@ const projectsData = [
     link: 'https://www.zafariccdesign.com/',
     category: 'Free Lance',
     date: 'May 2025'
-  },
-  {
-    title: 'MettaStars (FreeLance)',
-    description: 'Web application for MettaStars, an NGO for mental health, finance and spirituality',
-    tech: 'Vite, React, JavaScript, Web Development',
-    image: MettaStars,
-    link: 'https://www.mettastars.com/',
-    git: 'https://github.com/RhyChaw/mettastars',
-    category: 'Free Lance',
-    date: 'April 2025'
   },
   {
     title: 'PawPal (GeeseHacks Hackathon)',
