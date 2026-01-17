@@ -5,7 +5,6 @@ import Resume from './TradResume';
 import Certifications from './TradCert';
 import Projects from './TradProj';
 import Experience from './TradExp';
-import Gallery from './TradGallery';
 import FloatingIcons from '../components/FloatingIcons';
 import styles from './TraditionalHome.module.css';
 import chibiNaruto from './ChibiB.jpg';
@@ -55,11 +54,6 @@ const TraditionalHome = () => {
       <main className={styles.main}>
         <section id="experience">
           <Experience />
-        </section>
-        
-        {/* Gallery section */}
-        <section id="gallery">
-          <Gallery />
         </section>
         
         {/* Logos belt (no title) */}

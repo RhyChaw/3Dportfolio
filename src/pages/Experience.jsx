@@ -3,6 +3,14 @@ import React from 'react';
 function Experience({ onClose }) {
 const experiences = [
   {
+    title: 'Software Engineer Intern (Ongoing) | Carta Maple Kitchener, ON',
+    detail: `- Designed backend services in Python/Django for high-volume financial compensation pipelines, processing over 1M records per month with strict correctness and auditability guarantees.
+- Integrated gRPC APIs across distributed services, reducing end-to-end request latency by 30%.
+- Optimized PostgreSQL schemas and queries, balancing throughput, consistency, and maintainability; contributed production code under CI pipelines with unit/integration tests and MyPy static typing.
+- Leveraged a toolkit including Docker, Jenkins, Kubernetes, Datadog, Sentry, and Jira to ensure reliability, observability, and high system performance.`,
+    year: 'Jan 2026 – Apr 2026',
+  },
+  {
     title: 'Associate Conversation Design Intern | Cresta AI (Series D)',
     detail: `- Built an LLM-powered redaction auditor that cut manual QA time by 60% across thousands of weekly transcripts.
 - Automated annotation workflows with Google Apps Script, saving the team 10+ hours/week.

@@ -13,15 +13,14 @@ import mettaStarsLogo from '../compLogos/mettastars.jpeg';
 // Professional Experience
 const professionalExperience = [
   {
-    title: 'Full Stack Software Engineering Co-op | Carta',
+    title: 'Software Engineer Intern (Ongoing) | Carta Maple Kitchener, ON',
     logo: cartaLogo,
-    detail: `- React + TypeScript: Build and iterate on CTC and employee workflow UIs
-- Python + Django: Implement backend APIs/services for hiring planners, offer letters, and pay band workflows
-- gRPC: Define and integrate service-to-service contracts across backend systems
-- Java + Spring: Contribute to backend services within the platform
-- Docker, Kubernetes, Helm: Containerize services and participate in deploy/ops workflows in a cloud-native environment`,
-    year: 'Winter 2026 (Upcoming)',
-    techTags: ['React', 'TypeScript', 'Python', 'Django', 'gRPC', 'Java', 'Spring', 'Docker', 'Kubernetes', 'Helm'],
+    detail: `- Designed backend services in Python/Django for high-volume financial compensation pipelines, processing over 1M records per month with strict correctness and auditability guarantees
+- Integrated gRPC APIs across distributed services, reducing end-to-end request latency by 30%
+- Optimized PostgreSQL schemas and queries, balancing throughput, consistency, and maintainability; contributed production code under CI pipelines with unit/integration tests and MyPy static typing
+- Leveraged a toolkit including Docker, Jenkins, Kubernetes, Datadog, Sentry, and Jira to ensure reliability, observability, and high system performance`,
+    year: 'Jan 2026 – Apr 2026',
+    techTags: ['Python', 'Django', 'gRPC', 'PostgreSQL', 'Docker', 'Jenkins', 'Kubernetes', 'Datadog', 'Sentry', 'Jira', 'MyPy', 'CI/CD'],
   },
   {
     title: 'Associate Conversation Design Intern | Cresta AI (Series D)',
