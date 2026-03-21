@@ -129,7 +129,7 @@ const inputStyle = {
 
 const submitStyle = {
   padding: 'var(--space-sm) var(--space-xl)',
-  background: 'linear-gradient(135deg, var(--accent-primary), #0099cc)',
+  background: 'linear-gradient(135deg, var(--accent-primary), var(--accent-purple))',
   border: 'none',
   borderRadius: 'var(--radius-md)',
   color: 'var(--text-primary)',

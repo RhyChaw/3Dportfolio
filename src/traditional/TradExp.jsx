@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Import company logos
 import cartaLogo from '../compLogos/carta.png';
@@ -11,15 +11,15 @@ import zafariLogo from '../compLogos/zafari.jpeg';
 import mettaStarsLogo from '../compLogos/mettastars.jpeg';
 
 // Professional Experience
-const professionalExperience = [
+export const professionalExperience = [
   {
-    title: 'Software Engineer Intern (Ongoing) | Carta Maple Kitchener, ON',
+    title: 'Software Engineer Intern | Carta',
     logo: cartaLogo,
-    detail: `- Designed backend services in Python/Django for high-volume financial compensation pipelines, processing over 1M records per month with strict correctness and auditability guarantees
-- Integrated gRPC APIs across distributed services, reducing end-to-end request latency by 30%
-- Optimized PostgreSQL schemas and queries, balancing throughput, consistency, and maintainability; contributed production code under CI pipelines with unit/integration tests and MyPy static typing
-- Leveraged a toolkit including Docker, Jenkins, Kubernetes, Datadog, Sentry, and Jira to ensure reliability, observability, and high system performance`,
-    year: 'Jan 2026 – Apr 2026',
+    detail: `- Built devtools-mcp, a Chrome extension + Node.js MCP server exposing 16 tools that stream live browser DevTools data (network, console, cookies, storage) directly into Claude Code, eliminating context-switching for engineers during debugging.
+- Architected Project Atlas, a persistent context memory system for Claude, designing a .context/ repo structure and custom MCP server integrating Jira, Slack, and Confluence, reducing token consumption by ~86k tokens per investigation session across agent workflows.
+- Reduced CI pipeline runtime by 42% (12 -> 7 min) on Jenkins; maintained 100+ contributions in first 90 days spanning Django, Python, Datadog, Sentry, CircleCI, and ArgoCD.
+- Led 3 projects end-to-end from scoping to release as primary point of contact, including ERD design, feature flag orchestration, and production job execution on live data.`,
+    year: 'Jan 2026 – Present',
     techTags: ['Python', 'Django', 'gRPC', 'PostgreSQL', 'Docker', 'Jenkins', 'Kubernetes', 'Datadog', 'Sentry', 'Jira', 'MyPy', 'CI/CD'],
   },
   {
@@ -43,7 +43,7 @@ const professionalExperience = [
 ];
 
 // Freelance Work (Latest first)
-const freelanceWork = [
+export const freelanceWork = [
   {
     title: 'Zafari CC Design — Full Stack Developer',
     logo: zafariLogo,
@@ -74,7 +74,7 @@ const freelanceWork = [
 ];
 
 // Founder Journey (Latest first)
-const founderJourney = [
+export const founderJourney = [
   {
     title: 'Strata — Co-Founder',
     logo: null, // Add Strata logo when available
@@ -106,7 +106,7 @@ const founderJourney = [
 ];
 
 // Open Source (Latest first)
-const openSource = [
+export const openSource = [
   {
     title: 'Gradio — Contributor | Hugging Face',
     logo: null,
@@ -150,57 +150,24 @@ const openSource = [
 ];
 
 const TradExp = () => {
-  const [activeTab, setActiveTab] = useState('professional');
-  const [visibleItems, setVisibleItems] = useState([]);
-  const [hoveredItem, setHoveredItem] = useState(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const sectionRef = useRef(null);
-  const contentRef = useRef(null);
+  const [activeCategory, setActiveCategory] = useState('professional');
 
-  // Get current experiences based on active tab
-  const getCurrentExperiences = () => {
-    switch (activeTab) {
-      case 'professional':
-        return professionalExperience;
-      case 'founder':
-        return founderJourney;
-      case 'freelance':
-        return freelanceWork;
-      case 'opensource':
-        return openSource;
-      default:
-        return professionalExperience;
-    }
-  };
-
-  // Reset and animate items when tab changes
   useEffect(() => {
-    setVisibleItems([]);
-    const currentExperiences = getCurrentExperiences();
-    
-    // Animate items one by one
-    currentExperiences.forEach((_, index) => {
-      setTimeout(() => {
-        setVisibleItems(prev => [...prev, index]);
-      }, index * 200);
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeTab]);
-
-  // Handle window resize for responsive design
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const categories = [
+    { id: 'professional', label: 'Engineering', items: professionalExperience },
+    { id: 'founder', label: 'Founder Journey', items: founderJourney },
+    { id: 'freelance', label: 'Freelance Work', items: freelanceWork },
+    { id: 'opensource', label: 'Open Source / Research', items: openSource },
+  ];
+
   return (
-    <section
-      ref={sectionRef}
-      id="experience"
+    <div
       style={{
         padding: isMobile ? 'var(--space-2xl) var(--space-md)' : 'var(--space-3xl) var(--space-lg)',
         maxWidth: '1200px',
@@ -216,239 +183,269 @@ const TradExp = () => {
           marginBottom: isMobile ? 'var(--space-2xl)' : 'var(--space-3xl)',
           color: 'var(--text-primary)',
           fontWeight: '700',
-          textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
+          textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
           background: 'linear-gradient(45deg, var(--text-primary), var(--accent-primary))',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           backgroundClip: 'text',
         }}
       >
-        💼 Experience
+        Experience
       </h2>
 
-      {/* Tabs */}
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          gap: isMobile ? 'var(--space-sm)' : 'var(--space-md)',
-          marginBottom: isMobile ? 'var(--space-2xl)' : 'var(--space-3xl)',
-          flexWrap: 'wrap',
-        }}
-      >
-        {[
-          { id: 'professional', label: 'Professional Experience' },
-          { id: 'founder', label: 'Founder Journey' },
-          { id: 'freelance', label: 'Freelance' },
-          { id: 'opensource', label: 'Open Source' },
-        ].map((tab) => {
-          const isActive = activeTab === tab.id;
-          return (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              style={{
-                padding: isMobile ? 'var(--space-sm) var(--space-md)' : 'var(--space-md) var(--space-lg)',
-                fontSize: isMobile ? 'var(--text-sm)' : 'var(--text-base)',
-                fontWeight: '600',
-                color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
-                background: isActive
-                  ? 'linear-gradient(135deg, var(--accent-primary), var(--accent-purple))'
-                  : 'var(--bg-glass)',
-                border: `2px solid ${isActive ? 'var(--accent-primary)' : 'var(--border-glow)'}`,
-                borderRadius: 'var(--radius-lg)',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                boxShadow: isActive ? 'var(--shadow-glow)' : 'var(--shadow-md)',
-                backdropFilter: 'blur(10px)',
-                transform: isActive ? 'translateY(-2px)' : 'translateY(0)',
-              }}
-              onMouseEnter={(e) => {
-                if (!isActive) {
-                  e.target.style.background = 'rgba(0, 245, 255, 0.1)';
-                  e.target.style.borderColor = 'var(--accent-primary)';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (!isActive) {
-                  e.target.style.background = 'var(--bg-glass)';
-                  e.target.style.borderColor = 'var(--border-glow)';
-                }
-              }}
-            >
-              {tab.label}
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Tab Content */}
-      <div ref={contentRef}>
+      {isMobile ? (
+        <div
+          style={{
+            marginBottom: 'var(--space-2xl)',
+            paddingBottom: 'var(--space-sm)',
+            borderBottom: '1px solid var(--border-glow)',
+          }}
+        >
+          <label
+            htmlFor="experience-category-select"
+            style={{
+              display: 'block',
+              fontSize: 'var(--text-sm)',
+              fontWeight: 700,
+              color: 'var(--text-secondary)',
+              marginBottom: 'var(--space-sm)',
+              fontFamily: 'var(--font-family-primary)',
+            }}
+          >
+            Category
+          </label>
+          <select
+            id="experience-category-select"
+            value={activeCategory}
+            onChange={(e) => setActiveCategory(e.target.value)}
+            style={{
+              width: '100%',
+              maxWidth: '100%',
+              boxSizing: 'border-box',
+              padding: 'var(--space-md) var(--space-lg)',
+              paddingRight: 'var(--space-2xl)',
+              fontFamily: 'var(--font-family-primary)',
+              fontSize: 'var(--text-base)',
+              fontWeight: 700,
+              color: 'var(--text-primary)',
+              backgroundColor: 'rgba(255, 255, 255, 0.65)',
+              border: '1px solid var(--border-glow)',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              appearance: 'none',
+              WebkitAppearance: 'none',
+              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%237a4b22' d='M1 1l5 5 5-5'/%3E%3C/svg%3E")`,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'right var(--space-md) center',
+              boxShadow: 'var(--shadow-sm)',
+            }}
+          >
+            {categories.map((cat) => (
+              <option key={cat.id} value={cat.id}>
+                {cat.label}
+              </option>
+            ))}
+          </select>
+        </div>
+      ) : (
         <div
           style={{
             display: 'flex',
-            flexDirection: 'column',
-            gap: isMobile ? 'var(--space-2xl)' : 'var(--space-3xl)',
+            flexWrap: 'wrap',
+            gap: 'var(--space-md)',
+            marginBottom: 'var(--space-2xl)',
+            paddingBottom: 'var(--space-sm)',
+            borderBottom: '1px solid var(--border-glow)',
           }}
         >
-          {getCurrentExperiences().map((exp, index) => {
-            const isVisible = visibleItems.includes(index);
-            const isHovered = hoveredItem === `${activeTab}-${index}`;
-          
-          return (
-            <div
-              key={index}
-              style={{
-                background: 'var(--bg-glass)',
-                border: `1px solid ${isHovered ? 'var(--accent-primary)' : 'var(--border-glow)'}`,
-                borderRadius: isMobile ? 'var(--radius-xl)' : 'var(--radius-2xl)',
-                padding: isMobile ? 'var(--space-lg)' : 'var(--space-2xl)',
-                backdropFilter: 'blur(10px)',
-                boxShadow: isHovered ? 'var(--shadow-glow)' : 'var(--shadow-lg)',
-                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 'translateY(0)' : 'translateY(50px)',
-                animation: isVisible ? 'fadeInUp 0.8s ease-out forwards' : 'none',
-                animationDelay: `${index * 0.3}s`,
-                position: 'relative',
-                overflow: 'hidden',
-              }}
-              onMouseEnter={() => setHoveredItem(`${activeTab}-${index}`)}
-              onMouseLeave={() => setHoveredItem(null)}
-            >
-              {/* Gradient overlay on hover */}
-              <div
+          {categories.map((cat) => {
+            const active = activeCategory === cat.id;
+            return (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => setActiveCategory(cat.id)}
                 style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  background: isHovered 
-                    ? 'linear-gradient(135deg, rgba(0, 245, 255, 0.05), rgba(139, 92, 246, 0.05))'
-                    : 'transparent',
-                  transition: 'all 0.3s ease',
-                  pointerEvents: 'none',
-                }}
-              />
-
-              {/* Company badge */}
-              <div
-                style={{
-                  display: 'inline-block',
-                  background: 'linear-gradient(135deg, var(--accent-primary), var(--accent-purple))',
-                  color: 'var(--text-primary)',
-                  padding: 'var(--space-xs) var(--space-md)',
-                  borderRadius: 'var(--radius-full)',
-                  fontSize: 'var(--text-sm)',
-                  fontWeight: '600',
-                  marginBottom: 'var(--space-lg)',
-                  boxShadow: 'var(--shadow-md)',
+                  background: 'transparent',
+                  border: 'none',
+                  borderBottom: `2px solid ${active ? 'var(--accent-primary)' : 'rgba(var(--accent-primary-rgb), 0.25)'}`,
+                  padding: 0,
+                  cursor: 'pointer',
+                  color: active ? 'var(--accent-primary)' : 'var(--text-secondary)',
+                  fontFamily: 'var(--font-family-primary)',
+                  fontSize: 'var(--text-lg)',
+                  fontWeight: active ? 900 : 700,
                 }}
               >
-                {exp.year}
-              </div>
-
-              {/* Job title with logo */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 'var(--space-md)',
-                  marginBottom: isMobile ? 'var(--space-md)' : 'var(--space-lg)',
-                }}
-              >
-                {exp.logo && (
-                  <img
-                    src={exp.logo}
-                    alt={`${exp.title} logo`}
-                    style={{
-                      width: isMobile ? '40px' : '50px',
-                      height: isMobile ? '40px' : '50px',
-                      objectFit: 'contain',
-                      borderRadius: '8px',
-                      background: 'white',
-                      padding: '4px',
-                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
-                    }}
-                  />
-                )}
-                <h3
-                  style={{
-                    fontSize: isMobile ? 'var(--text-lg)' : 'var(--text-2xl)',
-                    color: 'var(--text-primary)',
-                    fontWeight: '700',
-                    margin: 0,
-                    lineHeight: '1.3',
-                    background: isHovered 
-                      ? 'linear-gradient(45deg, var(--text-primary), var(--accent-primary))'
-                      : 'none',
-                    WebkitBackgroundClip: isHovered ? 'text' : 'initial',
-                    WebkitTextFillColor: isHovered ? 'transparent' : 'initial',
-                    backgroundClip: isHovered ? 'text' : 'initial',
-                    transition: 'all 0.3s ease',
-                  }}
-                >
-                  {exp.title}
-                </h3>
-              </div>
-
-              {/* Job description */}
-              <div
-                style={{
-                  fontSize: isMobile ? 'var(--text-sm)' : 'var(--text-base)',
-                  color: 'var(--text-secondary)',
-                  lineHeight: isMobile ? '1.6' : '1.7',
-                  whiteSpace: 'pre-line',
-                  transition: 'color 0.3s ease',
-                }}
-              >
-                {exp.detail}
-              </div>
-
-              {/* Tech stack tags */}
-              <div
-                style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  gap: 'var(--space-sm)',
-                  marginTop: 'var(--space-lg)',
-                }}
-              >
-                {(exp.techTags || []).map((tech, techIdx) => (
-                  <span
-                    key={techIdx}
-                    style={{
-                      fontSize: 'var(--text-sm)',
-                      color: 'var(--accent-primary)',
-                      background: 'rgba(0, 245, 255, 0.15)',
-                      border: '1px solid rgba(0, 245, 255, 0.4)',
-                      padding: 'var(--space-xs) var(--space-sm)',
-                      borderRadius: 'var(--radius-md)',
-                      fontWeight: '500',
-                      transition: 'all 0.3s ease',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.target.style.background = 'rgba(0, 245, 255, 0.25)';
-                      e.target.style.transform = 'translateY(-2px)';
-                      e.target.style.boxShadow = '0 4px 8px rgba(0, 245, 255, 0.3)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.background = 'rgba(0, 245, 255, 0.15)';
-                      e.target.style.transform = 'translateY(0)';
-                      e.target.style.boxShadow = 'none';
-                    }}
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          );
+                {cat.label}
+              </button>
+            );
           })}
         </div>
+      )}
+
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: isMobile ? 'var(--space-3xl)' : 'var(--space-4xl)',
+        }}
+      >
+        {categories
+          .filter((cat) => cat.id === activeCategory)
+          .map((cat) => (
+            <div
+              key={cat.id}
+              id={`experience-${cat.id}`}
+              style={{
+                scrollMarginTop: 24,
+                paddingBottom: isMobile ? 'var(--space-3xl)' : 'var(--space-4xl)',
+              }}
+            >
+              <h3
+                style={{
+                  fontSize: isMobile ? 'var(--text-xl)' : 'var(--text-3xl)',
+                  color: 'var(--text-primary)',
+                  fontWeight: 700,
+                  margin: `0 0 ${isMobile ? 'var(--space-lg)' : 'var(--space-xl)'}`,
+                }}
+              >
+                {cat.label}
+              </h3>
+
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: isMobile ? 'var(--space-2xl)' : 'var(--space-3xl)',
+              }}
+            >
+              {cat.items.map((exp, index) => {
+                return (
+                  <div
+                    key={`${cat.id}-${index}`}
+                    id={`experience-${cat.id}-${index}`}
+                    style={{
+                      background: 'transparent',
+                      border: 'none',
+                      borderRadius: 0,
+                      borderBottom: '1px solid var(--border-glow)',
+                      padding: isMobile ? 'var(--space-lg) 0' : 'var(--space-xl) 0',
+                      backdropFilter: 'none',
+                      boxShadow: 'none',
+                      transition: 'none',
+                      position: 'relative',
+                      overflow: 'visible',
+                    }}
+                  >
+                    {/* Year */}
+                    <div
+                      style={{
+                        display: 'inline-block',
+                        background: 'transparent',
+                        color: 'var(--accent-primary)',
+                        padding: 0,
+                        borderRadius: 0,
+                        fontSize: 'var(--text-sm)',
+                        fontWeight: 700,
+                        marginBottom: isMobile ? 'var(--space-sm)' : 'var(--space-md)',
+                      }}
+                    >
+                      {exp.year}
+                    </div>
+
+                    {/* Job title with logo */}
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 'var(--space-md)',
+                        marginBottom: isMobile ? 'var(--space-md)' : 'var(--space-lg)',
+                        position: 'relative',
+                        zIndex: 1,
+                      }}
+                    >
+                      {exp.logo && (
+                        <img
+                          src={exp.logo}
+                          alt={`${exp.title} logo`}
+                          style={{
+                            width: isMobile ? '40px' : '50px',
+                            height: isMobile ? '40px' : '50px',
+                            objectFit: 'contain',
+                            borderRadius: 8,
+                            background: 'white',
+                            padding: 4,
+                            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.10)',
+                          }}
+                        />
+                      )}
+                      <h3
+                        style={{
+                          fontSize: isMobile ? 'var(--text-lg)' : 'var(--text-2xl)',
+                          color: 'var(--text-primary)',
+                          fontWeight: 700,
+                          margin: 0,
+                          lineHeight: 1.3,
+                          transition: 'none',
+                        }}
+                      >
+                        {exp.title}
+                      </h3>
+                    </div>
+
+                    {/* Job description */}
+                    <div
+                      style={{
+                        fontSize: isMobile ? 'var(--text-sm)' : 'var(--text-base)',
+                        color: 'var(--text-secondary)',
+                        lineHeight: isMobile ? 1.6 : 1.7,
+                        whiteSpace: 'pre-line',
+                        transition: 'color 0.2s ease',
+                        position: 'relative',
+                        zIndex: 1,
+                      }}
+                    >
+                      {exp.detail}
+                    </div>
+
+                    {/* Tech stack tags */}
+                    <div
+                      style={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        gap: 'var(--space-sm)',
+                        marginTop: 'var(--space-lg)',
+                        position: 'relative',
+                        zIndex: 1,
+                      }}
+                    >
+                      {(exp.techTags || []).map((tech, techIdx) => (
+                        <span
+                          key={techIdx}
+                          style={{
+                            fontSize: 'var(--text-sm)',
+                            color: 'var(--accent-primary)',
+                            background: 'transparent',
+                            border: 'none',
+                            padding: 0,
+                            borderRadius: 0,
+                            fontWeight: 500,
+                            transition: 'none',
+                          }}
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ))}
       </div>
-    </section>
+    </div>
   );
 };
 

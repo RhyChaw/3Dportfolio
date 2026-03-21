@@ -4,7 +4,7 @@ import React, { useMemo } from 'react';
 // Supports common formats; you can add more extensions if needed
 const imagesImport = import.meta.glob('/src/compLogos/*.{png,jpg,jpeg,svg,webp,gif}', { eager: true, import: 'default' });
 
-const LogosBelt = () => {
+const LogosBelt = ({ variant = 'default' }) => {
   const logos = useMemo(() => {
     return Object.values(imagesImport)
       .filter(Boolean)
@@ -12,6 +12,65 @@ const LogosBelt = () => {
   }, []);
 
   if (!logos.length) return null;
+
+  if (variant === 'sidebar') {
+    const repeatTimes = 6;
+    const base = Array.from({ length: repeatTimes }).flatMap(() => logos);
+    const loop = [...base, ...base];
+
+    return (
+      <section
+        aria-label="company-logos"
+        style={{
+          width: '100%',
+          paddingTop: 'var(--space-xl)',
+          overflow: 'hidden',
+        }}
+      >
+        <div
+          style={{
+            position: 'relative',
+            maskImage: 'linear-gradient(90deg, transparent, black 10%, black 90%, transparent)',
+            WebkitMaskImage: 'linear-gradient(90deg, transparent, black 10%, black 90%, transparent)',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 'var(--space-lg)',
+              width: 'max-content',
+              animation: 'sidebar-logos-marquee 22s linear infinite',
+              willChange: 'transform',
+            }}
+          >
+            {loop.map((src, idx) => (
+              <img
+                // eslint-disable-next-line react/no-array-index-key
+                key={`side-${idx}-${src}`}
+                src={src}
+                alt="Company logo"
+                style={{
+                  height: '34px',
+                  width: 'auto',
+                  objectFit: 'contain',
+                  flexShrink: 0,
+                }}
+              />
+            ))}
+          </div>
+        </div>
+        <style>
+          {`
+            @keyframes sidebar-logos-marquee {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+          `}
+        </style>
+      </section>
+    );
+  }
 
   // Split into two rows for a denser belt
   const rowA = logos.filter((_, i) => i % 2 === 0);
