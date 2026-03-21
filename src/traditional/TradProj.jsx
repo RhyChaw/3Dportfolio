@@ -96,11 +96,11 @@ const TradProj = () => {
           gap: 'var(--space-xl)',
           marginBottom: 'var(--space-3xl)',
           padding: 'var(--space-xl)',
-          background: 'var(--bg-glass)',
-          borderRadius: 'var(--radius-2xl)',
-          border: '1px solid var(--border-glow)',
-          backdropFilter: 'blur(20px)',
-          boxShadow: 'var(--shadow-lg)',
+          background: 'transparent',
+          borderRadius: 0,
+          border: 'none',
+          backdropFilter: 'none',
+          boxShadow: 'none',
         }}
       >
         {/* Filter Buttons */}
@@ -129,7 +129,7 @@ const TradProj = () => {
               fontSize: 'var(--text-sm)',
               transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
               boxShadow: filter === cat 
-                ? '0 8px 32px rgba(0, 245, 255, 0.3), 0 0 0 1px rgba(0, 245, 255, 0.2)' 
+                ? '0 8px 32px rgba(var(--accent-primary-rgb), 0.3), 0 0 0 1px rgba(var(--accent-primary-rgb), 0.2)'
                 : '0 4px 16px rgba(0, 0, 0, 0.1)',
               backdropFilter: 'blur(10px)',
               position: 'relative',
@@ -139,11 +139,11 @@ const TradProj = () => {
             }}
             onMouseEnter={(e) => {
               if (filter !== cat) {
-                e.target.style.background = 'rgba(0, 245, 255, 0.1)';
+                e.target.style.background = 'rgba(var(--accent-primary-rgb), 0.1)';
                 e.target.style.borderColor = 'var(--accent-primary)';
                 e.target.style.color = 'var(--accent-primary)';
                 e.target.style.transform = 'translateY(-3px) scale(1.05)';
-                e.target.style.boxShadow = '0 12px 40px rgba(0, 245, 255, 0.2)';
+                e.target.style.boxShadow = '0 12px 40px rgba(var(--accent-primary-rgb), 0.2)';
               }
             }}
             onMouseLeave={(e) => {
@@ -190,7 +190,7 @@ const TradProj = () => {
             }}
             onFocus={(e) => {
               e.target.style.borderColor = 'var(--accent-primary)';
-              e.target.style.boxShadow = '0 0 0 3px rgba(0, 245, 255, 0.15), 0 8px 32px rgba(0, 245, 255, 0.1)';
+              e.target.style.boxShadow = '0 0 0 3px rgba(var(--accent-primary-rgb), 0.15), 0 8px 32px rgba(var(--accent-primary-rgb), 0.1)';
               e.target.style.background = 'rgba(255, 255, 255, 0.08)';
             }}
             onBlur={(e) => {
@@ -232,7 +232,7 @@ const TradProj = () => {
               }}
               onMouseEnter={(e) => {
                 e.target.style.color = 'var(--accent-primary)';
-                e.target.style.background = 'rgba(0, 245, 255, 0.1)';
+                e.target.style.background = 'rgba(var(--accent-primary-rgb), 0.1)';
               }}
               onMouseLeave={(e) => {
                 e.target.style.color = 'var(--text-secondary)';
@@ -260,12 +260,12 @@ const TradProj = () => {
         {/* Left Side - Project List */}
         <div
           style={{
-            background: 'var(--bg-glass)',
-            borderRadius: isMobile ? 'var(--radius-xl) var(--radius-xl) 0 0' : 'var(--radius-xl) 0 0 var(--radius-xl)',
+            background: 'transparent',
+            borderRadius: 0,
             padding: isMobile ? 'var(--space-lg)' : 'var(--space-xl)',
-            border: '1px solid var(--border-glow)',
-            backdropFilter: 'blur(10px)',
-            boxShadow: 'var(--shadow-lg)',
+            border: 'none',
+            backdropFilter: 'none',
+            boxShadow: 'none',
             height: '100%',
             overflowY: 'auto',
             position: isMobile ? 'static' : 'sticky',
@@ -299,7 +299,7 @@ const TradProj = () => {
                 style={{
                   padding: 'var(--space-md)',
                   background: selectedProject === idx 
-                    ? 'linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(0, 245, 255, 0.1))'
+                    ? 'linear-gradient(135deg, rgba(var(--accent-purple-rgb), 0.2), rgba(var(--accent-primary-rgb), 0.1))'
                     : 'transparent',
                   border: selectedProject === idx 
                     ? '1px solid var(--accent-purple)'
@@ -356,8 +356,8 @@ const TradProj = () => {
                     style={{
                       fontSize: isMobile ? '0.7rem' : 'var(--text-xs)',
                       color: 'var(--accent-primary)',
-                      background: 'rgba(0, 245, 255, 0.1)',
-                      border: '1px solid rgba(0, 245, 255, 0.3)',
+                      background: 'rgba(var(--accent-primary-rgb), 0.1)',
+                      border: '1px solid rgba(var(--accent-primary-rgb), 0.3)',
                       padding: isMobile ? '1px 4px' : '2px 6px',
                       borderRadius: 'var(--radius-sm)',
                       fontWeight: '600',
@@ -415,12 +415,12 @@ const TradProj = () => {
         {/* Right Side - Project Details */}
         <div
           style={{
-            background: 'var(--bg-glass)',
-            borderRadius: isMobile ? '0 0 var(--radius-xl) var(--radius-xl)' : '0 var(--radius-xl) var(--radius-xl) 0',
+            background: 'transparent',
+            borderRadius: 0,
             padding: isMobile ? 'var(--space-lg)' : 'var(--space-xl)',
-            border: '1px solid var(--border-glow)',
-            backdropFilter: 'blur(10px)',
-            boxShadow: 'var(--shadow-lg)',
+            border: 'none',
+            backdropFilter: 'none',
+            boxShadow: 'none',
             display: 'flex',
             flexDirection: 'column',
             gap: 'var(--space-lg)',
@@ -479,7 +479,8 @@ const TradProj = () => {
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    background: 'linear-gradient(45deg, transparent, rgba(0, 245, 255, 0.1), transparent)',
+                    background: 'linear-gradient(45deg, transparent, rgba(var(--accent-primary-rgb), 0.1), transparent)',
+                    
                     opacity: 0,
                     transition: 'opacity 0.3s ease',
                   }}
