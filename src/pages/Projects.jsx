@@ -1,13 +1,23 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { top10Projects } from './ProjectsData';
 
 const Projects = ({ onClose }) => {
   const [filter, setFilter] = useState('All');
 
+  const visibleProjects = useMemo(() => {
+    return top10Projects.filter((proj) => !proj?.inProgress);
+  }, []);
+
+  const categories = useMemo(() => {
+    const unique = Array.from(new Set(visibleProjects.map((p) => p.category).filter(Boolean)));
+    unique.sort((a, b) => String(a).localeCompare(String(b)));
+    return ['All', ...unique];
+  }, [visibleProjects]);
+
   const filteredProjects =
     filter === 'All'
-      ? top10Projects
-      : top10Projects.filter((proj) => proj.category === filter);
+      ? visibleProjects
+      : visibleProjects.filter((proj) => proj.category === filter);
 
   return (
     <div
@@ -47,7 +57,7 @@ const Projects = ({ onClose }) => {
         gap: '8px', 
         margin: '24px 0' 
       }}>
-        {['All', 'Web Dev', 'AI'].map((cat) => (
+        {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setFilter(cat)}

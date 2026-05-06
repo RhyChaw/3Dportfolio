@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { top10Projects } from '../pages/ProjectsData';
 
-const categoryOptions = ['All', 'Hackathon', 'Free Lance', 'Open Source', 'Full Stack', 'ML'];
+const categoryOptions = ['All', 'AI & Systems', 'Research', 'Hackathon', 'Full Stack'];
 
 const MOBILE_LIST_CAP = 5;
 
@@ -44,9 +44,65 @@ const TradProjCoffeeLines = () => {
     return [];
   };
 
+  const matchesCategoryFilter = (filterValue, projCategory) => {
+    if (filterValue === 'All') return true;
+    const cat = String(projCategory || '').toLowerCase();
+
+    if (filterValue === 'AI & Systems') {
+      const needles = ['ai', 'ml', 'data engineering', 'systems', 'product', 'extension', 'robotics', 'c++'];
+      return needles.some((n) => cat.includes(n));
+    }
+
+    if (filterValue === 'Research') {
+      return cat.includes('research');
+    }
+
+    if (filterValue === 'Hackathon') {
+      const needles = ['hackathon', 'game development', 'c++ / game dev'];
+      return needles.some((n) => cat.includes(n));
+    }
+
+    if (filterValue === 'Full Stack') {
+      return cat.includes('full stack');
+    }
+
+    return false;
+  };
+
+  const getThumbnailPalette = (projCategory) => {
+    switch (projCategory) {
+      case 'AI / Developer Tools':
+        return { bg: '#E8E4FF', text: '#5B4FCF' };
+      case 'Research / Simulation':
+      case 'Data Engineering':
+        return { bg: '#E1F5EE', text: '#0F6E56' };
+      case 'Hackathon':
+      case 'Robotics / Hackathon':
+      case 'C++ / Game Dev':
+      case 'Game Development':
+        return { bg: '#FEF3E2', text: '#854F0B' };
+      case 'Full Stack':
+      case 'Full Stack / AI':
+        return { bg: '#E6F1FB', text: '#185FA5' };
+      case 'ML':
+        return { bg: '#FAECE7', text: '#993C1D' };
+      case 'Free Lance':
+        return { bg: '#F1EFE8', text: '#5F5E5A' };
+      default:
+        return { bg: '#F1EFE8', text: '#5F5E5A' };
+    }
+  };
+
+  const getTitleInitials = (title) => {
+    const cleaned = String(title || '').replace(/[^a-zA-Z0-9]/g, '');
+    const two = cleaned.slice(0, 2).toUpperCase();
+    return two || 'PR';
+  };
+
   const filteredProjects = useMemo(() => {
     return top10Projects.filter((proj) => {
-      const matchesFilter = filter === 'All' || proj.category === filter;
+      if (proj?.inProgress) return false;
+      const matchesFilter = matchesCategoryFilter(filter, proj.category);
       const techs = getTechArray(proj).map((t) => String(t).toLowerCase());
       const matchesSearch =
         searchTerm === '' ||
@@ -55,6 +111,10 @@ const TradProjCoffeeLines = () => {
       return matchesFilter && matchesSearch;
     });
   }, [filter, searchTerm]);
+
+  const totalVisibleProjects = useMemo(() => {
+    return top10Projects.filter((proj) => !proj?.inProgress).length;
+  }, []);
 
   useEffect(() => {
     setSelectedProject(0);
@@ -100,6 +160,21 @@ const TradProjCoffeeLines = () => {
     cursor: 'pointer',
   };
 
+  const actionBtnStyle = {
+    display: 'block',
+    width: '100%',
+    padding: 'var(--space-sm) var(--space-md)',
+    fontFamily: 'var(--font-family-primary)',
+    fontSize: 'var(--text-sm)',
+    fontWeight: 800,
+    color: 'var(--accent-primary)',
+    background: 'rgba(255, 255, 255, 0.5)',
+    border: '1px solid var(--border-glow)',
+    borderRadius: '8px',
+    textAlign: 'center',
+    textDecoration: 'none',
+  };
+
   return (
     <section
       id="projects"
@@ -119,7 +194,7 @@ const TradProjCoffeeLines = () => {
           fontWeight: 700,
         }}
       >
-        Projects
+        Projects ({totalVisibleProjects})
       </h2>
 
       {/* Filter + Search */}
@@ -256,6 +331,9 @@ const TradProjCoffeeLines = () => {
               {(isMobile ? projectsForMobileList : filteredProjects).map((proj, idx) => {
                 const active = idx === selectedProject;
                 const techShort = getTechArray(proj).slice(0, 3).join(', ');
+                const hook = typeof proj?.hook === 'string' ? proj.hook.trim() : '';
+                const hasLiveDemo = Boolean(proj?.link && proj.link !== '#');
+                const thumbPalette = getThumbnailPalette(proj?.category);
                 return (
                   <button
                     key={`${proj.title}-${idx}`}
@@ -274,11 +352,116 @@ const TradProjCoffeeLines = () => {
                       transition: 'color 0.15s ease',
                     }}
                   >
-                    <div style={{ fontWeight: active ? 900 : 700, fontSize: isMobile ? 'var(--text-base)' : 'var(--text-lg)' }}>
-                      {proj.title}
-                    </div>
-                    <div style={{ marginTop: 'var(--space-xs)', fontSize: 'var(--text-sm)', color: 'var(--text-secondary)' }}>
-                      {proj.date} {techShort ? `• ${techShort}` : ''}
+                    <div style={{ display: 'grid', gridTemplateColumns: '72px 1fr', gap: 'var(--space-md)', alignItems: 'center' }}>
+                      <div
+                        style={{
+                          width: 72,
+                          height: 72,
+                          borderRadius: 8,
+                          overflow: 'hidden',
+                          border: '1px solid var(--border-glow)',
+                          background: 'rgba(255, 255, 255, 0.35)',
+                          flex: '0 0 auto',
+                        }}
+                      >
+                        {proj.image ? (
+                          <img
+                            src={proj.image}
+                            alt={proj.title}
+                            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                          />
+                        ) : (
+                          <div
+                            style={{
+                              width: '100%',
+                              height: '100%',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              background: thumbPalette.bg,
+                              color: thumbPalette.text,
+                              fontWeight: 500,
+                              fontSize: 16,
+                              letterSpacing: '0.02em',
+                            }}
+                          >
+                            {getTitleInitials(proj.title)}
+                          </div>
+                        )}
+                      </div>
+
+                      <div style={{ minWidth: 0 }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)', minWidth: 0 }}>
+                          <div
+                            style={{
+                              fontWeight: active ? 900 : 700,
+                              fontSize: isMobile ? 'var(--text-base)' : 'var(--text-lg)',
+                              color: active ? 'var(--accent-primary)' : 'var(--text-primary)',
+                              whiteSpace: 'nowrap',
+                              overflow: 'hidden',
+                              textOverflow: 'ellipsis',
+                              minWidth: 0,
+                            }}
+                          >
+                            {proj.title}
+                          </div>
+
+                          {proj.award ? (
+                            <span
+                              style={{
+                                background: '#FEF3E2',
+                                color: '#854F0B',
+                                fontSize: 10,
+                                padding: '2px 6px',
+                                borderRadius: 3,
+                                fontWeight: 800,
+                                flex: '0 0 auto',
+                              }}
+                            >
+                              🏆 Award
+                            </span>
+                          ) : null}
+
+                          {proj.featured === true ? (
+                            <span
+                              style={{
+                                background: '#E8E4FF',
+                                color: '#5B4FCF',
+                                fontSize: 10,
+                                padding: '2px 6px',
+                                borderRadius: 3,
+                                fontWeight: 800,
+                                flex: '0 0 auto',
+                              }}
+                            >
+                              Featured
+                            </span>
+                          ) : null}
+
+                          {hasLiveDemo ? (
+                            <span
+                              title="Live demo available"
+                              style={{
+                                width: 6,
+                                height: 6,
+                                borderRadius: 999,
+                                background: '#639922',
+                                display: 'inline-block',
+                                flex: '0 0 auto',
+                              }}
+                            />
+                          ) : null}
+                        </div>
+
+                        {hook ? (
+                          <div style={{ marginTop: 'var(--space-xs)', fontSize: 12, color: 'var(--text-secondary)' }}>{hook}</div>
+                        ) : null}
+
+                        <div style={{ marginTop: 'var(--space-xs)', fontSize: 'var(--text-sm)', color: 'var(--text-secondary)' }}>
+                          {proj.date}
+                          {techShort ? ` · ${techShort}` : ''}
+                        </div>
+                      </div>
                     </div>
                   </button>
                 );
@@ -307,10 +490,10 @@ const TradProjCoffeeLines = () => {
                   alt={selected.title}
                   style={{
                     width: '100%',
-                    maxHeight: 220,
-                    objectFit: 'contain',
-                    border: '1px solid var(--border-glow)',
-                    marginBottom: 'var(--space-xl)',
+                    maxHeight: 240,
+                    objectFit: 'cover',
+                    borderRadius: 8,
+                    marginBottom: 20,
                   }}
                 />
               ) : null}
@@ -319,11 +502,32 @@ const TradProjCoffeeLines = () => {
                 {selected.title}
               </div>
 
-              <div style={{ color: 'var(--accent-primary)', fontWeight: 800, marginTop: 'var(--space-md)', marginBottom: 'var(--space-xl)' }}>
-                {selected.date}
-              </div>
+              {selected.hook ? (
+                <div style={{ fontSize: 16, fontStyle: 'italic', color: 'var(--text-secondary)', marginTop: 'var(--space-sm)', marginBottom: 12 }}>
+                  {selected.hook}
+                </div>
+              ) : null}
 
-              <div style={{ color: 'var(--text-secondary)', lineHeight: isMobile ? 1.7 : 1.8, fontSize: isMobile ? 'var(--text-base)' : 'var(--text-lg)' }}>
+              <div style={{ color: 'var(--accent-primary)', fontWeight: 800, marginTop: 'var(--space-md)' }}>{selected.date}</div>
+
+              {selected.award ? (
+                <div
+                  style={{
+                    marginTop: 'var(--space-sm)',
+                    background: '#FEF3E2',
+                    color: '#854F0B',
+                    padding: '6px 12px',
+                    borderRadius: 4,
+                    fontSize: 13,
+                    display: 'inline-block',
+                    fontWeight: 800,
+                  }}
+                >
+                  🏆 {selected.award}
+                </div>
+              ) : null}
+
+              <div style={{ color: 'var(--text-secondary)', lineHeight: isMobile ? 1.7 : 1.8, fontSize: isMobile ? 'var(--text-base)' : 'var(--text-lg)', marginTop: 'var(--space-xl)' }}>
                 {selected.description}
               </div>
 
@@ -332,28 +536,28 @@ const TradProjCoffeeLines = () => {
                 <div style={{ color: 'var(--text-secondary)' }}>{selectedTech.length ? selectedTech.join(', ') : '—'}</div>
               </div>
 
-              <div style={{ marginTop: 'var(--space-xl)', display: 'flex', gap: 'var(--space-xl)', flexWrap: 'wrap' }}>
-                {selected.link && selected.link !== '#' ? (
-                  <a
-                    href={selected.link}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{ color: 'var(--accent-primary)', textDecoration: 'underline', fontWeight: 800 }}
-                  >
+              {selected.link && selected.link !== '#' && selected.git && selected.git !== '#' ? (
+                <div style={{ marginTop: 'var(--space-xl)', display: 'flex', gap: 'var(--space-md)', flexDirection: isMobile ? 'column' : 'row' }}>
+                  <a href={selected.link} target="_blank" rel="noreferrer" style={{ ...actionBtnStyle, flex: 1 }}>
                     Demo →
                   </a>
-                ) : null}
-                {selected.git && selected.git !== '#' ? (
-                  <a
-                    href={selected.git}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{ color: 'var(--accent-primary)', textDecoration: 'underline', fontWeight: 800 }}
-                  >
+                  <a href={selected.git} target="_blank" rel="noreferrer" style={{ ...actionBtnStyle, flex: 1 }}>
                     GitHub →
                   </a>
-                ) : null}
-              </div>
+                </div>
+              ) : selected.link && selected.link !== '#' ? (
+                <div style={{ marginTop: 'var(--space-xl)' }}>
+                  <a href={selected.link} target="_blank" rel="noreferrer" style={actionBtnStyle}>
+                    Demo →
+                  </a>
+                </div>
+              ) : selected.git && selected.git !== '#' ? (
+                <div style={{ marginTop: 'var(--space-xl)' }}>
+                  <a href={selected.git} target="_blank" rel="noreferrer" style={actionBtnStyle}>
+                    GitHub →
+                  </a>
+                </div>
+              ) : null}
             </>
           ) : null}
         </div>

@@ -139,15 +139,6 @@ const projectsData = [
     imageName: 'ClashRoyale.png'
   },
   {
-    title: 'SportSpark',
-    description: 'A smart web platform that makes anyone confident enough to talk about any sport in 5 minutes. Features instant sport mastery, trends, newsletters, interactive learning across levels, rich sport overview pages (rules, vocab, competitions, players/teams, storylines, culture), responsive UI, dark mode, and fast performance.',
-    tech: 'Next.js 14, React, TypeScript, Tailwind CSS, Headless UI, Lucide, Vercel',
-    git: 'https://github.com/RhyChaw/ByteS',
-    category: 'Full Stack',
-    date: 'October 2025',
-    imageName: 'SportSpark.png'
-  },
-  {
     title: 'SWARM 2025 — Predator–Prey Swarm Robotics',
     description: 'Built 10 full robots from the ground up at SWARM 2025 in Kitchener (100+ students, 500+ robots). From hands-on soldering to programming with Docker and ROS, we engineered emergent predator–prey behaviors inspired by nature. Grateful to GRAM, UW Robotics, sponsors, and mentors.',
     tech: 'Robotics, ROS, Docker, Embedded Systems, Swarm Intelligence, Multi-Agent Systems, Hardware',
@@ -164,16 +155,6 @@ const projectsData = [
     category: 'C++ / Game Dev',
     date: 'October 2025',
     imageName: 'poker.png'
-  },
-  {
-    title: 'marketSim',
-    description: 'High-performance real-time market replay and simulation engine with deterministic OCaml core, pluggable strategy SDKs, and interactive dashboard for control and visualization.',
-    tech: 'OCaml, Node.js, TypeScript, React, Next.js, Python, Rust, Yarn, PNPM, Parquet, Arrow, WebSocket, REST',
-    git: 'https://github.com/RhyChaw/marketSim',
-    category: 'Full-Stack / Systems',
-    date: 'September 2025',
-    inProgress: true,
-    imageName: null
   },
   {
     title: 'DJ AI',
@@ -194,36 +175,6 @@ const projectsData = [
     category: 'Product / Extension',
     date: 'September 2025',
     imageName: 'OneAddress.png'
-  },
-  {
-    title: 'NeuroClash – Adaptive Meta-AI Combatants',
-    description: 'A next-gen self-evolving AI fighter system where each agent dynamically adapts its fighting style during battle based on opponent behavior, using Bayesian meta-learning + reinforcement learning + one-shot adaptation.',
-    tech: 'PyTorch, TensorFlow, Python, FastAPI, Three.js, WebGL, JavaScript, Web3, Ethereum, Smart Contracts, Reinforcement Learning, Bayesian ML, One-Shot Learning, Neural Networks',
-    git: 'https://github.com/RhyChaw/neuroclash',
-    category: 'AI/ML',
-    date: 'September 2025',
-    inProgress: true,
-    imageName: 'NeuroClash.png'
-  },
-  {
-    title: 'Global Equity Simulator',
-    description: 'Full-stack SaaS app to simulate global employee equity grants with country-specific tax and regulation rules, interactive cap table visualization, and automated compliance reporting.',
-    tech: 'React, TypeScript, Django, DRF, Spring Boot, Java, Docker, Kubernetes, Helm',
-    git: 'https://github.com/RhyChaw/global-equity-simulator',
-    category: 'Full Stack',
-    date: 'September 2025',
-    inProgress: true,
-    imageName: 'Equityy.png'
-  },
-  {
-    title: 'PolyScale — Distributed AI-Accelerated Code Search & Refactor',
-    description: 'Monorepo scaffold for a Google-scale code search and refactoring system: Gateway HTTP API (Go), in-memory search daemon (Go), ML service (Python/FastAPI) for embeddings and refactor suggestions.',
-    tech: 'Go, Python, FastAPI, gRPC, Protobuf, Docker, Docker Compose, FAISS, Next.js',
-    category: 'Systems / DevTools',
-    git: 'https://github.com/RhyChaw/repofactor',
-    date: 'September 2025',
-    inProgress: true,
-    imageName: null
   },
   {
     title: 'SPOOK - Horror Game (Horror Hacks 2025)',
@@ -247,16 +198,6 @@ const projectsData = [
     imageName: 'SnapSafe.png'
   },
   {
-    title: 'Bhasha Mobile App',
-    description: 'Startup App for Learning Indian Languages with backend integration',
-    tech: 'Flutter, Dart, Supabase, Mobile Development',
-    git: '#',
-    category: 'Full Stack',
-    date: 'June 2025',
-    inProgress: true,
-    imageName: 'Bhasha.png'
-  },
-  {
     title: 'StrumSpace (SpurHacks Hackathon)',
     description: 'Computer Vision based 3D web dev app, which annotates chords on guitar Live using YOLOv8',
     tech: 'YOLOv8, Computer Vision, 3D Web, JavaScript, Machine Learning',
@@ -266,25 +207,6 @@ const projectsData = [
     imageName: 'StrumSpace.png'
   },
   {
-    title: 'Bhasha Web App',
-    description: 'Startup App for Learning Indian Languages',
-    tech: 'Next.js, React, TypeScript, Web Development',
-    git: 'https://github.com/RhyChaw/bhasha-web',
-    link: 'https://learnwithbhasha.com/',
-    category: 'Full Stack',
-    date: 'May 2025',
-    imageName: 'Bhasha.png'
-  },
-  {
-    title: 'Zafari CC Design (FreeLance)',
-    description: 'Web application for Zafari CC Design',
-    tech: 'Next.js, React, TypeScript, Web Development',
-    link: 'https://www.zafariccdesign.com/',
-    category: 'Free Lance',
-    date: 'May 2025',
-    imageName: 'Zafari.png'
-  },
-  {
     title: 'Watopoly - Waterloo Monopoly',
     description: 'Monopoly-inspired board game set on University of Waterloo campus! Features Waterloo landmarks, trading system, save/load functionality, and auction mechanics.',
     tech: 'C++, Object-Oriented Programming, Git',
@@ -292,14 +214,6 @@ const projectsData = [
     category: 'Game Development',
     date: 'March 2025',
     imageName: 'watopoly.JPG'
-  },
-  {
-    title: 'Velocity Health Innovation – Monorepo',
-    description: 'Monorepo with a React web app, Expo React Native mobile app, and FastAPI backend using LangChain agents with OpenAI (LLM + Whisper), Pinecone vector store, and ElevenLabs TTS.',
-    tech: 'React, React Native (Expo), FastAPI, LangChain, OpenAI, Whisper, Pinecone, ElevenLabs, Supabase',
-    category: 'Full Stack / AI',
-    date: 'March 2025',
-    imageName: 'VelocityGRH.png'
   },
   {
     title: 'PawPal (GeeseHacks Hackathon)',
@@ -351,28 +265,10 @@ const projectsData = [
     imageName: 'KungFuMaster.png'
   },
   {
-    title: 'JADO AI',
-    description: 'Developed an AI-powered chatbot designed to assist university applicants by analyzing YouTube videos, providing links to academic papers, and offering resume feedback. Implemented advanced NLP models for Reddit scanning and personalized academic recommendations.',
-    tech: 'Python, Docker, NLP, Machine Learning, AI, Containerization',
-    git: 'https://github.com/RhyChaw/Jado',
-    category: 'ML',
-    date: 'July 2024',
-    imageName: 'JadoAI.png'
-  },
-  {
-    title: 'Doctor AI Project',
-    description: 'Developed a medically fine-tuned LLM using Llama2 (Meta), trained on curated medical datasets from Hugging Face. Implemented advanced NLP preprocessing, data augmentation, and fine-tuning techniques.',
-    tech: 'Llama2, Hugging Face, NLP, Medical AI, Fine-tuning, Data Augmentation',
-    link: 'https://colab.research.google.com/drive/1dJVq9tbPk0IwA3Tbpxvl0_9iZqKzXDaX',
-    category: 'ML',
-    date: 'July 2024',
-    imageName: 'DoctorAI.png'
-  },
-  {
     title: 'Velocity - Grand River Hospital Innovation Challenge',
     description: 'Developed a comprehensive data management system for Grand River Hospital to restructure and organize their data efficiently. Built as a React-based mobile web application.',
     tech: 'React, Data Visualization, Mobile Web, Healthcare Tech',
-    git: 'https://github.com/RhyChaw/GRHVel',
+    git: '#',
     category: 'Full Stack',
     date: 'June 2024',
     imageName: 'VelocityGRH.png'
@@ -425,16 +321,6 @@ const projectsData = [
     date: 'October 2023',
     imageName: 'HestiaP.png'
   },
-  {
-    title: 'VBOman Admin Panel (FreeLance)',
-    description: 'REACT JS application with Firebase Backend for Restaurant Vasanta Bhavan based in Oman',
-    tech: 'React.js, Firebase, JavaScript, Admin Panel, Restaurant Management',
-    link: 'https://vboman.com',
-    git: 'https://github.com/RhyChaw/VBOman',
-    category: 'Free Lance',
-    date: 'September 2023',
-    imageName: 'VBoman.png'
-  }
 ];
 
 // Open Source contributions data

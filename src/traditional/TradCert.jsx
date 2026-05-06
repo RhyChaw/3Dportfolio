@@ -1,45 +1,47 @@
 import React, { useEffect, useState } from 'react';
 
+import PipetteProImg from '../proj/PipettePro.png';
+
 const certificationsData = [
   {
     id: 1,
-    image: '/images/certifications/Quantum.png',
-    courseName: 'Introduction to Quantum Computing',
-    certificateLink: 'https://www.udemy.com/certificate/UC-eb95898f-1e56-403c-8dab-466467fc17c5/',
-    completionDate: '06-06-2024',
-    issuingOrganization: 'Udemy',
+    image: PipetteProImg,
+    courseName: 'Best Prototype — Google × UWaterloo Symposium',
+    certificateLink: 'https://pipettepro.vercel.app',
+    completionDate: 'November 2025',
+    issuingOrganization: 'University of Waterloo · Future of Work Institute',
   },
   {
     id: 2,
-    image: '/images/certifications/AdvancedCSS.png',
-    courseName: 'Advanced CSS',
-    certificateLink: 'https://www.udemy.com/certificate/UC-46fc113c-2139-4ce9-939e-0a9a2febb0fd/',
-    completionDate: '04-07-2024',
-    issuingOrganization: 'Udemy',
+    image: null,
+    courseName: "President's Scholarship of Distinction",
+    certificateLink: null,
+    completionDate: 'September 2024',
+    issuingOrganization: 'University of Waterloo',
   },
   {
     id: 3,
-    image: '/images/certifications/MachineLearning.png',
-    courseName: 'Machine Learning A-Z',
-    certificateLink: 'https://www.udemy.com/certificate/UC-a2ab1162-0958-487f-af70-a1f989323ac0/',
-    completionDate: '19-07-2024',
-    issuingOrganization: 'Udemy',
+    image: null,
+    courseName: 'Undergraduate Research Award (URA)',
+    certificateLink: null,
+    completionDate: 'December 2025',
+    issuingOrganization: 'University of Waterloo · Prof. Edith Law',
   },
   {
     id: 4,
-    image: '/images/certifications/ArtificialIntellingenceA-Z.png',
-    courseName: 'Artificial Intelligence A-Z',
-    certificateLink: 'https://www.udemy.com/certificate/UC-2065078c-6c73-4224-90ce-5b7e51498e2e/',
-    completionDate: '01-08-2024',
-    issuingOrganization: 'Udemy',
+    image: null,
+    courseName: 'TCPS 2 — Research Ethics Certification',
+    certificateLink: 'https://tcps2core.ca',
+    completionDate: 'January 2026',
+    issuingOrganization: 'Government of Canada',
   },
   {
     id: 5,
-    image: '/images/certifications/UltimateReact.png',
-    courseName: 'Ultimate React Course',
-    certificateLink: 'https://www.udemy.com/certificate/UC-a72a253c-0919-4089-9a95-4a11dc2bbb36/',
-    completionDate: '17-08-2024',
-    issuingOrganization: 'Udemy',
+    image: null,
+    courseName: 'Anthropic Claude 101',
+    certificateLink: null,
+    completionDate: '2026',
+    issuingOrganization: 'Anthropic',
   },
 ];
 
@@ -117,7 +119,7 @@ const TradCert = () => {
           backgroundClip: 'text',
         }}
       >
-        🏆 Certifications & Achievements
+        Achievements
       </h2>
 
       {isMobile ? (
@@ -146,18 +148,45 @@ const TradCert = () => {
               marginBottom: 'var(--space-lg)',
             }}
           >
-            <img
-              key={selected.id}
-              src={selected.image}
-              alt={selected.courseName}
-              style={{
-                width: '100%',
-                maxHeight: 'min(72vh, 640px)',
-                height: 'auto',
-                objectFit: 'contain',
-                display: 'block',
-              }}
-            />
+            {selected.image ? (
+              <img
+                key={selected.id}
+                src={selected.image}
+                alt={selected.courseName}
+                style={{
+                  width: '100%',
+                  maxHeight: 'min(72vh, 640px)',
+                  height: 'auto',
+                  objectFit: 'contain',
+                  display: 'block',
+                }}
+              />
+            ) : (
+              <div
+                style={{
+                  width: '100%',
+                  padding: 'var(--space-xl)',
+                  boxSizing: 'border-box',
+                  textAlign: 'center',
+                  color: 'var(--text-primary)',
+                }}
+              >
+                <div style={{ fontWeight: 800, fontSize: 'var(--text-lg)', marginBottom: 'var(--space-sm)' }}>
+                  {selected.courseName}
+                </div>
+                <div style={{ color: 'var(--text-secondary)', fontSize: 'var(--text-sm)', lineHeight: 1.6 }}>
+                  {selected.issuingOrganization}
+                  <br />
+                  {selected.completionDate}
+                  <br />
+                  {selected.certificateLink ? (
+                    <span style={{ color: 'var(--accent-primary)', fontWeight: 700 }}>Link: {selected.certificateLink}</span>
+                  ) : (
+                    <span style={{ color: 'var(--text-muted)', fontWeight: 700 }}>Link: —</span>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Bottom bar: navigation + details + CTA */}
@@ -228,23 +257,25 @@ const TradCert = () => {
             </p>
 
             <div style={{ textAlign: 'center' }}>
-              <a
-                href={selected.certificateLink}
-                target="_blank"
-                rel="noreferrer"
-                style={{
-                  display: 'inline-block',
-                  color: 'var(--accent-primary)',
-                  textDecoration: 'none',
-                  fontWeight: 700,
-                  border: '1px solid var(--accent-primary)',
-                  padding: 'var(--space-md) var(--space-xl)',
-                  borderRadius: 'var(--radius-md)',
-                  background: 'rgba(255, 255, 255, 0.55)',
-                }}
-              >
-                View current certificate →
-              </a>
+              {selected.certificateLink ? (
+                <a
+                  href={selected.certificateLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{
+                    display: 'inline-block',
+                    color: 'var(--accent-primary)',
+                    textDecoration: 'none',
+                    fontWeight: 700,
+                    border: '1px solid var(--accent-primary)',
+                    padding: 'var(--space-md) var(--space-xl)',
+                    borderRadius: 'var(--radius-md)',
+                    background: 'rgba(255, 255, 255, 0.55)',
+                  }}
+                >
+                  View current certificate →
+                </a>
+              ) : null}
             </div>
           </div>
         </div>
@@ -309,29 +340,64 @@ const TradCert = () => {
                   justifyContent: 'center',
                 }}
               >
-                <img
-                  src={selected.image}
-                  alt={selected.courseName}
-                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                />
+                {selected.image ? (
+                  <img
+                    src={selected.image}
+                    alt={selected.courseName}
+                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                  />
+                ) : (
+                  <div
+                    style={{
+                      width: '100%',
+                      height: '60vh',
+                      padding: 'var(--space-xl)',
+                      boxSizing: 'border-box',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      textAlign: 'center',
+                      color: 'var(--text-primary)',
+                    }}
+                  >
+                    <div>
+                      <div style={{ fontWeight: 800, fontSize: 'var(--text-xl)', marginBottom: 'var(--space-sm)' }}>
+                        {selected.courseName}
+                      </div>
+                      <div style={{ color: 'var(--text-secondary)', fontSize: 'var(--text-base)', lineHeight: 1.8 }}>
+                        {selected.issuingOrganization}
+                        <br />
+                        {selected.completionDate}
+                        <br />
+                        {selected.certificateLink ? (
+                          <span style={{ color: 'var(--accent-primary)', fontWeight: 700 }}>Link: {selected.certificateLink}</span>
+                        ) : (
+                          <span style={{ color: 'var(--text-muted)', fontWeight: 700 }}>Link: —</span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
               <div style={{ marginTop: 'var(--space-lg)' }}>
-                <a
-                  href={selected.certificateLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{
-                    display: 'inline-block',
-                    color: 'var(--accent-primary)',
-                    textDecoration: 'none',
-                    fontWeight: 600,
-                    border: '1px solid var(--accent-primary)',
-                    padding: 'var(--space-sm) var(--space-md)',
-                    borderRadius: 'var(--radius-sm)',
-                  }}
-                >
-                  View Certification →
-                </a>
+                {selected.certificateLink ? (
+                  <a
+                    href={selected.certificateLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{
+                      display: 'inline-block',
+                      color: 'var(--accent-primary)',
+                      textDecoration: 'none',
+                      fontWeight: 600,
+                      border: '1px solid var(--accent-primary)',
+                      padding: 'var(--space-sm) var(--space-md)',
+                      borderRadius: 'var(--radius-sm)',
+                    }}
+                  >
+                    View Certification →
+                  </a>
+                ) : null}
               </div>
             </div>
           </div>

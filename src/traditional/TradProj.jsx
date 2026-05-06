@@ -23,6 +23,7 @@ const TradProj = () => {
 
   // Enhanced filtering with search functionality
   const filteredProjects = top10Projects.filter((proj) => {
+    if (proj?.inProgress) return false;
     const matchesFilter = filter === 'All' || proj.category === filter;
     const techs = getTechArray(proj).map((t) => t.toLowerCase());
     const matchesSearch =

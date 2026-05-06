@@ -25,6 +25,8 @@ const TraditionalHome = () => {
     { id: 'opensource', label: 'Open Source / Research', items: openSource },
   ];
 
+  const visibleProjects = top10Projects.filter((p) => !p?.inProgress);
+
   useEffect(() => {
     const handleResize = () => {
       const mobile = window.innerWidth <= 768;
@@ -156,7 +158,7 @@ const TraditionalHome = () => {
               }
               onClick={() => setOpenSection(openSection === 'projects' ? '' : 'projects')}
             >
-              Projects
+              Projects ({visibleProjects.length})
             </button>
             {openSection === 'projects' && (
               <div className={styles.sidebarSubList}>
@@ -169,7 +171,7 @@ const TraditionalHome = () => {
                 </button>
                 {openProjectsList && (
                   <div className={styles.sidebarNestedList}>
-                    {top10Projects.map((proj, idx) => (
+                    {visibleProjects.map((proj, idx) => (
                       <button
                         key={`${proj.title}-${idx}`}
                         type="button"

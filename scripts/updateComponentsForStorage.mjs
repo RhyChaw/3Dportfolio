@@ -48,8 +48,8 @@ try {
   console.log('   ```javascript');
   console.log('   import imageMapping from "../IMAGE_URL_MAPPING.json";');
   console.log('   ');
-  console.log('   const imageUrl = imageMapping.categories.projects["SportSpark.png"];');
-  console.log('   <img src={imageUrl} alt="SportSpark" />');
+  console.log('   const imageUrl = imageMapping.categories.projects["ClashRoyale.png"];');
+  console.log('   <img src={imageUrl} alt="Clash Royale Analytics Platform" />');
   console.log('   ```\n');
   
   console.log('3️⃣  OPTION 3: Fetch directly from Storage');
@@ -60,7 +60,7 @@ try {
   console.log('   import { ref, getDownloadURL } from "firebase/storage";');
   console.log('   ');
   console.log('   const imageUrl = await getDownloadURL(');
-  console.log('     ref(storage, "projects/SportSpark.png")');
+  console.log('     ref(storage, "projects/ClashRoyale.png")');
   console.log('   );');
   console.log('   ```\n');
   
@@ -89,13 +89,13 @@ Now that your images are in Firebase Storage, here's how to update your componen
 
 \`\`\`javascript
 // OLD: Local imports
-import SportSpark from '../proj/SportSpark.png';
+import ClashRoyaleAnalytics from '../proj/ClashRoyale.png';
 import DJAi from '../proj/DJAi.png';
 
 export const projectsData = [
   {
-    title: 'SportSpark',
-    image: SportSpark, // ❌ Local import
+    title: 'Clash Royale Analytics Platform',
+    image: ClashRoyaleAnalytics, // ❌ Local import
   },
   // ...
 ];

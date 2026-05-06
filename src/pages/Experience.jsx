@@ -3,7 +3,7 @@ import React from 'react';
 function Experience({ onClose }) {
 const experiences = [
   {
-    title: 'Software Engineer Intern (Ongoing) | Carta Maple Kitchener, ON',
+    title: 'Software Engineer Intern | Carta Maple Kitchener, ON',
     detail: `- Designed backend services in Python/Django for high-volume financial compensation pipelines, processing over 1M records per month with strict correctness and auditability guarantees.
 - Integrated gRPC APIs across distributed services, reducing end-to-end request latency by 30%.
 - Optimized PostgreSQL schemas and queries, balancing throughput, consistency, and maintainability; contributed production code under CI pipelines with unit/integration tests and MyPy static typing.

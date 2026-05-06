@@ -72,8 +72,8 @@ If Firebase is working, you should see:
 ✅ Successfully fetched 32 projects from Firestore Cloud!
 
 📄 Sample Project from Firestore: {
-  id: 'sport-spark',
-  title: 'SportSpark',
+  id: 'clash-royale-analytics-platform',
+  title: 'Clash Royale Analytics Platform',
   category: 'Full Stack',
   imageUrl: '✅ Has Firebase Storage URL',
   source: '🔥 Firebase Cloud'
@@ -152,10 +152,10 @@ Storage:   ✅ Connected
 
 ### Local Files (OLD):
 ```javascript
-import SportSpark from '../proj/SportSpark.png';
+import ClashRoyaleAnalytics from '../proj/ClashRoyale.png';
 const projects = [{
-  title: 'SportSpark',
-  image: SportSpark // Local file path
+  title: 'Clash Royale Analytics Platform',
+  image: ClashRoyaleAnalytics // Local file path
 }];
 ```
 
