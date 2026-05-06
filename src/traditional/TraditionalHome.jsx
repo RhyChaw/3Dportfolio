@@ -3,11 +3,9 @@ import Resume from './TradResume';
 import Certifications from './TradCert';
 import Projects from './TradProjCoffeeLines';
 import Experience, { professionalExperience, founderJourney, freelanceWork, openSource } from './TradExp';
-import FloatingIcons from '../components/FloatingIcons';
 import styles from './TraditionalHome.module.css';
 import chibiNaruto from './ChibiB.jpg';
 import rhythmPhoto from '../assets/rhythm-photo.jpg';
-import LogosBelt from './LogosBelt';
 import { top10Projects } from '../pages/ProjectsData';
 
 const TraditionalHome = () => {
@@ -22,7 +20,7 @@ const TraditionalHome = () => {
     { id: 'professional', label: 'Engineering', items: professionalExperience },
     { id: 'founder', label: 'Founder', items: founderJourney },
     { id: 'freelance', label: 'Freelance', items: freelanceWork },
-    { id: 'opensource', label: 'Open Source / Research', items: openSource },
+    { id: 'opensource', label: 'Research', items: openSource },
   ];
 
   const visibleProjects = top10Projects.filter((p) => !p?.inProgress);
@@ -224,10 +222,6 @@ const TraditionalHome = () => {
             </a>
           </div>
 
-          {/* Continuous logo showcase below the resume section */}
-          <div className={styles.sidebarLogosWrap}>
-            <LogosBelt variant="sidebar" />
-          </div>
         </aside>
 
         {/* Scrollable content (75%) */}
@@ -235,19 +229,101 @@ const TraditionalHome = () => {
           <div className={styles.rightTopBar}>Rhythm Chawla</div>
           <div className={styles.hero}>
             <div className={styles.heroContent}>
-              <div className={`${styles.heroGrid} ${styles.heroGridSolo}`}>
-                <div className={styles.heroImage}>
-                  <div className={styles.imagePlaceholder}>
-                    <img
-                      src={rhythmPhoto}
-                      alt="Rhythm Chawla"
-                      className={styles.profileImage}
-                      onError={(e) => {
-                        e.target.style.display = 'none';
-                        const next = e.target.nextElementSibling;
-                        if (next) next.style.display = 'flex';
-                      }}
-                    />
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: isMobile ? 'column' : 'row',
+                  gap: isMobile ? 24 : 40,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <div
+                  style={{
+                    width: 200,
+                    borderRadius: 12,
+                    overflow: 'hidden',
+                    flex: '0 0 auto',
+                    background: 'rgba(255, 255, 255, 0.40)',
+                    border: '1px solid var(--border-glow)',
+                  }}
+                >
+                  <img
+                    src={rhythmPhoto}
+                    alt="Rhythm Chawla"
+                    style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                    }}
+                  />
+                </div>
+
+                <div style={{ maxWidth: '420px' }}>
+                  <p
+                    style={{
+                      fontSize: '22px',
+                      fontWeight: '500',
+                      lineHeight: '1.4',
+                      margin: '0 0 16px',
+                      color: 'inherit',
+                    }}
+                  >
+                    Make something people want.
+                  </p>
+                  <p
+                    style={{
+                      fontSize: '14px',
+                      lineHeight: '1.8',
+                      color: 'rgba(0,0,0,0.6)',
+                      margin: '0 0 20px',
+                    }}
+                  >
+                    That's the only question I ask before starting anything.
+                  </p>
+                  <p
+                    style={{
+                      fontSize: '13px',
+                      lineHeight: '1.8',
+                      color: 'rgba(0,0,0,0.55)',
+                      margin: 0,
+                    }}
+                  >
+                    CS at Waterloo (AI + HCI). Built production AI systems at Carta, LLM tooling at Cresta, co-founded G12Uni.
+                    Shipped palace-ai, network-mcp, and won Best Prototype at the Google × UWaterloo Symposium. Seeking Fall 2026.
+                  </p>
+
+                  <div
+                    style={{
+                      display: 'flex',
+                      gap: '16px',
+                      padding: '12px 0',
+                      flexWrap: 'wrap',
+                      marginTop: 16,
+                    }}
+                  >
+                    {[
+                      { label: 'GitHub', href: 'https://github.com/RhyChaw' },
+                      { label: 'LinkedIn', href: 'https://linkedin.com/in/rhychaw' },
+                      { label: 'Resume', href: '/resumes/resume.pdf' },
+                    ].map(({ label, href }) => (
+                      <a
+                        key={label}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          fontSize: '12px',
+                          fontWeight: '500',
+                          color: 'rgba(0,0,0,0.45)',
+                          textDecoration: 'none',
+                          transition: 'color 0.2s ease',
+                        }}
+                        onMouseEnter={(e) => (e.target.style.color = 'rgba(0,0,0,0.8)')}
+                        onMouseLeave={(e) => (e.target.style.color = 'rgba(0,0,0,0.45)')}
+                      >
+                        {label}
+                      </a>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -281,7 +357,7 @@ const TraditionalHome = () => {
           </main>
 
           <footer className={styles.footer}>
-            <p>&copy; 2025 Rhythm Chawla. All rights reserved.</p>
+            <p>&copy; 2026 Rhythm Chawla. All rights reserved.</p>
           </footer>
         </div>
       </div>
@@ -293,9 +369,6 @@ const TraditionalHome = () => {
           <span>Click to enter 3D World!</span>
         </div>
       </a>
-
-      {/* Floating Social Icons */}
-      <FloatingIcons />
     </div>
   );
 };

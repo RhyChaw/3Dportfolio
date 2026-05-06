@@ -22,7 +22,7 @@ const certificationsData = [
   {
     id: 3,
     image: null,
-    courseName: 'Undergraduate Research Award (URA)',
+    courseName: 'Undergraduate Research Assistant (URA)',
     certificateLink: null,
     completionDate: 'December 2025',
     issuingOrganization: 'University of Waterloo · Prof. Edith Law',
@@ -178,12 +178,6 @@ const TradCert = () => {
                   {selected.issuingOrganization}
                   <br />
                   {selected.completionDate}
-                  <br />
-                  {selected.certificateLink ? (
-                    <span style={{ color: 'var(--accent-primary)', fontWeight: 700 }}>Link: {selected.certificateLink}</span>
-                  ) : (
-                    <span style={{ color: 'var(--text-muted)', fontWeight: 700 }}>Link: —</span>
-                  )}
                 </div>
               </div>
             )}
@@ -256,27 +250,7 @@ const TradCert = () => {
               {selected.issuingOrganization} · {selected.completionDate}
             </p>
 
-            <div style={{ textAlign: 'center' }}>
-              {selected.certificateLink ? (
-                <a
-                  href={selected.certificateLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{
-                    display: 'inline-block',
-                    color: 'var(--accent-primary)',
-                    textDecoration: 'none',
-                    fontWeight: 700,
-                    border: '1px solid var(--accent-primary)',
-                    padding: 'var(--space-md) var(--space-xl)',
-                    borderRadius: 'var(--radius-md)',
-                    background: 'rgba(255, 255, 255, 0.55)',
-                  }}
-                >
-                  View current certificate →
-                </a>
-              ) : null}
-            </div>
+            <div style={{ textAlign: 'center' }} />
           </div>
         </div>
       ) : (
@@ -368,36 +342,13 @@ const TradCert = () => {
                         {selected.issuingOrganization}
                         <br />
                         {selected.completionDate}
-                        <br />
-                        {selected.certificateLink ? (
-                          <span style={{ color: 'var(--accent-primary)', fontWeight: 700 }}>Link: {selected.certificateLink}</span>
-                        ) : (
-                          <span style={{ color: 'var(--text-muted)', fontWeight: 700 }}>Link: —</span>
-                        )}
                       </div>
                     </div>
                   </div>
                 )}
               </div>
               <div style={{ marginTop: 'var(--space-lg)' }}>
-                {selected.certificateLink ? (
-                  <a
-                    href={selected.certificateLink}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{
-                      display: 'inline-block',
-                      color: 'var(--accent-primary)',
-                      textDecoration: 'none',
-                      fontWeight: 600,
-                      border: '1px solid var(--accent-primary)',
-                      padding: 'var(--space-sm) var(--space-md)',
-                      borderRadius: 'var(--radius-sm)',
-                    }}
-                  >
-                    View Certification →
-                  </a>
-                ) : null}
+                {null}
               </div>
             </div>
           </div>

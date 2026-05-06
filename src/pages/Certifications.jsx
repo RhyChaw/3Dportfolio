@@ -1,45 +1,47 @@
 import React from 'react';
 
+import PipetteProImg from '../proj/PipettePro.png';
+
 const certificationsData = [
   {
     id: 1,
-    image: "/images/certifications/Quantum.png",
-    courseName: 'Introduction to Quantum Computing',
-    certificateLink: 'https://www.udemy.com/certificate/UC-eb95898f-1e56-403c-8dab-466467fc17c5/',
-    completionDate: '06-06-2024',
-    issuingOrganization: 'Udemy'
+    image: PipetteProImg,
+    courseName: 'Best Prototype — Google × UWaterloo Symposium',
+    certificateLink: 'https://pipettepro.vercel.app',
+    completionDate: 'November 2025',
+    issuingOrganization: 'University of Waterloo · Future of Work Institute'
   },
   {
     id: 2,
-    image: "/images/certifications/AdvancedCSS.png",
-    courseName: 'Advanced CSS',
-    certificateLink: 'https://www.udemy.com/certificate/UC-46fc113c-2139-4ce9-939e-0a9a2febb0fd/',
-    completionDate: '04-07-2024',
-    issuingOrganization: 'Udemy'
+    image: null,
+    courseName: "President's Scholarship of Distinction",
+    certificateLink: null,
+    completionDate: 'September 2024',
+    issuingOrganization: 'University of Waterloo'
   },
   {
     id: 3,
-    image: "/images/certifications/MachineLearning.png",
-    courseName: 'Maching Learning A-Z',
-    certificateLink: 'https://www.udemy.com/certificate/UC-a2ab1162-0958-487f-af70-a1f989323ac0/',
-    completionDate: '19-07-2024',
-    issuingOrganization: 'Udemy'
+    image: null,
+    courseName: 'Undergraduate Research Assistant (URA)',
+    certificateLink: null,
+    completionDate: 'December 2025',
+    issuingOrganization: 'University of Waterloo · Prof. Edith Law'
   },
   {
     id: 4,
-    image: "/images/certifications/ArtificialIntellingenceA-Z.png",
-    courseName: 'Artificial Intellingence A-Z',
-    certificateLink: 'https://www.udemy.com/certificate/UC-2065078c-6c73-4224-90ce-5b7e51498e2e/',
-    completionDate: '01-08-2024',
-    issuingOrganization: 'Udemy'
+    image: null,
+    courseName: 'TCPS 2 — Research Ethics Certification',
+    certificateLink: null,
+    completionDate: 'January 2026',
+    issuingOrganization: 'Government of Canada'
   },
   {
     id: 5,
-    image: "/images/certifications/UltimateReact.png",
-    courseName: 'Ultimate React Course',
-    certificateLink: 'https://www.udemy.com/certificate/UC-a72a253c-0919-4089-9a95-4a11dc2bbb36/',
-    completionDate: '17-08-2024',
-    issuingOrganization: 'Udemy'
+    image: null,
+    courseName: 'Anthropic Claude 101',
+    certificateLink: null,
+    completionDate: '2026',
+    issuingOrganization: 'Anthropic'
   },
 ];
 
@@ -71,7 +73,7 @@ function Certifications({ onClose }) {
         textShadow: '2px 2px 4px #000',
         marginBottom: '24px',
         fontWeight: '700'
-      }}>🏆 Certifications & Achievements</h2>
+      }}>Achievements</h2>
 
       <div style={{
         display: 'grid',
@@ -101,19 +103,43 @@ function Certifications({ onClose }) {
             e.currentTarget.style.boxShadow = '0 0 12px rgba(0,0,0,0.6)';
             e.currentTarget.style.borderColor = '#FFD700';
           }}>
-            <img
-              src={cert.image}
-              alt={cert.courseName}
-              style={{
-                width: '100%',
-                height: '200px',
-                objectFit: 'cover',
-                borderRadius: 'var(--radius-md)',
-                border: '1px solid var(--border-primary)',
-                boxShadow: 'var(--shadow-sm)',
-                marginBottom: 'var(--space-md)'
-              }}
-            />
+            {cert.image ? (
+              <img
+                src={cert.image}
+                alt={cert.courseName}
+                style={{
+                  width: '100%',
+                  height: '200px',
+                  objectFit: 'cover',
+                  borderRadius: 'var(--radius-md)',
+                  border: '1px solid var(--border-primary)',
+                  boxShadow: 'var(--shadow-sm)',
+                  marginBottom: 'var(--space-md)'
+                }}
+              />
+            ) : (
+              <div
+                style={{
+                  width: '100%',
+                  height: '200px',
+                  borderRadius: 'var(--radius-md)',
+                  border: '1px solid rgba(255,215,0,0.35)',
+                  boxShadow: 'var(--shadow-sm)',
+                  marginBottom: 'var(--space-md)',
+                  background: 'rgba(0,0,0,0.20)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '16px',
+                  boxSizing: 'border-box',
+                  textAlign: 'center',
+                  color: '#fffbe6',
+                  fontWeight: 700,
+                }}
+              >
+                {cert.courseName}
+              </div>
+            )}
             <div style={{ textAlign: 'center' }}>
               <h3 style={{
                 fontSize: 'var(--text-lg)',
@@ -149,38 +175,6 @@ function Certifications({ onClose }) {
               }}>
                 🏛 {cert.issuingOrganization}
               </p>
-              <a
-                href={cert.certificateLink}
-                target="_blank"
-                rel="noreferrer"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 'var(--space-xs)',
-                  color: '#FFD700',
-                  fontSize: 'var(--text-sm)',
-                  textDecoration: 'none',
-                  fontWeight: '700',
-                  padding: '6px 10px',
-                  background: 'rgba(0,0,0,0.35)',
-                  borderRadius: '10px',
-                  border: '1px solid #FFD700',
-                  transition: 'all 0.2s ease',
-                  marginTop: 'var(--space-sm)'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.background = '#FF4500';
-                  e.target.style.color = '#fff';
-                  e.target.style.borderColor = '#FF4500';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.background = 'rgba(0,0,0,0.35)';
-                  e.target.style.color = '#FFD700';
-                  e.target.style.borderColor = '#FFD700';
-                }}
-              >
-                View Certificate →
-              </a>
             </div>
           </div>
         ))}
