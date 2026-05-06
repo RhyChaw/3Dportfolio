@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Import company logos
 import cartaLogo from '../compLogos/carta.png';
@@ -11,41 +11,43 @@ import zafariLogo from '../compLogos/zafari.jpeg';
 import mettaStarsLogo from '../compLogos/mettastars.jpeg';
 
 // Professional Experience
-const professionalExperience = [
+export const professionalExperience = [
   {
-    title: 'Software Engineer Intern (Ongoing) | Carta Maple Kitchener, ON',
+    title: 'Software Engineer Intern | Carta',
     logo: cartaLogo,
-    detail: `- Designed backend services in Python/Django for high-volume financial compensation pipelines, processing over 1M records per month with strict correctness and auditability guarantees
-- Integrated gRPC APIs across distributed services, reducing end-to-end request latency by 30%
-- Optimized PostgreSQL schemas and queries, balancing throughput, consistency, and maintainability; contributed production code under CI pipelines with unit/integration tests and MyPy static typing
-- Leveraged a toolkit including Docker, Jenkins, Kubernetes, Datadog, Sentry, and Jira to ensure reliability, observability, and high system performance`,
+    detail: `- Developed Carta's first MCP compensation benchmarking plugin, enabling HR managers to query real-time salary data through Claude via natural language; architected the full auth flow and an upsell path for non-subscribers.
+- Built devtools-mcp, a Chrome extension + Node.js MCP server exposing 16 tools that stream live browser DevTools data (network, console, cookies, storage) directly into Claude Code, eliminating context-switching for engineers during debugging.
+- Architected Project Atlas, a persistent context memory system for Claude, designing a .context/ repo structure and custom MCP server integrating Jira, Slack, and Confluence, reducing token consumption by ~86k tokens per investigation session across agent workflows.
+- Reduced CI pipeline runtime by 42% (12 -> 7 min) on Jenkins; maintained 100+ contributions in first 90 days spanning Django, Python, Datadog, Sentry, CircleCI, and ArgoCD.
+- Led 5 projects end-to-end from scoping to release as primary point of contact, including ERD design, feature flag orchestration, and production job execution on live data.`,
     year: 'Jan 2026 – Apr 2026',
-    techTags: ['Python', 'Django', 'gRPC', 'PostgreSQL', 'Docker', 'Jenkins', 'Kubernetes', 'Datadog', 'Sentry', 'Jira', 'MyPy', 'CI/CD'],
+    techTags: ['Python', 'Django', 'gRPC', 'PostgreSQL', 'Docker', 'Jenkins', 'Kubernetes', 'Datadog', 'Sentry', 'Jira', 'MyPy', 'CI/CD', 'Kafka', 'MCP'],
   },
   {
-    title: 'Associate Conversation Design Intern | Cresta AI (Series D)',
+    title: 'LLM Engineer Intern | Cresta AI (Series D)',
     logo: crestaLogo,
-    detail: `- Built an LLM-powered redaction auditor that accelerated QA by 98%, automatically flagging sensitive/policy-violating content across thousands of conversations
-- Developed a demo automation suite that improved QA efficiency by 50% and streamlined enterprise ops
-- Audited and optimized conversation workflows for 12 enterprise customers, collaborating cross-functionally with stakeholders`,
-    year: 'August 2025',
+    detail: `- Engineered an LLM auditing system processing 10,000 conversation logs per run, cutting manual QA time by 98% and enabling reviewers to clear multi-week backlogs in hours.
+- Conducted QA for AI agent behavior across 12 enterprise clients including Royal Caribbean, surfacing edge cases for model improvements.
+- Automated annotation workflows saving 10+ hours/week; tuned conversation platforms for 10+ client deployments improving bot accuracy by 30%.`,
+    year: 'May 2025 – Aug 2025',
     techTags: ['Python', 'LLMs', 'Jupyter', 'Dialogflow CX', 'Google Apps Script', 'Enterprise AI'],
   },
   {
-    title: 'Software Engineer | E-Coop @ Conrad School of Business',
+    title: 'Founding Engineer | Conrad School of Entrepreneurship (Co-op)',
     logo: conradLogo,
-    detail: `- Engineered full-stack platform rebuild with Vite ReactJS, Tailwind, and real-time APIs (Google Meet, maps, chat, avatars, bots)
-- Deployed and optimized NLP models for Reddit/YouTube intelligence pipelines on Docker + GCP
-- Collaborated with Conrad Grebel School of Entrepreneurship on venture design and early-stage product validation`,
-    year: 'August 2024',
+    detail: `- Co-founded G12Uni: An AI-powered university admissions platform scaling to 40,000 monthly visits and 2,000+ MAU across 10+ countries; selected for Google for Startups.
+- Engineered full-stack rebuild (Vite + React + Tailwind) with real-time APIs: Google Meet, maps, chat, avatars, and bots.
+- Deployed NLP pipelines for Reddit/YouTube intelligence on Docker + GCP; pitched to 24 high schools and secured 5 pilot agreements.
+- Built Jado: An LLM-powered research assistant extending Perplexity-style search with Reddit and YouTube scraping pipelines.`,
+    year: 'May 2024 – Aug 2024',
     techTags: ['ReactJS', 'Vite', 'Tailwind', 'Python', 'Docker', 'GCP', 'NLP', 'ML Microservices'],
   },
 ];
 
 // Freelance Work (Latest first)
-const freelanceWork = [
+export const freelanceWork = [
   {
-    title: 'Zafari CC Design — Full Stack Developer',
+    title: 'Zafari CC Design: Full Stack Developer',
     logo: zafariLogo,
     detail: `- Built a modern, SEO-optimized website for an interior design company
 - Implemented server-side rendering with Next.js for optimal performance
@@ -54,7 +56,7 @@ const freelanceWork = [
     techTags: ['Next.js', 'React', 'TypeScript', 'SEO', 'Server-Side Rendering'],
   },
   {
-    title: 'Metta Stars Foundation — Full Stack Developer',
+    title: 'Metta Stars Foundation: Full Stack Developer',
     logo: mettaStarsLogo,
     detail: `- Built a full-stack website for an NGO focused on mental health, finance, and spirituality
 - Implemented responsive design and modern UI/UX patterns
@@ -63,7 +65,7 @@ const freelanceWork = [
     techTags: ['Vite', 'React', 'JavaScript', 'Web Development'],
   },
   {
-    title: 'Vasanta Bhavan Oman — Full Stack Developer',
+    title: 'Vasanta Bhavan Oman: Full Stack Developer',
     logo: vbLogo,
     detail: `- Developed an admin panel using ReactJS and Firebase backend
 - Built order tracking, staff management, and analytics dashboards
@@ -73,134 +75,91 @@ const freelanceWork = [
   },
 ];
 
+// Short intro shown above founder timeline (editorial / “front page” copy)
+export const founderJourneySummary =
+  "I build products end-to-end - from first commit to real users - usually as a founder or technical co-founder. The thread through my work is education, language, and global communities: shipping platforms people actually use, iterating with partners and users, and staying close to the stack while owning product direction. What follows is a chronological wire of those ventures: the headlines, the build, and the tools behind each one.";
+
 // Founder Journey (Latest first)
-const founderJourney = [
+export const founderJourney = [
   {
-    title: 'Strata — Co-Founder',
-    logo: null, // Add Strata logo when available
-    detail: `- Building AI-powered solutions for [add specific details about Strata]
-- Leading product development and technical strategy
-- Scaling from concept to production`,
-    year: '2025',
-    techTags: ['AI/ML', 'Product Development', 'Startup'],
+    title: 'G12Uni: Co-Founder & Software Engineer',
+    logo: g12Logo,
+    detail: `- Launched and scaled a global platform connecting 40,000 monthly visits and 2,000+ MAU across 10+ countries
+- Engineered full-stack rebuild with Vite ReactJS, Tailwind, and real-time APIs (Google Meet, maps, chat, avatars, bots)
+- Deployed and optimized NLP models on Docker + GCP, building scalable ML microservices
+- Partnered with Google for Education Startups through eCoop & Conrad Grebel School of Entrepreneurship
+- Selected for Google for Startups program; partnered with Google mentors through eCoop.`,
+    year: 'August 2024',
+    techTags: ['ReactJS', 'Vite', 'Tailwind', 'Python', 'Flutter', 'Dart', 'Docker', 'GCP', 'NLP', 'Firebase'],
   },
   {
-    title: 'Bhasha — Co-Founder',
+    title: 'Bhasha: Co-Founder',
     logo: bhashaLogo,
     detail: `- Developed a learning platform for Indian languages with mobile and web apps
 - Built using Flutter, Dart, and Supabase for seamless cross-platform experience
 - Integrated backend services for user progress tracking and content delivery`,
-    year: 'May 2025',
+    year: '2025',
     techTags: ['Flutter', 'Dart', 'Supabase', 'Next.js', 'React', 'TypeScript', 'Mobile Development'],
-  },
-  {
-    title: 'G12Uni — Co-Founder & Software Engineer',
-    logo: g12Logo,
-    detail: `- Launched and scaled a global platform connecting 1,500+ university students across 10+ countries
-- Engineered full-stack rebuild with Vite ReactJS, Tailwind, and real-time APIs (Google Meet, maps, chat, avatars, bots)
-- Deployed and optimized NLP models on Docker + GCP, building scalable ML microservices
-- Partnered with Google for Education Startups through eCoop & Conrad Grebel School of Entrepreneurship`,
-    year: 'August 2024',
-    techTags: ['ReactJS', 'Vite', 'Tailwind', 'Python', 'Flutter', 'Dart', 'Docker', 'GCP', 'NLP', 'Firebase'],
   },
 ];
 
 // Open Source (Latest first)
-const openSource = [
+export const openSource = [
   {
-    title: 'Gradio — Contributor | Hugging Face',
+    title: 'HCI Researcher: Software Engineer | Prof. Edith Law',
     logo: null,
-    detail: `- Contributed to Gradio, the open-source Python library for building ML web interfaces
-- Enhanced UI components and improved accessibility features for ML demos
-- Collaborated with Hugging Face team on documentation and community support
-- Helped democratize ML by making it easier to share models and create interactive demos`,
-    year: '2025',
-    techTags: ['Python', 'Machine Learning', 'UI/UX', 'Open Source', 'Hugging Face'],
+    detail: `- Software engineer on Prof. Edith Law's HCI lab: Building participant-facing tools and research infrastructure for a UWaterloo study on AI literacy in Canadian healthcare.
+- Won Best Prototype at the Fall 2025 Google × UWaterloo Symposium on the Future of Learning (Pipette Pro): Developed with Google mentors Chris Reardon and Jules Walter.
+- Contributing to research on human-centered AI for educational tools connected to Google's education mission and products like NotebookLM.`,
+    year: 'Dec 2025 – Present',
+    techTags: ['Next.js', 'TensorFlow', 'Firebase', 'Three.js', 'HCI Research', 'Google', 'EdTech'],
   },
   {
-    title: 'Three.js — Contributor',
+    title: 'palace-ai: Open Source',
     logo: null,
-    detail: `- Contributed to Three.js, the popular JavaScript 3D graphics library
-- Improved documentation and created examples for 3D rendering techniques
-- Fixed bugs in shader implementations and optimized performance
-- Enhanced WebGL compatibility and added new helper utilities`,
-    year: '2024',
-    techTags: ['JavaScript', 'WebGL', '3D Graphics', 'Three.js', 'Open Source'],
+    detail: `- Built and published an open source Python CLI that converts any code repository into a navigable memory palace for AI agents: Generating typed associative networks and per-module room files.
+- Achieves 10–42x token reduction with zero API key required; ships with Claude Code integration via \`palace install claude\`.
+- Personal implementation of the Atlas context system concept developed during the Carta internship.`,
+    year: 'May 2026',
+    techTags: ['Python', 'AST', 'pgvector', 'MCP', 'Claude Code', 'PyPI', 'Open Source'],
   },
   {
-    title: 'Pipette Pro — Core Contributor',
+    title: 'network-mcp: Open Source',
     logo: null,
-    detail: `- Major contributor to Pipette Pro, an open-source laboratory management system
-- Developed core features for experiment tracking and data visualization
-- Built RESTful APIs for lab equipment integration
-- Implemented real-time collaboration features for research teams`,
-    year: '2024',
-    techTags: ['Python', 'React', 'Laboratory Management', 'Data Visualization', 'Open Source'],
+    detail: `- Built an open source MCP server that ingests LinkedIn connections + personal notes, embeds them with pgvector, and answers natural language queries to surface the right people at the right time.
+- Solves the real problem of having 1,700+ connections but no way to leverage them: Ask 'investors who care about edtech' and get ranked, relevant results.`,
+    year: 'April 2026',
+    techTags: ['Python', 'TypeScript', 'PostgreSQL', 'pgvector', 'FastAPI', 'Docker', 'MCP', 'Open Source'],
   },
   {
-    title: 'UW Flow — Contributor',
+    title: 'Parmanu: Research',
     logo: null,
-    detail: `- Contributed to UW Flow, the course planning platform for University of Waterloo students
-- Improved course search and filtering algorithms for better user experience
-- Enhanced mobile responsiveness and UI components
-- Fixed bugs and optimized database queries for faster page loads`,
-    year: '2024',
-    techTags: ['React', 'Node.js', 'PostgreSQL', 'Full Stack', 'Open Source', 'Education'],
+    detail: `- Authored a research paper proposing a particle-based physics engine where material behavior emerges from learned interaction kernels rather than hand-coded solvers (cs.GR, Jan 2026).
+- One engine, one substrate, any material: Water, honey, sand, and soft tissue differ only in their latent embedding z. Hybrid analytic + PyTorch learned kernels with ROS bridge for humanoid robotics simulation.`,
+    year: 'January 2026',
+    techTags: ['Python', 'PyTorch', 'SPH', 'Open3D', 'ROS', 'Physics Simulation', 'Research'],
   },
 ];
 
 const TradExp = () => {
-  const [activeTab, setActiveTab] = useState('professional');
-  const [visibleItems, setVisibleItems] = useState([]);
-  const [hoveredItem, setHoveredItem] = useState(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const sectionRef = useRef(null);
-  const contentRef = useRef(null);
+  const [activeCategory, setActiveCategory] = useState('professional');
 
-  // Get current experiences based on active tab
-  const getCurrentExperiences = () => {
-    switch (activeTab) {
-      case 'professional':
-        return professionalExperience;
-      case 'founder':
-        return founderJourney;
-      case 'freelance':
-        return freelanceWork;
-      case 'opensource':
-        return openSource;
-      default:
-        return professionalExperience;
-    }
-  };
-
-  // Reset and animate items when tab changes
   useEffect(() => {
-    setVisibleItems([]);
-    const currentExperiences = getCurrentExperiences();
-    
-    // Animate items one by one
-    currentExperiences.forEach((_, index) => {
-      setTimeout(() => {
-        setVisibleItems(prev => [...prev, index]);
-      }, index * 200);
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeTab]);
-
-  // Handle window resize for responsive design
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const categories = [
+    { id: 'professional', label: 'Engineering', items: professionalExperience },
+    { id: 'founder', label: 'Founder Journey', items: founderJourney },
+    { id: 'freelance', label: 'Freelance Work', items: freelanceWork },
+    { id: 'opensource', label: 'Open Source / Research', items: openSource },
+  ];
+
   return (
-    <section
-      ref={sectionRef}
-      id="experience"
+    <div
       style={{
         padding: isMobile ? 'var(--space-2xl) var(--space-md)' : 'var(--space-3xl) var(--space-lg)',
         maxWidth: '1200px',
@@ -216,239 +175,420 @@ const TradExp = () => {
           marginBottom: isMobile ? 'var(--space-2xl)' : 'var(--space-3xl)',
           color: 'var(--text-primary)',
           fontWeight: '700',
-          textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
+          textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
           background: 'linear-gradient(45deg, var(--text-primary), var(--accent-primary))',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           backgroundClip: 'text',
         }}
       >
-        💼 Experience
+        Experience
       </h2>
 
-      {/* Tabs */}
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          gap: isMobile ? 'var(--space-sm)' : 'var(--space-md)',
-          marginBottom: isMobile ? 'var(--space-2xl)' : 'var(--space-3xl)',
-          flexWrap: 'wrap',
-        }}
-      >
-        {[
-          { id: 'professional', label: 'Professional Experience' },
-          { id: 'founder', label: 'Founder Journey' },
-          { id: 'freelance', label: 'Freelance' },
-          { id: 'opensource', label: 'Open Source' },
-        ].map((tab) => {
-          const isActive = activeTab === tab.id;
-          return (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              style={{
-                padding: isMobile ? 'var(--space-sm) var(--space-md)' : 'var(--space-md) var(--space-lg)',
-                fontSize: isMobile ? 'var(--text-sm)' : 'var(--text-base)',
-                fontWeight: '600',
-                color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
-                background: isActive
-                  ? 'linear-gradient(135deg, var(--accent-primary), var(--accent-purple))'
-                  : 'var(--bg-glass)',
-                border: `2px solid ${isActive ? 'var(--accent-primary)' : 'var(--border-glow)'}`,
-                borderRadius: 'var(--radius-lg)',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                boxShadow: isActive ? 'var(--shadow-glow)' : 'var(--shadow-md)',
-                backdropFilter: 'blur(10px)',
-                transform: isActive ? 'translateY(-2px)' : 'translateY(0)',
-              }}
-              onMouseEnter={(e) => {
-                if (!isActive) {
-                  e.target.style.background = 'rgba(0, 245, 255, 0.1)';
-                  e.target.style.borderColor = 'var(--accent-primary)';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (!isActive) {
-                  e.target.style.background = 'var(--bg-glass)';
-                  e.target.style.borderColor = 'var(--border-glow)';
-                }
-              }}
-            >
-              {tab.label}
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Tab Content */}
-      <div ref={contentRef}>
+      {isMobile ? (
+        <div
+          style={{
+            marginBottom: 'var(--space-2xl)',
+            paddingBottom: 'var(--space-sm)',
+            borderBottom: '1px solid var(--border-glow)',
+          }}
+        >
+          <label
+            htmlFor="experience-category-select"
+            style={{
+              display: 'block',
+              fontSize: 'var(--text-sm)',
+              fontWeight: 700,
+              color: 'var(--text-secondary)',
+              marginBottom: 'var(--space-sm)',
+              fontFamily: 'var(--font-family-primary)',
+            }}
+          >
+            Category
+          </label>
+          <select
+            id="experience-category-select"
+            value={activeCategory}
+            onChange={(e) => setActiveCategory(e.target.value)}
+            style={{
+              width: '100%',
+              maxWidth: '100%',
+              boxSizing: 'border-box',
+              padding: 'var(--space-md) var(--space-lg)',
+              paddingRight: 'var(--space-2xl)',
+              fontFamily: 'var(--font-family-primary)',
+              fontSize: 'var(--text-base)',
+              fontWeight: 700,
+              color: 'var(--text-primary)',
+              backgroundColor: 'rgba(255, 255, 255, 0.65)',
+              border: '1px solid var(--border-glow)',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              appearance: 'none',
+              WebkitAppearance: 'none',
+              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%237a4b22' d='M1 1l5 5 5-5'/%3E%3C/svg%3E")`,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'right var(--space-md) center',
+              boxShadow: 'var(--shadow-sm)',
+            }}
+          >
+            {categories.map((cat) => (
+              <option key={cat.id} value={cat.id}>
+                {cat.label}
+              </option>
+            ))}
+          </select>
+        </div>
+      ) : (
         <div
           style={{
             display: 'flex',
-            flexDirection: 'column',
-            gap: isMobile ? 'var(--space-2xl)' : 'var(--space-3xl)',
+            flexWrap: 'wrap',
+            gap: 'var(--space-md)',
+            marginBottom: 'var(--space-2xl)',
+            paddingBottom: 'var(--space-sm)',
+            borderBottom: '1px solid var(--border-glow)',
           }}
         >
-          {getCurrentExperiences().map((exp, index) => {
-            const isVisible = visibleItems.includes(index);
-            const isHovered = hoveredItem === `${activeTab}-${index}`;
-          
-          return (
-            <div
-              key={index}
-              style={{
-                background: 'var(--bg-glass)',
-                border: `1px solid ${isHovered ? 'var(--accent-primary)' : 'var(--border-glow)'}`,
-                borderRadius: isMobile ? 'var(--radius-xl)' : 'var(--radius-2xl)',
-                padding: isMobile ? 'var(--space-lg)' : 'var(--space-2xl)',
-                backdropFilter: 'blur(10px)',
-                boxShadow: isHovered ? 'var(--shadow-glow)' : 'var(--shadow-lg)',
-                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 'translateY(0)' : 'translateY(50px)',
-                animation: isVisible ? 'fadeInUp 0.8s ease-out forwards' : 'none',
-                animationDelay: `${index * 0.3}s`,
-                position: 'relative',
-                overflow: 'hidden',
-              }}
-              onMouseEnter={() => setHoveredItem(`${activeTab}-${index}`)}
-              onMouseLeave={() => setHoveredItem(null)}
-            >
-              {/* Gradient overlay on hover */}
-              <div
+          {categories.map((cat) => {
+            const active = activeCategory === cat.id;
+            return (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => setActiveCategory(cat.id)}
                 style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  background: isHovered 
-                    ? 'linear-gradient(135deg, rgba(0, 245, 255, 0.05), rgba(139, 92, 246, 0.05))'
-                    : 'transparent',
-                  transition: 'all 0.3s ease',
-                  pointerEvents: 'none',
-                }}
-              />
-
-              {/* Company badge */}
-              <div
-                style={{
-                  display: 'inline-block',
-                  background: 'linear-gradient(135deg, var(--accent-primary), var(--accent-purple))',
-                  color: 'var(--text-primary)',
-                  padding: 'var(--space-xs) var(--space-md)',
-                  borderRadius: 'var(--radius-full)',
-                  fontSize: 'var(--text-sm)',
-                  fontWeight: '600',
-                  marginBottom: 'var(--space-lg)',
-                  boxShadow: 'var(--shadow-md)',
+                  background: 'transparent',
+                  border: 'none',
+                  borderBottom: `2px solid ${active ? 'var(--accent-primary)' : 'rgba(var(--accent-primary-rgb), 0.25)'}`,
+                  padding: 0,
+                  cursor: 'pointer',
+                  color: active ? 'var(--accent-primary)' : 'var(--text-secondary)',
+                  fontFamily: 'var(--font-family-primary)',
+                  fontSize: 'var(--text-lg)',
+                  fontWeight: active ? 900 : 700,
                 }}
               >
-                {exp.year}
-              </div>
-
-              {/* Job title with logo */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 'var(--space-md)',
-                  marginBottom: isMobile ? 'var(--space-md)' : 'var(--space-lg)',
-                }}
-              >
-                {exp.logo && (
-                  <img
-                    src={exp.logo}
-                    alt={`${exp.title} logo`}
-                    style={{
-                      width: isMobile ? '40px' : '50px',
-                      height: isMobile ? '40px' : '50px',
-                      objectFit: 'contain',
-                      borderRadius: '8px',
-                      background: 'white',
-                      padding: '4px',
-                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
-                    }}
-                  />
-                )}
-                <h3
-                  style={{
-                    fontSize: isMobile ? 'var(--text-lg)' : 'var(--text-2xl)',
-                    color: 'var(--text-primary)',
-                    fontWeight: '700',
-                    margin: 0,
-                    lineHeight: '1.3',
-                    background: isHovered 
-                      ? 'linear-gradient(45deg, var(--text-primary), var(--accent-primary))'
-                      : 'none',
-                    WebkitBackgroundClip: isHovered ? 'text' : 'initial',
-                    WebkitTextFillColor: isHovered ? 'transparent' : 'initial',
-                    backgroundClip: isHovered ? 'text' : 'initial',
-                    transition: 'all 0.3s ease',
-                  }}
-                >
-                  {exp.title}
-                </h3>
-              </div>
-
-              {/* Job description */}
-              <div
-                style={{
-                  fontSize: isMobile ? 'var(--text-sm)' : 'var(--text-base)',
-                  color: 'var(--text-secondary)',
-                  lineHeight: isMobile ? '1.6' : '1.7',
-                  whiteSpace: 'pre-line',
-                  transition: 'color 0.3s ease',
-                }}
-              >
-                {exp.detail}
-              </div>
-
-              {/* Tech stack tags */}
-              <div
-                style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  gap: 'var(--space-sm)',
-                  marginTop: 'var(--space-lg)',
-                }}
-              >
-                {(exp.techTags || []).map((tech, techIdx) => (
-                  <span
-                    key={techIdx}
-                    style={{
-                      fontSize: 'var(--text-sm)',
-                      color: 'var(--accent-primary)',
-                      background: 'rgba(0, 245, 255, 0.15)',
-                      border: '1px solid rgba(0, 245, 255, 0.4)',
-                      padding: 'var(--space-xs) var(--space-sm)',
-                      borderRadius: 'var(--radius-md)',
-                      fontWeight: '500',
-                      transition: 'all 0.3s ease',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.target.style.background = 'rgba(0, 245, 255, 0.25)';
-                      e.target.style.transform = 'translateY(-2px)';
-                      e.target.style.boxShadow = '0 4px 8px rgba(0, 245, 255, 0.3)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.background = 'rgba(0, 245, 255, 0.15)';
-                      e.target.style.transform = 'translateY(0)';
-                      e.target.style.boxShadow = 'none';
-                    }}
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          );
+                {cat.label}
+              </button>
+            );
           })}
         </div>
+      )}
+
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: isMobile ? 'var(--space-3xl)' : 'var(--space-4xl)',
+        }}
+      >
+        {categories
+          .filter((cat) => cat.id === activeCategory)
+          .map((cat) => (
+            <div
+              key={cat.id}
+              id={`experience-${cat.id}`}
+              style={{
+                scrollMarginTop: 24,
+                paddingBottom: isMobile ? 'var(--space-3xl)' : 'var(--space-4xl)',
+              }}
+            >
+              <h3
+                style={{
+                  fontSize: isMobile ? 'var(--text-xl)' : 'var(--text-3xl)',
+                  color: 'var(--text-primary)',
+                  fontWeight: 700,
+                  margin: `0 0 ${isMobile ? 'var(--space-lg)' : 'var(--space-xl)'}`,
+                }}
+              >
+                {cat.label}
+              </h3>
+
+              {cat.id === 'founder' ? (
+                <>
+                  <div
+                    style={{
+                      maxWidth: '52rem',
+                      marginBottom: isMobile ? 'var(--space-2xl)' : 'var(--space-3xl)',
+                      paddingBottom: isMobile ? 'var(--space-xl)' : 'var(--space-2xl)',
+                      borderBottom: '2px double var(--border-glow)',
+                    }}
+                  >
+                    <p
+                      style={{
+                        margin: 0,
+                        fontSize: isMobile ? 'var(--text-base)' : 'var(--text-lg)',
+                        color: 'var(--text-secondary)',
+                        lineHeight: isMobile ? 1.65 : 1.75,
+                        fontStyle: 'italic',
+                      }}
+                    >
+                      {founderJourneySummary}
+                    </p>
+                  </div>
+
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: isMobile ? 'var(--space-xl)' : 'var(--space-2xl)',
+                    }}
+                  >
+                    {cat.items.map((exp, index) => (
+                      <article
+                        key={`${cat.id}-${index}`}
+                        id={`experience-${cat.id}-${index}`}
+                        style={{
+                          position: 'relative',
+                          background: 'rgba(255, 255, 255, 0.5)',
+                          border: '1px solid var(--border-glow)',
+                          borderLeft: '4px solid var(--accent-primary)',
+                          borderRadius: '2px',
+                          padding: isMobile ? 'var(--space-lg)' : 'var(--space-xl)',
+                          boxShadow: 'var(--shadow-sm)',
+                        }}
+                      >
+                        {index === 0 ? (
+                          <span
+                            style={{
+                              position: 'absolute',
+                              top: isMobile ? '10px' : '12px',
+                              right: isMobile ? '10px' : '14px',
+                              fontSize: '10px',
+                              letterSpacing: '0.14em',
+                              textTransform: 'uppercase',
+                              fontWeight: 800,
+                              color: 'var(--accent-secondary)',
+                              border: '1px solid rgba(155, 59, 46, 0.35)',
+                              padding: '4px 8px',
+                              background: 'rgba(255, 255, 255, 0.85)',
+                            }}
+                          >
+                            Latest
+                          </span>
+                        ) : null}
+
+                        <time
+                          dateTime={exp.year}
+                          style={{
+                            display: 'block',
+                            fontSize: '11px',
+                            letterSpacing: '0.14em',
+                            textTransform: 'uppercase',
+                            fontWeight: 800,
+                            color: 'var(--accent-primary)',
+                            marginBottom: 'var(--space-sm)',
+                          }}
+                        >
+                          {exp.year}
+                        </time>
+
+                        <div
+                          style={{
+                            display: 'flex',
+                            alignItems: 'flex-start',
+                            gap: 'var(--space-md)',
+                            marginBottom: 'var(--space-md)',
+                          }}
+                        >
+                          {exp.logo ? (
+                            <img
+                              src={exp.logo}
+                              alt={`${exp.title} logo`}
+                              style={{
+                                width: isMobile ? '44px' : '52px',
+                                height: isMobile ? '44px' : '52px',
+                                objectFit: 'contain',
+                                borderRadius: 6,
+                                background: 'white',
+                                padding: 4,
+                                flexShrink: 0,
+                                border: '1px solid var(--border-glow)',
+                              }}
+                            />
+                          ) : null}
+                          <h4
+                            style={{
+                              margin: 0,
+                              fontSize: isMobile ? '1.2rem' : 'clamp(1.25rem, 2.2vw, 1.65rem)',
+                              fontWeight: 900,
+                              lineHeight: 1.2,
+                              color: 'var(--text-primary)',
+                              letterSpacing: '-0.02em',
+                            }}
+                          >
+                            {exp.title}
+                          </h4>
+                        </div>
+
+                        <div
+                          style={{
+                            fontSize: isMobile ? 'var(--text-sm)' : 'var(--text-base)',
+                            color: 'var(--text-secondary)',
+                            lineHeight: isMobile ? 1.65 : 1.72,
+                            whiteSpace: 'pre-line',
+                            paddingTop: 'var(--space-sm)',
+                            borderTop: '1px solid rgba(122, 75, 34, 0.12)',
+                          }}
+                        >
+                          {exp.detail}
+                        </div>
+
+                        {(exp.techTags || []).length > 0 ? (
+                          <div
+                            style={{
+                              marginTop: 'var(--space-lg)',
+                              paddingTop: 'var(--space-md)',
+                              borderTop: '1px dashed var(--border-glow)',
+                              fontSize: 'var(--text-xs)',
+                              letterSpacing: '0.06em',
+                              textTransform: 'uppercase',
+                              fontWeight: 700,
+                              color: 'var(--text-muted)',
+                            }}
+                          >
+                            <span style={{ marginRight: 'var(--space-sm)' }}>Topics</span>
+                            <span style={{ fontWeight: 500, textTransform: 'none', letterSpacing: 'normal', color: 'var(--text-secondary)' }}>
+                              {(exp.techTags || []).join(' · ')}
+                            </span>
+                          </div>
+                        ) : null}
+                      </article>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: isMobile ? 'var(--space-2xl)' : 'var(--space-3xl)',
+                  }}
+                >
+                  {cat.items.map((exp, index) => {
+                    return (
+                      <div
+                        key={`${cat.id}-${index}`}
+                        id={`experience-${cat.id}-${index}`}
+                        style={{
+                          background: 'transparent',
+                          border: 'none',
+                          borderRadius: 0,
+                          borderBottom: '1px solid var(--border-glow)',
+                          padding: isMobile ? 'var(--space-lg) 0' : 'var(--space-xl) 0',
+                          backdropFilter: 'none',
+                          boxShadow: 'none',
+                          transition: 'none',
+                          position: 'relative',
+                          overflow: 'visible',
+                        }}
+                      >
+                        <div
+                          style={{
+                            display: 'inline-block',
+                            background: 'transparent',
+                            color: 'var(--accent-primary)',
+                            padding: 0,
+                            borderRadius: 0,
+                            fontSize: 'var(--text-sm)',
+                            fontWeight: 700,
+                            marginBottom: isMobile ? 'var(--space-sm)' : 'var(--space-md)',
+                          }}
+                        >
+                          {exp.year}
+                        </div>
+
+                        <div
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 'var(--space-md)',
+                            marginBottom: isMobile ? 'var(--space-md)' : 'var(--space-lg)',
+                            position: 'relative',
+                            zIndex: 1,
+                          }}
+                        >
+                          {exp.logo && (
+                            <img
+                              src={exp.logo}
+                              alt={`${exp.title} logo`}
+                              style={{
+                                width: isMobile ? '40px' : '50px',
+                                height: isMobile ? '40px' : '50px',
+                                objectFit: 'contain',
+                                borderRadius: 8,
+                                background: 'white',
+                                padding: 4,
+                                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.10)',
+                              }}
+                            />
+                          )}
+                          <h3
+                            style={{
+                              fontSize: isMobile ? 'var(--text-lg)' : 'var(--text-2xl)',
+                              color: 'var(--text-primary)',
+                              fontWeight: 700,
+                              margin: 0,
+                              lineHeight: 1.3,
+                              transition: 'none',
+                            }}
+                          >
+                            {exp.title}
+                          </h3>
+                        </div>
+
+                        <div
+                          style={{
+                            fontSize: isMobile ? 'var(--text-sm)' : 'var(--text-base)',
+                            color: 'var(--text-secondary)',
+                            lineHeight: isMobile ? 1.6 : 1.7,
+                            whiteSpace: 'pre-line',
+                            transition: 'color 0.2s ease',
+                            position: 'relative',
+                            zIndex: 1,
+                          }}
+                        >
+                          {exp.detail}
+                        </div>
+
+                        <div
+                          style={{
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            gap: 'var(--space-sm)',
+                            marginTop: 'var(--space-lg)',
+                            position: 'relative',
+                            zIndex: 1,
+                          }}
+                        >
+                          {(exp.techTags || []).map((tech, techIdx) => (
+                            <span
+                              key={techIdx}
+                              style={{
+                                fontSize: 'var(--text-sm)',
+                                color: 'var(--accent-primary)',
+                                background: 'transparent',
+                                border: 'none',
+                                padding: 0,
+                                borderRadius: 0,
+                                fontWeight: 500,
+                                transition: 'none',
+                              }}
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+          </div>
+        ))}
       </div>
-    </section>
+    </div>
   );
 };
 

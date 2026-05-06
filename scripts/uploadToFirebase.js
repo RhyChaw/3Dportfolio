@@ -27,15 +27,6 @@ const projectsData = [
     date: 'October 2025',
     imageName: 'ClashRoyale.png'
   },
-  {
-    title: 'SportSpark',
-    description: 'A smart web platform that makes anyone confident enough to talk about any sport in 5 minutes. Features instant sport mastery, trends, newsletters, interactive learning across levels, rich sport overview pages (rules, vocab, competitions, players/teams, storylines, culture), responsive UI, dark mode, and fast performance.',
-    tech: 'Next.js 14, React, TypeScript, Tailwind CSS, Headless UI, Lucide, Vercel',
-    git: 'https://github.com/RhyChaw/ByteS',
-    category: 'Full Stack',
-    date: 'October 2025',
-    imageName: 'SportSpark.png'
-  },
   // Add all other projects here...
 ];
 

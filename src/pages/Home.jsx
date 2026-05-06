@@ -11,7 +11,6 @@ import Certifications from './Certifications';
 import Projects from './Projects';
 import Contact from './Contact';
 import Navbar from '../components/Navbar';
-import ChatBox from './ChatBox';
 import Title from './Title';
 import Experience from './Experience';
 import skyImage from '../assets/sky.jpg';
@@ -246,7 +245,6 @@ const handleJoystickEnd = () => {
 
       <RadarMinimap narutoPosition={coords} />
       <Title />
-      <ChatBox />
 
       {popupVisible && <Links onClose={() => setPopupVisible(false)} />}
       {resumeVisible && <Resume onClose={() => setResumeVisible(false)} />}

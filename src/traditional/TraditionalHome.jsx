@@ -1,84 +1,290 @@
-import React from 'react';
-import Navbar from './TradNav';
-import Links from './TradLinks';
+import React, { useEffect, useRef, useState } from 'react';
 import Resume from './TradResume';
 import Certifications from './TradCert';
-import Projects from './TradProj';
-import Experience from './TradExp';
+import Projects from './TradProjCoffeeLines';
+import Experience, { professionalExperience, founderJourney, freelanceWork, openSource } from './TradExp';
 import FloatingIcons from '../components/FloatingIcons';
 import styles from './TraditionalHome.module.css';
 import chibiNaruto from './ChibiB.jpg';
 import rhythmPhoto from '../assets/rhythm-photo.jpg';
 import LogosBelt from './LogosBelt';
+import { top10Projects } from '../pages/ProjectsData';
 
 const TraditionalHome = () => {
+  const contentScrollRef = useRef(null);
+  const [openSection, setOpenSection] = useState('experience');
+  const [openExperienceCategory, setOpenExperienceCategory] = useState('');
+  const [openProjectsList, setOpenProjectsList] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const experienceCategories = [
+    { id: 'professional', label: 'Engineering', items: professionalExperience },
+    { id: 'founder', label: 'Founder', items: founderJourney },
+    { id: 'freelance', label: 'Freelance', items: freelanceWork },
+    { id: 'opensource', label: 'Open Source / Research', items: openSource },
+  ];
+
+  const visibleProjects = top10Projects.filter((p) => !p?.inProgress);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      if (!mobile) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const scrollToId = (id) => {
+    const el = document.getElementById(id);
+    const scroller = contentScrollRef.current;
+    if (!el || !scroller) return;
+
+    const topBar = isMobile ? 56 : 0;
+    const elTop = el.getBoundingClientRect().top;
+    const scrollTop = scroller.scrollTop + elTop - topBar - 8;
+    scroller.scrollTo({ top: Math.max(0, scrollTop), behavior: 'smooth' });
+
+    if (isMobile) setIsMobileMenuOpen(false);
+  };
+
+  const selectProjectFromSidebar = (projectTitle) => {
+    scrollToId('projects');
+    window.dispatchEvent(
+      new CustomEvent('traditional-select-project', {
+        detail: { title: projectTitle },
+      })
+    );
+    if (isMobile) setIsMobileMenuOpen(false);
+  };
+
   return (
     <div className={styles.container}>
-      <Navbar />
-      
-      <div className={styles.hero}>
-        <div className={styles.heroContent}>
-          <div className={styles.heroGrid}>
-            <div className={styles.heroText}>
-              <h1 className={styles.heroTitle}>
-                <span className={styles.titleLine}>Presenting</span>
-                <span className={styles.titleLine + ' ' + styles.highlight}>RHYTHM CHAWLA</span>
-              </h1>
-              <p className={styles.heroDescription}>
-                I'm a passionate Full Stack Developer and serial entrepreneur with an insatiable drive to build innovative solutions that solve real-world problems. My journey in tech began with a simple curiosity about how things work, but it quickly evolved into a deep fascination with the intersection of technology and business.
-              </p>
-              <p className={styles.heroDescription}>
-                What truly excites me is entrepreneurship – the thrill of identifying market gaps, building products from scratch, and watching them grow into something meaningful. From co-founding G12Uni, a global platform connecting 1,500+ students across 10+ countries, to developing AI-powered solutions that accelerate enterprise workflows by 98%, I live for the challenge of turning bold ideas into reality.
-              </p>
-              <p className={styles.heroDescription}>
-                My approach combines technical excellence with business acumen, always asking "How can this technology create value?" Whether it's building scalable ML microservices, crafting intuitive user experiences, or optimizing conversation workflows for enterprise customers, I'm driven by the belief that great technology should empower people and drive meaningful change.
-              </p>
-            </div>
-            <div className={styles.heroImage}>
-              <div className={styles.imagePlaceholder}>
-                <img 
-                  src={rhythmPhoto} 
-                  alt="Rhythm Chawla" 
-                  className={styles.profileImage}
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    e.target.nextElementSibling.style.display = 'flex';
-                  }}
-                />
+      {isMobile && (
+        <div className={styles.mobileTopBar}>
+          <button
+            type="button"
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMobileMenuOpen}
+            className={styles.mobileMenuButton}
+            onClick={() => setIsMobileMenuOpen((v) => !v)}
+          >
+            {isMobileMenuOpen ? '✕' : '☰'}
+          </button>
+          <span className={styles.mobileTopBarTitle}>Rhythm Chawla</span>
+        </div>
+      )}
+
+      {isMobile && isMobileMenuOpen && (
+        <button
+          type="button"
+          aria-label="Close menu"
+          className={styles.mobileBackdrop}
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
+      <div className={styles.splitLayout}>
+        {/* Creme sidebar (25%) */}
+        <aside
+          className={`${styles.sidebar} ${isMobile && isMobileMenuOpen ? styles.sidebarMobileOpen : ''}`}
+          aria-hidden={isMobile && !isMobileMenuOpen}
+        >
+          <div className={styles.sidebarSection}>
+            <button
+              type="button"
+              className={
+                openSection === 'experience'
+                  ? styles.sidebarTopButton + ' ' + styles.sidebarTopButtonActive
+                  : styles.sidebarTopButton
+              }
+              onClick={() => setOpenSection(openSection === 'experience' ? '' : 'experience')}
+            >
+              Experience
+            </button>
+            {openSection === 'experience' && (
+              <div className={styles.sidebarSubList}>
+                <button
+                  type="button"
+                  className={styles.sidebarSubButton}
+                  onClick={() => scrollToId('experience')}
+                >
+                  All Experience
+                </button>
+                {experienceCategories.map((cat) => {
+                  const isOpen = openExperienceCategory === cat.id;
+                  return (
+                    <div key={cat.id} style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                      <button
+                        type="button"
+                        className={styles.sidebarSubButton}
+                        onClick={() => setOpenExperienceCategory(isOpen ? '' : cat.id)}
+                      >
+                        {cat.label}
+                      </button>
+                      {isOpen && (
+                        <div className={styles.sidebarNestedList}>
+                          {cat.items.map((exp, idx) => (
+                            <button
+                              key={`${cat.id}-${idx}`}
+                              type="button"
+                              className={styles.sidebarNestedButton}
+                              onClick={() => scrollToId(`experience-${cat.id}-${idx}`)}
+                            >
+                              {exp.title.split('|')[0].trim()}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
+          <div className={styles.sidebarSection}>
+            <button
+              type="button"
+              className={
+                openSection === 'projects'
+                  ? styles.sidebarTopButton + ' ' + styles.sidebarTopButtonActive
+                  : styles.sidebarTopButton
+              }
+              onClick={() => setOpenSection(openSection === 'projects' ? '' : 'projects')}
+            >
+              Projects ({visibleProjects.length})
+            </button>
+            {openSection === 'projects' && (
+              <div className={styles.sidebarSubList}>
+                <button
+                  type="button"
+                  className={styles.sidebarSubButton}
+                  onClick={() => setOpenProjectsList((v) => !v)}
+                >
+                  All Projects
+                </button>
+                {openProjectsList && (
+                  <div className={styles.sidebarNestedList}>
+                    {visibleProjects.map((proj, idx) => (
+                      <button
+                        key={`${proj.title}-${idx}`}
+                        type="button"
+                        className={styles.sidebarNestedButton}
+                        onClick={() => selectProjectFromSidebar(proj.title)}
+                      >
+                        {proj.title}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
+          <div className={styles.sidebarSection}>
+            <button
+              type="button"
+              className={
+                openSection === 'certifications'
+                  ? styles.sidebarTopButton + ' ' + styles.sidebarTopButtonActive
+                  : styles.sidebarTopButton
+              }
+              onClick={() => setOpenSection(openSection === 'certifications' ? '' : 'certifications')}
+            >
+              Certifications
+            </button>
+            {openSection === 'certifications' && (
+              <div className={styles.sidebarSubList}>
+                <button
+                  type="button"
+                  className={styles.sidebarSubButton}
+                  onClick={() => scrollToId('certifications')}
+                >
+                  View
+                </button>
+              </div>
+            )}
+          </div>
+
+          <div className={styles.sidebarSection}>
+            <a
+              href="/resumes/resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className={styles.sidebarTopButton}
+              style={{ textDecoration: 'none' }}
+            >
+              Resume
+            </a>
+          </div>
+
+          {/* Continuous logo showcase below the resume section */}
+          <div className={styles.sidebarLogosWrap}>
+            <LogosBelt variant="sidebar" />
+          </div>
+        </aside>
+
+        {/* Scrollable content (75%) */}
+        <div ref={contentScrollRef} className={styles.contentScroll}>
+          <div className={styles.rightTopBar}>Rhythm Chawla</div>
+          <div className={styles.hero}>
+            <div className={styles.heroContent}>
+              <div className={`${styles.heroGrid} ${styles.heroGridSolo}`}>
+                <div className={styles.heroImage}>
+                  <div className={styles.imagePlaceholder}>
+                    <img
+                      src={rhythmPhoto}
+                      alt="Rhythm Chawla"
+                      className={styles.profileImage}
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        const next = e.target.nextElementSibling;
+                        if (next) next.style.display = 'flex';
+                      }}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+
+          <main className={styles.main}>
+            <div className={styles.rightSectionFirst}>
+              <section id="experience">
+                <Experience />
+              </section>
+            </div>
+
+            <div className={styles.rightSection}>
+              <section id="projects">
+                <Projects />
+              </section>
+            </div>
+
+            <div className={styles.rightSection}>
+              <section id="certifications">
+                <Certifications />
+              </section>
+            </div>
+
+            <div className={styles.rightSection}>
+              <section id="resume">
+                <Resume />
+              </section>
+            </div>
+          </main>
+
+          <footer className={styles.footer}>
+            <p>&copy; 2025 Rhythm Chawla. All rights reserved.</p>
+          </footer>
         </div>
       </div>
-
-      <main className={styles.main}>
-        <section id="experience">
-          <Experience />
-        </section>
-        
-        {/* Logos belt (no title) */}
-        <section>
-          <LogosBelt />
-        </section>
-
-        <section id="projects">
-          <Projects />
-        </section>
-        
-        <section id="certifications">
-          <Certifications />
-        </section>
-        
-        <section id="resume">
-          <Resume />
-        </section>
-        
-        {/* Contact section removed as requested */}
-      </main>
-
-      <footer className={styles.footer}>
-        <p>&copy; 2025 Rhythm Chawla. All rights reserved.</p>
-      </footer>
 
       {/* Floating Chibi Naruto */}
       <a href="/naruto" className={styles.chibiWrapper}>
