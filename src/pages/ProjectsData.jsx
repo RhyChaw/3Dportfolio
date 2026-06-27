@@ -23,6 +23,18 @@ import PipettePro from '../proj/PipettePro.png';
 // Removed color constants as colors are no longer used in project data
 
 const projectsData = [
+  // 2026 Projects
+  {
+    title: 'daimon: Local-First Agentic macOS Assistant',
+    hook: 'Eval-gated agent. 5/10 → 9/10 with memory.',
+    description: 'A local-first agentic macOS assistant: a bounded multi-step agent loop (propose → gate → execute → observe) over a capability whitelist with Touch ID privilege gating, and a swappable inference backend serving local (Ollama) or cloud (Claude) models with persistent episodic + factual memory. A 3-arm ablation benchmark isolated memory\'s contribution to agent task success: with the model held fixed, structured query-relevant memory raised pass rate from 5/10 to 9/10 at ~13% token overhead, driving an eval-gated roadmap.',
+    tech: 'Python, Ollama, Claude API, palace-ai, macOS, Agentic Loop, Eval Harness, RAG',
+    git: 'https://github.com/RhyChaw/daimon',
+    category: 'AI / Developer Tools',
+    date: 'June 2026',
+    featured: true,
+    image: null
+  },
   // 2025 Projects (Future/Planned)
   {
     title: 'palace-ai: Memory Palace for AI Agents',

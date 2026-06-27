@@ -1,0 +1,420 @@
+{
+  "_meta": {
+    "source": "Curated from the Notion hub 'Portfolio — Public MCP Data' + the 3d-porto repo.",
+    "visibility": "public",
+    "lastSynced": "2026-06-22"
+  },
+  "profile": {
+    "name": "Rhythm Chawla",
+    "headline": "CS @ University of Waterloo · Agentic AI & full-stack engineer · builder of LLM developer tools",
+    "location": "Waterloo / Kitchener, ON, Canada",
+    "education": "BCS Honours Co-op, University of Waterloo — AI & HCI Specialization, Minor in Entrepreneurship (Sep 2024 – Apr 2028 expected)",
+    "contact": {
+      "email": "r3chawla@uwaterloo.ca"
+    },
+    "links": {
+      "portfolio": "https://rhythmchawla.vercel.app",
+      "github": "https://github.com/RhyChaw",
+      "linkedin": "https://linkedin.com/in/rhychaw"
+    },
+    "summary": "Software engineer and builder who turns ideas into shipped products: AI developer tools, full-stack platforms, and research prototypes. Built Carta's first MCP compensation-benchmarking plugin and internal Claude devtools; engineered an LLM auditing/evaluation system at Cresta processing 10K conversation logs per run; co-founded G12Uni as a founding engineer, scaling it to 40K monthly visits.",
+    "throughline": "A systems-thinking generalist drawn to emergent and decentralized intelligence — visible in the work (SWARM predator–prey robotics, multi-agent memory systems like palace-ai and daimon, the network-mcp connection layer) and in what he reads (The Starfish and the Spider, The Wisdom of Crowds, Range). A founder's instinct for spotting problems paired with the engineering to ship the fix.",
+    "strengths": [
+      "Agentic AI / LLM engineering (orchestration, RAG, evaluation & benchmarking)",
+      "Full-stack (React, Next.js, Python, Django)",
+      "Data engineering & pipelines at scale",
+      "Rapid prototyping (hackathon-winning)",
+      "0→1 product building and founding-engineer work"
+    ]
+  },
+  "skills": {
+    "languages": ["Python", "C/C++", "TypeScript", "JavaScript", "Java", "Go", "Rust", "Bash"],
+    "llm_and_retrieval": ["prompting", "RAG", "text embeddings & semantic search (pgvector, OpenAI embeddings)", "agent evaluation & benchmarking (ablation studies, offline eval)", "MCP", "local inference (Ollama)", "Anthropic/Gemini APIs", "Claude Code"],
+    "ml": ["PyTorch", "TensorFlow", "Hugging Face", "scikit-learn", "XGBoost", "reinforcement learning (DQN, A3C)"],
+    "systems_and_data": ["Django", "FastAPI", "gRPC", "Kafka", "PostgreSQL", "dbt", "Docker", "Kubernetes", "GCP", "AWS", "CI/CD", "Datadog", "Sentry"]
+  },
+  "experience": [
+    {
+      "role": "Agentic AI Solutions Engineer",
+      "organization": "Franchise Foundry",
+      "type": "Professional",
+      "period": "May 2026 – Present",
+      "tech": ["Laravel", "PHP", "Anthropic", "Gemini", "Vapi", "Twilio", "LiveKit", "Agentic AI", "Voice Agents"],
+      "highlights": [
+        "Architected an end-to-end multimodal agentic AI pipeline: ingests franchise disclosure PDFs, runs LLM prompt synthesis with PDF grounding (Anthropic/Gemini), and deploys production voice sales agents on Vapi — a 7-step automated workflow from ingestion to live phone provisioning.",
+        "Engineered production agent orchestration infrastructure — resumable step-persisted builds, idempotent queue jobs, and structured workflow logs with error traces — turning opaque multi-minute LLM+telephony failures into operator-debuggable agent runs."
+      ]
+    },
+    {
+      "role": "Software Engineer Intern",
+      "organization": "Carta",
+      "type": "Professional",
+      "period": "Jan 2026 – Apr 2026",
+      "tech": ["Python", "Django", "gRPC", "Kafka", "MCP", "Node.js", "PostgreSQL", "Docker", "Kubernetes", "Datadog", "Sentry", "CI/CD"],
+      "highlights": [
+        "Developed Carta's first MCP plugin (compensation benchmarking), letting HR teams query real-time salary data through Claude in natural language; architected the auth flow, backend service integration, and upsell path end-to-end.",
+        "Architected Project Atlas, a persistent context memory system for Claude agents with a custom MCP server integrating Jira, Slack, and Confluence, reducing token consumption by ~86K tokens per investigation session.",
+        "Built devtools-mcp: a Chrome extension + Node.js MCP server exposing 22 tools streaming live browser DevTools data into Claude Code — agentic debugging tooling for the SDLC; 150+ contributions in first 90 days.",
+        "Reduced CI pipeline runtime by 42% (12 -> 7 min) on Jenkins; led projects end-to-end from scoping to release including ERD design, feature flag orchestration, and production job execution on live data."
+      ]
+    },
+    {
+      "role": "Associate Conversation Design Intern",
+      "organization": "Cresta AI (Series D)",
+      "type": "Professional",
+      "period": "May 2025 – Aug 2025",
+      "tech": ["Python", "LLMs", "Evaluation", "Prompting", "Google Apps Script"],
+      "highlights": [
+        "Engineered an LLM-powered auditing & evaluation system processing 10,000 conversation logs per run, cutting manual QA time by ~98% and clearing multi-week reviewer backlogs in under a day.",
+        "Built labelled evaluation datasets and ran QA for AI agent behaviour detection across 12 enterprise clients (incl. Royal Caribbean), surfacing edge cases that directly informed model improvements.",
+        "Automated annotation workflows saving 10+ hours/week; tuned conversation platforms across 10+ client deployments, improving bot accuracy by ~30%."
+      ]
+    },
+    {
+      "role": "Founding Engineer",
+      "organization": "Conrad School of Entrepreneurship (G12Uni)",
+      "type": "Professional",
+      "period": "May 2024 – Aug 2024",
+      "tech": ["ReactJS", "Vite", "Tailwind", "Python", "Docker", "GCP", "NLP", "ML Microservices"],
+      "highlights": [
+        "Co-founded G12Uni: an AI-powered university admissions platform scaling to 40,000 monthly visits and 2,000+ MAU across 10+ countries; selected for Google for Startups.",
+        "Engineered full-stack rebuild (Vite + React + Tailwind) with real-time APIs: Google Meet, maps, chat, avatars, and bots.",
+        "Deployed NLP pipelines for Reddit/YouTube intelligence on Docker + GCP; pitched to 24 high schools and secured 5 pilot agreements.",
+        "Built Jado: an LLM-powered research assistant extending Perplexity-style search with Reddit and YouTube scraping pipelines."
+      ]
+    },
+    {
+      "role": "Full Stack Developer",
+      "organization": "Zafari CC Design",
+      "type": "Freelance",
+      "period": "May 2025",
+      "tech": ["Next.js", "React", "TypeScript", "SEO", "Server-Side Rendering"],
+      "highlights": [
+        "Built a modern, SEO-optimized website for an interior design company with server-side rendering (Next.js); improved client search ranking and user experience."
+      ]
+    },
+    {
+      "role": "Full Stack Developer",
+      "organization": "Metta Stars Foundation",
+      "type": "Freelance",
+      "period": "April 2025",
+      "tech": ["Vite", "React", "JavaScript"],
+      "highlights": [
+        "Built a full-stack website for an NGO focused on mental health, finance, and spirituality; responsive design with content management and user engagement features."
+      ]
+    },
+    {
+      "role": "Full Stack Developer",
+      "organization": "Vasanta Bhavan Oman",
+      "type": "Freelance",
+      "period": "2025",
+      "tech": ["ReactJS", "Firebase"],
+      "highlights": [
+        "Developed an admin panel using ReactJS and a Firebase backend."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "daimon",
+      "hook": "Local-first agentic macOS assistant, gated by an eval harness.",
+      "description": "A local-first agentic macOS assistant: a bounded multi-step agent loop (propose → gate → execute → observe) over a capability whitelist with Touch ID privilege gating, and a swappable inference backend serving local (Ollama) or cloud (Claude) models with persistent episodic + factual memory. A 3-arm ablation benchmark isolated memory's contribution to agent task success: with the model held fixed, structured query-relevant memory raised pass rate from 5/10 to 9/10 at ~13% token overhead; failure analysis exposed a paraphrase-recall ceiling, driving an eval-gated roadmap (semantic retrieval, local fine-tuning) over speculative builds. Uses palace-ai as its memory layer.",
+      "category": "AI/ML",
+      "tech": ["Python", "Ollama", "Claude API", "palace-ai", "macOS", "Agentic Loop", "Eval Harness", "RAG"],
+      "date": "June 2026",
+      "featured": true,
+      "repo": "https://github.com/RhyChaw/daimon"
+    },
+    {
+      "name": "palace-ai: Memory Palace for AI Agents",
+      "hook": "42x token reduction. Zero API key.",
+      "description": "Turns any code repository into a navigable memory palace for AI agents: a typed associative network, per-module room files, and a self-contained graph visualizer. Agents traverse rooms by association rather than search, achieving 10–42x token reduction with zero API key required. Ships as a pip-installable CLI with Claude Code integration via `palace install claude`.",
+      "category": "Dev Tools",
+      "tech": ["Python", "AST parsing", "pgvector", "Claude Code MCP", "Graph Visualization", "CLI", "PyPI"],
+      "date": "May 2026",
+      "featured": true,
+      "repo": "https://github.com/RhyChaw/palace-ai"
+    },
+    {
+      "name": "Network MCP: Personal Network Memory Layer",
+      "hook": "Ask your 1,700 connections in plain English.",
+      "description": "An MCP server that ingests LinkedIn connections + personal notes, embeds them with pgvector, and answers natural language queries to surface the right people at the right time. Ask 'investors who care about edtech' and get ranked results.",
+      "category": "Dev Tools",
+      "tech": ["Python", "TypeScript", "PostgreSQL", "pgvector", "OpenAI Embeddings", "FastAPI", "Docker", "MCP"],
+      "date": "April 2026",
+      "repo": "https://github.com/RhyChaw/network-mcp"
+    },
+    {
+      "name": "Lost in the Office Jungle: Carta Farewell App",
+      "hook": "A treasure hunt I built for my team's last day.",
+      "description": "Mobile-first office treasure hunt web app built as a surprise for the Carta team on the last day of co-op. 10 QR-gated checkpoints, real-time leaderboard via Supabase subscriptions, jungle fairy mascot. Client-side routing, no auth: player UUID in sessionStorage.",
+      "category": "Full Stack",
+      "tech": ["React 18", "Vite", "Supabase", "React Router", "Framer Motion", "TypeScript"],
+      "date": "April 2026",
+      "repo": "https://github.com/RhyChaw/carta-treasure"
+    },
+    {
+      "name": "Parmanu: Learned Mesoscopic Matter Primitives",
+      "hook": "One engine, any material. Water, honey, sand — same primitive.",
+      "description": "A particle-based physics engine where material behavior emerges from learned interaction kernels rather than hand-coded solvers. Each parmanu carries a latent material embedding z: water, honey, sand, and soft tissue share one primitive, different z. Authored a research paper (cs.GR, Jan 2026).",
+      "category": "Research",
+      "tech": ["Python", "PyTorch", "SPH", "Open3D", "ROS", "NumPy"],
+      "date": "January 2026",
+      "award": "Research Paper: cs.GR, Jan 2026",
+      "repo": "https://github.com/RhyChaw/parmanu"
+    },
+    {
+      "name": "Pipette Pro",
+      "hook": "Best Prototype · Google × UWaterloo Symposium.",
+      "description": "Won Best Prototype at the Fall 2025 Google-UWaterloo Symposium on the Future of Learning. Pipette Pro reimagines how students learn essential lab techniques through an intuitive, guided, interactive experience. Developed with Google mentorship as part of Prof. Edith Law's HCI lab.",
+      "category": "Research",
+      "tech": ["Next.js", "TensorFlow", "Firebase", "Firestore", "Three.js", "HCI Research", "EdTech"],
+      "date": "November 2025",
+      "award": "Best Prototype: Google × UWaterloo Symposium",
+      "live": "https://pipettepro.vercel.app"
+    },
+    {
+      "name": "Clash Royale Analytics Platform",
+      "hook": "50K battle logs → live win probability in real time.",
+      "description": "End-to-end analytics platform automating ingestion of 50k+ battle logs, transforming raw data into analytics-ready tables with dbt and PostgreSQL, and delivering live match outcome predictions through ML models served by FastAPI and visualized on a Streamlit dashboard. Rigorous data quality checks, CI/CD, and containerization.",
+      "category": "Data Engineering",
+      "tech": ["Python", "PostgreSQL", "dbt", "FastAPI", "Streamlit", "scikit-learn", "XGBoost", "Docker", "CI/CD"],
+      "date": "October 2025",
+      "repo": "https://github.com/RhyChaw/clashroyalestats"
+    },
+    {
+      "name": "SWARM 2025: Predator-Prey Swarm Robotics",
+      "hook": "10 robots from scratch. 500 total. Predator–prey behaviours.",
+      "description": "Built 10 full robots from the ground up at SWARM 2025 in Kitchener (100+ students, 500+ robots). From hands-on soldering to programming with Docker and ROS, engineered emergent predator–prey behaviors inspired by nature.",
+      "category": "Robotics",
+      "tech": ["Robotics", "ROS", "Docker", "Embedded Systems", "Swarm Intelligence", "Multi-Agent Systems", "Hardware"],
+      "date": "October 2025",
+      "repo": "https://github.com/AarjavPatni/hero-macos-arm64/"
+    },
+    {
+      "name": "Texas Hold'em Poker – Enhanced Professional Version",
+      "hook": "C++17 Texas Hold'em with Monte Carlo AI.",
+      "description": "Professional-grade C++ Texas Hold'em with SFML 3.0 graphics, modular architecture, and a full main menu + settings system. 2–6 players, customizable blinds/stacks, real-time stats, and AI with Monte Carlo simulation. Clean C++17 codebase with RAII.",
+      "category": "Game Dev",
+      "tech": ["C++17", "SFML 3.0", "CMake", "Modular Architecture", "Monte Carlo AI"],
+      "date": "October 2025",
+      "repo": "https://github.com/RhyChaw/poker"
+    },
+    {
+      "name": "DJ AI",
+      "hook": "An AI that mixes your songs in real time.",
+      "description": "An experimental AI DJ system that performs real-time audio mixing using reinforcement learning: agents learn mixing policies from track features, beat grids, and crowd response signals. Built with PyTorch for the RL core and Three.js for a live visual interface.",
+      "category": "AI/ML",
+      "tech": ["PyTorch", "TensorFlow", "Python", "FastAPI", "Three.js", "WebGL", "Reinforcement Learning", "Neural Networks"],
+      "date": "September 2025",
+      "live": "https://d-c1qmyx10z-rhychaws-projects.vercel.app/",
+      "repo": "https://github.com/RhyChaw/DJAi"
+    },
+    {
+      "name": "OneAddress – Chrome Extension",
+      "hook": "One click. Any address form. Fully local.",
+      "description": "A Chrome extension to manage and autofill multiple addresses (home, work, temporary) across the web with one click. Fast, secure, and fully local (no servers, no tracking). One-click form filling, context-menu fill, responsive popup, and local storage management.",
+      "category": "Product",
+      "tech": ["Chrome Extensions", "Manifest V3", "JavaScript", "React/Next.js", "Content Scripts", "Service Workers"],
+      "date": "September 2025",
+      "repo": "https://github.com/RhyChaw/oneAddress"
+    },
+    {
+      "name": "Watopoly - Waterloo Monopoly",
+      "hook": "Monopoly but it's UWaterloo campus.",
+      "description": "Monopoly-inspired board game set on University of Waterloo campus. Features Waterloo landmarks, trading system, save/load functionality, and auction mechanics.",
+      "category": "Game Dev",
+      "tech": ["C++", "Object-Oriented Programming", "Git"],
+      "date": "March 2025"
+    },
+    {
+      "name": "SnapSafe (Hack the North 2025)",
+      "hook": "Real-time AR fire evacuation on Snap glasses.",
+      "description": "A real-time AR fire evacuation system on Snap AR glasses. Used depth caching, world query hits, and ray casting to dynamically detect exits and guide users with pathfinding arrows. Trained a custom fire-exit sign detection model on Roboflow, converted to ONNX, integrated into Lens Studio.",
+      "category": "Hackathon",
+      "tech": ["Snap AR", "Lens Studio", "Roboflow", "ONNX", "Computer Vision", "AR/VR"],
+      "date": "September 2025",
+      "live": "https://www.youtube.com/watch?v=ajmASxcm4OA",
+      "repo": "https://github.com/AshishA26/HackTheNorth2025"
+    },
+    {
+      "name": "StrumSpace (SpurHacks Hackathon)",
+      "hook": "YOLOv8 sees your guitar chords in real time.",
+      "description": "Computer Vision based 3D web dev app, which annotates chords on guitar live using YOLOv8.",
+      "category": "Hackathon",
+      "tech": ["YOLOv8", "Computer Vision", "3D Web", "JavaScript", "Machine Learning"],
+      "date": "June 2025",
+      "repo": "https://github.com/LuhemRevorg/StrumSpace"
+    },
+    {
+      "name": "PawPal (GeeseHacks Hackathon)",
+      "hook": "An AI vet in your pocket. Built for Benji.",
+      "description": "AI based pet care app which can detect pet diseases, recommend food, and find pet sitters.",
+      "category": "Hackathon",
+      "tech": ["AI/ML", "Computer Vision", "Mobile Development", "Machine Learning"],
+      "date": "January 2025",
+      "live": "https://devpost.com/software/heads-up-for-tails",
+      "repo": "https://github.com/LuhemRevorg/the-pet-project-GH-2025-"
+    },
+    {
+      "name": "MineGuard (Hack the Valley Hackathon)",
+      "hook": "Solo. 36 hours. AI safety system for miners.",
+      "description": "AI based mining safety app which can detect unsafe conditions and alert workers.",
+      "category": "Hackathon",
+      "tech": ["AI/ML", "Computer Vision", "Mobile Development", "Safety Systems"],
+      "date": "October 2024",
+      "live": "https://devpost.com/software/mineguard",
+      "repo": "https://github.com/RhyChaw/mineguard"
+    },
+    {
+      "name": "Rhythm (Hack the Hill, Ottawa)",
+      "hook": "Detects stuttering in real time using Meta's Wav2Vec2.",
+      "description": "An AI-powered voice coach leveraging Meta's Wav2Vec2 model and Apple's SEP-28K dataset to detect stuttering and enhance speech clarity. Engineered pitch and pace analysis using OpenAI's API, librosa, and SciPy; interactive front-end with React.js and Particle.js.",
+      "category": "Hackathon",
+      "tech": ["Wav2Vec2", "OpenAI API", "librosa", "SciPy", "React.js", "Particle.js", "Machine Learning"],
+      "date": "September 2024",
+      "live": "https://devpost.com/software/rhythm-o8rwp4",
+      "repo": "https://github.com/LuhemRevorg/HTH_project"
+    },
+    {
+      "name": "G12",
+      "hook": "40K monthly visits. Google for Startups.",
+      "description": "Co-founded G12Uni: an AI-powered university admissions platform connecting students with university communities. Built full-stack web app (Vite + React) and mobile app (Flutter + Dart) on Firebase. Scaled to 40,000 monthly visits and 2,000+ MAU across 10+ countries. Selected for Google for Startups.",
+      "category": "Full Stack",
+      "tech": ["Vite", "React", "Flutter", "Dart", "Firebase", "GCP", "NLP", "TypeScript"],
+      "date": "June 2024",
+      "live": "https://g12uni.com",
+      "repo": "https://github.com/Ejtehad/g12newver"
+    },
+    {
+      "name": "CSGPTPRO Hackathon Project",
+      "hook": "AI tutor trained on UW and UofT course content.",
+      "description": "An AI-powered chatbot designed to provide precise answers for university courses at UW and UofT, as well as French high school papers. Built using Arctic hosting, Streamlit, and CUDA, leveraging AI training on course-specific datasets.",
+      "category": "Hackathon",
+      "tech": ["Arctic Hosting", "Streamlit", "CUDA", "AI/ML", "Python"],
+      "date": "March 2024",
+      "repo": "https://github.com/jadechoghari/CSGPTPRO"
+    },
+    {
+      "name": "WATisZine Website",
+      "hook": "First project. Still running.",
+      "description": "A comprehensive website for the WATisZine club (University of Waterloo) to centralize zines with an admin dashboard. Secure authentication, dynamic content, animations. Connected to Firebase and hosted via cPanel. First official project.",
+      "category": "Full Stack",
+      "tech": ["HTML", "CSS", "JavaScript", "Firebase", "cPanel"],
+      "date": "December 2023",
+      "live": "https://watiszine.clubs.wusa.ca/",
+      "repo": "https://github.com/RhyChaw/watiszine"
+    },
+    {
+      "name": "Hestia | Your Next Home",
+      "hook": "Student sublet finder for university students.",
+      "description": "Student sublet finder for university students.",
+      "category": "Full Stack",
+      "tech": ["HTML", "CSS", "Django", "Python", "Azure Cloud"],
+      "date": "October 2023",
+      "repo": "https://github.com/gsaujla/HestiaProject"
+    }
+  ],
+  "achievements": [
+    { "name": "Best Prototype — Google × UWaterloo Symposium", "issuer": "University of Waterloo · Future of Work Institute", "date": "November 2025", "link": "https://pipettepro.vercel.app" },
+    { "name": "President's Scholarship of Distinction", "issuer": "University of Waterloo", "date": "September 2024" },
+    { "name": "Undergraduate Research Assistant (URA)", "issuer": "University of Waterloo · Prof. Edith Law", "date": "December 2025" },
+    { "name": "TCPS 2 — Research Ethics Certification", "issuer": "Government of Canada", "date": "January 2026", "link": "https://tcps2core.ca" },
+    { "name": "Anthropic Claude 101", "issuer": "Anthropic", "date": "2026" },
+    { "name": "Research Paper — Parmanu (cs.GR)", "issuer": "arXiv · cs.GR", "date": "January 2026" }
+  ],
+  "reading": [
+    { "title": "The Starfish and the Spider", "author": "Ori Brafman & Rod Beckstrom", "genre": ["Business", "Leadership"], "status": "Done", "takeaway": "Decentralized, leaderless organizations — mirrors my interest in swarm robotics and multi-agent systems." },
+    { "title": "The Wisdom of Crowds", "author": "James Surowiecki", "genre": ["Business", "Science"], "status": "Done", "takeaway": "Collective intelligence and emergent behavior from many independent agents." },
+    { "title": "Range: Why Generalists Triumph in a Specialized World", "author": "David Epstein", "genre": ["Self Growth", "Business"], "status": "Done", "takeaway": "Breadth beats early specialization — the generalist thesis I live by." },
+    { "title": "The Psychology of Money", "author": "Morgan Housel", "genre": ["Finance", "Self Growth"], "status": "Done", "takeaway": "Behavior matters more than spreadsheets when it comes to money." },
+    { "title": "The Five Dysfunctions of a Team", "author": "Patrick Lencioni", "genre": ["Leadership", "Business"], "status": "Done", "takeaway": "Trust is the foundation of high-performing teams — learned this the hard way founding startups." },
+    { "title": "First, Break All the Rules", "author": "Marcus Buckingham & Curt Coffman", "genre": ["Leadership", "Business"], "status": "Done", "takeaway": "Great managers build on strengths rather than fixing weaknesses." },
+    { "title": "The Book Thief", "author": "Markus Zusak", "genre": ["Fiction"], "status": "Done", "takeaway": "Narration by Death; the power of words and stories." },
+    { "title": "Parable of the Sower", "author": "Octavia E. Butler", "genre": ["Fiction", "Science"], "status": "Done", "takeaway": "Speculative fiction on resilience and building community amid collapse." },
+    { "title": "Who Moved My Cheese?", "author": "Spencer Johnson", "genre": ["Self Growth", "Business"], "status": "Done", "takeaway": "Adapting quickly to change." }
+  ],
+  "interview_stories": [
+    {
+      "title": "Shipping a safety system solo in 36 hours (MineGuard)",
+      "type": "Ownership",
+      "theme": ["Resilience", "Initiative", "Impact"],
+      "situation": "At Hack the Valley I ended up without a team and decided to compete solo on a hard problem: detecting unsafe conditions for mine workers.",
+      "task": "Design, build, and demo a working AI safety app end-to-end in 36 hours — normally a multi-person scope — with no one to divide the work with.",
+      "action": "Ruthlessly scoped to one defensible demo path: a computer-vision model that flags hazards plus a mobile alert flow. I cut every feature that didn't serve that story, time-boxed the model work, and kept a working build at every checkpoint.",
+      "result": "Delivered a complete, demoable product solo. The takeaway was learning how I operate under extreme constraints: scope hard, protect a working path, never trade a polished demo for an unfinished feature.",
+      "related_project": "MineGuard (Hack the Valley Hackathon)"
+    },
+    {
+      "title": "Knowing when to kill an idea (G12)",
+      "type": "Failure / Learning",
+      "theme": ["Failure", "Leadership", "Teamwork"],
+      "situation": "I co-founded G12Uni as a founding engineer and we scaled it to 40,000 monthly visits, 2,000+ MAU, and selection for Google for Startups.",
+      "task": "Despite real traction, growth stalled — and I had to be honest about whether the underlying problem was strong enough and whether the founding team was aligned.",
+      "action": "Rather than sink more time into a venture running on momentum, I confronted two things directly: the problem wasn't painful enough for users to pull the product, and the team wasn't aligned on direction.",
+      "result": "We wound the project down. It was my most successful failure: 40K visits taught me how to build and scale, and the ending taught me to validate problem severity and co-founder alignment before building.",
+      "related_project": "G12"
+    },
+    {
+      "title": "Cutting QA backlog 98% with an LLM auditing system (Cresta)",
+      "type": "Technical",
+      "theme": ["Impact", "Initiative"],
+      "situation": "At Cresta AI, reviewers were manually QA-ing AI agent conversations across 12 enterprise clients and falling weeks behind.",
+      "task": "Find a way to clear multi-week QA backlogs and surface model edge cases without adding headcount.",
+      "action": "I engineered an LLM auditing system that processed 10,000 conversation logs per run, automated the annotation workflows reviewers did by hand, and tuned the conversation platforms per client deployment.",
+      "result": "Cut manual QA time by ~98%, saved 10+ hours/week, and improved bot accuracy by ~30% across 10+ client deployments while surfacing edge cases for model improvement.",
+      "related_project": null
+    },
+    {
+      "title": "Building persistent memory for AI agents from an ambiguous mandate (Carta → palace-ai)",
+      "type": "Behavioral",
+      "theme": ["Ambiguity", "Initiative", "Impact"],
+      "situation": "At Carta, agent workflows burned enormous context re-reading the same Jira/Slack/Confluence material every investigation, but there was no defined solution — just a vague pain point.",
+      "task": "Turn 'agents waste too many tokens on context' into a concrete, shippable system.",
+      "action": "I architected Project Atlas: a persistent context-memory system for Claude with a .context/ repo structure and a custom MCP server. I later built my own open implementation, palace-ai.",
+      "result": "Atlas reduced token consumption by ~86k tokens per investigation session. palace-ai grew into a pip-installable tool achieving 10–42x token reduction — proof I carry an ambiguous problem all the way to a generalized product.",
+      "related_project": "palace-ai: Memory Palace for AI Agents"
+    },
+    {
+      "title": "Building 10 robots from scratch with a team (SWARM 2025)",
+      "type": "Behavioral",
+      "theme": ["Teamwork", "Resilience"],
+      "situation": "At SWARM 2025 (100+ students, 500+ robots), my team committed to building 10 full robots from the ground up — hardware and software — in a weekend.",
+      "task": "Go from raw components to robots exhibiting emergent predator–prey behavior, coordinating across people doing soldering, embedded work, and ROS programming simultaneously.",
+      "action": "We split by strength but kept tight integration checkpoints so the soldered hardware, embedded firmware, and ROS/Docker behavior layers actually met. I worked across the hardware–software boundary.",
+      "result": "We brought all 10 robots to life with working predator–prey behaviors. It cemented how I work on teams: divide by strength, but integrate early and often.",
+      "related_project": "SWARM 2025: Predator-Prey Swarm Robotics"
+    },
+    {
+      "title": "Winning Best Prototype by designing for real learning (Pipette Pro)",
+      "type": "Behavioral",
+      "theme": ["Impact", "Communication", "Initiative"],
+      "situation": "As a URA in Prof. Edith Law's HCI lab, I worked on Pipette Pro for the Google × UWaterloo Symposium, with mentorship from Google.",
+      "task": "Build a prototype that genuinely improved how students learn lab techniques — and communicate it to mentors and judges.",
+      "action": "I leaned into the HCI research framing: designed an intuitive, guided, interactive experience aimed at real learning impact, and incorporated mentor feedback from Google into each iteration.",
+      "result": "Pipette Pro won Best Prototype — validation that grounding engineering in research and user-centered design beats building features for their own sake.",
+      "related_project": "Pipette Pro"
+    },
+    {
+      "title": "Killing a good-sounding idea, keeping the real one (Strata → network-mcp)",
+      "type": "Failure / Learning",
+      "theme": ["Failure", "Initiative"],
+      "situation": "I had two AI-tooling ideas I was excited about: Strata (a 'Cursor for backend') and a personal-network memory layer.",
+      "task": "Decide which deserved my time instead of building both on enthusiasm alone.",
+      "action": "I pressure-tested each against reality. Strata's value collapsed once Supabase shipped a CLI and teams solved it without me — so I killed it. The network problem had no good existing solution, so I built network-mcp.",
+      "result": "I avoided sinking months into a problem the market was already closing, and shipped the idea with a genuine gap. Validate that the pain is real and unsolved before writing code — now my default filter.",
+      "related_project": "Network MCP: Personal Network Memory Layer"
+    },
+    {
+      "title": "Building a farewell treasure hunt for my team (Carta)",
+      "type": "Behavioral",
+      "theme": ["Initiative", "Teamwork", "Communication"],
+      "situation": "On the last day of my Carta co-op, I wanted to leave the team with something memorable rather than just signing off.",
+      "task": "Build a surprise that brought the whole office together — on my own time, outside of any assigned work.",
+      "action": "I built a mobile-first office treasure hunt web app: 10 QR-gated checkpoints, a real-time leaderboard via Supabase subscriptions, and a jungle fairy mascot. Shipped fast with no auth so anyone could scan and play.",
+      "result": "The team played through it together on my last day. It reflects how I think about culture and ownership — the best engineers leave a place better.",
+      "related_project": "Lost in the Office Jungle: Carta Farewell App"
+    }
+  ],
+  "resume_markdown": "# Rhythm Chawla\n\nPortfolio: https://rhythmchawla.vercel.app · r3chawla@uwaterloo.ca · LinkedIn: rhychaw · GitHub: RhyChaw\n\n## Education\nUniversity of Waterloo — BCS Honours Co-op, AI & HCI Specialization, Minor in Entrepreneurship (Sep 2024 – Apr 2028 expected). President's Scholarship of Distinction (95%+ admission average). Parmanu research paper (cs.GR, Jan 2026). URA under Prof. Edith Law — won Best Prototype, Google × UWaterloo Symposium 2025. Coursework: Machine Learning, Operating Systems, Algorithms, HCI, Statistics, Graph Theory.\n\n## Work Experience\n**Agentic AI Solutions Engineer — Franchise Foundry** (May 2026 – Present). Built an end-to-end multimodal agentic AI pipeline ingesting franchise-disclosure PDFs, running LLM prompt synthesis with PDF grounding (Anthropic/Gemini), and deploying production voice sales agents on Vapi — a 7-step workflow. Engineered production agent orchestration (resumable step-persisted builds, idempotent queue jobs, structured logs) making LLM+telephony runs operator-debuggable.\n\n**Software Engineer Intern — Carta** (Jan 2026 – Apr 2026). Developed Carta's first MCP plugin (compensation benchmarking) for natural-language salary queries through Claude. Architected Project Atlas, a persistent context-memory system for Claude over Jira/Slack/Confluence, cutting ~86K tokens per investigation. Built devtools-mcp (22 tools); 150+ contributions in first 90 days.\n\n**Associate Conversation Design Intern — Cresta** (May 2025 – Aug 2025). Engineered an LLM-powered auditing & evaluation system processing 10,000 conversation logs per run, cutting manual QA time 98%. Built labelled evaluation datasets and ran QA for AI-agent behaviour across 12 enterprise clients.\n\n**Founding Engineer — Conrad School of Entrepreneurship (G12Uni)** (May 2024 – Aug 2024). Co-founded G12Uni; scaled to 40,000 monthly visits, 2,000+ MAU; selected for Google for Startups. Built Jado, an LLM research assistant. Deployed NLP pipelines on Docker + GCP.\n\n## Projects\n**daimon** — local-first agentic macOS assistant; 3-arm ablation benchmark raised pass rate 5/10→9/10 at ~13% token overhead; eval-gated roadmap. **palace-ai** — pip-installable memory palace for coding agents, 10–42x token reduction. **Network MCP** — pgvector + OpenAI embeddings retrieval over 1,700+ connections. **Clash Royale Analytics** — 50k+ logs/day pipeline (dbt, PostgreSQL), productionized scikit-learn/XGBoost predictions via FastAPI.\n\n## Technical Skills\nLanguages: Python, C/C++, TypeScript, JavaScript, Java, Go, Rust, Bash. Agentic AI & ML: agentic orchestration & multi-step tool-use loops, agent evaluation & benchmarking (ablation studies), RL (DQN, A3C), PyTorch, TensorFlow, Hugging Face, MCP, RAG, local inference (Ollama), Anthropic/Gemini APIs, Claude Code. Systems & Infra: Django, FastAPI, gRPC, Kafka, PostgreSQL, Docker, Kubernetes, GCP, AWS, CI/CD, Datadog, Sentry."
+}

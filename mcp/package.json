@@ -1,0 +1,21 @@
+{
+  "name": "rhythm-portfolio-mcp",
+  "version": "1.0.0",
+  "description": "MCP server exposing Rhythm Chawla's curated portfolio data (projects, experience, achievements, reading, interview stories, resume) to Claude.",
+  "type": "module",
+  "bin": {
+    "rhythm-portfolio-mcp": "index.js"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "sync": "node scripts/sync-from-notion.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.23.8"
+  },
+  "optionalDependencies": {
+    "@notionhq/client": "^2.2.15"
+  }
+}

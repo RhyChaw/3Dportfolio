@@ -13,6 +13,14 @@ import mettaStarsLogo from '../compLogos/mettastars.jpeg';
 // Professional Experience
 export const professionalExperience = [
   {
+    title: 'Agentic AI Solutions Engineer | Franchise Foundry',
+    logo: null,
+    detail: `- Architected an end-to-end multimodal agentic AI pipeline: ingests franchise disclosure PDFs, runs LLM prompt synthesis with PDF grounding (Anthropic/Gemini), and deploys production voice sales agents on Vapi — a 7-step automated workflow from ingestion to live phone provisioning.
+- Engineered production agent orchestration infrastructure — resumable step-persisted builds, idempotent queue jobs, and structured workflow logs with error traces — turning opaque multi-minute LLM+telephony failures into operator-debuggable agent runs.`,
+    year: 'May 2026 – Present',
+    techTags: ['Laravel', 'PHP', 'Anthropic', 'Gemini', 'Vapi', 'Twilio', 'LiveKit', 'Agentic AI'],
+  },
+  {
     title: 'Software Engineer Intern | Carta',
     logo: cartaLogo,
     detail: `- Developed Carta's first MCP compensation benchmarking plugin, enabling HR managers to query real-time salary data through Claude via natural language; architected the full auth flow and an upsell path for non-subscribers.
@@ -24,7 +32,7 @@ export const professionalExperience = [
     techTags: ['Python', 'Django', 'gRPC', 'PostgreSQL', 'Docker', 'Jenkins', 'Kubernetes', 'Datadog', 'Sentry', 'Jira', 'MyPy', 'CI/CD', 'Kafka', 'MCP'],
   },
   {
-    title: 'LLM Engineer Intern | Cresta AI (Series D)',
+    title: 'Associate Conversation Design Intern | Cresta AI (Series D)',
     logo: crestaLogo,
     detail: `- Engineered an LLM auditing system processing 10,000 conversation logs per run, cutting manual QA time by 98% and enabling reviewers to clear multi-week backlogs in hours.
 - Conducted QA for AI agent behavior across 12 enterprise clients including Royal Caribbean, surfacing edge cases for model improvements.
