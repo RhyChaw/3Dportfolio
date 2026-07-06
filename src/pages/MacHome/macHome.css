@@ -1,0 +1,39 @@
+/* macHome.css — animations + hover behaviours for the rhythmOS MacBook homepage.
+   The original export used a custom `style-hover=""` attribute; those are
+   reproduced here as real CSS :hover rules driven by class names. */
+
+.mh-root { background: #f7f7f5; color: #0a0a0a; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+.mh-root ::selection { background: #0a0a0a; color: #fff; }
+
+@keyframes mh-inkIn { 0% { transform: scale(0); } 62% { transform: scale(1.14); } 82% { transform: scale(.96); } 100% { transform: scale(1); } }
+@keyframes mh-fadeUp { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes mh-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+@keyframes mh-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+
+/* launcher tile / hobby cell: invert on hover */
+.mh-tile, .mh-hobby { transition: background .18s, color .18s; }
+.mh-tile:hover, .mh-hobby:hover { background: #0a0a0a !important; color: #f7f7f5 !important; }
+
+/* menu-bar + generic bordered buttons: invert */
+.mh-btn { transition: background .15s, color .15s, border-color .15s; }
+.mh-btn:hover { background: #0a0a0a !important; color: #fff !important; border-color: #0a0a0a !important; }
+
+/* "close lid" ghost button */
+.mh-ghost { transition: color .15s; }
+.mh-ghost:hover { color: #0a0a0a !important; }
+
+/* project cards: darken border */
+.mh-card { transition: border-color .18s; }
+.mh-card:hover { border-color: #0a0a0a !important; }
+
+/* featured (inverted) card play button */
+.mh-playbtn { transition: background .15s, color .15s; }
+.mh-playbtn:hover { background: #f7f7f5 !important; color: #0a0a0a !important; }
+
+/* link rows nudge right on hover (transform, not padding, to avoid layout thrash) */
+.mh-link { transition: transform .15s; }
+.mh-link:hover { transform: translateX(10px); }
+
+/* terminal traffic-light close */
+.mh-termdot { transition: background .15s; }
+.mh-termdot:hover { background: #888 !important; }
